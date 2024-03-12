@@ -6,7 +6,7 @@ StatMaster is a cutting-edge web application built with Next.js 14 and Tailwind 
 
 ## Key Features
 
-- **Next.js 14:** Leveraging the latest features for optimized development.
+- **Next.js 14:** Leveraging the **latest** features for optimized development.
 - **Tailwind CSS:** Modern styling for a visually appealing UI.
 - **Football Data API Integration:** Real-time data from [Football-Data.org](https://www.football-data.org/).
 - **Comprehensive Information:** Detailed statistics, match results, standings, and more.

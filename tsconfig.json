@@ -3,7 +3,8 @@
     "baseUrl": ".",
     "paths": {
       "@/components/*": ["components/*"],
-      "@/lib/*": ["lib/*"]
+      "@/lib/*": ["lib/*"],
+      "@/hooks/*": ["hooks/*"]
     },
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
@@ -28,7 +29,10 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx",
-    "app/(route)/layout.jsx"
-, "components/ui/button.jsx", "app/(route)/page.jsx"  ],
+    "app/layout.jsx",
+    "components/ui/button.jsx",
+    "app/(root)/page.jsx",
+    "components/ui/Modals/Modal.tsx"
+  ],
   "exclude": ["node_modules"]
 }
