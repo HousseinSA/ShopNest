@@ -1,9 +1,11 @@
-import prismaDB from '@/lib/prismaClient'
+import React from 'react'
 import { auth } from '@clerk/nextjs'
 import { redirect } from 'next/navigation'
-import React from 'react'
+import '../globals.css'
 
-const HomeLayout = async ({ children }: { children: React.ReactNode }) => {
+import prismaDB from '@/lib/prismaClient'
+
+const HomeLayout = async ({ children }) => {
   const { userId } = auth()
   if (!userId) {
     redirect('/sign-in')

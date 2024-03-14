@@ -31,8 +31,8 @@
     "**/*.tsx",
     "app/layout.jsx",
     "components/ui/button.jsx",
-    "app/(root)/page.jsx",
-    "components/ui/Modals/Modal.tsx"
+    "app/(root)/page.tsx",
+    "components/Modals/Modal.tsx"
   ],
   "exclude": ["node_modules"]
 }

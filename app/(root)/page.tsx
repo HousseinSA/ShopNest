@@ -1,4 +1,5 @@
 'use client'
+
 import { useEffect } from 'react'
 
 import { useModalStore } from '@/hooks/ModalStateStore'
@@ -10,5 +11,5 @@ export default function Home() {
       onOpen()
     }
   }, [isOpen, onOpen])
-  return <div className='px-4'>root page</div>
+  return <div className=''>root page</div>
 }

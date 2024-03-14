@@ -4,7 +4,6 @@ import prismaDB from '@/lib/prismaClient'
 
 export async function POST(req: Request) {
   const { userId } = auth()
-  console.log(userId)
   try {
     const { userId } = auth()
     if (!userId) {
@@ -15,7 +14,7 @@ export async function POST(req: Request) {
     if (!name) {
       return new NextResponse('username is required', { status: 400 })
     }
-    console.log(name)
+
     const store = await prismaDB.store.create({
       data: {
         username: name,
