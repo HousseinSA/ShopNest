@@ -57,7 +57,7 @@ const StoreModal = () => {
       title='Create store'
       isOpen={isOpen}
       onClose={onClose}
-      description='Add a new store to manage  products and categories '
+      description='Add a new store to manage products and categories '
     >
       <div className='space-y-2 pb-2 py-2'>
         <Form {...form}>
@@ -79,17 +79,7 @@ const StoreModal = () => {
                 </FormItem>
               )}
             />
-            <div
-              style={{
-                width: '100%',
-                display: 'flex',
-                justifyContent: 'end',
-                alignItems: 'center',
-                gap: '1rem',
-                marginTop: '.5rem'
-              }}
-              className='flex w-full pt-4 space-x-2 justify-end items-center'
-            >
+            <div className='mt-5 w-full flex space-x-4 items-center justify-end'>
               <Button
                 disabled={loading}
                 variant='destructive'

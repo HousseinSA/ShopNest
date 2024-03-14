@@ -3,13 +3,14 @@ import { redirect } from 'next/navigation'
 import React from 'react'
 
 import prismaDB from '@/lib/prismaClient'
+import Navbar from '@/components/Navigation/Navbar'
 
 export default function DashboardLayout({
   children,
   params
 }: {
   children: React.ReactNode
-  params: { storeId: string }
+  params: { storeCode: string }
 }) {
   const { userId } = auth()
   if (!userId) {
@@ -17,7 +18,7 @@ export default function DashboardLayout({
   }
   const store = prismaDB.store.findFirst({
     where: {
-      id: params.storeId,
+      id: params.storeCode,
       userId: userId
     }
   })
@@ -26,7 +27,7 @@ export default function DashboardLayout({
   }
   return (
     <>
-      <h1>dashboard nav</h1>
+      <Navbar />
       {children}
     </>
   )
