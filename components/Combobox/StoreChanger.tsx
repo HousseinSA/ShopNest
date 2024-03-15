@@ -19,7 +19,6 @@ import {
   CommandGroup,
   CommandInput,
   CommandItem,
-  CommandList,
   CommandSeparator
 } from '@/components/ui/command'
 import { cn } from '@/lib/utils'
@@ -51,10 +50,10 @@ const Storechanger = ({ stores = [] }: StoreChangerProps) => {
   return (
     <Popover open={openList} onOpenChange={setOpenList}>
       <PopoverTrigger asChild>
-        <Button
+        {/* <Button
           variant='outline'
           size='sm'
-          role='combox'
+          role='combobox'
           aria-expanded={open}
           aria-label='select Store'
           className='w-[200px] flex items-center justify-between'
@@ -62,56 +61,34 @@ const Storechanger = ({ stores = [] }: StoreChangerProps) => {
           <MdStoreMallDirectory className='mr-2' size={20} />
           Select store
           <IoChevronDownSharp className='ml-2' size={20} />
-        </Button>
+        </Button> */}
+        select
       </PopoverTrigger>
       <PopoverContent className='w-[200px] p-0'>
         <Command>
-          <CommandList>
-            <CommandInput placeholder='Search store...' />
-            <CommandEmpty>No Stores Found</CommandEmpty>
-            <CommandGroup>
-              {formatedStores.map((store) => (
-                <CommandItem
-                  key={store.storeCode}
-                  onSelect={() => onStoreChange(store.storeCode)}
-                >
-                  {store.label}
-                  <Check
-                    className={cn(
-                      'mr-2 h-4 w-4',
-                      activeStore?.storeCode === store.storeCode
-                        ? 'opacity-100'
-                        : 'opacity-0'
-                    )}
-                  />
-                  {store.label}
-                </CommandItem>
-              ))}
+          <CommandInput placeholder='Search store...' />
+          <CommandEmpty>No Stores Found</CommandEmpty>
+          <CommandGroup>
+            {formatedStores.map((store) => (
               <CommandItem
-                onSelect={() => {
-                  setOpenList(false)
-                  onOpen()
-                }}
+                key={store.storeCode}
+                onSelect={() => onStoreChange(store.storeCode)}
               >
-                <PlusCircle className='mr-2 h-4 w-4' />
-                Create Store
+                <Check
+                  className={cn(
+                    'mr-2 h-4 w-4',
+                    activeStore?.storeCode === store.storeCode
+                      ? 'opacity-100'
+                      : 'opacity-0'
+                  )}
+                />
+                {store.label}
               </CommandItem>
-            </CommandGroup>
-          </CommandList>
-          {/* <CommandSeparator />
-          <CommandList>
-            <CommandGroup>
-              <CommandItem
-                onSelect={() => {
-                  setOpenList(false)
-                  onOpen()
-                }}
-              >
-                <PlusCircle className='mr-2 h-4 w-4' />
-                Create Store
-              </CommandItem>
-            </CommandGroup>
-          </CommandList> */}
+            ))}
+            <CommandItem onSelect={() => console.log('clicked')}>
+              Clicked Me
+            </CommandItem>
+          </CommandGroup>
         </Command>
       </PopoverContent>
     </Popover>
