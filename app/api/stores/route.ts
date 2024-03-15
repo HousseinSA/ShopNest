@@ -3,7 +3,6 @@ import { auth } from '@clerk/nextjs'
 import prismaDB from '@/lib/prismaClient'
 
 export async function POST(req: Request) {
-  const { userId } = auth()
   try {
     const { userId } = auth()
     if (!userId) {

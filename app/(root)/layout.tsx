@@ -10,7 +10,7 @@ const HomeLayout = async ({ children }) => {
   if (!userId) {
     redirect('/sign-in')
   }
-  const store = await prismaDB.store.findFirst({
+  const store = await prismaDB?.store.findFirst({
     where: {
       userId
     }
