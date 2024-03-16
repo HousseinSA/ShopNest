@@ -19,7 +19,8 @@ import {
   CommandGroup,
   CommandInput,
   CommandItem,
-  CommandSeparator
+  CommandSeparator,
+  CommandList
 } from '@/components/ui/command'
 import { cn } from '@/lib/utils'
 import { useModalStore } from '@/hooks/ModalStateStore'
@@ -27,16 +28,14 @@ import { useModalStore } from '@/hooks/ModalStateStore'
 interface StoreChangerProps {
   stores: Store[]
 }
-
 const Storechanger = ({ stores = [] }: StoreChangerProps) => {
   const route = useRouter()
   const params = useParams()
-  const { onOpen } = useModalStore()
+  const { openModal } = useModalStore()
   const formatedStores = stores.map((store) => ({
     label: store.username,
     storeCode: store.id
   }))
-
   const activeStore = formatedStores.find(
     (store) => store.storeCode === params.storeCode
   )
@@ -50,45 +49,58 @@ const Storechanger = ({ stores = [] }: StoreChangerProps) => {
   return (
     <Popover open={openList} onOpenChange={setOpenList}>
       <PopoverTrigger asChild>
-        {/* <Button
+        <Button
           variant='outline'
           size='sm'
           role='combobox'
-          aria-expanded={open}
+          aria-expanded={openList}
           aria-label='select Store'
           className='w-[200px] flex items-center justify-between'
         >
-          <MdStoreMallDirectory className='mr-2' size={20} />
-          Select store
-          <IoChevronDownSharp className='ml-2' size={20} />
-        </Button> */}
-        select
+          <MdStoreMallDirectory className='mr-2 h-4 w-4 ' />
+          {activeStore?.label}
+          <IoChevronDownSharp className='ml-auto h-4 w-4 opacity-50' />
+        </Button>
       </PopoverTrigger>
       <PopoverContent className='w-[200px] p-0'>
         <Command>
-          <CommandInput placeholder='Search store...' />
-          <CommandEmpty>No Stores Found</CommandEmpty>
-          <CommandGroup>
-            {formatedStores.map((store) => (
+          <CommandList>
+            <CommandInput placeholder='Search store...' />
+            <CommandEmpty>No Stores Found</CommandEmpty>
+            <CommandGroup>
+              {formatedStores.map((store) => (
+                <CommandItem
+                  key={store.storeCode}
+                  onSelect={() => onStoreChange(store.storeCode)}
+                >
+                  <Check
+                    className={cn(
+                      'mr-2 h-4 w-4',
+                      activeStore?.storeCode === store.storeCode
+                        ? 'opacity-100'
+                        : 'opacity-0'
+                    )}
+                  />
+                  {store.label}
+                </CommandItem>
+              ))}
+            </CommandGroup>
+          </CommandList>
+          <CommandSeparator />
+          <CommandList>
+            <CommandGroup>
               <CommandItem
-                key={store.storeCode}
-                onSelect={() => onStoreChange(store.storeCode)}
+                onSelect={() => {
+                  setOpenList(false)
+                  openModal()
+                  console.log('clicked')
+                }}
               >
-                <Check
-                  className={cn(
-                    'mr-2 h-4 w-4',
-                    activeStore?.storeCode === store.storeCode
-                      ? 'opacity-100'
-                      : 'opacity-0'
-                  )}
-                />
-                {store.label}
+                <PlusCircle className='mr-2 h-5 w-5' />
+                Create Store
               </CommandItem>
-            ))}
-            <CommandItem onSelect={() => console.log('clicked')}>
-              Clicked Me
-            </CommandItem>
-          </CommandGroup>
+            </CommandGroup>
+          </CommandList>
         </Command>
       </PopoverContent>
     </Popover>

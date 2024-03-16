@@ -5,11 +5,11 @@ import { useEffect } from 'react'
 import { useModalStore } from '@/hooks/ModalStateStore'
 
 export default function Home() {
-  const { isOpen, onOpen } = useModalStore()
+  const { ModalOpenState, openModal } = useModalStore()
   useEffect(() => {
-    if (!isOpen) {
-      onOpen()
+    if (!ModalOpenState) {
+      openModal()
     }
-  }, [isOpen, onOpen])
+  }, [ModalOpenState, openModal])
   return <div className=''>root page</div>
 }

@@ -13,13 +13,10 @@ export default function DashboardLayout({
   children: React.ReactNode
   params: { storeCode: string }
 }) {
-
-
   const fetchData = async () => {
     const { userId } = auth()
     if (!userId) {
       redirect('/sign-in')
-      return
     }
 
     try {
@@ -33,7 +30,6 @@ export default function DashboardLayout({
         redirect('/')
         return
       }
-
     } catch (error) {
       console.error('Error fetching store data:', error)
       toast.error('Error fetching store data')
