@@ -19,7 +19,7 @@ export const metadata = {
 const RootLayout = async ({ children }: { children: React.ReactNode }) => {
   return (
     <ClerkProvider>
-      <html>
+     <html>
         <body
           className={cn(
             'min-h-screen bg-background font-sans antialiased',
