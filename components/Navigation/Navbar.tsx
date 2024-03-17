@@ -2,11 +2,13 @@ import { UserButton, auth } from '@clerk/nextjs'
 
 import MainNav from '@/components/Navigation/MainNav'
 import Storechanger from '@/components/Combobox/StoreChanger'
-import prismaDB from '@/lib/prismaClient'
+// import prismaDB from '@/lib/prismaClient'
+import { PrismaClient } from '@prisma/client'
+const prisma = new PrismaClient()
 
 const Navbar = async () => {
   const { userId } = auth()
-  const storeList = await prismaDB.store.findMany({ where: { userId } })
+  const storeList = await prisma.store.findMany({ where: { userId } })
 
   return (
     <div className='border-b border'>

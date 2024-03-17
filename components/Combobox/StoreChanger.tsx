@@ -5,7 +5,6 @@ import { useParams, useRouter } from 'next/navigation'
 import { MdStoreMallDirectory } from 'react-icons/md'
 import { IoChevronDownSharp } from 'react-icons/io5'
 import { Check, PlusCircle } from 'lucide-react'
-
 import { Store } from '@prisma/client'
 import {
   Popover,
@@ -33,8 +32,8 @@ const Storechanger = ({ stores = [] }: StoreChangerProps) => {
   const params = useParams()
   const { openModal } = useModalStore()
   const formatedStores = stores.map((store) => ({
-    label: store.username,
-    storeCode: store.id
+    label: store?.storeName,
+    storeCode: store?.id
   }))
   const activeStore = formatedStores.find(
     (store) => store.storeCode === params.storeCode
@@ -93,7 +92,6 @@ const Storechanger = ({ stores = [] }: StoreChangerProps) => {
                 onSelect={() => {
                   setOpenList(false)
                   openModal()
-                  console.log('clicked')
                 }}
               >
                 <PlusCircle className='mr-2 h-5 w-5' />
