@@ -6,10 +6,10 @@ datasource db {
 generator client {
   provider = "prisma-client-js"
 }
-
+  
 model Store {
-  id        String  @id @default(auto()) @map("_id") @db.ObjectId 
-  username  String 
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  storeName String 
   userId    String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

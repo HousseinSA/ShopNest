@@ -49,13 +49,13 @@ const StoreModal = () => {
     }
   }
 
-  const { isOpen, onClose } = useModalStore()
+  const { ModalOpenState, closeModal } = useModalStore()
 
   return (
     <Modal
       title='Create store'
-      isOpen={isOpen}
-      onClose={onClose}
+      isOpen={ModalOpenState}
+      onClose={closeModal}
       description='Add a new store to manage products and categories '
     >
       <div className='space-y-2 pb-2 py-2'>
@@ -82,7 +82,7 @@ const StoreModal = () => {
               <Button
                 disabled={loading}
                 variant='destructive'
-                onClick={onClose}
+                onClick={closeModal}
               >
                 Cancel
               </Button>

@@ -5,20 +5,28 @@ import '../globals.css'
 
 import prismaDB from '@/lib/prismaClient'
 
-const HomeLayout = async ({ children }) => {
+import { PrismaClient } from '@prisma/client'
+
+interface HomeLayout {
+  children: React.ReactNode
+}
+
+const prisma = new PrismaClient()
+const HomeLayout: React.FC<HomeLayout> = async ({ children }) => {
   const { userId } = auth()
   if (!userId) {
     redirect('/sign-in')
   }
-  const store = await prismaDB?.store.findFirst({
+  const store = await prismaDB.store.findFirst({
     where: {
       userId
     }
   })
-  if (store) {
-    redirect(`/${store.id}`)
-  }
+  console.log(store)
 
+  if (store) {
+    redirect(`/${store?.id}`)
+  }
   return <>{children}</>
 }
 
