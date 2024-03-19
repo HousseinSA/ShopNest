@@ -1,11 +1,10 @@
 import { auth } from '@clerk/nextjs'
 import { redirect } from 'next/navigation'
 import React from 'react'
-import toast from 'react-hot-toast'
 
 import prismaDB from '@/lib/prismaClient'
-
 import Navbar from '@/components/Navigation/Navbar'
+
 import '@/app/globals.css'
 interface DashboardLayoutProps {
   children: React.ReactNode
@@ -19,7 +18,6 @@ export default async function DashboardLayout({
   if (!userId) {
     redirect('/sign-in')
   }
-
   try {
     const storeData = await prismaDB.store.findFirst({
       where: {
@@ -30,10 +28,9 @@ export default async function DashboardLayout({
     if (!storeData) {
       redirect('/')
     }
-  } catch {
-    // toast.error('Error fetching store data')
+  } catch (error) {
+    console.log(error)
   }
-
   return (
     <>
       <Navbar />
