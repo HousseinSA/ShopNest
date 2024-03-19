@@ -4,14 +4,9 @@ import { redirect } from 'next/navigation'
 import '../globals.css'
 
 import prismaDB from '@/lib/prismaClient'
-
-import { PrismaClient } from '@prisma/client'
-
 interface HomeLayout {
   children: React.ReactNode
 }
-
-const prisma = new PrismaClient()
 const HomeLayout: React.FC<HomeLayout> = async ({ children }) => {
   const { userId } = auth()
   if (!userId) {
@@ -22,7 +17,6 @@ const HomeLayout: React.FC<HomeLayout> = async ({ children }) => {
       userId
     }
   })
-  console.log(store)
 
   if (store) {
     redirect(`/${store?.id}`)

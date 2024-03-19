@@ -1,6 +1,7 @@
 import React from 'react'
 import { redirect } from 'next/navigation'
 import { auth } from '@clerk/nextjs'
+import validateObjectId from '@/lib/mongodDBValidate'
 
 import prismaDB from '@/lib/prismaClient'
 interface StoreParams {
@@ -9,16 +10,19 @@ interface StoreParams {
 
 const StorePage: React.FC<StoreParams> = async ({ params: { storeCode } }) => {
   const { userId } = auth()
+  if (!userId) {
+    redirect('/sign-in')
+  }
+  const validStoreId = validateObjectId(storeCode)
+  if (!validStoreId) {
+    redirect('/')
+  }
   const store = await prismaDB.store.findFirst({
     where: {
       id: storeCode,
       userId
     }
   })
-  console.log(store, 'and', storeCode)
-  if (!store) {
-    redirect('/')
-  }
   return <div>active store:{store?.storeName}</div>
 }
 

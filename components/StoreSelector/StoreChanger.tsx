@@ -66,7 +66,7 @@ const Storechanger = ({ stores = [] }: StoreChangerProps) => {
           <CommandList>
             <CommandInput placeholder='Search store...' />
             <CommandEmpty>No Stores Found</CommandEmpty>
-            <CommandGroup>
+            <CommandGroup heading='Stores'>
               {formatedStores.map((store) => (
                 <CommandItem
                   key={store.storeCode}
@@ -75,11 +75,12 @@ const Storechanger = ({ stores = [] }: StoreChangerProps) => {
                   <Check
                     className={cn(
                       'mr-2 h-4 w-4',
-                      activeStore?.storeCode === store.storeCode
+                      activeStore?.storeCode === store.storeCode  
                         ? 'opacity-100'
                         : 'opacity-0'
                     )}
                   />
+                  <MdStoreMallDirectory className='mr-2 h-4 w-4' />
                   {store.label}
                 </CommandItem>
               ))}

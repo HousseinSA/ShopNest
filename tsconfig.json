@@ -32,7 +32,7 @@
     "**/*.tsx",
     "app/layout.jsx",
     "components/ui/button.jsx",
-    "app/(root)/page.tsx",
+    "app/(root path)/page.tsx",
     "components/Modals/Modal.tsx"
   ],
   "exclude": ["node_modules"]
