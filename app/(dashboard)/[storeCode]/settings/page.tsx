@@ -1,8 +1,10 @@
 import { redirect } from 'next/navigation'
 import { auth } from '@clerk/nextjs'
 import React from 'react'
+
 import validateObjectId from '@/lib/mongodDBValidate'
 import prismaDB from '@/lib/prismaClient'
+import StoreSettingsForm from '@/components/StoreSettings/StoreSettingsForm'
 
 interface StoreSettingsProps {
   params: { storeCode: string }
@@ -26,9 +28,8 @@ const StoreSettings: React.FC<StoreSettingsProps> = async ({
     }
   })
   return (
-    <div className='p-4'>
-      <h1 className='text-2xl font-semibold'>Settings</h1>
-      <div>Active store: {store?.storeName}</div>
+    <div className='p-4 flex flex-col flex-1'>
+      <StoreSettingsForm storeData={store} />
     </div>
   )
 }
