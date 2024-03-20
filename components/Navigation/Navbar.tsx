@@ -2,7 +2,7 @@ import { UserButton, auth } from '@clerk/nextjs'
 import { redirect } from 'next/navigation'
 
 import MainNav from '@/components/Navigation/MainNav'
-import Storechanger from '@/components/StoreSelector/StoreChanger'
+import Storechanger from '@/components/Navigation/StoreSelector/StoreChanger'
 import prismaDB from '@/lib/prismaClient'
 
 const Navbar = async () => {

@@ -5,17 +5,27 @@ import React from 'react'
 
 import { cn } from '@/lib/utils'
 
-const MainNav = ({ ...props }: React.HTMLAttributes<HTMLElement>) => {
+const MainNav = () => {
+  // paths and params
   const pathname = usePathname()
   const params = useParams()
-  const storeLink = `/${params.storeCode}/settings`
+  const storeDashboard = `/${params.storeCode}`
+  const storeSettings = `/${params.storeCode}/settings`
+
+  // routes array for navigation
   const routes = [
     {
-      link: storeLink,
+      link: storeDashboard,
+      label: 'Dashboard',
+      active: pathname === storeDashboard
+    },
+    {
+      link: storeSettings,
       label: 'Settings',
-      active: pathname === storeLink
+      active: pathname === storeSettings
     }
   ]
+  
   return (
     <nav className='flex items-center space-x-4 md:space-x-6 mx-6'>
       {routes.map((route) => {

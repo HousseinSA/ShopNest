@@ -28,18 +28,27 @@ interface StoreChangerProps {
   stores: Store[]
 }
 const Storechanger = ({ stores = [] }: StoreChangerProps) => {
+  // routes params
   const route = useRouter()
   const params = useParams()
+
+  // modal state
   const { openModal } = useModalStore()
+
+  // formatting store array
   const formatedStores = stores.map((store) => ({
     label: store?.storeName,
     storeCode: store?.id
   }))
+
+  // get active store
   const activeStore = formatedStores.find(
     (store) => store.storeCode === params.storeCode
   )
-
+  // state of list
   const [openList, setOpenList] = useState(false)
+
+  // on select store
   const onStoreChange = (storeCode: string) => {
     setOpenList(false)
     route.push(`/${storeCode}`)

@@ -12,18 +12,15 @@ const HomeLayout: React.FC<HomeLayout> = async ({ children }) => {
   if (!userId) {
     redirect('/sign-in')
   }
-  try {
-    const store = await prismaDB.store.findFirst({
-      where: {
-        userId
-      }
-    })
-    console.log(store)
-    if (store) {
-      redirect(`/${store?.id}`)
+
+  const store = await prismaDB.store.findFirst({
+    where: {
+      userId
     }
-  } catch (error) {
-    console.log(error)
+  })
+
+  if (store) {
+    redirect(`/${store?.id}`)
   }
 
   return <>{children}</>
