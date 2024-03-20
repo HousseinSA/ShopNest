@@ -11,5 +11,6 @@ export default function Home() {
       openModal()
     }
   }, [ModalOpenState, openModal])
+  console.log(ModalOpenState)
   return <div className=''>root page</div>
 }

@@ -5,7 +5,7 @@ import React from 'react'
 import prismaDB from '@/lib/prismaClient'
 import Navbar from '@/components/Navigation/Navbar'
 
-// import '@/app/globals.css'
+import '@/app/globals.css'
 interface DashboardLayoutProps {
   children: React.ReactNode
   params: { storeCode: string }

@@ -1,8 +1,8 @@
 import React from 'react'
 import { auth } from '@clerk/nextjs'
 import { redirect } from 'next/navigation'
-import '../globals.css'
 
+import '../globals.css'
 import prismaDB from '@/lib/prismaClient'
 interface HomeLayout {
   children: React.ReactNode
@@ -12,15 +12,20 @@ const HomeLayout: React.FC<HomeLayout> = async ({ children }) => {
   if (!userId) {
     redirect('/sign-in')
   }
-  const store = await prismaDB.store.findFirst({
-    where: {
-      userId
+  try {
+    const store = await prismaDB.store.findFirst({
+      where: {
+        userId
+      }
+    })
+    console.log(store)
+    if (store) {
+      redirect(`/${store?.id}`)
     }
-  })
-
-  if (store) {
-    redirect(`/${store?.id}`)
+  } catch (error) {
+    console.log(error)
   }
+
   return <>{children}</>
 }
 

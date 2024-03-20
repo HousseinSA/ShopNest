@@ -65,7 +65,7 @@ const StoreModal = () => {
               name='username'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Name</FormLabel>
+                  <FormLabel>Store Name</FormLabel>
                   <FormControl>
                     <Input
                       disabled={loading}
@@ -73,7 +73,7 @@ const StoreModal = () => {
                       {...field}
                     />
                   </FormControl>
-                  <FormDescription>store description</FormDescription>
+                  {/* <FormDescription>store description</FormDescription> */}
                   <FormMessage />
                 </FormItem>
               )}

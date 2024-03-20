@@ -75,7 +75,7 @@ const Storechanger = ({ stores = [] }: StoreChangerProps) => {
                   <Check
                     className={cn(
                       'mr-2 h-4 w-4',
-                      activeStore?.storeCode === store.storeCode  
+                      activeStore?.storeCode === store.storeCode
                         ? 'opacity-100'
                         : 'opacity-0'
                     )}
