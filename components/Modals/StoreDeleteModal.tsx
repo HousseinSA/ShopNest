@@ -6,13 +6,6 @@ import { useRouter, useParams } from 'next/navigation'
 import axios from 'axios'
 import toast from 'react-hot-toast'
 
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle
-} from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
 import { Modal } from './Modal'
 
@@ -42,12 +35,13 @@ const StoreDeleteModal: React.FC<storeDeleteModal> = ({
   useEffect(() => {
     setMounted(true)
   }, [])
+
   if (!mounted) {
     return null
   }
 
   // delete store from database
-  const deleteStore = async () => {
+  const onDeleteStore = async () => {
     try {
       setLoading(true)
       const response = await axios.delete(`/api/stores/${pathname.storeCode}`)
@@ -64,6 +58,7 @@ const StoreDeleteModal: React.FC<storeDeleteModal> = ({
       setIsOpen(false)
     }
   }
+
   return (
     <Modal
       title={title}
@@ -72,10 +67,18 @@ const StoreDeleteModal: React.FC<storeDeleteModal> = ({
       onClose={() => setIsOpen(false)}
     >
       <div className='flex justify-center mt-4 space-x-4'>
-        <Button disabled={loading} variant='outline'>
+        <Button
+          onClick={() => setIsOpen(false)}
+          disabled={loading}
+          variant='outline'
+        >
           <ArrowBigLeft className='w-5 h-5 ml-2' /> Cancel
         </Button>
-        <Button disabled={loading} onClick={deleteStore} variant='destructive'>
+        <Button
+          disabled={loading}
+          onClick={onDeleteStore}
+          variant='destructive'
+        >
           <Trash className='w-5 h-5 ml-2' /> Delete
         </Button>
       </div>

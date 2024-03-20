@@ -21,12 +21,13 @@ export const Modal: React.FC<ModalProps> = ({
   onClose,
   children
 }) => {
+  // on modal state change
   const onChange = (open: boolean) => {
     if (!open) {
       onClose()
     }
   }
-  return (
+    return (
     <Dialog open={isOpen} onOpenChange={onChange}>
       <DialogContent>
         <DialogHeader>

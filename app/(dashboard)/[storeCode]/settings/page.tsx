@@ -4,7 +4,7 @@ import React from 'react'
 
 import validateObjectId from '@/lib/mongodDBValidate'
 import prismaDB from '@/lib/prismaClient'
-import StoreSettingsForm from '@/components/StoreSettings/StoreSettingsForm'
+import StoreSettingsForm from '@/components/StoreSettings/StoreSettings'
 
 interface StoreSettingsProps {
   params: { storeCode: string }

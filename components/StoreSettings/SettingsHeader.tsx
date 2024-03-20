@@ -2,17 +2,16 @@ import React from 'react'
 import { Trash } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
-import { Separator } from '@/components/ui/separator'
 
 interface SettingsHeaderProps {
   title: string
   description: string
-  isOpen: (open: boolean) => void
+  setIsOpen: (open: boolean) => void
 }
 const SettingsHeader: React.FC<SettingsHeaderProps> = ({
   title,
   description,
-  isOpen
+  setIsOpen
 }) => {
   return (
     <>
@@ -26,12 +25,11 @@ const SettingsHeader: React.FC<SettingsHeaderProps> = ({
           aria-label='delete button'
           size='icon'
           className='rounded-full'
-          onClick={() => isOpen(true)}
+          onClick={() => setIsOpen(true)}
         >
           <Trash className='w-5 h-5' />
         </Button>
       </div>
-      <Separator />
     </>
   )
 }
