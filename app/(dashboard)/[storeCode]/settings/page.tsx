@@ -28,7 +28,7 @@ const StoreSettings: React.FC<StoreSettingsProps> = async ({
     }
   })
   return (
-    <div className='p-4 flex flex-col flex-1'>
+    <div className='p-4 flex flex-col flex-1' >
       <StoreSettingsForm storeData={store} />
     </div>
   )
