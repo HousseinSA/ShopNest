@@ -10,35 +10,32 @@ export async function PATCH(
     if (!userId) {
       return new NextResponse('unauthorized user', { status: 401 })
     }
+
     if (!params.storeCode) {
       return new NextResponse('store code is required', { status: 400 })
     }
+
     const body = await req.json()
-    const { username: storeName } = body
-  
-    if (!storeName) {
+    const { storename } = body
+    if (!storename) {
       return new NextResponse('store name is required', { status: 400 })
     }
+
     const store = await prismaDB.store.updateMany({
       where: {
         id: params.storeCode,
         userId: userId
       },
       data: {
-        storeName
+        storename
       }
     })
     return NextResponse.json(store)
   } catch (error) {
     console.log(`STORES_PATCH`, error)
-
     return new NextResponse('Internal Error', { status: 500 })
   }
 }
-
-
-
-
 
 export async function DELETE(
   req: Request,
@@ -49,6 +46,7 @@ export async function DELETE(
     if (!userId) {
       return new NextResponse('unauthorized user', { status: 401 })
     }
+
     if (!params.storeCode) {
       return new NextResponse('store code is required', { status: 400 })
     }

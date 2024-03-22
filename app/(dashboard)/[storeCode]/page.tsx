@@ -23,7 +23,8 @@ const StorePage: React.FC<StoreParams> = async ({ params: { storeCode } }) => {
       userId
     }
   })
-  return <div>active store:{store?.storeName}</div>
+
+  return <div>active store:{store?.storename}</div>
 }
 
 export default StorePage

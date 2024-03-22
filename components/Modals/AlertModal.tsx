@@ -9,7 +9,7 @@ import toast from 'react-hot-toast'
 import { Button } from '@/components/ui/button'
 import { Modal } from './Modal'
 
-interface storeDeleteModal {
+interface AlertModalProps {
   title: string
   description: string
   isOpen: boolean
@@ -17,12 +17,7 @@ interface storeDeleteModal {
 }
 
 // component
-const StoreDeleteModal: React.FC<storeDeleteModal> = ({
-  title,
-  description,
-  isOpen,
-  setIsOpen
-}) => {
+const AlertModal: React.FC<AlertModalProps> = ({ title, description, isOpen, setIsOpen }) => {
   //  states
   const [loading, setLoading] = useState(false)
   const [mounted, setMounted] = useState(false)
@@ -60,25 +55,12 @@ const StoreDeleteModal: React.FC<storeDeleteModal> = ({
   }
 
   return (
-    <Modal
-      title={title}
-      description={description}
-      isOpen={isOpen}
-      onClose={() => setIsOpen(false)}
-    >
+    <Modal title={title} description={description} isOpen={isOpen} onClose={() => setIsOpen(false)}>
       <div className='flex justify-center mt-4 space-x-4'>
-        <Button
-          onClick={() => setIsOpen(false)}
-          disabled={loading}
-          variant='outline'
-        >
+        <Button onClick={() => setIsOpen(false)} disabled={loading} variant='outline'>
           <ArrowBigLeft className='w-5 h-5 ml-2' /> Cancel
         </Button>
-        <Button
-          disabled={loading}
-          onClick={onDeleteStore}
-          variant='destructive'
-        >
+        <Button disabled={loading} onClick={onDeleteStore} variant='destructive'>
           <Trash className='w-5 h-5 ml-2' /> Delete
         </Button>
       </div>
@@ -86,4 +68,4 @@ const StoreDeleteModal: React.FC<storeDeleteModal> = ({
   )
 }
 
-export default StoreDeleteModal
+export default AlertModal

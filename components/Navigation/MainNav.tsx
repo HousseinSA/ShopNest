@@ -11,6 +11,7 @@ const MainNav = () => {
   const params = useParams()
   const storeDashboard = `/${params.storeCode}`
   const storeSettings = `/${params.storeCode}/settings`
+  const storeBillboard = `/${params.storeCode}/billboards`
 
   // routes array for navigation
   const routes = [
@@ -23,9 +24,14 @@ const MainNav = () => {
       link: storeSettings,
       label: 'Settings',
       active: pathname === storeSettings
+    },
+    {
+      link: storeBillboard,
+      label: 'Billboards',
+      active: pathname === storeBillboard
     }
   ]
-  
+
   return (
     <nav className='flex items-center space-x-4 md:space-x-6 mx-6'>
       {routes.map((route) => {

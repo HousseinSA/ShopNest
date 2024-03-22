@@ -27,7 +27,7 @@ import { useModalStore } from '@/hooks/ModalStateStore'
 interface StoreChangerProps {
   stores: Store[]
 }
-const Storechanger = ({ stores = [] }: StoreChangerProps) => {
+const StoreSwitcher = ({ stores = [] }: StoreChangerProps) => {
   // routes params
   const route = useRouter()
   const params = useParams()
@@ -37,7 +37,7 @@ const Storechanger = ({ stores = [] }: StoreChangerProps) => {
 
   // formatting store array
   const formatedStores = stores.map((store) => ({
-    label: store?.storeName,
+    label: store?.storename,
     storeCode: store?.id
   }))
 
@@ -115,4 +115,4 @@ const Storechanger = ({ stores = [] }: StoreChangerProps) => {
   )
 }
 
-export default Storechanger
+export default StoreSwitcher

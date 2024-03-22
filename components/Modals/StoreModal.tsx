@@ -12,7 +12,6 @@ import {
   FormItem,
   FormLabel,
   FormControl,
-  FormDescription,
   FormMessage
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
@@ -21,7 +20,7 @@ import { Modal } from './Modal'
 import { Button } from '@/components/ui/button'
 
 const formSchema = z.object({
-  username: z.string().min(2).max(50)
+  storename: z.string().min(2).max(50)
 })
 
 const StoreModal = () => {
@@ -29,7 +28,7 @@ const StoreModal = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: ''
+      storename: ''
     }
   })
 
@@ -62,7 +61,7 @@ const StoreModal = () => {
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
             <FormField
-              name='username'
+              name='storename'
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Store Name</FormLabel>
@@ -73,7 +72,6 @@ const StoreModal = () => {
                       {...field}
                     />
                   </FormControl>
-                  {/* <FormDescription>store description</FormDescription> */}
                   <FormMessage />
                 </FormItem>
               )}

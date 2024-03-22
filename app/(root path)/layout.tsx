@@ -7,6 +7,8 @@ import prismaDB from '@/lib/prismaClient'
 interface HomeLayout {
   children: React.ReactNode
 }
+
+// const validDateUserId
 const HomeLayout: React.FC<HomeLayout> = async ({ children }) => {
   const { userId } = auth()
   if (!userId) {
