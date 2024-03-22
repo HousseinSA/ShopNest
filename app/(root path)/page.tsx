@@ -11,6 +11,6 @@ export default function Home() {
       openModal()
     }
   }, [ModalOpenState, openModal])
-  
+
   return <div className=''>root page</div>
 }

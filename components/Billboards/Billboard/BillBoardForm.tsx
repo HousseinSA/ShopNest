@@ -1,53 +1,55 @@
+'use client'
 import React, { useState } from 'react'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
 import toast from 'react-hot-toast'
-import { Store } from '@prisma/client'
+import { Billboard } from '@prisma/client'
 import { useRouter } from 'next/navigation'
 
-import {
-  Form,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormControl,
-  FormMessage
-} from '@/components/ui/form'
+import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 
-// storeData props
-interface StoreSettingsProps {
-  storeData: Store
+// billBoardData props
+interface BillboardFormProps {
+  billBoardData: Billboard | null
 }
 
-const StoreSettingsForm: React.FC<StoreSettingsProps> = ({ storeData }) => {
+const BillBoardForm: React.FC<BillboardFormProps> = ({ billBoardData }) => {
   // zod schema and type
   const formSchema = z.object({
-    storename: z.string().min(2)
+    label: z.string().min(2),
+    imageUrl: z.string().min(1)
   })
+
   type formValues = z.infer<typeof formSchema>
 
   const form = useForm<formValues>({
     resolver: zodResolver(formSchema),
-    defaultValues: storeData
+    defaultValues: billBoardData || {
+      label: '',
+      imageUrl: ''
+    }
   })
 
   // state and route
   const [loading, setLoading] = useState(false)
   const route = useRouter()
 
+  // conditions if there is not billboardData
+  const toastMessage = billBoardData ? `Billboard update!` : ' Billboard created!'
+  const action = billBoardData ? `Save changes ${billBoardData?.label}` : 'Create billboard'
+
   // sending data to DB
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       setLoading(true)
-      const response = await axios.patch(`/api/stores/${storeData.id}`, values)
-
+      const response = await axios.patch(`/api/stores/${billBoardData.id}`, values)
       if (response.data) {
         route.refresh()
-        toast.success('Store update!')
+        toast.success(toastMessage)
       }
     } catch (error) {
       toast.error('Something went wrong!')
@@ -61,17 +63,12 @@ const StoreSettingsForm: React.FC<StoreSettingsProps> = ({ storeData }) => {
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <FormField
-            name='storename'
+            name='label'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Store Name</FormLabel>
+                <FormLabel>Billboard label</FormLabel>
                 <FormControl>
-                  <Input
-                    disabled={loading}
-                    placeholder='store name '
-                    {...field}
-                    defaultValue={storeData?.storename}
-                  />
+                  <Input disabled={loading} placeholder='billboard name' {...field} defaultValue={billBoardData?.label} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -79,7 +76,7 @@ const StoreSettingsForm: React.FC<StoreSettingsProps> = ({ storeData }) => {
           />
           <div className='mt-4'>
             <Button disabled={loading} className='ml-auto' type={'submit'}>
-              Update Store
+              {action}
             </Button>
           </div>
         </form>
@@ -88,4 +85,4 @@ const StoreSettingsForm: React.FC<StoreSettingsProps> = ({ storeData }) => {
   )
 }
 
-export default StoreSettingsForm
+export default BillBoardForm

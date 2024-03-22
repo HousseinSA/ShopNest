@@ -5,13 +5,23 @@ datasource db {
 
 generator client {
   provider = "prisma-client-js"
-  previewFeatures= ["mongodb"]
 }
 
 model Store {
   id        String  @id @default(auto()) @map("_id") @db.ObjectId 
-  storeName  String 
-  userId    String
+  storename  String 
+  userId    String 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  billboard Billboard[]
+}
+
+model Billboard {
+ id String @id @default(auto()) @map("_id") @db.ObjectId  
+  store   Store?   @relation(fields: [storeId], references: [id])
+  storeId String?  @db.ObjectId
+  label String
+  imageUrl String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

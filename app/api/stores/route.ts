@@ -9,14 +9,14 @@ export async function POST(req: Request) {
       return new NextResponse('Unauthorized user', { status: 401 })
     }
     const body = await req.json()
-    const { username: storeName } = body
-    if (!storeName) {
+    const {  storename } = body
+    if (!storename) {
       return new NextResponse('username is required', { status: 400 })
     }
 
     const store = await prismaDB.store.create({
       data: {
-        storeName,
+        storename,
         userId
       }
     })

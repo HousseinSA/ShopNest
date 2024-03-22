@@ -4,34 +4,37 @@ import React from 'react'
 
 import validateObjectId from '@/lib/mongodDBValidate'
 import prismaDB from '@/lib/prismaClient'
-import StoreSettingsForm from '@/components/StoreSettings/StoreSettings'
+// import StoreSettingsForm from '@/components/StoreSettings/StoreSettings'
+import StoreSettings from '@/components/StoreSettings/StoreSettings'
 
 interface StoreSettingsProps {
   params: { storeCode: string }
 }
 
-const StoreSettings: React.FC<StoreSettingsProps> = async ({
+const StorePage: React.FC<StoreSettingsProps> = async ({
   params: { storeCode }
 }) => {
   const { userId } = auth()
   if (!userId) {
     redirect('/sign-in')
   }
-  const validStoreCode = validateObjectId(storeCode)
-  if (!validStoreCode) {
+  const validateStoreCode = validateObjectId(storeCode)
+  if (!validateStoreCode) {
     redirect('/')
   }
+
   const store = await prismaDB.store.findFirst({
     where: {
       id: storeCode,
       userId
     }
   })
+
   return (
-    <div className='p-4 flex flex-col flex-1' >
-      <StoreSettingsForm storeData={store} />
+    <div className='p-4 flex flex-col flex-1'>
+      <StoreSettings storeData={store} />
     </div>
   )
 }
 
-export default StoreSettings
+export default StorePage
