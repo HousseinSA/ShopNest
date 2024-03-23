@@ -11,6 +11,7 @@ import { useRouter } from 'next/navigation'
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
+import ImageUpload from './imageUpload'
 
 // billBoardData props
 interface BillboardFormProps {
@@ -20,8 +21,8 @@ interface BillboardFormProps {
 const BillBoardForm: React.FC<BillboardFormProps> = ({ billBoardData }) => {
   // zod schema and type
   const formSchema = z.object({
-    label: z.string().min(2),
-    imageUrl: z.string().min(1)
+    label: z.string().min(1, { message: 'Label must be at least 2 characters.' }),
+    imageUrl: z.string().min(1).optional()
   })
 
   type formValues = z.infer<typeof formSchema>
@@ -59,9 +60,21 @@ const BillBoardForm: React.FC<BillboardFormProps> = ({ billBoardData }) => {
   }
 
   return (
-    <div className='grid md:grid-cols-3 lg:grid-cols-6'>
+    <div className='grid md:grid-cols-3 gap-8 lg:grid-cols-6'>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
+          <FormField
+            name='imageUrl'
+            render={({ field }) => (
+              <FormItem className='mb-4'>
+                <FormLabel>Background image</FormLabel>
+                <FormControl>
+                  <ImageUpload disabled={loading} value={field.value ? [field.value] : []} onChange={(url) => field.onChange(url)} onRemove={() => field.onChange('')} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
           <FormField
             name='label'
             render={({ field }) => (

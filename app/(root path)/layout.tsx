@@ -2,7 +2,8 @@ import React from 'react'
 import { auth } from '@clerk/nextjs'
 import { redirect } from 'next/navigation'
 
-import '../globals.css'
+import '@/app/globals.css'
+
 import prismaDB from '@/lib/prismaClient'
 interface HomeLayout {
   children: React.ReactNode
