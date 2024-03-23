@@ -2,7 +2,7 @@ import React from 'react'
 import { ClerkProvider } from '@clerk/nextjs'
 
 import { Inter as FontSans } from 'next/font/google'
-import './globals.css'
+import '@/app/globals.css'
 import { cn } from '@/lib/utils'
 import ModalProvider from '@/lib/Providers/ModalProvider'
 import ToastProvider from '@/lib/Providers/ToastProvider'

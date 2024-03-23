@@ -6,14 +6,12 @@ import prismaDB from '@/lib/prismaClient'
 import Navbar from '@/components/Navigation/Navbar'
 
 import '@/app/globals.css'
+
 interface DashboardLayoutProps {
   children: React.ReactNode
   params: { storeCode: string }
 }
-export default async function DashboardLayout({
-  children,
-  params: { storeCode }
-}: DashboardLayoutProps) {
+export default async function DashboardLayout({ children, params: { storeCode } }: DashboardLayoutProps) {
   // userId check
   const { userId } = auth()
   if (!userId) {
