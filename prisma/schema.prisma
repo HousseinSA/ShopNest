@@ -18,8 +18,8 @@ model Store {
 
 model Billboard {
  id String @id @default(auto()) @map("_id") @db.ObjectId  
-  store   Store?   @relation(fields: [storeId], references: [id])
-  storeId String?  @db.ObjectId
+  store   Store?   @relation(fields: [storeCode], references: [id])
+  storeCode String?  @db.ObjectId
   label String
   imageUrl String
   createdAt DateTime @default(now())

@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form'
 import axios from 'axios'
 import toast from 'react-hot-toast'
 import { Billboard } from '@prisma/client'
-import { useRouter } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
 
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
@@ -38,22 +38,27 @@ const BillBoardForm: React.FC<BillboardFormProps> = ({ billBoardData }) => {
   // state and route
   const [loading, setLoading] = useState(false)
   const route = useRouter()
+  const params = useParams()
 
   // conditions if there is not billboardData
   const toastMessage = billBoardData ? `Billboard update!` : ' Billboard created!'
-  const action = billBoardData ? `Save changes ${billBoardData?.label}` : 'Create billboard'
+  const action = billBoardData ? `Save changes` : 'Create billboard'
 
   // sending data to DB
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       setLoading(true)
-      const response = await axios.patch(`/api/stores/${billBoardData.id}`, values)
-      if (response.data) {
-        route.refresh()
-        toast.success(toastMessage)
+      if (billBoardData) {
+        await axios.patch(`/api/${params.storeCode}/billboards/${params.billboardCode}`, values)
+      } else {
+        await axios.post(`/api/${params.storeCode}/billboards`, values)
       }
+      // route refresh and message
+      route.refresh()
+      route.push(`/${params.storeCode}/billboards`)
+      toast.success(toastMessage)
     } catch (error) {
-      toast.error('Something went wrong!')
+      toast.error(error)
     } finally {
       setLoading(false)
     }
