@@ -17,7 +17,7 @@ const PathHeader: React.FC<PathHeaderProps> = ({
           <h1 className='text-3xl font-bold tracking-tight'>{title}</h1>
           <p className='text-sm text-muted-foreground'>{description}</p>
         </div>
-        {children}
+        {children}  
       </div>
     </>
   )

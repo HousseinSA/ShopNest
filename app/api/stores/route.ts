@@ -9,7 +9,7 @@ export async function POST(req: Request) {
       return new NextResponse('Unauthorized user', { status: 401 })
     }
     const body = await req.json()
-    const {  storename } = body
+    const { storename } = body
     if (!storename) {
       return new NextResponse('username is required', { status: 400 })
     }

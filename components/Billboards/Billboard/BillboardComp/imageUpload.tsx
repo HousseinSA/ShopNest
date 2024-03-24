@@ -17,16 +17,16 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ disabled, onChange, onRemove,
   useEffect(() => {
     setIsMounted(true)
   }, [])
+  // upload image function
+  const onSuccess = (result: any) => {
+    onChange(result.info.secure_url)
+  }
 
   if (!isMounted) {
     return null
   }
 
-  // upload image function
-  const onSuccess = (result: any) => {
-    onChange(result.info.secure_url)
-  }
-  
+  console.log(value)
   return (
     <div>
       <div className='flex items-center gap-4 '>
@@ -38,7 +38,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ disabled, onChange, onRemove,
                   <Trash2 className='w-5 h-5 ' />
                 </Button>
               </div>
-              <Image className='object-cover' width={200} height={200} src={url} alt='image' />
+              <Image className='object-cover' width={200} height={200} sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw' src={url} alt='image' />
             </div>
           )
         })}
