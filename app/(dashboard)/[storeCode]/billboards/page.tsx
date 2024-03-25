@@ -3,7 +3,6 @@ import { format } from 'date-fns'
 import { BillboardProps } from '@/components/Billboards/BillboardsTable/columns'
 import StoreBillBoards from '@/components/Billboards/StoreBillBoards'
 import prismaDB from '@/lib/prismaClient'
-
 const BillboardsPage = async ({ params }: { params: { storeCode: string } }) => {
   const billBoards = await prismaDB.billboard.findMany({
     where: {
@@ -13,7 +12,8 @@ const BillboardsPage = async ({ params }: { params: { storeCode: string } }) => 
       createdAt: 'desc'
     }
   })
-  const formatedBillboards: BillboardProps = billBoards?.map((item) => ({
+
+  const formatedBillboards: BillboardProps[] = billBoards?.map((item) => ({
     id: item.id,
     label: item.label,
     createdAt: format(item.createdAt, 'MMMM do, yyyy')

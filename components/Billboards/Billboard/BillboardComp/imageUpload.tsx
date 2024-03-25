@@ -26,7 +26,6 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ disabled, onChange, onRemove,
     return null
   }
 
-  console.log(value)
   return (
     <div>
       <div className='flex items-center gap-4 '>

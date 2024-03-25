@@ -33,7 +33,6 @@ const StoreBillBoard: React.FC<BillBoardProps> = ({ billBoardData }) => {
   const onBillboardDelete = async () => {
     try {
       setLoading(true)
-
       await axios.delete(`/api/${params.storeCode}/${params.billboardCode}`)
       route.refresh()
       route.push('/')
