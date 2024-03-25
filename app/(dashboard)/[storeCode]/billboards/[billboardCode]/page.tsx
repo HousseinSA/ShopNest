@@ -3,14 +3,8 @@ import validateObjectId from '@/lib/mongodDBValidate'
 import prismaDB from '@/lib/prismaClient'
 
 async function BillBoardPage({ params }: { params: { billboardCode: string } }) {
-  const validBillboardId = validateObjectId(params.billboardCode)
-  if (!validBillboardId) {
-    return (
-      <div className='p-4 flex flex-col flex-1'>
-        <StoreBillBoard />
-      </div>
-    )
-  } else {
+  const validBillBoardCode = validateObjectId(params.billboardCode)
+  if (validBillBoardCode) {
     const billboard = await prismaDB.billboard.findUnique({
       where: {
         id: params.billboardCode
@@ -22,6 +16,12 @@ async function BillBoardPage({ params }: { params: { billboardCode: string } }) 
       </div>
     )
   }
+    return (
+      <div className='p-4 flex flex-col flex-1'>
+        <StoreBillBoard />
+      </div>
+    )
+    
 }
 
 export default BillBoardPage

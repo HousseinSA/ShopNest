@@ -18,15 +18,6 @@ export async function PATCH(req: Request, { params }: { params: { storeCode: str
     if (!label && !imageUrl) {
       return new NextResponse('No imageUrl or label provided', { status: 400 })
     }
-    const userStore = await prismaDB.store.findFirst({
-      where: {
-        id: params.storeCode,
-        userId
-      }
-    })
-    if (!userStore) {
-      new NextResponse('unauthorized', { status: 401 })
-    }
 
     const billboard = await prismaDB.billboard.updateMany({
       where: {

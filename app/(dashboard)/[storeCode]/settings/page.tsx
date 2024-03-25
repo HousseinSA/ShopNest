@@ -11,9 +11,7 @@ interface StoreSettingsProps {
   params: { storeCode: string }
 }
 
-const StorePage: React.FC<StoreSettingsProps> = async ({
-  params: { storeCode }
-}) => {
+const StorePage: React.FC<StoreSettingsProps> = async ({ params: { storeCode } }) => {
   const { userId } = auth()
   if (!userId) {
     redirect('/sign-in')
@@ -29,6 +27,10 @@ const StorePage: React.FC<StoreSettingsProps> = async ({
       userId
     }
   })
+
+  if (!store) {
+    redirect('/')
+  }
 
   return (
     <div className='p-4 flex flex-col flex-1'>

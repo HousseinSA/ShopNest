@@ -15,18 +15,9 @@ export async function POST(req: Request, { params }: { params: { storeCode: stri
       return new NextResponse('No imageUrl or label provided', { status: 400 })
     }
     if (!params.storeCode) {
-      new NextResponse('No storeCode found', { status: 400 })
+      new NextResponse('No store code found', { status: 400 })
     }
 
-    const userStore = await prismaDB.store.findFirst({
-      where: {
-        id: params.storeCode,
-        userId
-      }
-    })
-    if (!userStore) {
-      new NextResponse('unauthorized', { status: 401 })
-    }
     const billboard = await prismaDB.billboard.create({
       data: {
         label,

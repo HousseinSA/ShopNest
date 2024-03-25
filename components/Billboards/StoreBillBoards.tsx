@@ -18,16 +18,15 @@ const StoreBillBoards: React.FC<BillBoardsProps> = ({ billBoards }) => {
   const route = useRouter()
   const params = useParams()
   // handel click
-  const onClick = () => {
+  const onAddNew = () => {
     route.push(`/${params.storeCode}/billboards/new`)
   }
-  console.log(billBoards)
 
   return (
     <>
       <div className='flex flex-col space-y-4'>
         <PathHeader title={`Billboards (${billBoards.length})`} description='manage billboards of your store'>
-          <Button variant='outline' onClick={onClick}>
+          <Button variant='outline' onClick={onAddNew}>
             <Plus className='w-5 h-5' />
             Add New
           </Button>
@@ -43,7 +42,7 @@ const StoreBillBoards: React.FC<BillBoardsProps> = ({ billBoards }) => {
             )
           })}
         </div> */}
-        <DataTable columns={columns} data={billBoards} />
+        <DataTable filterKey='label' columns={columns} data={billBoards} />
       </div>
     </>
   )

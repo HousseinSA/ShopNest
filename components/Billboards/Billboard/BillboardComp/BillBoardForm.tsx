@@ -49,7 +49,8 @@ const BillBoardForm: React.FC<BillboardFormProps> = ({ billBoardData }) => {
     try {
       setLoading(true)
       if (billBoardData) {
-        await axios.patch(`/api/${params.storeCode}/billboards/${params.billboardCode}`, values)
+        const response = await axios.patch(`/api/${params.storeCode}/billboards/${params.billboardCode}`, values)
+        console.log(response)
       } else {
         await axios.post(`/api/${params.storeCode}/billboards`, values)
       }
