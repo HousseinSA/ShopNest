@@ -22,7 +22,6 @@ const AlertModal: React.FC<AlertModalProps> = ({ title, description, loading, on
   const [mounted, setMounted] = useState(false)
 
 
-
   // modalMounted on render
   useEffect(() => {
     setMounted(true)

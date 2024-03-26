@@ -16,12 +16,11 @@ async function BillBoardPage({ params }: { params: { billboardCode: string } }) 
       </div>
     )
   }
-    return (
-      <div className='p-4 flex flex-col flex-1'>
-        <StoreBillBoard />
-      </div>
-    )
-    
+  return (
+    <div className='p-4 flex flex-col flex-1'>
+      <StoreBillBoard />
+    </div>
+  )
 }
 
 export default BillBoardPage
