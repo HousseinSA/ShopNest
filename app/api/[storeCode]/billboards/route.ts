@@ -31,3 +31,25 @@ export async function POST(req: Request, { params }: { params: { storeCode: stri
     return new NextResponse('Internal Error', { status: 500 })
   }
 }
+export async function GET(req: Request, { params }: { params: { storeCode: string } }) {
+  try {
+    const { userId } = auth()
+    if (!userId) {
+      return new NextResponse('Unauthorized user', { status: 401 })
+    }
+
+    if (!params.storeCode) {
+      new NextResponse('No store code found', { status: 400 })
+    }
+
+    const billboard = await prismaDB.billboard.findMany({
+      where: {
+        storeCode: params.storeCode
+      }
+    })
+    return NextResponse.json(billboard)
+  } catch (error) {
+    console.log(`Billboard_POST`, error)
+    return new NextResponse('Internal Error', { status: 500 })
+  }
+}

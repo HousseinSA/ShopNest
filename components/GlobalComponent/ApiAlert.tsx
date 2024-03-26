@@ -5,7 +5,6 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Badge, BadgeProps } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import toast from 'react-hot-toast'
-import { string } from 'zod'
 
 interface ApiAlertProps {
   title: string
@@ -28,7 +27,7 @@ const ApiAlert: React.FC<ApiAlertProps> = ({ title, description, variant }) => {
   // handel copy
   const onCopy = (): void => {
     navigator.clipboard.writeText(description)
-    toast.success('Copied!')
+    toast.success('Api route copied!')
   }
   return (
     <Alert>
@@ -38,9 +37,7 @@ const ApiAlert: React.FC<ApiAlertProps> = ({ title, description, variant }) => {
         <Badge variant={variantMap[variant]}>{textMap[variant]}</Badge>
       </AlertTitle>
       <AlertDescription className='flex mt-4 justify-between items-center'>
-        <code className='rounded bg-muted px-[.3rem] py-[.2rem] text-sm font-semibold font-mono'>
-          {description}
-        </code>
+        <code className='rounded bg-muted px-[.3rem] py-[.2rem] text-sm font-semibold font-mono'>{description}</code>
         <Button variant='outline' size='icon' onClick={onCopy}>
           <Copy />
         </Button>

@@ -1,15 +1,11 @@
 import React from 'react'
 
-interface PathHeaderProps {
+interface SectionHeaderProps {
   title: string
   description: string
-  children: React.ReactNode
+  children?: React.ReactNode
 }
-const PathHeader: React.FC<PathHeaderProps> = ({
-  title,
-  description,
-  children
-}) => {
+const SectionHeader: React.FC<SectionHeaderProps> = ({ title, description, children }) => {
   return (
     <>
       <div className='flex flex-1 justify-between items-center space-y-2'>
@@ -17,10 +13,10 @@ const PathHeader: React.FC<PathHeaderProps> = ({
           <h1 className='text-3xl font-bold tracking-tight'>{title}</h1>
           <p className='text-sm text-muted-foreground'>{description}</p>
         </div>
-        {children}  
+        {children}
       </div>
     </>
   )
 }
 
-export default PathHeader
+export default SectionHeader

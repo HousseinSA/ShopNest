@@ -26,6 +26,7 @@ export default async function DashboardLayout({ children, params: { storeCode } 
         userId: userId
       }
     })
+
     // no store redirect to home
     if (!storeData) {
       redirect('/')

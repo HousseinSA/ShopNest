@@ -9,13 +9,9 @@ const useClientMethods = () => {
   }, [])
 
   if (!isMounted) return null
-  window
 
-  // getting origin when components mounted
-  const origin =
-    typeof window !== 'undefined' && window.location.origin
-      ? window.location.origin
-      : null
+  // getting origin when client components render
+  const origin = typeof window !== 'undefined' && window.location.origin ? window.location.origin : null
   return origin
 }
 export default useClientMethods

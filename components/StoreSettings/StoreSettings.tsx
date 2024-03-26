@@ -3,15 +3,15 @@ import { Store } from '@prisma/client'
 import React, { useState } from 'react'
 import { Trash } from 'lucide-react'
 import { useRouter, useParams } from 'next/navigation'
-  import axios from 'axios'
-  import toast from 'react-hot-toast'
+import axios from 'axios'
+import toast from 'react-hot-toast'
 
 import { Button } from '@/components/ui/button'
 import StoreSettingsForm from './StoreSettingsForm'
 import { Separator } from '@/components/ui/separator'
-import ApiAlert from './ApiAlert'
+import ApiAlert from '@/components/GlobalComponent/ApiAlert'
 import useClientMethods from '@/hooks/use-client-methods'
-import PathHeader from '@/components/GlobalComponent/PathHeader'
+import SectionHeader from '@/components/GlobalComponent/SectionHeader'
 import AlertModal from '@/components/Modals/AlertModal'
 
 interface StoreSettingsProps {
@@ -52,11 +52,11 @@ const StoreSettings: React.FC<StoreSettingsProps> = ({ storeData }) => {
     <>
       <AlertModal title='Delete Store?' loading={loading} onDelete={onStoreDelete} description='Are you sure you want to delete store?' isOpen={isOpen} setIsOpen={setIsOpen} />
       <div className='flex flex-col space-y-4'>
-        <PathHeader title={'Settings'} description={`Edit ${storeData?.storename} store`}>
+        <SectionHeader title={'Settings'} description={`Edit ${storeData?.storename} store`}>
           <Button variant='destructive' aria-label='delete button' size='icon' className='rounded-full' onClick={() => setIsOpen(true)}>
             <Trash className='w-5 h-5' />
           </Button>
-        </PathHeader>
+        </SectionHeader>
         <Separator />
         <StoreSettingsForm storeData={storeData} />
         <Separator />
