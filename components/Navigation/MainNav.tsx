@@ -10,8 +10,11 @@ const MainNav = () => {
   const pathname = usePathname()
   const params = useParams()
   const storeDashboard = `/${params.storeCode}`
-  const storeSettings = `/${params.storeCode}/settings`
-  const storeBillboard = `/${params.storeCode}/billboards`
+  const settings = `/${params.storeCode}/settings`
+  const billboard = `/${params.storeCode}/billboards`
+  const categories = `/${params.storeCode}/categories`
+  const sizes = `/${params.storeCode}/sizes`
+  const colors = `/${params.storeCode}/colors`
 
   // routes array for navigation
   const routes = [
@@ -21,14 +24,29 @@ const MainNav = () => {
       active: pathname === storeDashboard
     },
     {
-      link: storeSettings,
+      link: settings,
       label: 'Settings',
-      active: pathname === storeSettings
+      active: pathname === settings
     },
     {
-      link: storeBillboard,
+      link: billboard,
       label: 'Billboards',
-      active: pathname === storeBillboard
+      active: pathname === billboard
+    },
+    {
+      link: categories,
+      label: 'Categories',
+      active: pathname === categories
+    },
+    {
+      link: sizes,
+      label: 'Sizes',
+      active: pathname === sizes
+    },
+    {
+      link: colors,
+      label: 'Colors',
+      active: pathname === colors
     }
   ]
 
@@ -36,16 +54,7 @@ const MainNav = () => {
     <nav className='flex items-center space-x-4 md:space-x-6 mx-6'>
       {routes.map((route) => {
         return (
-          <Link
-            className={cn(
-              'text-sm font-medium transition-colors hover:text-primary',
-              route.active
-                ? 'text-black dark:text-white'
-                : 'text-muted-foreground'
-            )}
-            key={route.link}
-            href={route.link}
-          >
+          <Link className={cn('text-sm font-medium transition-colors hover:text-primary', route.active ? 'text-black dark:text-white' : 'text-muted-foreground')} key={route.link} href={route.link}>
             {route.label}
           </Link>
         )
