@@ -2,7 +2,7 @@ import StoreSize from '@/components/Sizes/size/sizeComp/storeSize'
 import validateObjectId from '@/lib/mongodDBValidate'
 import prismaDB from '@/lib/prismaClient'
 
-async function BillBoardPage({ params }: { params: { sizeCode: string; storeCode: string } }) {
+async function SizePage({ params }: { params: { sizeCode: string; storeCode: string } }) {
   const validBillBoardCode = validateObjectId(params.sizeCode)
   const sizes = await prismaDB.size.findMany({
     where: {
@@ -29,4 +29,4 @@ async function BillBoardPage({ params }: { params: { sizeCode: string; storeCode
   )
 }
 
-export default BillBoardPage
+export default SizePage

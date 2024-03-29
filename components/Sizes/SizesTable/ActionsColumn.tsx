@@ -35,7 +35,7 @@ const ActionsColumn: React.FC<CellActionProps> = ({ size }) => {
   const [loading, setLoading] = useState(false)
 
   // delete billboard from database
-  const onBillboardDelete = async () => {
+  const onSizeDelete = async () => {
     try {
       setLoading(true)
       await axios.delete(`/api/${params.storeCode}/sizes/${size.id}`)
@@ -52,7 +52,7 @@ const ActionsColumn: React.FC<CellActionProps> = ({ size }) => {
 
   return (
     <>
-      <AlertModal title='delete size' description='Are you sure you want to delete size?' loading={loading} onDelete={onBillboardDelete} isOpen={isOpen} setIsOpen={setIsOpen} />
+      <AlertModal title='delete size' description='Are you sure you want to delete size?' loading={loading} onDelete={onSizeDelete} isOpen={isOpen} setIsOpen={setIsOpen} />
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant='ghost' size='sm'>

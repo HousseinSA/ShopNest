@@ -3,7 +3,7 @@ import { format } from 'date-fns'
 import prismaDB from '@/lib/prismaClient'
 import { ColorProps } from '@/components/colors/ColorTable/columns'
 import StoreColors from '@/components/colors/StoreColors'
-const CategoriesPage = async ({ params }: { params: { storeCode: string } }) => {
+const ColorsPage = async ({ params }: { params: { storeCode: string } }) => {
   const colors = await prismaDB.color.findMany({
     where: {
       storeCode: params.storeCode
@@ -27,4 +27,4 @@ const CategoriesPage = async ({ params }: { params: { storeCode: string } }) => 
   )
 }
 
-export default CategoriesPage
+export default ColorsPage

@@ -1,26 +1,28 @@
 'use client'
 import { Trash } from 'lucide-react'
 import React, { useState } from 'react'
-import { Size } from '@prisma/client'
+import { Category, Color, Product, Size } from '@prisma/client'
 import { useRouter, useParams } from 'next/navigation'
 import axios from 'axios'
 import toast from 'react-hot-toast'
 
 import { Button } from '@/components/ui/button'
 import SectionHeader from '@/components/GlobalComponent/SectionHeader'
+import ProductForm from '@/components/products/Product/ProductComp/ProductForm'
 import { Separator } from '@/components/ui/separator'
 import AlertModal from '@/components/Modals/AlertModal'
-import SizeForm from './SizeForm'
 
-interface storeSizeProps {
-  size: Size | undefined
-  sizes: Size[] | null
+interface ProductProps {
+  productData: Product | undefined
+  categories: Category[]
+  sizes: Size[]
+  colors: Color[]
 }
 
-const StoreSize: React.FC<storeSizeProps> = ({ size, sizes }) => {
+const StoreProduct: React.FC<ProductProps> = ({ productData, categories, colors, sizes }) => {
   // conditions for path header
-  const title = size ? `Edit ${size.name} size` : 'Create size'
-  const description = size ? `Edit size ${size.name}` : 'Add a new size'
+  const title = productData ? `Edit ${productData.name} product` : 'Create product'
+  const description = productData ? `Edit product ${productData.name}` : 'Add a new product'
 
   // store delete modal state
   const [isOpen, setIsOpen] = useState(false)
@@ -30,16 +32,16 @@ const StoreSize: React.FC<storeSizeProps> = ({ size, sizes }) => {
   const params = useParams()
   const route = useRouter()
 
-  // delete billboard from database
-  const onSizeDelete = async () => {
+  // delete product from database
+  const onProductDelete = async () => {
     try {
       setLoading(true)
-      await axios.delete(`/api/${params.storeCode}/sizes/${size.id}`)
-      route.push(`/${params.storeCode}/sizes`)
+      await axios.delete(`/api/${params.storeCode}/products/${productData.id}`)
       route.refresh()
-      toast.success('size deleted!')
+      route.push(`/${params.storeCode}/products`)
+      toast.success('product deleted!')
     } catch (error) {
-      toast.error('make sure you removed all products using this size first ', error)
+      toast.error('delete products and categories first', error)
     } finally {
       setLoading(false)
       setIsOpen(false)
@@ -48,20 +50,20 @@ const StoreSize: React.FC<storeSizeProps> = ({ size, sizes }) => {
 
   return (
     <>
-      <AlertModal title='delete size' loading={loading} onDelete={onSizeDelete} description='Are you sure you want to delete size?' isOpen={isOpen} setIsOpen={setIsOpen} />
+      <AlertModal title='delete product' loading={loading} onDelete={onProductDelete} description='Are you sure you want to delete product?' isOpen={isOpen} setIsOpen={setIsOpen} />
       <div className='flex flex-col space-y-4'>
         <SectionHeader title={title} description={description}>
-          {size && (
+          {productData && (
             <Button variant='destructive' aria-label='delete button' size='icon' className='rounded-full' onClick={() => setIsOpen(true)}>
               <Trash className='w-5 h-5' />
             </Button>
           )}
         </SectionHeader>
         <Separator />
-        <SizeForm sizeData={size} sizes={sizes} />
+        <ProductForm productData={productData} categories={categories} sizes={sizes} colors={colors} />
       </div>
     </>
   )
 }
 
-export default StoreSize
+export default StoreProduct

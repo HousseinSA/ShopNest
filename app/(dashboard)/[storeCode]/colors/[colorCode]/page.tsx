@@ -2,7 +2,7 @@ import StoreColor from '@/components/colors/color/ColorComp/StoreColor'
 import validateObjectId from '@/lib/mongodDBValidate'
 import prismaDB from '@/lib/prismaClient'
 
-async function BillBoardPage({ params }: { params: { colorCode: string; storeCode: string } }) {
+async function ColorPage({ params }: { params: { colorCode: string; storeCode: string } }) {
   const validBillBoardCode = validateObjectId(params.colorCode)
   const colors = await prismaDB.color.findMany({
     where: {
@@ -29,4 +29,4 @@ async function BillBoardPage({ params }: { params: { colorCode: string; storeCod
   )
 }
 
-export default BillBoardPage
+export default ColorPage
