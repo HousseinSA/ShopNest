@@ -3,6 +3,7 @@ import { format } from 'date-fns'
 import { ProductProps } from '@/components/products/ProductsTable/columns'
 import StoreProducts from '@/components/products/StoreProducts'
 import prismaDB from '@/lib/prismaClient'
+import { PriceFormatter } from '@/lib/PriceFormatter'
 const ProductsPage = async ({ params }: { params: { storeCode: string } }) => {
   const products = await prismaDB.product.findMany({
     where: {
@@ -17,7 +18,7 @@ const ProductsPage = async ({ params }: { params: { storeCode: string } }) => {
   const formattedProducts: ProductProps[] = products?.map((product) => ({
     id: product.id,
     name: product.name,
-    price: product.price,
+    price: PriceFormatter.format(product.price),
     isFeatured: product.isFeatured,
     isArchived: product.isArchived,
     category: product.category.name,
