@@ -50,7 +50,7 @@ const ItemsSelector: React.FC<GlobalProps> = ({ disabled, valueChange, value, de
         {items.map((item: Billboard | Size | Category) => {
           return (
             <SelectItem key={item.id} value={item.id}>
-              {itemType === 'size' ? (item as Size).name : (item as Billboard).label}
+              {itemType === 'size' || itemType === 'category' || itemType === 'color' ? (item as Size).name : (item as Billboard).label}
             </SelectItem>
           )
         })}

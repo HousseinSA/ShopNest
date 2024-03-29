@@ -20,8 +20,8 @@ export async function POST(req: Request, { params }: { params: { storeCode: stri
       return new NextResponse('unauthorized user', { status: 400 })
     }
     const body = await req.json()
-    const { name, price } = body
-    if (!name && !price) {
+    const { name, price, color, size, category, image } = body
+    if (!name && !price && !color && !size && !category && !image) {
       return new NextResponse('Some fields are not provided', { status: 400 })
     }
     if (!params.storeCode) {
@@ -32,9 +32,17 @@ export async function POST(req: Request, { params }: { params: { storeCode: stri
       data: {
         name,
         price,
+        colorCode: color,
+        sizeCode: size,
+        categoryCode: category,
         storeCode: params.storeCode
       }
     })
+    // const Image = await prismaDB.image.create({
+    //   data: {
+    //     imageUrl: image
+    //   }
+    // })
     return NextResponse.json(product)
   } catch (error) {
     console.log(`PRODUCT_POST`, error)

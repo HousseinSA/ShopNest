@@ -1,5 +1,3 @@
-'use client'
-
 import { CldUploadWidget } from 'next-cloudinary'
 import React, { useEffect, useState } from 'react'
 
@@ -9,7 +7,7 @@ import { ImagePlus, Trash } from 'lucide-react'
 
 interface ImageUploadProps {
   disabled?: boolean
-  onChange: (value: string) => void
+  onChange: (value: string[]) => void // Change to accept array of strings
   onRemove: (value: string) => void
   value: string[]
 }
@@ -17,18 +15,19 @@ interface ImageUploadProps {
 const ImageUpload: React.FC<ImageUploadProps> = ({ disabled, onChange, onRemove, value }) => {
   // mount on client render
   const [isMounted, setIsMounted] = useState(false)
-
+  console.log(value)
   useEffect(() => {
     setIsMounted(true)
   }, [])
 
-  if (!isMounted) {
-    return null
-  }
-
   // onUpload
   const onUpload = (result: any) => {
+    console.log(result.info)
     onChange(result.info.secure_url)
+  }
+
+  if (!isMounted) {
+    return null
   }
 
   return (
@@ -41,7 +40,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ disabled, onChange, onRemove,
                 <Trash className='h-4 w-4' />
               </Button>
             </div>
-            <Image fill className='object-cover' alt='Image' src={url} />
+            <Image width={200} height={200} className='object-contain' alt='Image' src={url} />
           </div>
         ))}
       </div>
@@ -50,7 +49,6 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ disabled, onChange, onRemove,
           const onClick = () => {
             open()
           }
-
           return (
             <Button type='button' disabled={disabled} variant='secondary' onClick={onClick}>
               <ImagePlus className='h-4 w-4 mr-2' />

@@ -36,7 +36,12 @@ export const columns: ColumnDef<ProductProps>[] = [
   },
   {
     accessorKey: 'color',
-    header: 'Color'
+    header: 'Color',
+    cell: ({ row }) => (
+      <div className='flex  w-fit items-center gap-4'>
+        <span className='uppercase font-semibold flex-auto'>{row.original.color}</span> <div style={{ backgroundColor: row.original.color }} className='w-8 h-8 rounded-full'></div>
+      </div>
+    )
   },
   {
     accessorKey: 'isFeatured',
