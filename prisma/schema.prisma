@@ -13,10 +13,12 @@ model Store {
   userId    String 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  billboard Billboard[]
-  category Category[]
-  size Size[]
-  color Color[]
+  billboards Billboard[]
+  categories Category[]
+  sizes Size[]
+  colors Color[]
+  products Product[]
+
 
 }
 
@@ -28,7 +30,7 @@ model Billboard {
   imageUrl String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  category Category[]
+  categories Category[]
 
 } 
 
@@ -41,6 +43,7 @@ model Category {
   billboard Billboard @relation(fields: [billboardCode], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  products Product[]
 }
 model Size {
   id String @id @default(auto()) @map("_id") @db.ObjectId 
@@ -50,6 +53,8 @@ model Size {
   store Store  @relation(fields: [storeCode], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  products Product[]
+
 }
 model Color {
   id String @id @default(auto()) @map("_id") @db.ObjectId 
@@ -59,4 +64,35 @@ model Color {
   store Store  @relation(fields: [storeCode], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  products Product[]
+
+}
+model Product {
+  id String @id @default(auto()) @map("_id") @db.ObjectId 
+  name String
+  price Int  
+  storeCode String  @db.ObjectId
+  store Store  @relation(fields: [storeCode], references: [id])
+  categoryCode String  @db.ObjectId
+  category Category  @relation(fields: [categoryCode], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt 
+  isFeatured Boolean @default(false)
+  isArchived Boolean @default(false)
+  sizeCode String @db.ObjectId
+  size Size  @relation(fields: [sizeCode], references: [id])
+  colorCode String @db.ObjectId
+  color Color  @relation(fields: [colorCode], references: [id])
+  images Image[]
+  
+}
+
+model Image {
+  id String @id @default(auto()) @map("_id") @db.ObjectId 
+  productCode String @db.ObjectId
+  product Product  @relation(fields: [productCode], references: [id], onDelete:Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  imageUrl String 
+
 }

@@ -2,7 +2,7 @@ import StoreCategory from '@/components/Categories/category/CategoryComp/StoreCa
 import validateObjectId from '@/lib/mongodDBValidate'
 import prismaDB from '@/lib/prismaClient'
 
-async function BillBoardPage({ params }: { params: { categoryCode: string; storeCode: string } }) {
+async function CategoryPage({ params }: { params: { categoryCode: string; storeCode: string } }) {
   const validBillBoardCode = validateObjectId(params.categoryCode)
   const billboards = await prismaDB.billboard.findMany({
     where: {
@@ -29,4 +29,4 @@ async function BillBoardPage({ params }: { params: { categoryCode: string; store
   )
 }
 
-export default BillBoardPage
+export default CategoryPage

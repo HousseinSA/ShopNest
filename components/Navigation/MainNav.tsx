@@ -15,6 +15,7 @@ const MainNav = () => {
   const categories = `/${params.storeCode}/categories`
   const sizes = `/${params.storeCode}/sizes`
   const colors = `/${params.storeCode}/colors`
+  const products = `/${params.storeCode}/products`
 
   // routes array for navigation
   const routes = [
@@ -22,11 +23,6 @@ const MainNav = () => {
       link: storeDashboard,
       label: 'Dashboard',
       active: pathname === storeDashboard
-    },
-    {
-      link: settings,
-      label: 'Settings',
-      active: pathname === settings
     },
     {
       link: billboard,
@@ -47,6 +43,16 @@ const MainNav = () => {
       link: colors,
       label: 'Colors',
       active: pathname === colors
+    },
+    {
+      link: products,
+      label: 'Products',
+      active: pathname === products
+    },
+    {
+      link: settings,
+      label: 'Settings',
+      active: pathname === settings
     }
   ]
 

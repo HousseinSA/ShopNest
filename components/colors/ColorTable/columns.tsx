@@ -20,8 +20,8 @@ export const columns: ColumnDef<ColorProps>[] = [
     accessorKey: 'value',
     header: 'Value',
     cell: ({ row }) => (
-      <div className='flex items-center space-x-4 '>
-        <span className='uppercase font-semibold'>{row.original.value}</span> <div style={{ backgroundColor: row.original.value }} className='w-8 h-8 rounded-full border'></div>
+      <div className='flex  w-fit items-center gap-4'>
+        <span className='uppercase font-semibold flex-auto'>{row.original.value}</span> <div style={{ backgroundColor: row.original.value }} className='w-8 h-8 rounded-full'></div>
       </div>
     )
   },

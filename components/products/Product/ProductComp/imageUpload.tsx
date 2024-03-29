@@ -31,7 +31,6 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ disabled, onChange, onRemove,
     onChange(result.info.secure_url)
   }
 
-  console.log(value)
   return (
     <div>
       <div className='mb-4 flex items-center gap-4'>

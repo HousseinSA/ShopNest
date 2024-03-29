@@ -75,7 +75,7 @@ const CategoryForm: React.FC<SizeForm> = ({ sizeData, sizes }) => {
               name='name'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>size name</FormLabel>
+                  <FormLabel>Size name</FormLabel>
                   <FormControl>
                     <Input disabled={loading} placeholder='size name' {...field} />
                   </FormControl>
