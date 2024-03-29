@@ -42,7 +42,6 @@ const ActionsColumn: React.FC<CellActionProps> = ({ size }) => {
       route.refresh()
       toast.success('size deleted!')
     } catch (error) {
-      console.log
       toast.error('make sure you removed all products using this size first ', error)
     } finally {
       setLoading(false)

@@ -6,29 +6,26 @@ async function ProductPage({ params }: { params: { productCode: string; storeCod
   const validBillBoardCode = validateObjectId(params.productCode)
   const categories = await prismaDB.category.findMany({
     where: {
-      id: params.storeCode
-    }
-  })
-  const billboards = await prismaDB.billboard.findMany({
-    where: {
-      id: params.storeCode
+      storeCode: params.storeCode
     }
   })
   const sizes = await prismaDB.size.findMany({
     where: {
-      id: params.storeCode
+      storeCode: params.storeCode
     }
   })
   const colors = await prismaDB.color.findMany({
     where: {
-      id: params.storeCode
+      storeCode: params.storeCode
     }
   })
   if (validBillBoardCode) {
     const product = await prismaDB.product.findUnique({
       where: {
-        id: params.productCode
-      }
+        id: params.productCode,
+        storeCode: params.productCode
+      },
+      include: { images: true }
     })
     return (
       <div className='p-4 flex flex-col flex-1'>
@@ -36,7 +33,6 @@ async function ProductPage({ params }: { params: { productCode: string; storeCod
       </div>
     )
   }
-
   return (
     <div className='p-4 flex flex-col flex-1'>
       <StoreProduct categories={categories} sizes={sizes} colors={colors} />
