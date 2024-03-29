@@ -8,7 +8,7 @@ import ActionsColumn from './ActionsColumn'
 export type ProductProps = {
   id: string
   name: string
-  price: number
+  price: string
   isFeatured: boolean
   isArchived: boolean
   category: string
@@ -19,8 +19,32 @@ export type ProductProps = {
 
 export const columns: ColumnDef<ProductProps>[] = [
   {
-    accessorKey: 'label',
-    header: 'Label'
+    accessorKey: 'name',
+    header: 'Name'
+  },
+  {
+    accessorKey: 'price',
+    header: 'Price'
+  },
+  {
+    accessorKey: 'size',
+    header: 'Size'
+  },
+  {
+    accessorKey: 'category',
+    header: 'Category'
+  },
+  {
+    accessorKey: 'color',
+    header: 'Color'
+  },
+  {
+    accessorKey: 'isFeatured',
+    header: 'Featured'
+  },
+  {
+    accessorKey: 'isArchived',
+    header: 'Archived'
   },
   {
     accessorKey: 'createdAt',
