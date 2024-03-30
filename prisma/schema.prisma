@@ -90,5 +90,5 @@ model Image {
   product Product  @relation(fields: [productCode], references: [id], onDelete:Cascade)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  imageUrl String 
+  url String 
 }
