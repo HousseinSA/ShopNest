@@ -16,7 +16,7 @@ import ItemsSelector from '@/components/GlobalComponent/ItemsSelector'
 
 // productData props
 interface StoreProductProps {
-  productData: (Product[] & { images: Image[] }) | null
+  productData: (Product & { images: Image[] }) | null
   sizes: Size[]
   colors: Color[]
   categories: Category[]

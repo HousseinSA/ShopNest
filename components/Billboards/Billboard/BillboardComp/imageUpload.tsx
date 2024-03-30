@@ -17,7 +17,7 @@ interface ImageUploadProps {
 const ImageUpload: React.FC<ImageUploadProps> = ({ disabled, onChange, onRemove, value }) => {
   // mount on client render
   const [isMounted, setIsMounted] = useState(false)
-
+  console.log(value, 'billboards')
   useEffect(() => {
     setIsMounted(true)
   }, [])
@@ -30,8 +30,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ disabled, onChange, onRemove,
   const onUpload = (result: any) => {
     onChange(result.info.secure_url)
   }
-
-  console.log(value)
+  
   return (
     <div>
       <div className='mb-4 flex items-center gap-4'>

@@ -7,7 +7,7 @@ import { ImagePlus, Trash } from 'lucide-react'
 
 interface ImageUploadProps {
   disabled?: boolean
-  onChange: (value: string[]) => void // Change to accept array of strings
+  onChange: (value: string[]) => void
   onRemove: (value: string) => void
   value: string[]
 }
@@ -15,14 +15,13 @@ interface ImageUploadProps {
 const ImageUpload: React.FC<ImageUploadProps> = ({ disabled, onChange, onRemove, value }) => {
   // mount on client render
   const [isMounted, setIsMounted] = useState(false)
-  console.log(value)
+  console.log(value, 'products')
   useEffect(() => {
     setIsMounted(true)
   }, [])
 
   // onUpload
   const onUpload = (result: any) => {
-    console.log(result.info)
     onChange(result.info.secure_url)
   }
 
@@ -40,11 +39,11 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ disabled, onChange, onRemove,
                 <Trash className='h-4 w-4' />
               </Button>
             </div>
-            <Image width={200} height={200} className='object-contain' alt='Image' src={url} />
+            <Image width={200} height={200} className='object-cover' alt='Image' src={url} />
           </div>
         ))}
       </div>
-      <CldUploadWidget onSuccess={onUpload} uploadPreset='q5jplcc9'>
+      <CldUploadWidget  options={} onSuccess={onUpload} uploadPreset='q5jplcc9'>
         {({ open }) => {
           const onClick = () => {
             open()
