@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form'
 import axios from 'axios'
 import toast from 'react-hot-toast'
 import { Billboard } from '@prisma/client'
+import { PulseLoader } from 'react-spinners'
 import { useParams, useRouter } from 'next/navigation'
 
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form'
@@ -94,8 +95,8 @@ const BillBoardForm: React.FC<BillboardFormProps> = ({ billBoardData }) => {
             )}
           />
           <div className='mt-4'>
-            <Button disabled={loading} className='ml-auto' type={'submit'}>
-              {action}
+            <Button disabled={loading} className='flex items-center gap-2' type={'submit'}>
+              {loading === true && <PulseLoader size={4} color='#fff' />} {action}
             </Button>
           </div>
         </form>

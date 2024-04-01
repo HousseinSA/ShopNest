@@ -7,6 +7,7 @@ import axios from 'axios'
 import toast from 'react-hot-toast'
 import { Category, Color, Image, Product, Size } from '@prisma/client'
 import { useParams, useRouter } from 'next/navigation'
+import { PulseLoader } from 'react-spinners'
 
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage, FormDescription } from '@/components/ui/form'
 import { Checkbox } from '@/components/ui/checkbox'
@@ -15,7 +16,6 @@ import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import ImageUpload from '@/components/GlobalComponent/ImageUpload'
 import ItemsSelector from '@/components/GlobalComponent/ItemsSelector'
-import { PulseLoader } from 'react-spinners'
 
 // productData props
 interface StoreProductProps {

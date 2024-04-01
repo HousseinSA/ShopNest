@@ -4,16 +4,10 @@ import { useForm } from 'react-hook-form'
 import { useState } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import axios from 'axios'
+import { PulseLoader } from 'react-spinners'
 import toast from 'react-hot-toast'
 
-import {
-  Form,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormControl,
-  FormMessage
-} from '@/components/ui/form'
+import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { useModalStore } from '@/hooks/ModalStateStore'
 import { Modal } from './Modal'
@@ -51,12 +45,7 @@ const StoreModal = () => {
   const { ModalOpenState, closeModal } = useModalStore()
 
   return (
-    <Modal
-      title='Create store'
-      isOpen={ModalOpenState}
-      onClose={closeModal}
-      description='Add a new store to manage products and categories '
-    >
+    <Modal title='Create store' isOpen={ModalOpenState} onClose={closeModal} description='Add a new store to manage products and categories '>
       <div className='space-y-2 pb-2 py-2'>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -66,26 +55,18 @@ const StoreModal = () => {
                 <FormItem>
                   <FormLabel>Store Name</FormLabel>
                   <FormControl>
-                    <Input
-                      disabled={loading}
-                      placeholder='E-Commerce '
-                      {...field}
-                    />
+                    <Input disabled={loading} placeholder='E-Commerce ' {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
             <div className='mt-5 w-full flex space-x-4 items-center justify-end'>
-              <Button
-                disabled={loading}
-                variant='destructive'
-                onClick={closeModal}
-              >
+              <Button disabled={loading} variant='destructive' onClick={closeModal}>
                 Cancel
               </Button>
               <Button disabled={loading} variant='outline' type={'submit'}>
-                Continue
+                {loading === true && <PulseLoader size={4} color='#000' />} Continue
               </Button>
             </div>
           </form>
