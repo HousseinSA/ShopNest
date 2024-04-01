@@ -8,7 +8,9 @@ import toast from 'react-hot-toast'
 import { Category, Color, Image, Product, Size } from '@prisma/client'
 import { useParams, useRouter } from 'next/navigation'
 
-import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form'
+import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage, FormDescription } from '@/components/ui/form'
+import { Checkbox } from '@/components/ui/checkbox'
+
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import ImageUpload from '@/components/GlobalComponent/ImageUpload'
@@ -16,7 +18,7 @@ import ItemsSelector from '@/components/GlobalComponent/ItemsSelector'
 
 // productData props
 interface StoreProductProps {
-  productData: (Product & { images: Image[] }) | null
+  productData: (Product & { images: Image[] }) | undefined
   sizes: Size[]
   colors: Color[]
   categories: Category[]
@@ -62,6 +64,7 @@ const ProductForm: React.FC<StoreProductProps> = ({ productData, sizes, colors, 
   const action = productData ? `Update product` : 'Create product'
   //d sending data to DB
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    console.log('submitting')
     try {
       setLoading(true)
       if (productData) {
@@ -165,11 +168,14 @@ const ProductForm: React.FC<StoreProductProps> = ({ productData, sizes, colors, 
             <FormField
               name='isFeatured'
               render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Product featured</FormLabel>
+                <FormItem className='flex space-x-5 space-y-0 rounded-md p-4 border bg-slate-100'>
                   <FormControl>
-                    <ItemsSelector items={productData?.isFeatured} itemType='state' value={field.value} defaultValue={field.value} valueChange={field.onChange} disabled={loading} />
+                    <Checkbox checked={field.value} onCheckedChange={field.onChange} />
                   </FormControl>
+                  <div className='space-y-0'>
+                    <FormLabel>Featured</FormLabel>
+                    <FormDescription>Product will show in home page</FormDescription>
+                  </div>
                   <FormMessage />
                 </FormItem>
               )}
@@ -177,11 +183,14 @@ const ProductForm: React.FC<StoreProductProps> = ({ productData, sizes, colors, 
             <FormField
               name='isArchived'
               render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Product archived</FormLabel>
+                <FormItem className='flex space-x-5 space-y-0 rounded-md p-4 border bg-slate-100'>
                   <FormControl>
-                    <ItemsSelector items={productData?.isArchived} itemType='state' value={field.value} defaultValue={field.value} valueChange={field.onChange} disabled={loading} />
+                    <Checkbox checked={field.value} onCheckedChange={field.onChange} />
                   </FormControl>
+                  <div className='space-y-0'>
+                    <FormLabel>Archived</FormLabel>
+                    <FormDescription>Product will not show anywhere in store</FormDescription>
+                  </div>
                   <FormMessage />
                 </FormItem>
               )}

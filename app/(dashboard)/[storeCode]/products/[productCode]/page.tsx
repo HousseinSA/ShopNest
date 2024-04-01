@@ -27,6 +27,7 @@ async function ProductPage({ params }: { params: { productCode: string; storeCod
       },
       include: { images: true }
     })
+    const formattedProduct =[]
     return (
       <div className='p-4 flex flex-col flex-1'>
         <StoreProduct categories={categories} sizes={sizes} colors={colors} productData={product} />
@@ -35,7 +36,7 @@ async function ProductPage({ params }: { params: { productCode: string; storeCod
   }
   return (
     <div className='p-4 flex flex-col flex-1'>
-      <StoreProduct categories={categories} sizes={sizes} colors={colors} />
+      <StoreProduct productData={undefined} categories={categories} sizes={sizes} colors={colors} />
     </div>
   )
 }
