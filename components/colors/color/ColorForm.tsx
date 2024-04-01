@@ -11,7 +11,7 @@ import { useParams, useRouter } from 'next/navigation'
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import BillboardSelector from './BillboardSelector'
+import { PulseLoader } from 'react-spinners'
 
 // billBoardData props
 interface ColorFormProps {
@@ -99,7 +99,8 @@ const ColorForm: React.FC<ColorFormProps> = ({ colorData, colors }) => {
             />
           </div>
           <div className='mt-4'>
-            <Button disabled={loading} className='ml-auto' type={'submit'}>
+            <Button disabled={loading} className='flex items-center gap-2' type={'submit'}>
+              {loading === true && <PulseLoader size={4} color='#fff' />}
               {action}
             </Button>
           </div>

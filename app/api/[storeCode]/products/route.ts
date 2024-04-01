@@ -20,8 +20,8 @@ export async function POST(req: Request, { params }: { params: { storeCode: stri
       return new NextResponse('unauthorized user', { status: 400 })
     }
     const body = await req.json()
-    const { name, price, color, size, category, image } = body
-    if (!name && !price && !color && !size && !category && !image) {
+    const { name, price, images, colorCode, sizeCode, categoryCode, isFeatured, isArchived } = body
+    if (!name && !price && !colorCode && !sizeCode && !categoryCode && !images) {
       return new NextResponse('Some fields are not provided', { status: 400 })
     }
     if (!params.storeCode) {
@@ -32,17 +32,20 @@ export async function POST(req: Request, { params }: { params: { storeCode: stri
       data: {
         name,
         price,
-        colorCode: color,
-        sizeCode: size,
-        categoryCode: category,
-        storeCode: params.storeCode
+        colorCode: colorCode,
+        sizeCode: sizeCode,
+        categoryCode: categoryCode,
+        storeCode: params.storeCode,
+        isFeatured,
+        isArchived,
+        images: {
+          createMany: {
+            data: [...images.map((image: { url: string }) => image)]
+          }
+        }
       }
     })
-    // const Image = await prismaDB.image.create({
-    //   data: {
-    //     imageUrl: image
-    //   }
-    // })
+
     return NextResponse.json(product)
   } catch (error) {
     console.log(`PRODUCT_POST`, error)
@@ -50,6 +53,11 @@ export async function POST(req: Request, { params }: { params: { storeCode: stri
   }
 }
 export async function GET(req: Request, { params }: { params: { storeCode: string } }) {
+  const { searchParams } = new URL(req.url)
+  const categoryCode = searchParams.get('categoryCode') || undefined
+  const sizeCode = searchParams.get('sizeCode') || undefined
+  const colorCode = searchParams.get('colorCode') || undefined
+  const isFeatured = searchParams.get('isFeatured')
   try {
     const { userId } = auth()
     if (!userId) {
@@ -62,13 +70,20 @@ export async function GET(req: Request, { params }: { params: { storeCode: strin
 
     const product = await prismaDB.product.findMany({
       where: {
-        storeCode: params.storeCode
-      }
+        storeCode: params.storeCode,
+        categoryCode,
+        colorCode,
+        sizeCode,
+        isFeatured: isFeatured ? true : undefined,
+        isArchived: false
+      },
+      include: { images: true, category: true, size: true, color: true },
+      orderBy: { createdAt: 'desc' }
     })
 
     return NextResponse.json(product)
   } catch (error) {
-    console.log(`PRODUCT_POST`, error)
+    console.log(`PRODUCTS_GET`, error)
     return new NextResponse('Internal Error', { status: 500 })
   }
 }
