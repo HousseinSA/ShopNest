@@ -15,6 +15,7 @@ import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import ImageUpload from '@/components/GlobalComponent/ImageUpload'
 import ItemsSelector from '@/components/GlobalComponent/ItemsSelector'
+import { PulseLoader } from 'react-spinners'
 
 // productData props
 interface StoreProductProps {
@@ -38,6 +39,7 @@ const ProductForm: React.FC<StoreProductProps> = ({ productData, sizes, colors, 
   })
   type formValues = z.infer<typeof formSchema>
 
+  console.log(productData)
   const form = useForm<formValues>({
     resolver: zodResolver(formSchema),
     defaultValues: productData
@@ -73,7 +75,6 @@ const ProductForm: React.FC<StoreProductProps> = ({ productData, sizes, colors, 
         console.log('posting')
         await axios.post(`/api/${params.storeCode}/products`, values)
       }
-
       // route refresh and message
       route.refresh()
       route.push(`/${params.storeCode}/products`)
@@ -115,12 +116,11 @@ const ProductForm: React.FC<StoreProductProps> = ({ productData, sizes, colors, 
                 </FormItem>
               )}
             />
-
             <FormField
               control={form.control}
               name='images'
               render={({ field }) => (
-                <FormItem className={` ${field.value.length !== 0 ? 'col-span-4' : 'col-span-1'}`}>
+                <FormItem className={`${field.value.length !== 0 && 'col-span-4'}`}>
                   <FormLabel>Images</FormLabel>
                   <FormControl className='col-span-4 m-0'>
                     <ImageUpload value={field.value.map((image) => image.url)} disabled={loading} onChange={(url) => field.onChange([...field.value, { url }])} onRemove={(url) => field.onChange([...field.value.filter((current) => current.url !== url)])} />
@@ -130,7 +130,7 @@ const ProductForm: React.FC<StoreProductProps> = ({ productData, sizes, colors, 
               )}
             />
             <FormField
-              name='category'
+              name='categoryCode'
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Product category</FormLabel>
@@ -142,7 +142,7 @@ const ProductForm: React.FC<StoreProductProps> = ({ productData, sizes, colors, 
               )}
             />
             <FormField
-              name='color'
+              name='colorCode'
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Product color</FormLabel>
@@ -154,7 +154,7 @@ const ProductForm: React.FC<StoreProductProps> = ({ productData, sizes, colors, 
               )}
             />
             <FormField
-              name='size'
+              name='sizeCode'
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Product size</FormLabel>
@@ -197,8 +197,8 @@ const ProductForm: React.FC<StoreProductProps> = ({ productData, sizes, colors, 
             />
           </div>
           <div className='mt-4'>
-            <Button disabled={loading} className='ml-auto' type={'submit'}>
-              {action}
+            <Button disabled={loading} className='flex items-center gap-2' type={'submit'}>
+              {loading === true && <PulseLoader size={4} color='#fff' />} {action}
             </Button>
           </div>
         </form>

@@ -19,15 +19,16 @@ async function ProductPage({ params }: { params: { productCode: string; storeCod
       storeCode: params.storeCode
     }
   })
+
   if (validBillBoardCode) {
     const product = await prismaDB.product.findUnique({
       where: {
         id: params.productCode,
-        storeCode: params.productCode
+        storeCode: params.storeCode
       },
       include: { images: true }
     })
-    const formattedProduct =[]
+    console.log('product', product)
     return (
       <div className='p-4 flex flex-col flex-1'>
         <StoreProduct categories={categories} sizes={sizes} colors={colors} productData={product} />

@@ -14,19 +14,38 @@ export async function PATCH(req: Request, { params }: { params: { storeCode: str
     }
 
     const body = await req.json()
-    const { name, price } = body
-    if (!name && !price) {
+    const { name, price, images, colorCode, sizeCode, categoryCode, isFeatured, isArchived } = body
+    if (!name && !price && !colorCode && !sizeCode && !categoryCode && !images) {
       return new NextResponse('No name or price provided', { status: 400 })
     }
 
-    const product = await prismaDB.product.updateMany({
+    await prismaDB.product.update({
       where: {
         id: params.productCode,
         storeCode: params.storeCode
       },
       data: {
         name,
-        price
+        price,
+        colorCode: colorCode,
+        sizeCode: sizeCode,
+        categoryCode: categoryCode,
+        isFeatured,
+        isArchived,
+        images: { deleteMany: {} }
+      }
+    })
+
+    const product = await prismaDB.product.update({
+      where: {
+        id: params.productCode
+      },
+      data: {
+        images: {
+          createMany: {
+            data: [...images.map((image: { url: string }) => image)]
+          }
+        }
       }
     })
 
@@ -51,7 +70,8 @@ export async function GET(req: Request, { params }: { params: { storeCode: strin
       where: {
         id: params.productCode,
         storeCode: params.storeCode
-      }
+      },
+      include: { images: true, category: true, size: true, color: true }
     })
 
     return NextResponse.json(product)
