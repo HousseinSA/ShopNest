@@ -7,7 +7,7 @@ import SectionHeader from '@/components/GlobalComponent/SectionHeader'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { SizeProps, columns } from '@/components/Sizes/SizesTable/columns'
-import { DataTable } from '@/components/Categories/CategoryTable/data-table'
+import { DataTable } from '@/components/Sizes/SizesTable/data-table'
 import APIList from '@/components/GlobalComponent/APIList'
 
 interface StoreSizesProps {

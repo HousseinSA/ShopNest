@@ -1,33 +1,21 @@
 import React from 'react'
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle
-} from '@/components/ui/dialog'
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 
 interface ModalProps {
   title: string
   description: string
   isOpen: boolean
-  onClose: () => void 
+  onClose: () => void
   children?: React.ReactNode
 }
-export const Modal: React.FC<ModalProps> = ({
-  title,
-  description,
-  isOpen,
-  onClose,
-  children
-}) => {
+export const Modal: React.FC<ModalProps> = ({ title, description, isOpen, onClose, children }) => {
   // on modal state change
   const onChange = (open: boolean) => {
     if (!open) {
       onClose()
     }
   }
-    return (
+  return (
     <Dialog open={isOpen} onOpenChange={onChange}>
       <DialogContent>
         <DialogHeader>

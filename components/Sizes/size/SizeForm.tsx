@@ -11,7 +11,7 @@ import { useParams, useRouter } from 'next/navigation'
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import ItemsSelector from '@/components/GlobalComponent/ItemsSelector'
+import { PulseLoader } from 'react-spinners'
 
 // billBoardData props
 interface SizeForm {
@@ -97,8 +97,8 @@ const CategoryForm: React.FC<SizeForm> = ({ sizeData, sizes }) => {
             />
           </div>
           <div className='mt-4'>
-            <Button disabled={loading} className='ml-auto' type={'submit'}>
-              {action}
+            <Button disabled={loading} className='flex items-center gap-2' type={'submit'}>
+              {loading === true && <PulseLoader size={4} color='#fff' />} {action}
             </Button>
           </div>
         </form>

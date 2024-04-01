@@ -7,11 +7,11 @@ import axios from 'axios'
 import toast from 'react-hot-toast'
 import { Color } from '@prisma/client'
 import { useParams, useRouter } from 'next/navigation'
+import { PulseLoader } from 'react-spinners'
 
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import { PulseLoader } from 'react-spinners'
 
 // billBoardData props
 interface ColorFormProps {
