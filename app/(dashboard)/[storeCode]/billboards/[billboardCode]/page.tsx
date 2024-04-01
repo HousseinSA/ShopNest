@@ -1,4 +1,4 @@
-import StoreBillBoard from '@/components/Billboards/Billboard/BillboardComp/StoreBillBoard'
+import StoreBillBoard from '@/components/Billboards/Billboard/StoreBillBoard'
 import validateObjectId from '@/lib/mongodDBValidate'
 import prismaDB from '@/lib/prismaClient'
 

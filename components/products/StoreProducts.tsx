@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { ProductProps, columns } from '@/components/products/ProductsTable/columns'
 import { DataTable } from '@/components/products/ProductsTable/data-table'
-import APIList from './APIList'
+import APIList from '@/components/GlobalComponent/APIList'
 
 interface StoreProductProps {
   products: ProductProps[]

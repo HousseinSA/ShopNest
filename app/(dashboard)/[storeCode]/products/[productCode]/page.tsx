@@ -1,4 +1,4 @@
-import StoreProduct from '@/components/products/Product/ProductComp/StoreProduct'
+import StoreProduct from '@/components/products/Product/StoreProduct'
 import validateObjectId from '@/lib/mongodDBValidate'
 import prismaDB from '@/lib/prismaClient'
 

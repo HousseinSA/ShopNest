@@ -1,4 +1,4 @@
-import StoreSize from '@/components/Sizes/size/sizeComp/storeSize'
+import StoreSize from '@/components/Sizes/size/storeSize'
 import validateObjectId from '@/lib/mongodDBValidate'
 import prismaDB from '@/lib/prismaClient'
 

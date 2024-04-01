@@ -1,4 +1,4 @@
-import StoreCategory from '@/components/Categories/category/CategoryComp/StoreCategory'
+import StoreCategory from '@/components/Categories/category/StoreCategory'
 import validateObjectId from '@/lib/mongodDBValidate'
 import prismaDB from '@/lib/prismaClient'
 

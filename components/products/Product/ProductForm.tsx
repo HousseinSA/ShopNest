@@ -11,7 +11,7 @@ import { useParams, useRouter } from 'next/navigation'
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import ImageUpload from './imageUpload'
+import ImageUpload from '@/components/GlobalComponent/ImageUpload'
 import ItemsSelector from '@/components/GlobalComponent/ItemsSelector'
 
 // productData props
@@ -60,10 +60,8 @@ const ProductForm: React.FC<StoreProductProps> = ({ productData, sizes, colors, 
   // conditions if there is not productData
   const toastMessage = productData ? `product updated!` : ' product Created!'
   const action = productData ? `Update product` : 'Create product'
-
   //d sending data to DB
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log(values)
     try {
       setLoading(true)
       if (productData) {
@@ -72,6 +70,7 @@ const ProductForm: React.FC<StoreProductProps> = ({ productData, sizes, colors, 
         console.log('posting')
         await axios.post(`/api/${params.storeCode}/products`, values)
       }
+
       // route refresh and message
       route.refresh()
       route.push(`/${params.storeCode}/products`)
@@ -89,7 +88,7 @@ const ProductForm: React.FC<StoreProductProps> = ({ productData, sizes, colors, 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className='grid md:grid-cols-3 gap-8 lg:grid-cols-4'>
-            {/* <FormField
+            <FormField
               name='name'
               render={({ field }) => (
                 <FormItem>
@@ -112,33 +111,22 @@ const ProductForm: React.FC<StoreProductProps> = ({ productData, sizes, colors, 
                   <FormMessage />
                 </FormItem>
               )}
-            /> */}
-            {/* <FormField
-              name='images'
-              render={({ field }) => (
-                <FormItem className='mb-4'>
-                  <FormLabel>Background image</FormLabel>
-                  <FormControl>
-                    <ImageUpload disabled={loading} value={field.value.map((image) => image.url)} onChange={(url) => field.onChange([...field.value, { url }])} onRemove={(url) => field.onChange([...field.value.filter((image) => image.url !== url)])} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            /> */}
+            />
+
             <FormField
               control={form.control}
               name='images'
               render={({ field }) => (
-                <FormItem>
+                <FormItem className={` ${field.value.length !== 0 ? 'col-span-4' : 'col-span-1'}`}>
                   <FormLabel>Images</FormLabel>
-                  <FormControl>
+                  <FormControl className='col-span-4 m-0'>
                     <ImageUpload value={field.value.map((image) => image.url)} disabled={loading} onChange={(url) => field.onChange([...field.value, { url }])} onRemove={(url) => field.onChange([...field.value.filter((current) => current.url !== url)])} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-            {/* <FormField
+            <FormField
               name='category'
               render={({ field }) => (
                 <FormItem>
@@ -173,7 +161,31 @@ const ProductForm: React.FC<StoreProductProps> = ({ productData, sizes, colors, 
                   <FormMessage />
                 </FormItem>
               )}
-            /> */}
+            />
+            <FormField
+              name='isFeatured'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Product featured</FormLabel>
+                  <FormControl>
+                    <ItemsSelector items={productData?.isFeatured} itemType='state' value={field.value} defaultValue={field.value} valueChange={field.onChange} disabled={loading} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              name='isArchived'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Product archived</FormLabel>
+                  <FormControl>
+                    <ItemsSelector items={productData?.isArchived} itemType='state' value={field.value} defaultValue={field.value} valueChange={field.onChange} disabled={loading} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
           </div>
           <div className='mt-4'>
             <Button disabled={loading} className='ml-auto' type={'submit'}>
