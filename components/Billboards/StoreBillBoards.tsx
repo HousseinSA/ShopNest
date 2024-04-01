@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { BillboardProps, columns } from '@/components/Billboards/BillboardsTable/columns'
 import { DataTable } from '@/components/Billboards/BillboardsTable/data-table'
-import APIList from './APIList'
+import APIList from '@/components/GlobalComponent/APIList'
 
 interface BillBoardsProps {
   billBoards: BillboardProps[]

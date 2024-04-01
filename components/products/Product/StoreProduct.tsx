@@ -8,12 +8,12 @@ import toast from 'react-hot-toast'
 
 import { Button } from '@/components/ui/button'
 import SectionHeader from '@/components/GlobalComponent/SectionHeader'
-import ProductForm from '@/components/products/Product/ProductComp/ProductForm'
+import ProductForm from '@/components/products/Product/ProductForm'
 import { Separator } from '@/components/ui/separator'
 import AlertModal from '@/components/Modals/AlertModal'
 
 interface ProductProps {
-  productData: Product | undefined
+  productData: Product | null
   categories: Category[]
   sizes: Size[]
   colors: Color[]

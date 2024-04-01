@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { SizeProps, columns } from '@/components/Sizes/SizesTable/columns'
 import { DataTable } from '@/components/Categories/CategoryTable/data-table'
-import APIList from './APIList'
+import APIList from '@/components/GlobalComponent/APIList'
 
 interface StoreSizesProps {
   sizes: SizeProps[]

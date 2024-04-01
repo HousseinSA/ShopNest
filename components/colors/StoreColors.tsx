@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { ColorProps, columns } from '@/components/colors/ColorTable/columns'
 import { DataTable } from '@/components/colors/ColorTable/data-table'
-import APIList from './APIList'
+import APIList from '@/components/GlobalComponent/APIList'
 
 interface StoreCategoryProps {
   colors: ColorProps[]

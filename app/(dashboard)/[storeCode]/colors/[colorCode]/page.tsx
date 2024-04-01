@@ -1,4 +1,4 @@
-import StoreColor from '@/components/colors/color/ColorComp/StoreColor'
+import StoreColor from '@/components/colors/color/StoreColor'
 import validateObjectId from '@/lib/mongodDBValidate'
 import prismaDB from '@/lib/prismaClient'
 

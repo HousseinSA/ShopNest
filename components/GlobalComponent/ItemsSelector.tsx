@@ -3,6 +3,7 @@ import React from 'react'
 
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Billboard, Category, Color, Size } from '@prisma/client'
+import { boolean } from 'zod'
 
 interface BillboardProps {
   disabled: boolean
@@ -37,8 +38,15 @@ interface ColorProps {
   items: Color[]
   itemType: 'color'
 }
-
-type GlobalProps = BillboardProps | SizesProps | CategoryProps | ColorProps
+interface ProductState {
+  disabled: boolean
+  valueChange: () => void
+  value: boolean
+  defaultValue: string
+  items: boolean
+  itemType: 'state'
+}
+type GlobalProps = BillboardProps | SizesProps | CategoryProps | ColorProps | ProductState
 
 const ItemsSelector: React.FC<GlobalProps> = ({ disabled, valueChange, value, defaultValue, items, itemType }) => {
   return (
@@ -47,13 +55,20 @@ const ItemsSelector: React.FC<GlobalProps> = ({ disabled, valueChange, value, de
         <SelectValue defaultValue={defaultValue} placeholder={` Select ${itemType}`} />
       </SelectTrigger>
       <SelectContent>
-        {items.map((item: Billboard | Size | Category) => {
-          return (
-            <SelectItem key={item.id} value={item.id}>
-              {itemType === 'size' || itemType === 'category' || itemType === 'color' ? (item as Size).name : (item as Billboard).label}
-            </SelectItem>
-          )
-        })}
+        {Array.isArray(items) ? (
+          items.map((item) => {
+            return (
+              <SelectItem key={item.id} value={item.id}>
+                {itemType === 'size' || itemType === 'category' || itemType === 'color' ? (item as Size).name : (item as Billboard).label}
+              </SelectItem>
+            )
+          })
+        ) : (
+          <>
+            <SelectItem value={true}>yes</SelectItem>
+            <SelectItem value={false}>no</SelectItem>
+          </>
+        )}
       </SelectContent>
     </Select>
   )
