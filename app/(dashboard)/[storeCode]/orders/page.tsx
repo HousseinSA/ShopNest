@@ -3,7 +3,8 @@ import { format } from 'date-fns'
 import prismaDB from '@/lib/prismaClient'
 import { OrderProps } from '@/components/orders/orderTable/columns'
 import StoreOrders from '@/components/orders/StoreOrders'
-const ColorsPage = async ({ params }: { params: { storeCode: string } }) => {
+import { PriceFormatter } from '@/lib/PriceFormatter'
+const OrdersPage = async ({ params }: { params: { storeCode: string } }) => {
   const orders = await prismaDB.order.findMany({
     where: {
       storeCode: params.storeCode
@@ -18,6 +19,9 @@ const ColorsPage = async ({ params }: { params: { storeCode: string } }) => {
     id: order.id,
     phone: order.phone,
     address: order.address,
+    products: [order.orderItems.map((orderItem) => orderItem.product.name).join(',')],
+    price: PriceFormatter.format(order.orderItems.reduce((total, order) => total + Number(order.product.price), 0)),
+    isPaid: order.isPaid,
     createdAt: format(order.createdAt, 'MMMM do, yyyy')
   }))
 
@@ -28,4 +32,4 @@ const ColorsPage = async ({ params }: { params: { storeCode: string } }) => {
   )
 }
 
-export default ColorsPage
+export default OrdersPage
