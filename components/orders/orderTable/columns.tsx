@@ -8,10 +8,17 @@ export type OrderProps = {
   id: string
   phone: string
   address: string
+  products: string[]
+  price: string
+  isPaid: boolean
   createdAt: string
 }
 
 export const columns: ColumnDef<OrderProps>[] = [
+  {
+    accessorKey: 'products',
+    header: 'Products'
+  },
   {
     accessorKey: 'phone',
     header: 'Phone'
@@ -21,13 +28,15 @@ export const columns: ColumnDef<OrderProps>[] = [
     header: 'Address'
   },
   {
+    accessorKey: 'price',
+    header: 'Total price'
+  },
+  {
+    accessorKey: 'isPaid',
+    header: 'Paid'
+  },
+  {
     accessorKey: 'createdAt',
     header: 'Date'
-  },
-
-  {
-    accessorKey: 'action',
-    header: 'Action',
-    cell: ({ row }) => <ActionsColumn order={row.original} />
   }
 ]
