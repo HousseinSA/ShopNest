@@ -55,8 +55,8 @@ const BillBoardForm: React.FC<BillboardFormProps> = ({ billBoardData }) => {
         await axios.post(`/api/${params.storeCode}/billboards`, values)
       }
       // route refresh and message
-      route.refresh()
       route.push(`/${params.storeCode}/billboards`)
+      route.refresh()
       toast.success(toastMessage)
     } catch (error) {
       console.log(error)

@@ -27,21 +27,26 @@ export const columns: ColumnDef<ProductProps>[] = [
     header: 'Price'
   },
   {
-    accessorKey: 'size',
-    header: 'Size'
-  },
-  {
     accessorKey: 'category',
     header: 'Category'
+  },
+  {
+    accessorKey: 'size',
+    header: 'Size'
   },
   {
     accessorKey: 'color',
     header: 'Color',
     cell: ({ row }) => (
-      <div className='flex  w-fit items-center gap-4'>
-        <span className='uppercase font-semibold flex-auto'>{row.original.color}</span> <div style={{ backgroundColor: row.original.color }} className='w-8 h-8 rounded-full'></div>
+      <div className='flex items-center gap-4'>
+        <span className='uppercase font-semibold w-16 text-center'>{row.original.color}</span>
+        <div style={{ backgroundColor: row.original.color }} className='w-8 h-8 rounded-full'></div>
       </div>
     )
+  },
+  {
+    accessorKey: 'createdAt',
+    header: 'Date'
   },
   {
     accessorKey: 'isFeatured',
@@ -50,10 +55,6 @@ export const columns: ColumnDef<ProductProps>[] = [
   {
     accessorKey: 'isArchived',
     header: 'Archived'
-  },
-  {
-    accessorKey: 'createdAt',
-    header: 'Date'
   },
   {
     accessorKey: 'action',
