@@ -5,22 +5,22 @@ import { Copy, Edit, MoreHorizontal, Trash } from 'lucide-react'
 import axios from 'axios'
 import { useParams, useRouter } from 'next/navigation'
 
-import { ColorProps } from '@/components/colors/ColorTable/columns'
+import { OrderProps } from '@/components/orders/orderTable/columns'
 import { Button } from '@/components/ui/button'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import AlertModal from '@/components/Modals/AlertModal'
 
 interface CellActionProps {
-  color: ColorProps
+  order: OrderProps
 }
 
-const ActionsColumn: React.FC<CellActionProps> = ({ color }) => {
+const ActionsColumn: React.FC<CellActionProps> = ({ order }) => {
   // route
   const route = useRouter()
   const params = useParams()
   // on update
   function onUpdate(code: string) {
-    route.push(`/${params.storeCode}/colors/${code}`)
+    route.push(`/${params.storeCode}/orders/${code}`)
     route.refresh()
   }
 
@@ -38,11 +38,11 @@ const ActionsColumn: React.FC<CellActionProps> = ({ color }) => {
   const onColorDelete = async () => {
     try {
       setLoading(true)
-      await axios.delete(`/api/${params.storeCode}/colors/${color.id}`)
+      await axios.delete(`/api/${params.storeCode}/orders/${order.id}`)
       route.refresh()
-      toast.success('color deleted!')
-    } catch (error) {    
-      toast.error('make sure you removed all products using this color first ', error)
+      toast.success('order deleted!')
+    } catch (error) {
+      toast.error('make sure you removed all products using this order first ', error)
     } finally {
       setLoading(false)
       setIsOpen(false)
@@ -51,7 +51,7 @@ const ActionsColumn: React.FC<CellActionProps> = ({ color }) => {
 
   return (
     <>
-      <AlertModal title='delete color' description='Are you sure you want to delete color?' loading={loading} onDelete={onColorDelete} isOpen={isOpen} setIsOpen={setIsOpen} />
+      <AlertModal title='delete order' description='Are you sure you want to delete order?' loading={loading} onDelete={onColorDelete} isOpen={isOpen} setIsOpen={setIsOpen} />
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant='ghost' size='sm'>
@@ -62,10 +62,10 @@ const ActionsColumn: React.FC<CellActionProps> = ({ color }) => {
         <DropdownMenuContent>
           <DropdownMenuLabel>Actions</DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <DropdownMenuItem onClick={() => onUpdate(color.id)}>
+          <DropdownMenuItem onClick={() => onUpdate(order.id)}>
             <Edit className='w-5 h-5 mr-2' /> Update
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => onCopy(color.id)}>
+          <DropdownMenuItem onClick={() => onCopy(order.id)}>
             <Copy className='w-5 h-5 mr-2' /> Copy
           </DropdownMenuItem>
           <DropdownMenuItem className='bg-red-200' onClick={() => setIsOpen(true)}>

@@ -58,7 +58,7 @@ export async function GET(req: Request, { params }: { params: { storeCode: strin
   const sizeCode = searchParams.get('sizeCode') || undefined
   const colorCode = searchParams.get('colorCode') || undefined
   const isFeatured = searchParams.get('isFeatured')
-  try {
+  try { 
     const { userId } = auth()
     if (!userId) {
       return new NextResponse('Unauthorized user', { status: 401 })

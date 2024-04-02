@@ -39,7 +39,6 @@ const ProductForm: React.FC<StoreProductProps> = ({ productData, sizes, colors, 
   })
   type formValues = z.infer<typeof formSchema>
 
-  console.log(productData)
   const form = useForm<formValues>({
     resolver: zodResolver(formSchema),
     defaultValues: productData
@@ -66,18 +65,16 @@ const ProductForm: React.FC<StoreProductProps> = ({ productData, sizes, colors, 
   const action = productData ? `Update product` : 'Create product'
   //d sending data to DB
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log('submitting')
     try {
       setLoading(true)
       if (productData) {
         await axios.patch(`/api/${params.storeCode}/products/${params.productCode}`, values)
       } else {
-        console.log('posting')
         await axios.post(`/api/${params.storeCode}/products`, values)
       }
       // route refresh and message
-      route.refresh()
       route.push(`/${params.storeCode}/products`)
+      route.refresh()
       toast.success(toastMessage)
     } catch (error) {
       console.log(error)
@@ -120,7 +117,7 @@ const ProductForm: React.FC<StoreProductProps> = ({ productData, sizes, colors, 
               control={form.control}
               name='images'
               render={({ field }) => (
-                <FormItem className={`${field.value.length !== 0 && 'col-span-4'}`}>
+                <FormItem className={`${field.value.length !== 0 && 'col-span-full'}`}>
                   <FormLabel>Images</FormLabel>
                   <FormControl className='col-span-4 m-0'>
                     <ImageUpload value={field.value.map((image) => image.url)} disabled={loading} onChange={(url) => field.onChange([...field.value, { url }])} onRemove={(url) => field.onChange([...field.value.filter((current) => current.url !== url)])} />
