@@ -23,10 +23,9 @@ export default async function DashboardLayout({ children, params: { storeCode } 
     const storeData = await prismaDB.store.findFirst({
       where: {
         id: storeCode,
-        userId: userId
+        userId
       }
     })
-
     // no store redirect to home
     if (!storeData) {
       redirect('/')

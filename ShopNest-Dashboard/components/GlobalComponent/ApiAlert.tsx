@@ -1,5 +1,6 @@
-import React from 'react'
-import { Copy, Rocket } from 'lucide-react'
+'use client'
+import React, { useState } from 'react'
+import { Copy, CopyCheck, Rocket } from 'lucide-react'
 
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Badge, BadgeProps } from '@/components/ui/badge'
@@ -24,10 +25,17 @@ const variantMap: Record<ApiAlertProps['variant'], BadgeProps['variant']> = {
 
 // component
 const ApiAlert: React.FC<ApiAlertProps> = ({ title, description, variant }) => {
+  // copy state
+  const [isCopy, setIsCopy] = useState(false)
+
   // handel copy
   const onCopy = (): void => {
     navigator.clipboard.writeText(description)
+    setIsCopy(true)
     toast.success('Api route copied!')
+    setTimeout(() => {
+      setIsCopy(false)
+    }, 5000)
   }
   return (
     <Alert>
@@ -38,8 +46,8 @@ const ApiAlert: React.FC<ApiAlertProps> = ({ title, description, variant }) => {
       </AlertTitle>
       <AlertDescription className='flex mt-4 justify-between items-center'>
         <code className='rounded bg-muted px-[.3rem] py-[.2rem] text-sm font-semibold font-mono'>{description}</code>
-        <Button variant='outline' size='icon' onClick={onCopy}>
-          <Copy />
+        <Button variant='outline' className={`${isCopy && 'border-green-700'}`} size='icon' onClick={onCopy}>
+          {isCopy ? <CopyCheck color='green' /> : <Copy />}
         </Button>
       </AlertDescription>
     </Alert>
