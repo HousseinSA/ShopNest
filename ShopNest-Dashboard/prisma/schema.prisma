@@ -107,7 +107,6 @@ model Order {
   updatedAt DateTime @updatedAt
 }
 
-
 model OrderItem {
   id String @id @default(auto()) @map("_id") @db.ObjectId 
   order Order  @relation(fields: [orderCode], references: [id])
