@@ -15,7 +15,6 @@ const HomeLayout: React.FC<HomeLayout> = async ({ children }) => {
   if (!userId) {
     redirect('/sign-in')
   }
-
   const store = await prismaDB.store.findFirst({
     where: {
       userId

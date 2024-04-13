@@ -5,10 +5,10 @@ import { NextResponse } from 'next/server'
 export async function POST(req: Request, { params }: { params: { storeCode: string } }) {
   try {
     const { userId } = auth()
-    if (!userId) {
-      return new NextResponse('Unauthorized user', { status: 401 })
-    }
-
+    // if (!userId) {
+    //   return new NextResponse('Unauthorized user', { status: 401 })
+    // }
+    
     // checking is there is store by this user
     const storeByUserId = await prismaDB.store.findFirst({
       where: {
@@ -17,7 +17,7 @@ export async function POST(req: Request, { params }: { params: { storeCode: stri
       }
     })
     if (!storeByUserId) {
-      return new NextResponse('unauthorized user', { status: 400 })
+      return new NextResponse('Unauthorized user', { status: 400 })
     }
     const body = await req.json()
     const { name, price, images, colorCode, sizeCode, categoryCode, isFeatured, isArchived } = body
@@ -58,11 +58,8 @@ export async function GET(req: Request, { params }: { params: { storeCode: strin
   const sizeCode = searchParams.get('sizeCode') || undefined
   const colorCode = searchParams.get('colorCode') || undefined
   const isFeatured = searchParams.get('isFeatured')
-  try { 
+  try {
     const { userId } = auth()
-    if (!userId) {
-      return new NextResponse('Unauthorized user', { status: 401 })
-    }
 
     if (!params.storeCode) {
       new NextResponse('No store code found', { status: 400 })

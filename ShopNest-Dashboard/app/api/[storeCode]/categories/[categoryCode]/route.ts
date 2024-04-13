@@ -5,9 +5,6 @@ import { NextResponse } from 'next/server'
 export async function PATCH(req: Request, { params }: { params: { storeCode: string; categoryCode: string } }) {
   try {
     const { userId } = auth()
-    if (!userId) {
-      return new NextResponse('unauthorized user', { status: 401 })
-    }
 
     if (!params.categoryCode) {
       return new NextResponse('category  code is required', { status: 400 })
@@ -39,9 +36,6 @@ export async function PATCH(req: Request, { params }: { params: { storeCode: str
 export async function GET(req: Request, { params }: { params: { storeCode: string; categoryCode: string } }) {
   try {
     const { userId } = auth()
-    if (!userId) {
-      return new NextResponse('unauthorized user', { status: 401 })
-    }
 
     if (!params.categoryCode) {
       return new NextResponse('category code is required', { status: 400 })
@@ -65,9 +59,6 @@ export async function GET(req: Request, { params }: { params: { storeCode: strin
 export async function DELETE(req: Request, { params }: { params: { storeCode: string; categoryCode: string } }) {
   try {
     const { userId } = auth()
-    if (!userId) {
-      return new NextResponse('unauthorized user', { status: 401 })
-    }
 
     if (!params.categoryCode) {
       return new NextResponse('Billboard code is required', { status: 400 })

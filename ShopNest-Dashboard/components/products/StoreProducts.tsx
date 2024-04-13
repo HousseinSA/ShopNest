@@ -11,7 +11,7 @@ import { DataTable } from '@/components/products/ProductsTable/data-table'
 import APIList from '@/components/GlobalComponent/APIList'
 
 interface StoreProductProps {
-  products: ProductProps[]
+  products: ProductProps[] | undefined
 }
 const StoreProducts: React.FC<StoreProductProps> = ({ products }) => {
   // routes params
@@ -25,7 +25,7 @@ const StoreProducts: React.FC<StoreProductProps> = ({ products }) => {
   return (
     <>
       <div className='flex flex-col space-y-4'>
-        <SectionHeader title={`Products (${products.length})`} description='manage products of your store'>
+        <SectionHeader title={`Products (${products?.length})`} description='manage products of your store'>
           <Button variant='outline' onClick={onAddNew}>
             <Plus className='w-5 h-5' />
             Add New
