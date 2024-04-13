@@ -1,15 +1,9 @@
 import prismaDB from '@/lib/prismaClient'
 import { auth } from '@clerk/nextjs'
 import { NextResponse } from 'next/server'
-export async function PATCH(
-  req: Request,
-  { params }: { params: { storeCode: string } }
-) {
+export async function PATCH(req: Request, { params }: { params: { storeCode: string } }) {
   try {
     const { userId } = auth()
-    if (!userId) {
-      return new NextResponse('unauthorized user', { status: 401 })
-    }
 
     if (!params.storeCode) {
       return new NextResponse('store code is required', { status: 400 })
@@ -37,15 +31,9 @@ export async function PATCH(
   }
 }
 
-export async function DELETE(
-  req: Request,
-  { params }: { params: { storeCode: string } }
-) {
+export async function DELETE(req: Request, { params }: { params: { storeCode: string } }) {
   try {
     const { userId } = auth()
-    if (!userId) {
-      return new NextResponse('unauthorized user', { status: 401 })
-    }
 
     if (!params.storeCode) {
       return new NextResponse('store code is required', { status: 400 })

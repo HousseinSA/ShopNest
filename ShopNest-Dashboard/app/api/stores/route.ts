@@ -5,9 +5,6 @@ import prismaDB from '@/lib/prismaClient'
 export async function POST(req: Request) {
   try {
     const { userId } = auth()
-    if (!userId) {
-      return new NextResponse('Unauthorized user', { status: 401 })
-    }
     const body = await req.json()
     const { storename } = body
     if (!storename) {
