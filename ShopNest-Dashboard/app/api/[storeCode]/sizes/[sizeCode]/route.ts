@@ -5,9 +5,6 @@ import { NextResponse } from 'next/server'
 export async function PATCH(req: Request, { params }: { params: { storeCode: string; sizeCode: string } }) {
   try {
     const { userId } = auth()
-    if (!userId) {
-      return new NextResponse('unauthorized user', { status: 401 })
-    }
 
     if (!params.sizeCode) {
       return new NextResponse('size code is required', { status: 400 })
@@ -32,7 +29,7 @@ export async function PATCH(req: Request, { params }: { params: { storeCode: str
 
     return NextResponse.json(size)
   } catch (error) {
-      console.log(`SIZE_PATCH`, error)
+    console.log(`SIZE_PATCH`, error)
 
     return new NextResponse('Internal Error', { status: 500 })
   }
@@ -40,9 +37,6 @@ export async function PATCH(req: Request, { params }: { params: { storeCode: str
 export async function GET(req: Request, { params }: { params: { storeCode: string; sizeCode: string } }) {
   try {
     const { userId } = auth()
-    if (!userId) {
-      return new NextResponse('unauthorized user', { status: 401 })
-    }
 
     if (!params.sizeCode) {
       return new NextResponse('size code is required', { status: 400 })
@@ -65,9 +59,6 @@ export async function GET(req: Request, { params }: { params: { storeCode: strin
 export async function DELETE(req: Request, { params }: { params: { storeCode: string; sizeCode: string } }) {
   try {
     const { userId } = auth()
-    if (!userId) {
-      return new NextResponse('unauthorized user', { status: 401 })
-    }
 
     if (!params.sizeCode) {
       return new NextResponse('size code is required', { status: 400 })
@@ -81,7 +72,7 @@ export async function DELETE(req: Request, { params }: { params: { storeCode: st
     })
     return NextResponse.json(size)
   } catch (error) {
-      console.log(`SIZE_DELETE`, error)
+    console.log(`SIZE_DELETE`, error)
     return new NextResponse('Internal Error', { status: 500 })
   }
 }

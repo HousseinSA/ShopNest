@@ -5,9 +5,6 @@ import { NextResponse } from 'next/server'
 export async function POST(req: Request, { params }: { params: { storeCode: string } }) {
   try {
     const { userId } = auth()
-    if (!userId) {
-      return new NextResponse('Unauthorized user', { status: 401 })
-    }
 
     const body = await req.json()
     const { name, value } = body
@@ -26,7 +23,7 @@ export async function POST(req: Request, { params }: { params: { storeCode: stri
     })
 
     if (!storeByUserId) {
-      return new NextResponse('unauthorized user', { status: 400 })
+      return new NextResponse('Unauthorized user', { status: 400 })
     }
 
     const size = await prismaDB.size.create({
@@ -45,9 +42,6 @@ export async function POST(req: Request, { params }: { params: { storeCode: stri
 export async function GET(req: Request, { params }: { params: { storeCode: string } }) {
   try {
     const { userId } = auth()
-    if (!userId) {
-      return new NextResponse('Unauthorized user', { status: 401 })
-    }
 
     if (!params.storeCode) {
       new NextResponse('No store code found', { status: 400 })
