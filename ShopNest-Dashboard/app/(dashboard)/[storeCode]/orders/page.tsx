@@ -5,6 +5,7 @@ import { OrderProps } from '@/components/orders/orderTable/columns'
 import StoreOrders from '@/components/orders/StoreOrders'
 import { PriceFormatter } from '@/lib/PriceFormatter'
 const OrdersPage = async ({ params }: { params: { storeCode: string } }) => {
+  
   const orders = await prismaDB.order.findMany({
     where: {
       storeCode: params.storeCode

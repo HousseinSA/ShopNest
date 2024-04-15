@@ -3,7 +3,6 @@ import React from 'react'
 
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Billboard, Category, Color, Size } from '@prisma/client'
-import { boolean } from 'zod'
 
 // Define a base interface for shared props
 interface BaseProps {
@@ -36,9 +35,10 @@ interface ColorProps extends BaseProps {
 
 type itemProps = Billboard | Size | Category | Color
 // Create a union type for all props
-type GlobalProps = BillboardProps | SizesProps | CategoryProps | ColorProps 
+type GlobalProps = BillboardProps | SizesProps | CategoryProps | ColorProps
 
 const ItemsSelector: React.FC<GlobalProps> = ({ disabled, valueChange, value, defaultValue, items, itemType }) => {
+
   return (
     <Select onValueChange={valueChange} value={value as string} disabled={disabled}>
       <SelectTrigger className='w-[180px]'>

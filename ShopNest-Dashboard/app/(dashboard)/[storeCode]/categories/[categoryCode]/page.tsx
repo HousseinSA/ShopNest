@@ -1,15 +1,18 @@
+import { redirect } from 'next/navigation'
+
 import StoreCategory from '@/components/Categories/category/StoreCategory'
 import validateObjectId from '@/lib/mongodDBValidate'
 import prismaDB from '@/lib/prismaClient'
 
 async function CategoryPage({ params }: { params: { categoryCode: string; storeCode: string } }) {
-  const validBillBoardCode = validateObjectId(params.categoryCode)
+  const validStoreCode = validateObjectId(params.storeCode)
+  const validCategoryCode = validateObjectId(params.categoryCode)
   const billboards = await prismaDB.billboard.findMany({
     where: {
       storeCode: params.storeCode
     }
   })
-  if (validBillBoardCode) {
+  if (validStoreCode && validCategoryCode) {
     const category = await prismaDB.category.findUnique({
       where: {
         id: params.categoryCode
@@ -22,6 +25,10 @@ async function CategoryPage({ params }: { params: { categoryCode: string; storeC
       </div>
     )
   }
+  if (!validStoreCode) {
+    redirect('/')
+  }
+
   return (
     <div className='p-4 flex flex-col flex-1'>
       <StoreCategory billboards={billboards} />
