@@ -6,7 +6,6 @@ import getCategoriesData from "@/lib/getData/getCategories"
 
 const Header = async () => {
   const categories = await getCategoriesData()
-  console.log(categories)
   return (
     <header className="mx-auto py-2 md:py-3 lg:py-5 max-w-7xl border-b">
       <div className="flex items-center justify-between">

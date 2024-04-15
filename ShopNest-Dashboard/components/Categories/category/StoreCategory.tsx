@@ -13,8 +13,8 @@ import AlertModal from '@/components/Modals/AlertModal'
 import CategoryForm from './CategoryForm'
 
 interface CategoryProps {
-  categoryData: Category | undefined
-  billboards: Billboard[] | null
+  categoryData?: Category
+  billboards: Billboard[] | undefined
 }
 
 const StoreCategory: React.FC<CategoryProps> = ({ categoryData, billboards }) => {

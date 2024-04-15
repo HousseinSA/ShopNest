@@ -5,8 +5,9 @@ import { redirect } from 'next/navigation'
 
 async function BillBoardPage({ params }: { params: { billboardCode: string; storeCode: string } }) {
   const validBillBoardCode = validateObjectId(params.billboardCode)
-  const validBillStoreCode = validateObjectId(params.storeCode)
-  if (validBillBoardCode && validBillStoreCode) {
+  const validStoreCode = validateObjectId(params.storeCode)
+
+  if (validBillBoardCode && validStoreCode) {
     const billboard = await prismaDB.billboard.findUnique({
       where: {
         id: params.billboardCode
@@ -18,7 +19,13 @@ async function BillBoardPage({ params }: { params: { billboardCode: string; stor
       </div>
     )
   }
-  redirect(`/${params.storeCode}/billboards`)
+
+  if (!validStoreCode) redirect(`/`)
+  return (
+    <div className='p-4 flex flex-col flex-1'>
+      <StoreBillBoard />
+    </div>
+  )
 }
 
 export default BillBoardPage

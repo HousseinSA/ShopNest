@@ -6,8 +6,8 @@ import prismaDB from '@/lib/prismaClient'
 import { redirect } from 'next/navigation'
 import validateObjectId from '@/lib/mongodDBValidate'
 const BillboardsPage = async ({ params }: { params: { storeCode: string } }) => {
-  const validBillBoardCode = validateObjectId(params.storeCode)
-  if (validBillBoardCode) {
+  const validStoreCode = validateObjectId(params.storeCode)
+  if (validStoreCode) {
     const billBoards = await prismaDB.billboard.findMany({
       where: {
         storeCode: params.storeCode
@@ -29,7 +29,7 @@ const BillboardsPage = async ({ params }: { params: { storeCode: string } }) => 
       </div>
     )
   }
-  redirect(`/${params.storeCode}`)
+  redirect(`/`)
 }
 
 export default BillboardsPage

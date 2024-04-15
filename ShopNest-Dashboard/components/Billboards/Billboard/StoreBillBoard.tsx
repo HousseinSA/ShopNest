@@ -13,7 +13,7 @@ import { Separator } from '@/components/ui/separator'
 import AlertModal from '@/components/Modals/AlertModal'
 
 interface BillBoardProps {
-  billBoardData: Billboard | undefined
+  billBoardData?: Billboard 
 }
 
 const StoreBillBoard: React.FC<BillBoardProps> = ({ billBoardData }) => {

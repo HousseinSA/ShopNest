@@ -8,18 +8,18 @@ interface StoreParams {
   params: { storeCode: string }
 }
 
-const StorePage: React.FC<StoreParams> = async ({ params: { storeCode } }) => {
+const StorePage: React.FC<StoreParams> = async ({ params }: { params: { storeCode: string } }) => {
   const { userId } = auth()
   if (!userId) {
     redirect('/sign-in')
   }
-  const validStoreId = validateObjectId(storeCode)
-  if (!validStoreId) {
-    redirect('/')
+  const validStoreCode = validateObjectId(params.storeCode)
+  if (!validStoreCode) {
+    redirect(`/`)
   }
   const store = await prismaDB.store.findFirst({
     where: {
-      id: storeCode,
+      id: params.storeCode,
       userId
     }
   })

@@ -1,11 +1,8 @@
 import prismaDB from '@/lib/prismaClient'
-import { auth } from '@clerk/nextjs'
 import { NextResponse } from 'next/server'
 
 export async function PATCH(req: Request, { params }: { params: { storeCode: string; colorCode: string } }) {
   try {
-    const { userId } = auth()
-
     if (!params.colorCode) {
       return new NextResponse('color code is required', { status: 400 })
     }
@@ -35,8 +32,6 @@ export async function PATCH(req: Request, { params }: { params: { storeCode: str
 }
 export async function GET(req: Request, { params }: { params: { storeCode: string; colorCode: string } }) {
   try {
-    const { userId } = auth()
-
     if (!params.colorCode) {
       return new NextResponse('color code is required', { status: 400 })
     }
@@ -58,8 +53,6 @@ export async function GET(req: Request, { params }: { params: { storeCode: strin
 
 export async function DELETE(req: Request, { params }: { params: { storeCode: string; colorCode: string } }) {
   try {
-    const { userId } = auth()
-
     if (!params.colorCode) {
       return new NextResponse('color code is required', { status: 400 })
     }
