@@ -13,7 +13,7 @@ import { Separator } from '@/components/ui/separator'
 import AlertModal from '@/components/Modals/AlertModal'
 
 interface ProductProps {
-  productData: Product | undefined
+  productData?: Product
   categories: Category[]
   sizes: Size[]
   colors: Color[]
@@ -22,7 +22,6 @@ const StoreProduct: React.FC<ProductProps> = ({ productData, categories, colors,
   // conditions for path header
   const title = productData ? `Edit ${productData.name} product` : 'Create product'
   const description = productData ? `Edit product ${productData.name}` : 'Add a new product'
-
 
   // store delete modal state
   const [isOpen, setIsOpen] = useState(false)

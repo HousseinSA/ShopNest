@@ -41,8 +41,6 @@ export async function POST(req: Request, { params }: { params: { storeCode: stri
 }
 export async function GET(req: Request, { params }: { params: { storeCode: string } }) {
   try {
-    const { userId } = auth()
-
     if (!params.storeCode) {
       new NextResponse('No store code found', { status: 400 })
     }

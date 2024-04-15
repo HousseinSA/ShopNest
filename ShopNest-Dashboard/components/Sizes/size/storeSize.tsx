@@ -13,7 +13,7 @@ import AlertModal from '@/components/Modals/AlertModal'
 import SizeForm from './SizeForm'
 
 interface storeSizeProps {
-  size: Size | undefined
+  size?: Size
   sizes: Size[] | null
 }
 

@@ -38,7 +38,7 @@ const ProductsPage = async ({ params }: { params: { storeCode: string } }) => {
       </div>
     )
   }
-  redirect(`/${params.storeCode}`)
+  redirect(`/`)
 }
 
 export default ProductsPage

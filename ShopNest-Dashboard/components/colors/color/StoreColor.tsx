@@ -13,7 +13,7 @@ import AlertModal from '@/components/Modals/AlertModal'
 import ColorForm from './ColorForm'
 
 interface CategoryProps {
-  colorData: Color | undefined
+  colorData?: Color 
   colors: Color[] | null
 }
 
@@ -58,7 +58,7 @@ const StoreColor: React.FC<CategoryProps> = ({ colorData, colors }) => {
           )}
         </SectionHeader>
         <Separator />
-        <ColorForm colors={colors} colorData={colorData} />
+        <ColorForm  colors={colors} colorData={colorData} />
       </div>
     </>
   )

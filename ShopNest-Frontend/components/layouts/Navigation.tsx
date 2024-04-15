@@ -22,7 +22,7 @@ const Navigation: React.FC<NavigationProps> = ({ categoriesData }) => {
         return (
           <Link
             className={cn(
-              "text-sm font-medium transition-colors hover:text-primary",
+              "text-lg font-medium transition-colors hover:text-primary",
               category.active
                 ? "text-black dark:text-white"
                 : "text-muted-foreground"
