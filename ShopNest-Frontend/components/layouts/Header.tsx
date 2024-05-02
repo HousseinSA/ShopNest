@@ -12,7 +12,7 @@ const Header = async () => {
         <div className="w-auto h-auto">
           <Link href={"/"}>
             <Image
-              src={"/ShopNestLogo.png"}
+              src={"/shopnest-high-resolution-logo-transparent.png"}
               width={100}
               height={100}
               alt="logo"
