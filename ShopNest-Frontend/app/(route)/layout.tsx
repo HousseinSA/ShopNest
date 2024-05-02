@@ -19,6 +19,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+      <link rel="icon" href="/shopnest-favicon-color.png" type="image/x-icon" />
+      </head>
       <body className={urbanist.className}>
         <Header />
         {children}
