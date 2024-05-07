@@ -2,8 +2,9 @@ import Image from "next/image"
 import Link from "next/link"
 import React from "react"
 import Navigation from "./Navigation"
-import getCategoriesData from "@/lib/getData/getCategories"
+import getCategoriesData from "@/lib/fetchData/getCategories"
 
+export const revalidate  = 0 
 const Header = async () => {
   const categories = await getCategoriesData()
   return (
