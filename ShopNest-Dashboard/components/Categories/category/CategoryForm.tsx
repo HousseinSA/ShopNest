@@ -59,7 +59,6 @@ const CategoryForm: React.FC<categoryFormProps> = ({ categoryData, billboards })
       route.refresh()
       toast.success(toastMessage)
     } catch (error) {
-      console.log(error)
       toast.error('Something went wrong')
     } finally {
       setLoading(false)
