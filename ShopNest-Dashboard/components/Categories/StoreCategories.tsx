@@ -35,8 +35,8 @@ const StoreCategories: React.FC<StoreCategoryProps> = ({ categories }) => {
         <Separator />
         <DataTable filterKey='name' columns={columns} data={categories} />
       </div>
-      <SectionHeader title='API ' description='api calls for categories' />
-      <Separator />
+      <SectionHeader title='API' description='api calls for categories' />
+      <Separator /> 
       <APIList apiName='categories' apiId='apiId' />
     </>
   )

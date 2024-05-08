@@ -2,14 +2,16 @@ import prismaDB from '@/lib/prismaClient'
 import { useAuth } from '@clerk/nextjs'
 import { NextResponse } from 'next/server'
 
-export async function PATCH(req: Request, { params }: { params: { storeCode: string; categoryCode: string } }) {
+export async function PATCH(req: Request, { params }: { params: { storeCode: string; categoryCode: string } }) 
+{
   const { userId } = useAuth()
   try {
+
     if (!userId) {
       return new NextResponse('authorized user', { status: 401 })
     }
     if (!params.categoryCode) {
-      return new NextResponse('category  code is required', { status: 400 })
+      return new NextResponse('category code is required', { status: 400 })
     }
 
     const body = await req.json()
@@ -17,7 +19,6 @@ export async function PATCH(req: Request, { params }: { params: { storeCode: str
     if (!name && !billboardCode) {
       return new NextResponse('Category name or billboard is missing', { status: 400 })
     }
-
     const category = await prismaDB.category.updateMany({
       where: {
         id: params.categoryCode,
