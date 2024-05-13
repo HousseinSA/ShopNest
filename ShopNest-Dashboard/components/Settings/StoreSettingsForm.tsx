@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form'
 import axios from 'axios'
 import toast from 'react-hot-toast'
 import { Store } from '@prisma/client'
-import { PulseLoader } from 'react-spinners'
+import { ClipLoader } from 'react-spinners'
 import { useRouter } from 'next/navigation'
 
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form'
@@ -68,7 +68,7 @@ const StoreSettingsForm: React.FC<StoreSettingsProps> = ({ storeData }) => {
           />
           <div className='mt-4'>
             <Button disabled={loading} className='ml-auto' type={'submit'}>
-              {loading === true && <PulseLoader size={4} color='#fff' />} Update Store
+              {loading === true && <ClipLoader size={15} color='#fff' />} Update Store
             </Button>
           </div>
         </form>

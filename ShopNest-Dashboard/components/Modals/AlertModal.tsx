@@ -4,7 +4,7 @@ import { ArrowBigLeft, Trash } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import { Modal } from './Modal'
-import { PulseLoader } from 'react-spinners'
+import { ClipLoader } from 'react-spinners'
 
 interface AlertModalProps {
   title: string
@@ -36,7 +36,7 @@ const AlertModal: React.FC<AlertModalProps> = ({ title, description, loading, on
           <ArrowBigLeft className='w-5 h-5 ml-2' /> Cancel
         </Button>
         <Button disabled={loading} className='flex items-center gap-3' onClick={onDelete} variant='destructive'>
-          {loading === true ? <PulseLoader size={4} color='#fff' /> : <Trash className='w-5 h-5' />} Delete
+          {loading? <ClipLoader size={15} color='#fff' /> : <Trash className='w-5 h-5' />}{loading ?'Deleting':'Delete'}
         </Button>
       </div>
     </Modal>

@@ -7,7 +7,7 @@ import axios from 'axios'
 import toast from 'react-hot-toast'
 import { Category, Color, Image, Product, Size } from '@prisma/client'
 import { useParams, useRouter } from 'next/navigation'
-import { PulseLoader } from 'react-spinners'
+import { ClipLoader } from 'react-spinners'
 
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage, FormDescription } from '@/components/ui/form'
 import { Checkbox } from '@/components/ui/checkbox'
@@ -62,7 +62,8 @@ const ProductForm: React.FC<StoreProductProps> = ({ productData, sizes, colors, 
 
   // conditions if there is not productData
   const toastMessage = productData ? `product updated!` : ' product Created!'
-  const action = productData ? `Update product` : 'Create product'
+  const action  = productData ?(loading? "Updating product": "Update product"):(loading? 'Creating product':'Create product')
+
   //d sending data to DB
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
@@ -195,7 +196,7 @@ const ProductForm: React.FC<StoreProductProps> = ({ productData, sizes, colors, 
           </div>
           <div className='mt-4'>
             <Button disabled={loading} className='flex items-center gap-2' type={'submit'}>
-              {loading === true && <PulseLoader size={4} color='#fff' />} {action}
+              {loading === true && <ClipLoader size={15} color='#fff' />} {action}
             </Button>
           </div>
         </form>
