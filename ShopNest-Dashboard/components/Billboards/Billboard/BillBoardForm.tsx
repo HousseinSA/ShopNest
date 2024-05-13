@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form'
 import axios from 'axios'
 import toast from 'react-hot-toast'
 import { Billboard } from '@prisma/client'
-import { PulseLoader } from 'react-spinners'
+import { ClipLoader } from 'react-spinners'
 import { useParams, useRouter } from 'next/navigation'
 
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form'
@@ -43,7 +43,7 @@ const BillBoardForm: React.FC<BillboardFormProps> = ({ billBoardData }) => {
 
   // conditions if there is not billboardData
   const toastMessage = billBoardData ? `Billboard update!` : ' Billboard created!'
-  const action = billBoardData ? `Update billboard` : 'Create billboard'
+  const action  = billBoardData ?(loading? "Updating billboard": "Update billboard"):(loading? 'Creating billboard':'Create billboard')
 
   // sending data to DB
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
@@ -96,7 +96,7 @@ const BillBoardForm: React.FC<BillboardFormProps> = ({ billBoardData }) => {
           />
           <div className='mt-4'>
             <Button disabled={loading} className='flex items-center gap-2' type={'submit'}>
-              {loading === true && <PulseLoader size={4} color='#fff' />} {action}
+              {loading === true && <ClipLoader size={15} color='#fff' />} {action}
             </Button>
           </div>
         </form>

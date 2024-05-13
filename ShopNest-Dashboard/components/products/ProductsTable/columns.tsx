@@ -46,15 +46,16 @@ export const columns: ColumnDef<ProductProps>[] = [
   },
   {
     accessorKey: 'createdAt',
-    header: 'Date'
+    header: 'Date',
+   
   },
   {
     accessorKey: 'isFeatured',
-    header: 'Featured'
+    header: 'Featured',
   },
   {
     accessorKey: 'isArchived',
-    header: 'Archived'
+    header: 'Archived',
   },
   {
     accessorKey: 'action',

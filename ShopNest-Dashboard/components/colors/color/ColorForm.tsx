@@ -7,7 +7,7 @@ import axios from 'axios'
 import toast from 'react-hot-toast'
 import { Color } from '@prisma/client'
 import { useParams, useRouter } from 'next/navigation'
-import { PulseLoader } from 'react-spinners'
+import { ClipLoader } from 'react-spinners'
 
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
@@ -43,7 +43,8 @@ const ColorForm: React.FC<ColorFormProps> = ({ colorData, colors }) => {
 
   // conditions if there is not billboardData
   const toastMessage = colorData ? `color updated!` : ' color created!'
-  const action = colorData ? `Update color` : 'Create color'
+  const action  = colorData ?(loading? "Updating color": "Update color"):(loading? 'Creating color':'Create color')
+
   // sending data to DB
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
@@ -100,7 +101,7 @@ const ColorForm: React.FC<ColorFormProps> = ({ colorData, colors }) => {
           </div>
           <div className='mt-4'>
             <Button disabled={loading} className='flex items-center gap-2' type={'submit'}>
-              {loading === true && <PulseLoader size={4} color='#fff' />}
+              {loading === true && <ClipLoader size={15} color='#fff' />}
               {action}
             </Button>
           </div>

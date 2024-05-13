@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form'
 import { useState } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import axios from 'axios'
-import { PulseLoader } from 'react-spinners'
+import { ClipLoader } from 'react-spinners'
 import toast from 'react-hot-toast'
 
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form'
@@ -66,7 +66,7 @@ const StoreModal = () => {
                 Cancel
               </Button>
               <Button disabled={loading} variant='outline' type={'submit'}>
-                {loading === true && <PulseLoader size={4} color='#000' />} Continue
+                {loading === true && <ClipLoader size={4} color='#000' />} Continue
               </Button>
             </div>
           </form>
