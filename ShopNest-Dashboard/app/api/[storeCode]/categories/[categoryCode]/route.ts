@@ -13,12 +13,15 @@ export async function PATCH(req: Request, { params }: { params: { storeCode: str
     if (!params.categoryCode) {
       return new NextResponse('category code is required', { status: 400 })
     }
-
+    console.log(params.categoryCode)
     const body = await req.json()
     const { name, billboardCode } = body
+    console.log( 'values i want ot change ',name, billboardCode)
     if (!name && !billboardCode) {
       return new NextResponse('Category name or billboard is missing', { status: 400 })
     }
+
+    
     const category = await prismaDB.category.updateMany({
       where: {
         id: params.categoryCode,
@@ -49,6 +52,7 @@ export async function GET(req: Request, { params }: { params: { storeCode: strin
       }
     })
 
+
     return NextResponse.json(category)
   } catch (error) {
     console.log(`CATEGORY_GET`, error)
@@ -75,3 +79,5 @@ export async function DELETE(req: Request, { params }: { params: { storeCode: st
     return new NextResponse('Internal Error', { status: 500 })
   }
 }
+
+

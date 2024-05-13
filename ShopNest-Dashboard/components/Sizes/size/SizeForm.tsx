@@ -11,7 +11,7 @@ import { useParams, useRouter } from 'next/navigation'
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import { PulseLoader } from 'react-spinners'
+import { ClipLoader } from 'react-spinners'
 
 // billBoardData props
 interface SizeForm {
@@ -43,7 +43,7 @@ const CategoryForm: React.FC<SizeForm> = ({ sizeData, sizes }) => {
 
   // conditions if there is not billboardData
   const toastMessage = sizeData ? `size updated!` : ' size created!'
-  const action = sizeData ? `Update size` : 'Create size'
+const action  = sizeData ?(loading? "Updating size": "update size"):(loading? 'Creating size':'Create size')
 
   // sending data to DB
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
@@ -98,7 +98,7 @@ const CategoryForm: React.FC<SizeForm> = ({ sizeData, sizes }) => {
           </div>
           <div className='mt-4'>
             <Button disabled={loading} className='flex items-center gap-2' type={'submit'}>
-              {loading === true && <PulseLoader size={4} color='#fff' />} {action}
+              {loading === true && <ClipLoader size={15} color='#fff' />} {action}
             </Button>
           </div>
         </form>
