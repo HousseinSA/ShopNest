@@ -45,7 +45,6 @@ const CategoryForm: React.FC<categoryFormProps> = ({ categoryData, billboards })
   // conditions if there is not billboardData
   const toastMessage = categoryData ? `Category updated!` : ' Category created!'
 const action  = categoryData ?(loading? "Updating category": "Update category"):(loading? 'Creating category':'Create category')
-
   // sending data to DB
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
