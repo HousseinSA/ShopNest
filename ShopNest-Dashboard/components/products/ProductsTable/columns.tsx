@@ -39,7 +39,6 @@ export const columns: ColumnDef<ProductProps>[] = [
     header: 'Color',
     cell: ({ row }) => (
       <div className='flex items-center gap-4'>
-        <span className='uppercase font-semibold w-16 text-center'>{row.original.color}</span>
         <div style={{ backgroundColor: row.original.color }} className='w-8 h-8 rounded-full'></div>
       </div>
     )
