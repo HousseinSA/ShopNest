@@ -5,7 +5,7 @@ import { NextResponse } from 'next/server'
 export async function POST(req: Request, { params }: { params: { storeCode: string } }) {
   try {
     const { userId } = auth()
-
+console.log(userId)
     const body = await req.json()
     const { name, billboardCode } = body
     if (!name) {
