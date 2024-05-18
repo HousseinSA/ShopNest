@@ -7,25 +7,33 @@ async function BillBoardPage({ params }: { params: { billboardCode: string; stor
   const validBillBoardCode = validateObjectId(params.billboardCode)
   const validStoreCode = validateObjectId(params.storeCode)
 
-  if (validBillBoardCode && validStoreCode) {
-    const billboard = await prismaDB.billboard.findUnique({
-      where: {
-        id: params.billboardCode
-      }
-    })
+  if (!validStoreCode) {
+   redirect('/')
+  }else if (!validBillBoardCode){
+    redirect(`/${params.storeCode}/billboards`)
+  }
+
+  const billboard = await prismaDB.billboard.findUnique({
+    where: {
+      id: params.billboardCode
+    }
+  })
+  if(billboard){
     return (
       <div className='p-4 flex flex-col flex-1'>
         <StoreBillBoard billBoardData={billboard} />
       </div>
     )
-  }
 
-  if (!validStoreCode) redirect(`/`)
-  return (
-    <div className='p-4 flex flex-col flex-1'>
-      <StoreBillBoard />
-    </div>
-  )
+  }else {
+    return (
+      <div className='p-4 flex flex-col flex-1'>
+        <StoreBillBoard />
+      </div>
+    )
+
+  }
+  
 }
 
 export default BillBoardPage

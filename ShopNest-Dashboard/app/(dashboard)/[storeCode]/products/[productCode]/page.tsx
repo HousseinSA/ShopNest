@@ -8,6 +8,14 @@ async function ProductPage({ params }: { params: { productCode: string; storeCod
   const validProductCode = validateObjectId(params.productCode)
   const validStoreCode = validateObjectId(params.storeCode)
 
+ 
+  if (!validStoreCode) {
+    redirect(`/`)
+  } else if (!validProductCode) {
+    redirect(`/${params.storeCode}/products`)
+
+  }
+
   const categories = await prismaDB.category.findMany({
     where: {
       storeCode: params.storeCode
@@ -23,7 +31,7 @@ async function ProductPage({ params }: { params: { productCode: string; storeCod
       storeCode: params.storeCode
     }
   })
-  if (validProductCode && validStoreCode) {
+
     const product = await prismaDB.product.findUnique({
       where: {
         id: params.productCode,
@@ -31,18 +39,23 @@ async function ProductPage({ params }: { params: { productCode: string; storeCod
       },
       include: { images: true }
     })
-    return (
-      <div className='p-4 flex flex-col flex-1'>
-        <StoreProduct categories={categories} sizes={sizes} colors={colors} productData={product} />
-      </div>
-    )
-  }
-  if (!validStoreCode) return redirect(`/`)
-  return (
-    <div className='p-4 flex flex-col flex-1'>
-      <StoreProduct categories={categories} sizes={sizes} colors={colors} />
-    </div>
-  )
+
+    if(product){
+      return (
+        <div className='p-4 flex flex-col flex-1'>
+          <StoreProduct categories={categories} sizes={sizes} colors={colors} productData={product} />
+        </div>
+      )
+    }else {
+      return (
+        <div className='p-4 flex flex-col flex-1'>
+          <StoreProduct categories={categories} sizes={sizes} colors={colors} />
+        </div>
+      )
+    }
+  
+
+  
 }
 
 export default ProductPage
