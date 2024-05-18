@@ -19,7 +19,6 @@ export async function PATCH(req: Request, { params }: { params: { storeCode: str
       return new NextResponse('Category name or billboard code is missing', { status: 400 })
     }
 
-    
     const category = await prismaDB.category.updateMany({
       where: {
         id: params.categoryCode,

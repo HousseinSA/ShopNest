@@ -1,5 +1,6 @@
 import React from 'react'
 import { ClerkProvider } from '@clerk/nextjs'
+import Head from 'next/head'
 
 import { Inter as FontSans } from 'next/font/google'
 import '@/app/globals.css'
@@ -20,6 +21,10 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
   return (
     <ClerkProvider>
       <html lang='en'>
+        <Head>
+        <link rel="icon" href="/shopnest-favicon-color.png" type="image/x-icon" />
+
+        </Head>
         <body className={cn('min-h-screen bg-background font-sans antialiased', fontSans.variable)}>
           <ToastProvider />
           <ModalProvider />
