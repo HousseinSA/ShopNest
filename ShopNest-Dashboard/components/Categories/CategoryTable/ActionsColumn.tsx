@@ -42,7 +42,6 @@ const ActionsColumn: React.FC<CellActionProps> = ({ category }) => {
       route.refresh()
       toast.success('category deleted!')
     } catch (error) {
-      console.log
       toast.error('make sure you removed all products using this category first ', error)
     } finally {
       setLoading(false)
@@ -52,7 +51,7 @@ const ActionsColumn: React.FC<CellActionProps> = ({ category }) => {
 
   return (
     <>
-      <AlertModal title='delete category' description='Are you sure you want to delete category?' loading={loading} onDelete={onBillboardDelete} isOpen={isOpen} setIsOpen={setIsOpen} />
+      <AlertModal title={`Delete ${category.name} Category`} description={`Are you sure you want to delete ${category.name} category?`} loading={loading} onDelete={onBillboardDelete} isOpen={isOpen} setIsOpen={setIsOpen} />
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant='ghost' size='sm'>

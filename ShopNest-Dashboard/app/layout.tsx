@@ -16,7 +16,7 @@ const fontSans = FontSans({
 export const metadata = {
   title: 'ShopNest Dashboard',
   description: "ShopNest Dashboard for managing Store's data"
-}
+} 
 const RootLayout = async ({ children }: { children: React.ReactNode }) => {
   return (
     <ClerkProvider>
