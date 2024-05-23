@@ -9,9 +9,10 @@ async function SizePage({ params }: { params: { sizeCode: string; storeCode: str
 
   if(!validStoreCode){
     redirect('/')
-  } else if(!validSizeCode && params.sizeCode !== 'new') {
-    redirect(`/${params.storeCode}/sizes`)
   }
+  //  if(!validSizeCode && params.sizeCode !== 'new') {
+  //   redirect(`/${params.storeCode}/sizes`)
+  // }
 
 
   const sizes = await prismaDB.size.findMany({
@@ -19,6 +20,8 @@ async function SizePage({ params }: { params: { sizeCode: string; storeCode: str
       storeCode: params.storeCode
     }
   })
+
+  
   if(validSizeCode){
     const size = await prismaDB.size.findUnique({
       where: {

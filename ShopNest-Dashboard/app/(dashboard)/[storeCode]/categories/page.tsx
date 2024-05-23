@@ -33,7 +33,7 @@ const CategoriesPage = async ({ params }: { params: { storeCode: string } }) => 
     )
   }
 
-  redirect(`/`)
+  redirect(`/`) 
 }
 
 export default CategoriesPage

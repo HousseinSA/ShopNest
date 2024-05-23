@@ -4,7 +4,16 @@ import prismaDB from '@/lib/prismaClient'
 import { OrderProps } from '@/components/orders/orderTable/columns'
 import StoreOrders from '@/components/orders/StoreOrders'
 import { PriceFormatter } from '@/lib/PriceFormatter'
+import validateObjectId from '@/lib/mongodDBValidate'
+import { redirect } from 'next/navigation'
+
+
 const OrdersPage = async ({ params }: { params: { storeCode: string } }) => {
+  const validStoreCode = validateObjectId(params.storeCode)
+  
+if(!validStoreCode){
+  redirect('/')
+}
   
   const orders = await prismaDB.order.findMany({
     where: {
