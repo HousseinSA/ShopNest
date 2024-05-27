@@ -15,7 +15,7 @@ interface StoreSizesProps {
 }
 const StoreSizes: React.FC<StoreSizesProps> = ({ sizes }) => {
   // routes params
-  const route = useRouter()
+  const route= useRouter()
   const params = useParams()
 
   // handel click
@@ -25,8 +25,9 @@ const StoreSizes: React.FC<StoreSizesProps> = ({ sizes }) => {
 
   return (
     <>
+    
       <div className='flex flex-col space-y-4'>
-        <SectionHeader title={`sizes (${sizes.length})`} description='manage sizes of your store products'>
+        <SectionHeader title={`Sizes (${sizes.length})`} description='manage sizes of your store products'>
           <Button variant='outline' onClick={onAddNew}>
             <Plus className='w-5 h-5' />
             Add New
@@ -35,9 +36,10 @@ const StoreSizes: React.FC<StoreSizesProps> = ({ sizes }) => {
         <Separator />
         <DataTable filterKey='name' columns={columns} data={sizes} />
       </div>
-      <SectionHeader title='API ' description='api calls for sizes' />
-      <Separator />
-      <APIList apiName='sizes' apiId='apiId' />
+      {/* <SectionHeader title='API ' description='api calls for sizes' /> */}
+      {/* <Separator /> */}
+      {/* <APIList apiName='sizes' apiId='apiId' /> */}
+    
     </>
   )
 }

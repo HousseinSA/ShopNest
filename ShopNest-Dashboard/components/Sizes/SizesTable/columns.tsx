@@ -14,7 +14,7 @@ export type SizeProps = {
 export const columns: ColumnDef<SizeProps>[] = [
   {
     accessorKey: 'name',
-    header: 'name'
+    header: 'Name'
   },
   {
     accessorKey: 'value',

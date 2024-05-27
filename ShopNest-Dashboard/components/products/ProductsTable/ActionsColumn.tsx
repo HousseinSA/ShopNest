@@ -21,7 +21,7 @@ const ActionsColumn: React.FC<CellActionProps> = ({ product }) => {
   // on update
   function onUpdate(code: string) {
     route.push(`/${params.storeCode}/products/${code}`)
-    route.refresh()
+  
   }
 
   // handel copy
