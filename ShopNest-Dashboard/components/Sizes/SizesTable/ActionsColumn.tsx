@@ -21,8 +21,7 @@ const ActionsColumn: React.FC<CellActionProps> = ({ size }) => {
   // on update
   function onUpdate(code: string) {
     route.push(`/${params.storeCode}/sizes/${code}`)
-    route.refresh()
-  }
+  } 
 
   // handel copy
   const onCopy = (code: string): void => {

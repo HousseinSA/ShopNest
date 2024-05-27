@@ -1,5 +1,4 @@
 import { format } from 'date-fns'
-import { redirect } from 'next/navigation'
 
 import prismaDB from '@/lib/prismaClient'
 import { SizeProps } from '@/components/Sizes/SizesTable/columns'
@@ -30,7 +29,7 @@ const SizesPage = async ({ params }: { params: { storeCode: string } }) => {
       </div>
     )
   }
-  redirect(`/`)
+  
 }
 
 export default SizesPage
