@@ -16,10 +16,9 @@ import { ClipLoader } from 'react-spinners'
 // billBoardData props
 interface SizeForm {
   sizeData: Size | null
-  sizes: Size[] | null
 }
 
-const CategoryForm: React.FC<SizeForm> = ({ sizeData, sizes }) => {
+const CategoryForm: React.FC<SizeForm> = ({ sizeData,  }) => {
   // zod schema and type
   const formSchema = z.object({
     name: z.string().min(1),
@@ -48,16 +47,16 @@ const action  = sizeData ?(loading? "Updating size": "update size"):(loading? 'C
   // sending data to DB
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      setLoading(true)
+      // setLoading(true)
       if (sizeData) {
         await axios.patch(`/api/${params.storeCode}/sizes/${params.sizeCode}`, values)
       } else {
         await axios.post(`/api/${params.storeCode}/sizes`, values)
       }
       // route refresh and message
-      route.push(`/${params.storeCode}/sizes`)
-      route.refresh()
       toast.success(toastMessage)
+      route.refresh()
+      route.push(`/${params.storeCode}/sizes`)
     } catch (error) {
       console.log(error)
       toast.error('Something went wrong')
@@ -77,7 +76,9 @@ const action  = sizeData ?(loading? "Updating size": "update size"):(loading? 'C
                 <FormItem>
                   <FormLabel>Size name</FormLabel>
                   <FormControl>
-                    <Input disabled={loading} placeholder='size name' {...field} />
+                    <Input
+                     disabled={loading} 
+                    placeholder='size name' {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -89,7 +90,9 @@ const action  = sizeData ?(loading? "Updating size": "update size"):(loading? 'C
                 <FormItem>
                   <FormLabel>values</FormLabel>
                   <FormControl>
-                    <Input disabled={loading} placeholder='size value' {...field} />
+                    <Input 
+                    disabled={loading}
+                     placeholder='size value' {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -97,7 +100,9 @@ const action  = sizeData ?(loading? "Updating size": "update size"):(loading? 'C
             />
           </div>
           <div className='mt-4'>
-            <Button disabled={loading} className='flex items-center gap-2' type={'submit'}>
+            <Button 
+            disabled={loading}
+             className='flex items-center gap-2' type={'submit'}>
               {loading === true && <ClipLoader size={15} color='#fff' />} {action}
             </Button>
           </div>

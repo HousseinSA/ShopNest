@@ -10,9 +10,9 @@ async function SizePage({ params }: { params: { sizeCode: string; storeCode: str
   if(!validStoreCode){
     redirect('/')
   }
-  //  if(!validSizeCode && params.sizeCode !== 'new') {
-  //   redirect(`/${params.storeCode}/sizes`)
-  // }
+   if(!validSizeCode && params.sizeCode !== 'new') {
+    redirect(`/${params.storeCode}/sizes`)
+  }
 
 
   const sizes = await prismaDB.size.findMany({
@@ -21,7 +21,7 @@ async function SizePage({ params }: { params: { sizeCode: string; storeCode: str
     }
   })
 
-  
+
   if(validSizeCode){
     const size = await prismaDB.size.findUnique({
       where: {
@@ -31,15 +31,16 @@ async function SizePage({ params }: { params: { sizeCode: string; storeCode: str
     if(size){
       return (
         <div className='p-4 flex flex-col flex-1'>
-          <StoreSize sizes={sizes} size={size} />
+          <StoreSize size={size} />
         </div>
       )
     } 
   
-  }
+   }
+  
     return (
       <div className='p-4 flex flex-col flex-1'>
-        <StoreSize sizes={sizes} />
+        <StoreSize  />
       </div>
     )
 }
