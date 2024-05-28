@@ -41,8 +41,7 @@ const ActionsColumn: React.FC<CellActionProps> = ({ billboard }) => {
       route.refresh()
       toast.success('billboard deleted!')
     } catch (error) {
-      console.log
-      toast.error('delete products and categories first', error)
+      toast.error('Remove billboard from category first!')
     } finally {
       setLoading(false)
       setIsOpen(false)
@@ -51,7 +50,7 @@ const ActionsColumn: React.FC<CellActionProps> = ({ billboard }) => {
 
   return (
     <>
-      <AlertModal title='delete billboard' description='Are you sure you want to delete store?' loading={loading} onDelete={onBillboardDelete} isOpen={isOpen} setIsOpen={setIsOpen} />
+      <AlertModal title='Delete billboard' description='Are you sure you want to delete billboard?' loading={loading} onDelete={onBillboardDelete} isOpen={isOpen} setIsOpen={setIsOpen} />
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant='ghost' size='sm'>
