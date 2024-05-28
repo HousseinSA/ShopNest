@@ -34,15 +34,16 @@ const ActionsColumn: React.FC<CellActionProps> = ({ category }) => {
   const [isOpen, setIsOpen] = useState(false)
   const [loading, setLoading] = useState(false)
 
-  // delete billboard from database
-  const onBillboardDelete = async () => {
+
+  // delete category from database
+  const onCategoryDelete = async () => {
     try {
       setLoading(true)
       await axios.delete(`/api/${params.storeCode}/categories/${category.id}`)
       route.refresh()
       toast.success('category deleted!')
     } catch (error) {
-      toast.error('make sure you removed all products using this category first ', error)
+      toast.error('Remove Products from category first!')
     } finally {
       setLoading(false)
       setIsOpen(false)
@@ -51,7 +52,7 @@ const ActionsColumn: React.FC<CellActionProps> = ({ category }) => {
 
   return (
     <>
-      <AlertModal title={`Delete ${category.name} Category`} description={`Are you sure you want to delete ${category.name} category?`} loading={loading} onDelete={onBillboardDelete} isOpen={isOpen} setIsOpen={setIsOpen} />
+      <AlertModal title={`Delete ${category.name} Category`} description={`Are you sure you want to delete ${category.name} category?`} loading={loading} onDelete={onCategoryDelete} isOpen={isOpen} setIsOpen={setIsOpen} />
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant='ghost' size='sm'>
