@@ -39,7 +39,7 @@ const StoreColor: React.FC<CategoryProps> = ({ colorData, colors }) => {
       route.refresh()
       toast.success('color deleted!')
     } catch (error) {
-      toast.error('make sure you removed all products using this color first ', error)
+      toast.error('Remove color from products!')
     } finally {
       setLoading(false)
       setIsOpen(false)

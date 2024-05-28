@@ -42,7 +42,7 @@ const ActionsColumn: React.FC<CellActionProps> = ({ product }) => {
       route.refresh()
       toast.success('product deleted!')
     } catch (error) {
-      toast.error('delete products and categories first', error)
+      toast.error('Can\'t delete product, try again')
     } finally {
       setLoading(false)
       setIsOpen(false)

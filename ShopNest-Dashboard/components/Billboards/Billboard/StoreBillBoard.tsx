@@ -38,7 +38,7 @@ const StoreBillBoard: React.FC<BillBoardProps> = ({ billBoardData }) => {
       route.push(`/${params.storeCode}/billboards`)
       toast.success('billboard deleted!')
     } catch (error) {
-      toast.error('delete products and categories first', error)
+      toast.error('Remove billboard from categories!')
     } finally {
       setLoading(false)
       setIsOpen(false)

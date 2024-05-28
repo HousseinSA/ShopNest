@@ -38,7 +38,8 @@ const StoreSize: React.FC<storeSizeProps> = ({ size }) => {
       route.push(`/${params.storeCoe}/sizes`)
       route.refresh()
     } catch (error) {
-      toast.error('make sure you removed all products using this size first ', error)
+      toast.error('remove size from products')
+     
     } finally {
       setLoading(false)
       setIsOpen(false)
