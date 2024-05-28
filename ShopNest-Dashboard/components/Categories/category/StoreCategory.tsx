@@ -39,7 +39,7 @@ const StoreCategory: React.FC<CategoryProps> = ({ categoryData, billboards }) =>
       route.push(`/${params.storeCode}/categories`)
       toast.success('category deleted!')
     } catch (error) {
-      toast.error('make sure you removed all products using this category first ', error)
+      toast.error('Remove products from category!')
     } finally {
       setLoading(false)
       setIsOpen(false)

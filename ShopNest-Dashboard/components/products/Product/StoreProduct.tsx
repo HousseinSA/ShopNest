@@ -40,7 +40,7 @@ const StoreProduct: React.FC<ProductProps> = ({ productData, categories, colors,
       route.push(`/${params.storeCode}/products`)
       toast.success('product deleted!')
     } catch (error) {
-      toast.error('delete products and categories first', error)
+      toast.error('Can\'t delete product, try again')
     } finally {
       setLoading(false)
       setIsOpen(false)
