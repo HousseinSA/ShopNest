@@ -9,7 +9,7 @@ export async function PATCH(req: Request, { params }: { params: { storeCode: str
 
     const body = await req.json()
     const { name, value } = body
-    if (!name && !value) {
+    if (!name || !value) {
       return new NextResponse('size name or billboard is missing', { status: 400 })
     }
 
