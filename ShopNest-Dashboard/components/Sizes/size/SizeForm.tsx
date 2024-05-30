@@ -41,30 +41,32 @@ const CategoryForm: React.FC<SizeForm> = ({ sizeData,  }) => {
   const params = useParams()
 
   // conditions if there is not billboardData
-  const toastMessage = sizeData ? `size updated!` : ' size created!'
-const action  = sizeData ?(loading? "Updating size": "update size"):(loading? 'Creating size':'Create size')
+  const toastMessage = sizeData ? `Size updated!` : ' Size created!'
+const action  = sizeData ?(loading? "Updating size": "Update size"):(loading? 'Creating size':'Create size')
 
   // sending data to DB
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      // setLoading(true)
+      setLoading(true)
       if (sizeData) {
         await axios.patch(`/api/${params.storeCode}/sizes/${params.sizeCode}`, values)
       } else {
         await axios.post(`/api/${params.storeCode}/sizes`, values)
       }
       // route refresh and message
-      toast.success(toastMessage)
-      route.refresh()
       route.push(`/${params.storeCode}/sizes`)
+      route.refresh()
+      toast.success(toastMessage)
     } catch (error) {
-      console.log(error)
-      toast.error('Something went wrong')
+      if (error.response?.status === 402) {
+        toast.error('A size with this name already exists.')
+      } else {
+        toast.error('Something went wrong')
+      }
     } finally {
       setLoading(false)
     }
   }
-
   return (
     <>
       <Form {...form}>

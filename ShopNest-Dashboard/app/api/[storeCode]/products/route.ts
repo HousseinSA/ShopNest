@@ -5,9 +5,9 @@ import { NextResponse } from 'next/server'
 export async function POST(req: Request, { params }: { params: { storeCode: string } }) {
   try {
     const { userId } = auth()
-    // if (!userId) {
-    //   return new NextResponse('Unauthorized user', { status: 401 })
-    // }
+    if (!userId) {
+      return new NextResponse('Unauthorized user', { status: 401 })
+    }
     
     // checking is there is store by this user
     const storeByUserId = await prismaDB.store.findFirst({
@@ -28,6 +28,20 @@ export async function POST(req: Request, { params }: { params: { storeCode: stri
       new NextResponse('No store code found', { status: 400 })
     }
 
+
+
+      // Check if a category with the same name already exists in this store
+      const existingSize = await prismaDB.product.findFirst({
+        where: {
+          name,
+          storeCode: params.storeCode
+        }
+      })
+  
+      if (existingSize) {
+        return new NextResponse('size with this name already exists', { status: 402 })
+      }
+  
     const product = await prismaDB.product.create({
       data: {
         name,

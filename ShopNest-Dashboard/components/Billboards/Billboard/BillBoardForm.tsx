@@ -54,17 +54,21 @@ const BillBoardForm: React.FC<BillboardFormProps> = ({ billBoardData }) => {
       } else {
         await axios.post(`/api/${params.storeCode}/billboards`, values)
       }
-      // route refresh and message
+      // Route refresh and success message
       route.push(`/${params.storeCode}/billboards`)
       route.refresh()
       toast.success(toastMessage)
     } catch (error) {
-      console.log(error)
-      toast.error('Something went wrong')
+      if (axios.isAxiosError(error) && error.response?.status === 400 && error.response.data === 'Billboard with this label already exists') {
+        toast.error('A billboard with this label already exists.')
+      } else {
+        toast.error('Something went wrong')
+      }
     } finally {
       setLoading(false)
     }
   }
+  
 
   return (
     <div className='grid md:grid-cols-3 gap-8 lg:grid-cols-6'>
