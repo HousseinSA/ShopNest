@@ -59,8 +59,11 @@ const ColorForm: React.FC<ColorFormProps> = ({ colorData, colors }) => {
       route.refresh()
       toast.success(toastMessage)
     } catch (error) {
-      console.log(error)
-      toast.error('Something went wrong')
+      if (error.response?.status === 402) {
+        toast.error('A color with this name already exists.')
+      } else {
+        toast.error('Something went wrong')
+      }
     } finally {
       setLoading(false)
     }
