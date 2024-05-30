@@ -40,7 +40,7 @@ export function DataTable<TData, TValue>({ columns, data, filterKey }: DataTable
                 {headerGroup.headers.map((header) => {
                   return <TableHead key={header.id}>{header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}</TableHead>
                 })}
-              </TableRow>
+              </TableRow  >
             ))}
           </TableHeader>
           <TableBody>
@@ -50,7 +50,7 @@ export function DataTable<TData, TValue>({ columns, data, filterKey }: DataTable
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
                   ))}
-                </TableRow>
+                </TableRow>       
               ))
             ) : (
               <TableRow>
