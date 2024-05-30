@@ -7,13 +7,15 @@ export async function POST(req: Request, { params }: { params: { storeCode: stri
     const { userId } = auth()
     const body = await req.json()
     const { name, billboardCode } = body
+    
     if (!name) {
-      return new NextResponse('category name is required', { status: 400 })
+      return new NextResponse('Category name is required', { status: 400 })
     }
     if (!params.storeCode) {
-      new NextResponse('No store code found', { status: 400 })
+      return new NextResponse('No store code found', { status: 400 })
     }
-    // checking is there is store by this user
+
+    // Check if the store exists and belongs to the user
     const storeByUserId = await prismaDB.store.findFirst({
       where: {
         id: params.storeCode,
@@ -25,6 +27,19 @@ export async function POST(req: Request, { params }: { params: { storeCode: stri
       return new NextResponse('Unauthorized user', { status: 400 })
     }
 
+    // Check if a category with the same name already exists in this store
+    const existingCategory = await prismaDB.category.findFirst({
+      where: {
+        name,
+        storeCode: params.storeCode
+      }
+    })
+
+    if (existingCategory) {
+      return new NextResponse('Category with this name already exists', { status: 402 })
+    }
+
+    // Create the new category
     const category = await prismaDB.category.create({
       data: {
         name,
@@ -32,31 +47,10 @@ export async function POST(req: Request, { params }: { params: { storeCode: stri
         storeCode: params.storeCode
       }
     })
+
     return NextResponse.json(category)
   } catch (error) {
     console.log(`CATEGORY_POST`, error)
-
-    return new NextResponse('Internal Error', { status: 500 })
-  }
-}
-export async function GET(req: Request, { params }: { params: { storeCode: string } }) {
-  try {
-    const { userId } = auth()
-
-    if (!params.storeCode) {
-      new NextResponse('No store code found', { status: 400 })
-    }
-
-    const categories = await prismaDB.category.findMany({
-      where: {
-        storeCode: params.storeCode
-      }
-    })
-    return NextResponse.json(categories)
-  } catch (error) {
-    console.log(`CATEGORY_GET`, error)
-    console.log(`CATEGORY_DELETE`, error)
-    console.log(`CATEGORY_PATCH`, error)
     return new NextResponse('Internal Error', { status: 500 })
   }
 }

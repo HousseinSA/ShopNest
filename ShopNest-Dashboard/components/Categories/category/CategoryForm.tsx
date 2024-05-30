@@ -17,14 +17,14 @@ import ItemsSelector from '@/components/GlobalComponent/ItemsSelector'
 // billBoardData props
 interface categoryFormProps {
   categoryData: Category | null
-  billboards: Billboard[] | null
+  billboards: Billboard[] 
 }
 
 const CategoryForm: React.FC<categoryFormProps> = ({ categoryData, billboards }) => {
   // zod schema and type
   const formSchema = z.object({
     name: z.string().min(1),
-    billboardCode: z.string().min(1)
+    billboardCode: z.string().min(1, { message: "select a billboard" })
   })
 
   type formValues = z.infer<typeof formSchema>
@@ -54,16 +54,21 @@ const action  = categoryData ?(loading? "Updating category": "Update category"):
       } else {
         await axios.post(`/api/${params.storeCode}/categories`, values)
       }
-      // route refresh and message
+      // Route refresh and success message
       route.push(`/${params.storeCode}/categories`)
       route.refresh()
       toast.success(toastMessage)
     } catch (error) {
-      toast.error('Something went wrong')
+      if (error.response?.status === 402) {
+        toast.error('A category with this name already exists.')
+      } else {
+        toast.error('Something went wrong')
+      }
     } finally {
       setLoading(false)
     }
   }
+  
 
   return (
     <>
