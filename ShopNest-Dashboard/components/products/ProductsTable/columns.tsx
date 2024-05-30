@@ -1,7 +1,9 @@
 'use client'
 
+
 import { ColumnDef } from '@tanstack/react-table'
 import ActionsColumn from './ActionsColumn'
+
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -19,9 +21,18 @@ export type ProductProps = {
 
 export const columns: ColumnDef<ProductProps>[] = [
   {
+    accessorKey: 'image',
+    header: 'Image',
+    cell: ({ row }) => (
+      <div className='flex items-center gap-4'>
+      <img className='w-20 rounded-md' src={row.original.images[0].url} alt={row.original.name} />
+      </div>
+    )
+  },  
+  {
     accessorKey: 'name',
     header: 'Name'
-  },
+  },  
   {
     accessorKey: 'price',
     header: 'Price'

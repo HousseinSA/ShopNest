@@ -14,7 +14,7 @@ const ProductsPage = async ({ params }: { params: { storeCode: string } }) => {
       where: {
         storeCode: params.storeCode
       },
-      include: { category: true, size: true, color: true },
+      include: { category: true, size: true, color: true,images:true },
       orderBy: {
         createdAt: 'desc'
       }
@@ -24,6 +24,7 @@ const ProductsPage = async ({ params }: { params: { storeCode: string } }) => {
       id: product.id,
       name: product.name,
       price: PriceFormatter.format(product.price),
+      images:product.images,
       isFeatured: product.isFeatured,
       isArchived: product.isArchived,
       category: product.category.name,

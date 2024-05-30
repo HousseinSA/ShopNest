@@ -38,8 +38,6 @@ export async function POST(req: Request, { params }: { params: { storeCode: stri
         storeCode: params.storeCode
       }
     })
-     console.log(existingBillboard)
-     
     if (existingBillboard) {
       return new NextResponse('Billboard with this label already exists', { status: 400 })
     }

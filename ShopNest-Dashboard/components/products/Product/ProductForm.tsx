@@ -79,7 +79,7 @@ const ProductForm: React.FC<StoreProductProps> = ({ productData, sizes, colors, 
       toast.success(toastMessage)
     } catch (error) {
       if (error.response?.status === 402) {
-        toast.error('A size with this name already exists.')
+        toast.error('A product with this name already exists.')
       } else {
         toast.error('Something went wrong')
       } 
@@ -87,7 +87,6 @@ const ProductForm: React.FC<StoreProductProps> = ({ productData, sizes, colors, 
       setLoading(false)
     }
   }
-
   return (
     <>
       <Form {...form}>
