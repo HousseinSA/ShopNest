@@ -15,8 +15,8 @@ import { Button } from '@/components/ui/button'
 
 // billBoardData props
 interface ColorFormProps {
-  colorData: Color | null
-  colors: Color[] | null
+  colorData: Color |null
+  colors: Color[] 
 }
 
 const ColorForm: React.FC<ColorFormProps> = ({ colorData, colors }) => {
@@ -60,7 +60,7 @@ const ColorForm: React.FC<ColorFormProps> = ({ colorData, colors }) => {
       toast.success(toastMessage)
     } catch (error) {
       if (error.response?.status === 402) {
-        toast.error('A color with this name already exists.')
+        toast.error('color already exists.')
       } else {
         toast.error('Something went wrong')
       }
@@ -111,7 +111,7 @@ const ColorForm: React.FC<ColorFormProps> = ({ colorData, colors }) => {
         </form>
       </Form>
     </>
-  )
+  ) 
 }
 
 export default ColorForm

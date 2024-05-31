@@ -17,7 +17,6 @@ const StoreProducts: React.FC<StoreProductProps> = ({ products }) => {
   // routes params
   const route = useRouter()
   const params = useParams()
-console.log(products)
   // handel click
   const onAddNew = () => {
     route.push(`/${params.storeCode}/products/new`)

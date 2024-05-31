@@ -3,6 +3,7 @@
 
 import { ColumnDef } from '@tanstack/react-table'
 import ActionsColumn from './ActionsColumn'
+import Image from 'next/image'
 
 
 // This type is used to define the shape of our data.
@@ -12,6 +13,7 @@ export type ProductProps = {
   name: string
   price: string
   isFeatured: boolean
+images:[{url:string,}]
   isArchived: boolean
   category: string
   size: string
@@ -25,7 +27,7 @@ export const columns: ColumnDef<ProductProps>[] = [
     header: 'Image',
     cell: ({ row }) => (
       <div className='flex items-center gap-4'>
-      <img className='w-20 rounded-md' src={row.original.images[0].url} alt={row.original.name} />
+      <Image className='rounded-md' width={100} height={50} src={row.original.images[0].url} alt={row.original.name} />
       </div>
     )
   },  
