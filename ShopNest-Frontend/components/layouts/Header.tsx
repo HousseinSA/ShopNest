@@ -6,7 +6,8 @@ import getCategoriesData from "@/lib/fetchData/getCategories"
 
 export const revalidate  = 0 
 const Header = async () => {
-  const categories = await getCategoriesData()
+  
+    const categories = await getCategoriesData()
   return (
     <header className="mx-auto py-2 md:py-3 lg:py-5 max-w-7xl border-b">
       <div className="flex items-center justify-between">
@@ -23,6 +24,8 @@ const Header = async () => {
         <Navigation categoriesData={categories} />
       </div>
     </header>
+  
+  
   )
 }
 
