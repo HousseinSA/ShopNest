@@ -13,6 +13,42 @@ export async function PATCH(req: Request, { params }: { params: { storeCode: str
       return new NextResponse('No name or price provided', { status: 400 })
     }
 
+ // Check if a product with the same name already exists in this store
+ const existingProduct = await prismaDB.product.findFirst({
+  where: {
+    storeCode: params.storeCode,
+    AND: {
+      OR: [
+        {
+          name
+        },
+        {
+          categoryCode
+        },
+        {
+          sizeCode
+        },
+        {
+          images
+        },
+        {
+          price
+        },
+        {
+          isFeatured
+        },
+        {isArchived}
+      ]
+    }
+  }
+})
+
+if (existingProduct) {
+  return new NextResponse('Product already exists', { status: 402 })
+}
+
+    
+
     await prismaDB.product.update({
       where: {
         id: params.productCode,

@@ -1,17 +1,37 @@
 import prismaDB from '@/lib/prismaClient'
 import { NextResponse } from 'next/server'
 
-export async function PATCH(req: Request, { params }: { params: { storeCode: string; sizeCode: string } }) {
+export async function PATCH(req: Request, { params }: { params: { storeCode:string; sizeCode:string } }) {
   try {
     if (!params.sizeCode) {
-      return new NextResponse('size code is required', { status: 400 })
+      return  new NextResponse('size code is required', { status: 400 })
     }
 
     const body = await req.json()
     const { name, value } = body
-    if (!name || !value) {
-      return new NextResponse('size name or billboard is missing', { status: 400 })
+    if (!name|| !value) {
+      return new NextResponse('size name or value are missing', { status: 400 })
     }
+  // Check if a size with the same label already exists in this store
+  const existingSize = await prismaDB.size.findFirst({
+    where: {
+      storeCode: params.storeCode,
+      AND: {
+        OR: [
+          {
+            name
+          },
+          {
+            value
+          }
+        ]
+      }
+    }
+  })
+  
+  if (existingSize) {
+    return new NextResponse('Size already exists', { status: 402 })
+  }
 
     const size = await prismaDB.size.updateMany({
       where: {

@@ -58,8 +58,9 @@ const action  = sizeData ?(loading? "Updating size": "Update size"):(loading? 'C
       route.refresh()
       toast.success(toastMessage)
     } catch (error) {
+      console.log(error)
       if (error.response?.status === 402) {
-        toast.error('A size with this name already exists.')
+        toast.error(error.response.data)
       } else {
         toast.error('Something went wrong')
       }

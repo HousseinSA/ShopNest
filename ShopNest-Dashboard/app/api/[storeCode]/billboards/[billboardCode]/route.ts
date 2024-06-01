@@ -12,6 +12,27 @@ export async function PATCH(req: Request, { params }: { params: { storeCode: str
     if (!label && !imageUrl) {
       return new NextResponse('No imageUrl or label provided', { status: 400 })
     }
+    
+       // Check if a billboard with the same label already exists in this store
+       const existingBillboard = await prismaDB.billboard.findFirst({
+        where: {
+          storeCode: params.storeCode,
+          AND: {
+            OR: [
+              {
+                label
+              },
+              {
+                imageUrl
+              }
+            ]
+          }
+        }
+      })
+      
+      if (existingBillboard) {
+        return new NextResponse('Billboard already exists', { status: 402 })
+      }
 
     const billboard = await prismaDB.billboard.updateMany({
       where: {
