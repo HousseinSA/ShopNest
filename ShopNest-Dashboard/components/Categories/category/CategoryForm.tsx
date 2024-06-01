@@ -60,7 +60,8 @@ const action  = categoryData ?(loading? "Updating category": "Update category"):
       toast.success(toastMessage)
     } catch (error) {
       if (error.response?.status === 402) {
-        toast.error('A category with this name already exists.')
+        toast.error(error.response.data)
+
       } else {
         toast.error('Something went wrong')
       }

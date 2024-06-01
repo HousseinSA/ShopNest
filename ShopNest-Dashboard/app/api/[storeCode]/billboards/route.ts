@@ -34,12 +34,21 @@ export async function POST(req: Request, { params }: { params: { storeCode: stri
     // Check if a billboard with the same label already exists in this store
     const existingBillboard = await prismaDB.billboard.findFirst({
       where: {
-        label,
-        storeCode: params.storeCode
+        storeCode: params.storeCode,
+        AND: {
+          OR: [
+            {
+              label
+            },
+            {
+              imageUrl
+            }
+          ]
+        }
       }
     })
     if (existingBillboard) {
-      return new NextResponse('Billboard with this label already exists', { status: 400 })
+      return new NextResponse('Billboard already exists', { status: 402 })
     }
 
     // Create the new billboard

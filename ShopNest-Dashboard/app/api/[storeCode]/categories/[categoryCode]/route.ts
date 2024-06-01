@@ -19,6 +19,27 @@ export async function PATCH(req: Request, { params }: { params: { storeCode: str
       return new NextResponse('Category name or billboard code is missing', { status: 400 })
     }
 
+      // Check if a billboard with the same label already exists in this store
+      const existingCategory = await prismaDB.category.findFirst({
+        where: {
+          storeCode: params.storeCode,
+          AND: {
+            OR: [
+              {
+                name
+              },
+              {
+                billboardCode
+              }
+            ]
+          }
+        }
+      })
+      
+      if (existingCategory) {
+        return new NextResponse('category  already exists', { status: 402 })
+      }
+
     const category = await prismaDB.category.updateMany({
       where: {
         id: params.categoryCode,

@@ -59,8 +59,9 @@ const BillBoardForm: React.FC<BillboardFormProps> = ({ billBoardData }) => {
       route.refresh()
       toast.success(toastMessage)
     } catch (error) {
-      if (axios.isAxiosError(error) && error.response?.status === 400 && error.response.data === 'Billboard with this label already exists') {
-        toast.error('A billboard with this label already exists.')
+      
+      if ((error.response?.status === 402)) {
+        toast.error(error.response.data)
       } else {
         toast.error('Something went wrong')
       }
@@ -98,7 +99,7 @@ const BillBoardForm: React.FC<BillboardFormProps> = ({ billBoardData }) => {
               </FormItem>
             )}
           />
-          <div className='mt-4'>
+          <div className='mt-8'>
             <Button disabled={loading} className='flex items-center gap-2' type={'submit'}>
               {loading === true && <ClipLoader size={15} color='#fff' />} {action}
             </Button>
