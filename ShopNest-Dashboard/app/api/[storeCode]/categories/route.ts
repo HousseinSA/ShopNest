@@ -30,13 +30,22 @@ export async function POST(req: Request, { params }: { params: { storeCode: stri
     // Check if a category with the same name already exists in this store
     const existingCategory = await prismaDB.category.findFirst({
       where: {
-        name,
-        storeCode: params.storeCode
+        storeCode: params.storeCode,
+        AND: {
+          OR: [
+            {
+              name
+            },
+            {
+              billboardCode
+            }
+          ]
+        }
       }
     })
 
     if (existingCategory) {
-      return new NextResponse('Category with this name already exists', { status: 402 })
+      return new NextResponse('Category already exists', { status: 402 })
     }
 
     // Create the new category

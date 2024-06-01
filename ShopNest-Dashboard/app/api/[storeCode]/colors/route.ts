@@ -26,16 +26,24 @@ export async function POST(req: Request, { params }: { params: { storeCode: stri
       return new NextResponse('Unauthorized user', { status: 400 })
     }
 
-  // Check if a category with the same name already exists in this store
-  const existingSize = await prismaDB.color.findFirst({
+  // Check if a color with the same name already exists in this store
+  const existingColor = await prismaDB.color.findFirst({
     where: {
-      name,
-      storeCode: params.storeCode
+      storeCode: params.storeCode,
+      AND: {
+        OR: [
+          {
+            name
+          },
+          {
+            value
+          }
+        ]
+      }
     }
   })
-
-  if (existingSize) {
-    return new NextResponse('size with this name already exists', { status: 402 })
+  if (existingColor) {
+    return new NextResponse('color already exists', { status: 402 })
   }
 
 

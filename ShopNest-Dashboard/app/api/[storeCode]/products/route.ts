@@ -27,19 +27,38 @@ export async function POST(req: Request, { params }: { params: { storeCode: stri
     if (!params.storeCode) {
       new NextResponse('No store code found', { status: 400 })
     }
-
-
-
-      // Check if a category with the same name already exists in this store
-      const existingSize = await prismaDB.product.findFirst({
+      // Check if a product with the same name already exists in this store
+      const existingProduct = await prismaDB.product.findFirst({
         where: {
-          name,
-          storeCode: params.storeCode
+          storeCode: params.storeCode,
+          AND: {
+            OR: [
+              {
+                name
+              },
+              {
+                categoryCode
+              },
+              {
+                sizeCode
+              },
+              {
+                images
+              },
+              {
+                price
+              },
+              {
+                isFeatured
+              },
+              {isArchived}
+            ]
+          }
         }
       })
   
-      if (existingSize) {
-        return new NextResponse('size with this name already exists', { status: 402 })
+      if (existingProduct) {
+        return new NextResponse('Product already exists', { status: 402 })
       }
   
     const product = await prismaDB.product.create({
