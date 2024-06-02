@@ -36,9 +36,9 @@ const StoreProduct: React.FC<ProductProps> = ({ productData, categories, colors,
     try {
       setLoading(true)
       await axios.delete(`/api/${params.storeCode}/products/${productData.id}`)
-      route.refresh()
       route.push(`/${params.storeCode}/products`)
       toast.success('product deleted!')
+      route.refresh()
     } catch (error) {
       toast.error('Can\'t delete product, try again')
     } finally {

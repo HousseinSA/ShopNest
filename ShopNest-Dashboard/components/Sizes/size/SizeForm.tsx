@@ -55,8 +55,8 @@ const action  = sizeData ?(loading? "Updating size": "Update size"):(loading? 'C
       }
       // route refresh and message
       route.push(`/${params.storeCode}/sizes`)
-      route.refresh()
       toast.success(toastMessage)
+      route.refresh()
     } catch (error) {
       console.log(error)
       if (error.response?.status === 402) {

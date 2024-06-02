@@ -23,7 +23,7 @@ const BillBoardForm: React.FC<BillboardFormProps> = ({ billBoardData }) => {
   // zod schema and type
   const formSchema = z.object({
     label: z.string().min(1),
-    imageUrl: z.string().min(1)
+    imageUrl: z.string().min(1,{message:'you have to add billboard image'})
   })
 
   type formValues = z.infer<typeof formSchema>
@@ -56,8 +56,8 @@ const BillBoardForm: React.FC<BillboardFormProps> = ({ billBoardData }) => {
       }
       // Route refresh and success message
       route.push(`/${params.storeCode}/billboards`)
-      route.refresh()
       toast.success(toastMessage)
+      route.refresh()
     } catch (error) {
       
       if ((error.response?.status === 402)) {
@@ -83,7 +83,7 @@ const BillBoardForm: React.FC<BillboardFormProps> = ({ billBoardData }) => {
                 <FormControl>
                   <ImageUpload disabled={loading} value={field.value ? [field.value] : []} onChange={(url) => field.onChange(url)} onRemove={() => field.onChange('')} />
                 </FormControl>
-                <FormMessage />
+                <FormMessage /> 
               </FormItem>
             )}
           />

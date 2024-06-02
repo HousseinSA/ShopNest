@@ -75,12 +75,12 @@ const ProductForm: React.FC<StoreProductProps> = ({ productData, sizes, colors, 
       }
       // route refresh and message
       route.push(`/${params.storeCode}/products`)
-      route.refresh()
       toast.success(toastMessage)
+      route.refresh()
     } catch (error) {
+      console.log(error)
       if (error.response?.status === 402) {
         toast.error(error.response.data)
-        toast.error('product with this name already exist')
       } else {
         toast.error('Something went wrong')
       } 

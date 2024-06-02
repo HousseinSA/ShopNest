@@ -45,7 +45,9 @@ export const columns: ColumnDef<ProductProps>[] = [
   },
   {
     accessorKey: 'size',
-    header: 'Size'
+    header: 'Size',
+    cell: ({ row }) => <div className='uppercase'>{row.original.size}</div> 
+
   },
   {
     accessorKey: 'color',
@@ -64,10 +66,20 @@ export const columns: ColumnDef<ProductProps>[] = [
   {
     accessorKey: 'isFeatured',
     header: 'Featured',
+    cell: ({ row }) => (
+      <div className='flex items-center gap-4'>
+       <span>{row.original.isFeatured? 'Yes':'No'}</span>
+      </div>
+    )
   },
   {
     accessorKey: 'isArchived',
     header: 'Archived',
+    cell: ({ row }) => (
+      <div className='flex items-center gap-4'>
+       <span>{row.original.isArchived? 'Yes':'No'}</span>
+      </div>
+    )
   },
   {
     accessorKey: 'action',

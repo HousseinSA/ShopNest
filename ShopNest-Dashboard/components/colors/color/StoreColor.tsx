@@ -36,8 +36,8 @@ const StoreColor: React.FC<CategoryProps> = ({ colorData, colors }) => {
       setLoading(true)
       await axios.delete(`/api/${params.storeCode}/colors/${colorData.id}`)
       route.push(`/${params.storeCode}/colors`)
-      route.refresh()
       toast.success('color deleted!')
+      route.refresh()
     } catch (error) {
       toast.error('Remove color from products!')
     } finally {
