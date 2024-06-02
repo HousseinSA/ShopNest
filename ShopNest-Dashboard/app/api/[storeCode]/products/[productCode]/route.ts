@@ -20,24 +20,12 @@ export async function PATCH(req: Request, { params }: { params: { storeCode: str
     AND: {
       OR: [
         {
-          name
+          name: {
+            equals: name,
+            mode: 'insensitive'
+          }
         },
-        {
-          categoryCode
-        },
-        {
-          sizeCode
-        },
-        {
-          images
-        },
-        {
-          price
-        },
-        {
-          isFeatured
-        },
-        {isArchived}
+        
       ]
     }
   }
@@ -46,8 +34,6 @@ export async function PATCH(req: Request, { params }: { params: { storeCode: str
 if (existingProduct) {
   return new NextResponse('Product already exists', { status: 402 })
 }
-
-    
 
     await prismaDB.product.update({
       where: {

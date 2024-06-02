@@ -13,8 +13,6 @@ async function BillBoardPage({ params }: { params: { billboardCode: string; stor
     redirect(`/${params.storeCode}/billboards`)
   }
 
- 
-
   if(validBillBoardCode){
     const billboard = await prismaDB.billboard.findUnique({
       where: {

@@ -24,6 +24,43 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ disabled, onChange, onRemove,
   if (!isMounted) {
     return null
   }
+  const widgetOptions = {
+    uploadPreset: 'q5jplcc9',
+    clientAllowedFormats: ['image'],
+    cropping: true,
+    showAdvancedOptions: true,
+    multiple: false,
+    theme: 'white',
+    styles: {
+      palette: {
+        window: "#FFFFFF",
+        windowBorder: "#90A0B3",
+        tabIcon: "#0078FF",
+        menuIcons: "#5A616A",
+        textDark: "#000000",
+        textLight: "#FFFFFF",
+        link: "#0078FF",
+        action: "#FF620C",
+        inactiveTabIcon: "#0E2F5A",
+        error: "#F44235",
+        inProgress: "#0078FF",
+        complete: "#20B832",
+        sourceBg: "#E4EBF1"
+      },
+      fonts: {
+        default: null,
+        "'Fira Sans', sans-serif": {
+          url: "https://fonts.googleapis.com/css?family=Fira+Sans",
+          active: true
+        }
+      },
+      // Custom dimensions for the modal
+      window: {
+        height: '400px', // Set your desired height
+        width: '600px', // Set your desired width
+      },
+    }
+  }
 
   // onUpload
   const onUpload = (result: any) => {
@@ -44,19 +81,28 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ disabled, onChange, onRemove,
           </div>
         ))}
       </div>
-      <CldUploadWidget onUpload={onUpload} uploadPreset='q5jplcc9'>
+  
+
+      <CldUploadWidget   onUpload={onUpload} uploadPreset='q5jplcc9'>
         {({ open }) => {
-          const onClick = () => {
-            open()
+          const handleClick = () => {
+            if (typeof open === 'function') {
+              open()
+            } else {
+              console.error('Open function is undefined or not a function')
+            }
           }
           return (
-            <Button type='button' disabled={disabled} variant='secondary' onClick={onClick}>
+            <Button type='button' disabled={disabled} variant='secondary' onClick={handleClick}>
               <ImagePlus className='h-4 w-4 mr-2' />
               Upload an Image
             </Button>
           )
         }}
       </CldUploadWidget>
+ 
+
+
     </div>
   )
 }

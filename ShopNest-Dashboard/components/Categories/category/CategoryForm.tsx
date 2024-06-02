@@ -56,8 +56,8 @@ const action  = categoryData ?(loading? "Updating category": "Update category"):
       }
       // Route refresh and success message
       route.push(`/${params.storeCode}/categories`)
-      route.refresh()
       toast.success(toastMessage)
+      route.refresh()
     } catch (error) {
       if (error.response?.status === 402) {
         toast.error(error.response.data)

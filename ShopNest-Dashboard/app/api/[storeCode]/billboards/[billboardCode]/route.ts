@@ -20,8 +20,11 @@ export async function PATCH(req: Request, { params }: { params: { storeCode: str
           AND: {
             OR: [
               {
-                label
-              },
+              label: {
+                equals: label,
+                mode: 'insensitive'
+              }
+            },
               {
                 imageUrl
               }

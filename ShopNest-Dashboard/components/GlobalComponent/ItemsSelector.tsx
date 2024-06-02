@@ -46,7 +46,7 @@ const ItemsSelector: React.FC<GlobalProps> = ({ disabled, valueChange, value, de
       </SelectTrigger>
       <SelectContent>
         {items.map((item: itemProps) => {
-          return (
+          return (  
             <SelectItem key={item.id} value={item.id}>
               {itemType === 'size' || itemType === 'category' || itemType === 'color' ? (item as Size).name : (item as Billboard).label}
             </SelectItem>

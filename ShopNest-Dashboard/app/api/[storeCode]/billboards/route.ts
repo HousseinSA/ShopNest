@@ -38,7 +38,10 @@ export async function POST(req: Request, { params }: { params: { storeCode: stri
         AND: {
           OR: [
             {
-              label
+              label: {
+                equals: label,
+                mode: 'insensitive'
+              }
             },
             {
               imageUrl

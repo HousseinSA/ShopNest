@@ -34,7 +34,10 @@ export async function POST(req: Request, { params }: { params: { storeCode: stri
         AND: {
           OR: [
             {
-              name
+              name: {
+                equals: name,
+                mode: 'insensitive'
+              }
             },
             {
               value
@@ -45,7 +48,7 @@ export async function POST(req: Request, { params }: { params: { storeCode: stri
     })
 
     if (existingSize) {
-      return new NextResponse('Size already exists', { status: 402 })
+      return new NextResponse('Size name or value already exists', { status: 402 })
     }
 
 

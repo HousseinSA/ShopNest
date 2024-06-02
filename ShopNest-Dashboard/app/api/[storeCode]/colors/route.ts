@@ -32,9 +32,12 @@ export async function POST(req: Request, { params }: { params: { storeCode: stri
       storeCode: params.storeCode,
       AND: {
         OR: [
-          {
-            name
-          },
+         {
+              name: {
+                equals: name,
+                mode: 'insensitive'
+              }
+            },
           {
             value
           }
@@ -43,7 +46,7 @@ export async function POST(req: Request, { params }: { params: { storeCode: stri
     }
   })
   if (existingColor) {
-    return new NextResponse('color already exists', { status: 402 })
+    return new NextResponse('color name or Hex code already exists', { status: 402 })
   }
 
 

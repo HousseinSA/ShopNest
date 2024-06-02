@@ -34,9 +34,9 @@ const StoreBillBoard: React.FC<BillBoardProps> = ({ billBoardData }) => {
     try {
       setLoading(true)
       await axios.delete(`/api/${params.storeCode}/billboards/${billBoardData.id}`)
-      route.refresh()
       route.push(`/${params.storeCode}/billboards`)
       toast.success('billboard deleted!')
+      route.refresh() 
     } catch (error) {
       toast.error('Remove billboard from categories!')
     } finally {
@@ -47,7 +47,7 @@ const StoreBillBoard: React.FC<BillBoardProps> = ({ billBoardData }) => {
 
   return (
     <>
-      <AlertModal title='delete billboard' loading={loading} onDelete={onBillboardDelete} description='Are you sure you want to delete store?' isOpen={isOpen} setIsOpen={setIsOpen} />
+      <AlertModal title='delete billboard' loading={loading} onDelete={onBillboardDelete} description='Are you sure you want to delete billboard?' isOpen={isOpen} setIsOpen={setIsOpen} />
       <div className='flex flex-col space-y-4'>
         <SectionHeader title={title} description={description}>
           {billBoardData && (

@@ -18,19 +18,20 @@ export async function PATCH(req: Request, { params }: { params: { storeCode:stri
       storeCode: params.storeCode,
       AND: {
         OR: [
-          {
-            name
-          },
-          {
-            value
-          }
+         {
+              name: {
+                equals: name,
+                mode: 'insensitive'
+              }
+            },
+         
         ]
       }
     }
   })
   
   if (existingSize) {
-    return new NextResponse('Size already exists', { status: 402 })
+    return new NextResponse('Size name or value already exists', { status: 402 })
   }
 
     const size = await prismaDB.size.updateMany({

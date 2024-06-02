@@ -19,7 +19,7 @@ export const columns: ColumnDef<SizeProps>[] = [
   {
     accessorKey: 'value',
     header: 'Value',
-    cell: ({ row }) => row.original.value
+    cell: ({ row }) => <span className='uppercase'>{row.original.value}</span> 
   },
   {
     accessorKey: 'createdAt',

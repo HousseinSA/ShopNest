@@ -19,18 +19,19 @@ export async function PATCH(req: Request, { params }: { params: { storeCode: str
       return new NextResponse('Category name or billboard code is missing', { status: 400 })
     }
 
-      // Check if a billboard with the same label already exists in this store
+      // Check if a category with the same name already exists in this store
       const existingCategory = await prismaDB.category.findFirst({
         where: {
           storeCode: params.storeCode,
           AND: {
             OR: [
               {
-                name
+                name: {
+                  equals: name,
+                  mode: 'insensitive'
+                }
               },
-              {
-                billboardCode
-              }
+          
             ]
           }
         }
@@ -62,15 +63,12 @@ export async function GET(req: Request, { params }: { params: { storeCode: strin
     if (!params.categoryCode) {
       return new NextResponse('category code is required', { status: 400 })
     }
-
     const category = await prismaDB.category.findUnique({
       where: {
         id: params.categoryCode,
         storeCode: params.storeCode
       }
     })
-
-
     return NextResponse.json(category)
   } catch (error) {
     console.log(`CATEGORY_GET`, error)

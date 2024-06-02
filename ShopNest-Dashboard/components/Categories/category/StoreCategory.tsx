@@ -35,9 +35,9 @@ const StoreCategory: React.FC<CategoryProps> = ({ categoryData, billboards }) =>
     try {
       setLoading(true)
       await axios.delete(`/api/${params.storeCode}/categories/${categoryData.id}`)
-      route.refresh()
       route.push(`/${params.storeCode}/categories`)
       toast.success('category deleted!')
+      route.refresh()
     } catch (error) {
       toast.error('Remove products from category!')
     } finally {

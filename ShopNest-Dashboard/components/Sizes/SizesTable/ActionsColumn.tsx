@@ -38,8 +38,8 @@ const ActionsColumn: React.FC<CellActionProps> = ({ size }) => {
     try {
       setLoading(true)
       await axios.delete(`/api/${params.storeCode}/sizes/${size.id}`)
-      route.refresh()
       toast.success('size deleted!')
+      route.refresh()
     } catch (error) {
       toast.error('Remove size from products!')
     } finally {

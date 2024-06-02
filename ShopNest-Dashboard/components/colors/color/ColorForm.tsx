@@ -56,8 +56,8 @@ const ColorForm: React.FC<ColorFormProps> = ({ colorData, colors }) => {
       }
       // route refresh and message
       route.push(`/${params.storeCode}/colors`)
-      route.refresh()
       toast.success(toastMessage)
+      route.refresh()
     } catch (error) {
       if (error.response?.status === 402) {
         toast.error(error.response.data)

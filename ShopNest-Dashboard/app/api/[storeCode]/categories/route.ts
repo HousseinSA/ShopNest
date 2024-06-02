@@ -34,11 +34,12 @@ export async function POST(req: Request, { params }: { params: { storeCode: stri
         AND: {
           OR: [
             {
-              name
+              name: {
+                equals: name,
+                mode: 'insensitive'
+              }
             },
-            {
-              billboardCode
-            }
+          
           ]
         }
       }
