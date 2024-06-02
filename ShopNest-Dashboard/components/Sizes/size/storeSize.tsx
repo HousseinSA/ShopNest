@@ -34,8 +34,8 @@ const StoreSize: React.FC<storeSizeProps> = ({ size }) => {
     try {
       setLoading(true)
       await axios.delete(`/api/${params.storeCode}/sizes/${size.id}`)
+      route.push(`/${params.storeCode}/sizes`)
       toast.success('size deleted!')
-      route.push(`/${params.storeCoe}/sizes`)
       route.refresh()
     } catch (error) {
       toast.error('remove size from products')

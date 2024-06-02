@@ -20,18 +20,19 @@ export async function PATCH(req: Request, { params }: { params: { storeCode: str
       storeCode: params.storeCode,
       AND: {
         OR: [
-          {
-            name
-          },
-          {
-            value
-          }
+         {
+              name: {
+                equals: name,
+                mode: 'insensitive'
+              }
+            },
+         
         ]
       }
     }
   })
   if (existingColor ) {
-    return new NextResponse('color already exists.', { status: 402 })
+    return new NextResponse('color name or Hex code already exists.', { status: 402 })
   }
 
     const color = await prismaDB.color.updateMany({

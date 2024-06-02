@@ -40,8 +40,8 @@ const StoreSettingsForm: React.FC<StoreSettingsProps> = ({ storeData }) => {
       const response = await axios.patch(`/api/stores/${storeData.id}`, values)
 
       if (response.data) {
-        route.refresh()
         toast.success('Store update!')
+        route.refresh()
       }
     } catch (error) {
       toast.error('Something went wrong!')

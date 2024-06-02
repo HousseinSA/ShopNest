@@ -37,9 +37,9 @@ const StoreSettings: React.FC<StoreSettingsProps> = ({ storeData }) => {
       setLoading(true)
 
       await axios.delete(`/api/stores/${params.storeCode}`)
-      route.refresh()
       route.push('/')
       toast.success('store deleted!')
+      route.refresh()
     } catch (error) {
       toast.error('delete products and categories first', error)
     } finally {

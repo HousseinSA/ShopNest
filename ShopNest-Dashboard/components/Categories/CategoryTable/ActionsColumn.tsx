@@ -40,8 +40,8 @@ const ActionsColumn: React.FC<CellActionProps> = ({ category }) => {
     try {
       setLoading(true)
       await axios.delete(`/api/${params.storeCode}/categories/${category.id}`)
-      route.refresh()
       toast.success('category deleted!')
+      route.refresh()
     } catch (error) {
       toast.error('Remove products from category!')
 
