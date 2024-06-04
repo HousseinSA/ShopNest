@@ -38,8 +38,7 @@ export async function POST(req: Request, { params }: { params: { storeCode: stri
                   equals: name,
                   mode: 'insensitive'
                 }
-              },
-             
+              }
             ]
           }
         }

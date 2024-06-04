@@ -4,37 +4,35 @@ import { NextResponse } from 'next/server'
 export async function PATCH(req: Request, { params }: { params: { storeCode: string; productCode: string } }) {
   try {
     if (!params.productCode) {
-      return new NextResponse('product code is required', { status: 400 })
+      return new NextResponse('Product code is required', { status: 400 })
     }
 
     const body = await req.json()
     const { name, price, images, colorCode, sizeCode, categoryCode, isFeatured, isArchived } = body
+
     if (!name && !price && !colorCode && !sizeCode && !categoryCode && !images) {
-      return new NextResponse('No name or price provided', { status: 400 })
+      return new NextResponse('No fields provided for update', { status: 400 })
     }
 
- // Check if a product with the same name already exists in this store
- const existingProduct = await prismaDB.product.findFirst({
-  where: {
-    storeCode: params.storeCode,
-    AND: {
-      OR: [
-        {
-          name: {
-            equals: name,
-            mode: 'insensitive'
-          }
+    // Check if a product with the same name already exists in this store, excluding the current product
+    const existingProduct = await prismaDB.product.findFirst({
+      where: {
+        storeCode: params.storeCode,
+        name: {
+          equals: name,
+          mode: 'insensitive'
         },
-        
-      ]
+        NOT: {
+          id: params.productCode
+        }
+      }
+    })
+
+    if (existingProduct) {
+      return new NextResponse('Product with this name already exists', { status: 402 })
     }
-  }
-})
 
-if (existingProduct) {
-  return new NextResponse('Product already exists', { status: 402 })
-}
-
+    // Update the product
     await prismaDB.product.update({
       where: {
         id: params.productCode,
@@ -43,15 +41,16 @@ if (existingProduct) {
       data: {
         name,
         price,
-        colorCode: colorCode,
-        sizeCode: sizeCode,
-        categoryCode: categoryCode,
+        colorCode,
+        sizeCode,
+        categoryCode,
         isFeatured,
         isArchived,
-        images: { deleteMany: {} }
+        images: { deleteMany: {} } // Clear existing images
       }
     })
 
+    // Add new images
     const product = await prismaDB.product.update({
       where: {
         id: params.productCode
@@ -59,7 +58,7 @@ if (existingProduct) {
       data: {
         images: {
           createMany: {
-            data: [...images.map((image: { url: string }) => image)]
+            data: [...new Set(images.map((image: { url: string }) => image.url))].map(url => ({ url })) // Ensure unique image URLs
           }
         }
       }
@@ -71,10 +70,11 @@ if (existingProduct) {
     return new NextResponse('Internal Error', { status: 500 })
   }
 }
+
 export async function GET(req: Request, { params }: { params: { storeCode: string; productCode: string } }) {
   try {
     if (!params.productCode) {
-      return new NextResponse('product code is required', { status: 400 })
+      return new NextResponse('Product code is required', { status: 400 })
     }
 
     const product = await prismaDB.product.findUnique({
@@ -95,7 +95,7 @@ export async function GET(req: Request, { params }: { params: { storeCode: strin
 export async function DELETE(req: Request, { params }: { params: { storeCode: string; productCode: string } }) {
   try {
     if (!params.productCode) {
-      return new NextResponse('product code is required', { status: 400 })
+      return new NextResponse('Product code is required', { status: 400 })
     }
 
     const product = await prismaDB.product.deleteMany({
