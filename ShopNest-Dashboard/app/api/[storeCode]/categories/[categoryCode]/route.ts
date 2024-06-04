@@ -23,16 +23,12 @@ export async function PATCH(req: Request, { params }: { params: { storeCode: str
       const existingCategory = await prismaDB.category.findFirst({
         where: {
           storeCode: params.storeCode,
-          AND: {
-            OR: [
-              {
-                name: {
-                  equals: name,
-                  mode: 'insensitive'
-                }
-              },
-          
-            ]
+          name: {
+            equals: name,
+            mode: 'insensitive'
+          },
+          NOT: {
+            id: params.categoryCode
           }
         }
       })

@@ -10,8 +10,8 @@ import { useParams, useRouter } from 'next/navigation'
 
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
-import { ClipLoader } from 'react-spinners'
+
+import FormButton from '@/components/GlobalComponent/FormButton'
 
 // billBoardData props
 interface SizeForm {
@@ -103,11 +103,8 @@ const action  = sizeData ?(loading? "Updating size": "Update size"):(loading? 'C
             />
           </div>
           <div className='mt-4'>
-            <Button 
-            disabled={loading}
-             className='flex items-center gap-2' type={'submit'}>
-              {loading === true && <ClipLoader size={15} color='#fff' />} {action}
-            </Button>
+          <FormButton loading={loading} action={action}/>
+
           </div>
         </form>
       </Form>

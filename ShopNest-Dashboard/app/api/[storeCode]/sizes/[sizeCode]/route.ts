@@ -16,17 +16,15 @@ export async function PATCH(req: Request, { params }: { params: { storeCode:stri
   const existingSize = await prismaDB.size.findFirst({
     where: {
       storeCode: params.storeCode,
-      AND: {
-        OR: [
-         {
-              name: {
-                equals: name,
-                mode: 'insensitive'
-              }
-            },
-         
-        ]
+      name: {
+        equals: name,
+        mode: 'insensitive'
+      },
+      NOT: {
+        id: params.sizeCode
       }
+           
+      
     }
   })
   

@@ -7,13 +7,12 @@ import axios from 'axios'
 import toast from 'react-hot-toast'
 import { Category, Color, Image, Product, Size } from '@prisma/client'
 import { useParams, useRouter } from 'next/navigation'
-import { ClipLoader } from 'react-spinners'
 
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage, FormDescription } from '@/components/ui/form'
 import { Checkbox } from '@/components/ui/checkbox'
 
 import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
+import FormButton from '@/components/GlobalComponent/FormButton'
 import ImageUpload from '@/components/GlobalComponent/ImageUpload'
 import ItemsSelector from '@/components/GlobalComponent/ItemsSelector'
 
@@ -198,9 +197,7 @@ const ProductForm: React.FC<StoreProductProps> = ({ productData, sizes, colors, 
             />
           </div>
           <div className='mt-4'>
-            <Button disabled={loading} className='flex items-center gap-2' type={'submit'}>
-              {loading === true && <ClipLoader size={15} color='#fff' />} {action}
-            </Button>
+          <FormButton loading={loading} action={action}/>
           </div>
         </form>
       </Form>
