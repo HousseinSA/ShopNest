@@ -24,7 +24,7 @@ images:[{url:string,}]
 export const columns: ColumnDef<ProductProps>[] = [
   {
     accessorKey: 'image',
-    header: 'Image',
+    header: 'Product',
     cell: ({ row }) => (
       <div className='flex items-center gap-4'>
       <Image className='rounded-md' width={100} height={50} src={row.original.images[0].url} alt={row.original.name} />

@@ -66,7 +66,7 @@ const MainNav = () => {
     <nav className='flex items-center space-x-4 md:space-x-6 mx-6'>
       {routes.map((route) => {
         return (
-          <Link className={cn('text-sm font-medium transition-colors hover:text-primary', route.active ? 'text-[#E4E893]   dark:text-white' : 'text-muted-foreground')} key={route.link} href={route.link}>
+          <Link className={cn('text-sm font-medium transition-colors hover:text-primary', route.active ? 'text-[#1E421D]   dark:text-white' : 'text-muted-foreground')} key={route.link} href={route.link}>
             {route.label}
           </Link>
         )

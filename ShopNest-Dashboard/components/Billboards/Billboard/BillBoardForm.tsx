@@ -6,12 +6,12 @@ import { useForm } from 'react-hook-form'
 import axios from 'axios'
 import toast from 'react-hot-toast'
 import { Billboard } from '@prisma/client'
-import { ClipLoader } from 'react-spinners'
 import { useParams, useRouter } from 'next/navigation'
 
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
+import FormButton from '@/components/GlobalComponent/FormButton'
+
 import ImageUpload from '@/components/GlobalComponent/ImageUpload'
 
 // billBoardData props
@@ -100,9 +100,7 @@ const BillBoardForm: React.FC<BillboardFormProps> = ({ billBoardData }) => {
             )}
           />
           <div className='mt-8'>
-            <Button disabled={loading} className='flex items-center gap-2' type={'submit'}>
-              {loading === true && <ClipLoader size={15} color='#fff' />} {action}
-            </Button>
+          <FormButton loading={loading} action={action}/>
           </div>
         </form>
       </Form>

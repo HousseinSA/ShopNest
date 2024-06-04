@@ -17,19 +17,17 @@ export async function PATCH(req: Request, { params }: { params: { storeCode: str
        const existingBillboard = await prismaDB.billboard.findFirst({
         where: {
           storeCode: params.storeCode,
-          AND: {
-            OR: [
-              {
               label: {
                 equals: label,
                 mode: 'insensitive'
               }
-            },
-              {
-                imageUrl
+            ,
+              imageUrl:{
+                equals:imageUrl
+              },
+              NOT: {
+                id: params.billboardCode
               }
-            ]
-          }
         }
       })
       
