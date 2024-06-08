@@ -4,7 +4,7 @@ import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
-import toast from 'react-hot-toast'
+
 import { Category, Billboard } from '@prisma/client'
 import { useParams, useRouter } from 'next/navigation'
 
@@ -14,6 +14,8 @@ import { Input } from '@/components/ui/input'
 import FormButton from '@/components/GlobalComponent/FormButton'
 
 import ItemsSelector from '@/components/GlobalComponent/ItemsSelector'
+import {ToastSuccess, ToastError} from '@/components/GlobalComponent/Toast'
+
 
 // billBoardData props
 interface categoryFormProps {
@@ -23,7 +25,7 @@ interface categoryFormProps {
 
 const CategoryForm: React.FC<categoryFormProps> = ({ categoryData, billboards }) => {
   // zod schema and type
-  const formSchema = z.object({
+  const formSchema = z.object({ 
     name: z.string().min(1),
     billboardCode: z.string().min(1, { message: "select a billboard" })
   })
@@ -57,14 +59,13 @@ const action  = categoryData ?(loading? "Updating category": "Update category"):
       }
       // Route refresh and success message
       route.push(`/${params.storeCode}/categories`)
-      toast.success(toastMessage)
+      ToastSuccess(toastMessage)
       route.refresh()
     } catch (error) {
       if (error.response?.status === 402) {
-        toast.error(error.response.data)
-
+        ToastError(error.response.data)
       } else {
-        toast.error('Something went wrong')
+        ToastError('Something went wrong')
       }
     } finally {
       setLoading(false)

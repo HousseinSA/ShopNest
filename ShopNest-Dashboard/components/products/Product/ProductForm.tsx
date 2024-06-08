@@ -4,21 +4,22 @@ import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
-import toast from 'react-hot-toast'
 import { Category, Color, Image, Product, Size } from '@prisma/client'
 import { useParams, useRouter } from 'next/navigation'
 
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage, FormDescription } from '@/components/ui/form'
 import { Checkbox } from '@/components/ui/checkbox'
 
+
 import { Input } from '@/components/ui/input'
 import FormButton from '@/components/GlobalComponent/FormButton'
 import ImageUpload from '@/components/GlobalComponent/ImageUpload'
 import ItemsSelector from '@/components/GlobalComponent/ItemsSelector'
+import {ToastSuccess, ToastError} from '@/components/GlobalComponent/Toast'
 
 // productData props
 interface StoreProductProps {
-  productData: (Product & { images: Image[] }) | undefined
+  productData: (Product & { images: Image[] }) | null
   sizes: Size[]
   colors: Color[]
   categories: Category[]
@@ -74,14 +75,14 @@ const ProductForm: React.FC<StoreProductProps> = ({ productData, sizes, colors, 
       }
       // route refresh and message
       route.push(`/${params.storeCode}/products`)
-      toast.success(toastMessage)
+      ToastSuccess(toastMessage)
       route.refresh()
     } catch (error) {
       console.log(error)
       if (error.response?.status === 402) {
-        toast.error(error.response.data)
+        ToastError(error.response.data)
       } else {
-        toast.error('Something went wrong')
+        ToastError('Something went wrong')
       } 
     } finally {
       setLoading(false)

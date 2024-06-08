@@ -42,14 +42,14 @@ const ItemsSelector: React.FC<GlobalProps> = ({ disabled, valueChange, value, de
   return (
     <Select onValueChange={valueChange} value={value as string} disabled={disabled}>
       <SelectTrigger className='w-[180px]'>
-        <SelectValue defaultValue={defaultValue} placeholder={` Select ${itemType}`} />
+        <SelectValue defaultValue={defaultValue} placeholder={` select ${itemType}`} />
       </SelectTrigger>
       <SelectContent>
         {items.map((item: itemProps) => {
           return (  
-            <SelectItem key={item.id} value={item.id}>
-              {itemType === 'size' || itemType === 'category' || itemType === 'color' ? (item as Size).name : (item as Billboard).label}
-            </SelectItem>
+              <SelectItem key={item.id} value={item.id}>
+                {itemType === 'size' || itemType === 'category' || itemType === 'color' ? (item as Size).name : (item as Billboard).label}
+              </SelectItem>
           )
         })}
       </SelectContent>

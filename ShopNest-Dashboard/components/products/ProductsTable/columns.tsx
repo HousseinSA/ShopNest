@@ -8,12 +8,20 @@ import Image from 'next/image'
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
+type productImages = {
+  id: string;
+  productCode: string;
+  createdAt: Date;
+  updatedAt: Date;
+  url: string;
+}
+
 export type ProductProps = {
   id: string
   name: string
   price: string
-  isFeatured: boolean
-images:[{url:string,}]
+  isFeatured: boolean,
+  images:productImages[],
   isArchived: boolean
   category: string
   size: string

@@ -3,7 +3,6 @@ import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
-import toast from 'react-hot-toast'
 import { Store } from '@prisma/client'
 import { ClipLoader } from 'react-spinners'
 import { useRouter } from 'next/navigation'
@@ -11,6 +10,7 @@ import { useRouter } from 'next/navigation'
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
+import { ToastError, ToastSuccess } from '../GlobalComponent/Toast'
 
 // storeData props
 interface StoreSettingsProps {
@@ -20,7 +20,7 @@ interface StoreSettingsProps {
 const StoreSettingsForm: React.FC<StoreSettingsProps> = ({ storeData }) => {
   // zod schema and type
   const formSchema = z.object({
-    storename: z.string().min(2)
+    storeName: z.string().min(2)
   })
   type formValues = z.infer<typeof formSchema>
 
@@ -34,17 +34,17 @@ const StoreSettingsForm: React.FC<StoreSettingsProps> = ({ storeData }) => {
   const route = useRouter()
 
   // sending data to DB
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+  const onSubmit = async (values:z.infer<typeof formSchema>) => {
     try {
       setLoading(true)
       const response = await axios.patch(`/api/stores/${storeData.id}`, values)
 
       if (response.data) {
-        toast.success('Store update!')
+        ToastSuccess('Store updated!')
         route.refresh()
       }
     } catch (error) {
-      toast.error('Something went wrong!')
+      ToastError('Something went wrong!')
     } finally {
       setLoading(false)
     }
@@ -55,12 +55,12 @@ const StoreSettingsForm: React.FC<StoreSettingsProps> = ({ storeData }) => {
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <FormField
-            name='storename'
+            name='storeName'
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Store Name</FormLabel>
                 <FormControl>
-                  <Input disabled={loading} placeholder='store name ' {...field} defaultValue={storeData?.storename} />
+                  <Input disabled={loading} placeholder='Store name ' {...field} defaultValue={storeData?.storeName} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

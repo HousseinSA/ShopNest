@@ -4,13 +4,13 @@ import React, { useState } from 'react'
 import { Category, Color, Product, Size } from '@prisma/client'
 import { useRouter, useParams } from 'next/navigation'
 import axios from 'axios'
-import toast from 'react-hot-toast'
 
 import { Button } from '@/components/ui/button'
 import SectionHeader from '@/components/GlobalComponent/SectionHeader'
 import ProductForm from '@/components/products/Product/ProductForm'
 import { Separator } from '@/components/ui/separator'
 import AlertModal from '@/components/Modals/AlertModal'
+import { ToastError, ToastSuccess } from '@/components/GlobalComponent/Toast'
 
 interface ProductProps {
   productData?: Product
@@ -37,10 +37,10 @@ const StoreProduct: React.FC<ProductProps> = ({ productData, categories, colors,
       setLoading(true)
       await axios.delete(`/api/${params.storeCode}/products/${productData.id}`)
       route.push(`/${params.storeCode}/products`)
-      toast.success('product deleted!')
+      ToastSuccess('product deleted!')
       route.refresh()
     } catch (error) {
-      toast.error('Can\'t delete product, try again')
+      ToastError('Can\'t delete product, try again')
     } finally {
       setLoading(false)
       setIsOpen(false)
