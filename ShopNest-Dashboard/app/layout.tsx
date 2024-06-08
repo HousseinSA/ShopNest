@@ -22,7 +22,7 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
     <ClerkProvider>
       <html lang='en'>
         <Head>
-        <link rel="icon" href="/shopnest-favicon-color.png" type="image/x-icon" />
+        <link rel="icon" href="/shopnest-favicon-color.svg" type="image/svg+xml" />
         </Head>
         <body className={cn('min-h-screen bg-background font-sans antialiased', fontSans.variable)}>
           <ToastProvider />
