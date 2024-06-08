@@ -26,7 +26,7 @@ const StoreColors: React.FC<StoreCategoryProps> = ({ colors }) => {
   return (
     <>
       <div className='flex flex-col space-y-4'>
-        <SectionHeader title={`Colors (${colors.length})`} description='manage colors of your store'>
+        <SectionHeader title={`Colors (${colors.length})`} description='Manage store colors'>
           <Button variant='outline' onClick={onAddNew}>
             <Plus className='w-5 h-5' />
             Add New
