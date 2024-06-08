@@ -24,7 +24,7 @@ const StoreProducts: React.FC<StoreProductProps> = ({ products }) => {
   return (
     <>
       <div className='flex flex-col space-y-4'>
-        <SectionHeader title={`Products (${products?.length})`} description='manage products of you store'>
+        <SectionHeader title={`Products (${products?.length})`} description='Manage store products'>
           <Button variant='outline' onClick={onAddNew}>
             <Plus className='w-5 h-5' />
             Add New

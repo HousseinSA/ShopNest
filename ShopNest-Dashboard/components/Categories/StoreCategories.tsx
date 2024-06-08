@@ -26,7 +26,7 @@ const StoreCategories: React.FC<StoreCategoryProps> = ({ categories }) => {
   return (
     <>
       <div className='flex flex-col space-y-4'>
-        <SectionHeader title={`Categories (${categories.length})`} description='Manage categories of your store'>
+        <SectionHeader title={`Categories (${categories.length})`} description='Manage store categories'>
           <Button variant='outline' onClick={onAddNew}>
             <Plus className='w-5 h-5' />
             Add New

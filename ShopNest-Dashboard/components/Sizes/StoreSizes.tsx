@@ -27,7 +27,7 @@ const StoreSizes: React.FC<StoreSizesProps> = ({ sizes }) => {
     <>
     
       <div className='flex flex-col space-y-4'>
-        <SectionHeader title={`Sizes (${sizes.length})`} description='manage sizes of your store products'>
+        <SectionHeader title={`Sizes (${sizes.length})`} description='Manage store sizes'>
           <Button variant='outline' onClick={onAddNew}>
             <Plus className='w-5 h-5' />
             Add New

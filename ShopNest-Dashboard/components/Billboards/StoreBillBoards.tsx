@@ -26,7 +26,7 @@ const StoreBillBoards: React.FC<BillBoardsProps> = ({ billBoards }) => {
   return (
     <>
       <div className='flex flex-col space-y-4'>
-        <SectionHeader title={`Billboards (${billBoards.length})`} description='manage billboards of your store'>
+        <SectionHeader title={`Billboards (${billBoards.length})`} description='Manage store  billboards'>
           <Button variant='outline' onClick={onAddNew}>
             <Plus className='w-5 h-5' />
             Add New

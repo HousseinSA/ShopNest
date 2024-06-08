@@ -43,11 +43,7 @@ const BillBoardForm: React.FC<BillboardFormProps> = ({ billboardData }) => {
   const params = useParams()
 
   // conditions if there is not billboardData
-<<<<<<<<<<<<<<  ✨ Codeium Command 🌟 >>>>>>>>>>>>>>>>
-+  // The ternary operator checks if there is `billboardData`, if it does, it sets `toastMessage` to "Billboard update!", otherwise it sets it to "Billboard created!".
-+  // This is a concise way to assign a different value to `toastMessage` based on the truthiness of `billboardData`.
--  const toastMessage = billboardData ? `Billboard update!` : ' Billboard created!'
-<<<<<<<  c4e6674b-8af0-4a9b-9e2c-796a0018a551  >>>>>>>
+  const toastMessage = billboardData ? `Billboard update!` : ' Billboard created!'
   const action  = billboardData ?(loading? "Updating billboard": "Update billboard"):(loading? 'Creating billboard':'Create billboard')
 
   // sending data to DB
