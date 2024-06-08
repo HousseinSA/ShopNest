@@ -58,7 +58,7 @@ export async function PATCH(req: Request, { params }: { params: { storeCode: str
       data: {
         images: {
           createMany: {
-            data: [...new Set(images.map((image: { url: string }) => image.url))].map(url => ({ url })) // Ensure unique image URLs
+            data: [...new Set(images.map((image: { url: string }) => image.url))].map(url => ({ url }))
           }
         }
       }

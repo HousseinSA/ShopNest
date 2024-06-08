@@ -1,6 +1,5 @@
 'use client'
 import React, { useState } from 'react'
-import toast from 'react-hot-toast'
 import { Copy, Edit, MoreHorizontal, Trash } from 'lucide-react'
 import axios from 'axios'
 import { useParams, useRouter } from 'next/navigation'
@@ -9,6 +8,8 @@ import { ProductProps } from '@/components/products/ProductsTable/columns'
 import { Button } from '@/components/ui/button'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import AlertModal from '@/components/Modals/AlertModal'
+import {ToastSuccess, ToastError} from '@/components/GlobalComponent/Toast'
+
 
 interface CellActionProps {
   product: ProductProps
@@ -26,7 +27,7 @@ const ActionsColumn: React.FC<CellActionProps> = ({ product }) => {
   // handel copy
   const onCopy = (code: string): void => {
     navigator.clipboard.writeText(code)
-    toast.success('Code copied!')
+    ToastSuccess('Copied!')
   }
 
   // alert Modal state
@@ -38,10 +39,10 @@ const ActionsColumn: React.FC<CellActionProps> = ({ product }) => {
     try {
       setLoading(true)
       await axios.delete(`/api/${params.storeCode}/products/${product.id}`)
-      toast.success('product deleted!')
+      ToastSuccess('product deleted!')
       route.refresh()
     } catch (error) {
-      toast.error('Can\'t delete product, try again')
+      ToastError('Can\'t delete product, try again')
     } finally {
       setLoading(false)
       setIsOpen(false)

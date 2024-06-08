@@ -1,6 +1,5 @@
 'use client'
 import React, { useState } from 'react'
-import toast from 'react-hot-toast'
 import { Copy, Edit, MoreHorizontal, Trash } from 'lucide-react'
 import axios from 'axios'
 import { useParams, useRouter } from 'next/navigation'
@@ -9,6 +8,8 @@ import { CategoryProps } from '@/components/Categories/CategoryTable/columns'
 import { Button } from '@/components/ui/button'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import AlertModal from '@/components/Modals/AlertModal'
+import {ToastSuccess, ToastError} from '@/components/GlobalComponent/Toast'
+
 
 interface CellActionProps {
   category: CategoryProps
@@ -27,7 +28,7 @@ const ActionsColumn: React.FC<CellActionProps> = ({ category }) => {
   // handel copy
   const onCopy = (code: string): void => {
     navigator.clipboard.writeText(code)
-    toast.success('Code copied!')
+    ToastSuccess('Copied!')
   }
 
   // alert Modal state
@@ -40,10 +41,10 @@ const ActionsColumn: React.FC<CellActionProps> = ({ category }) => {
     try {
       setLoading(true)
       await axios.delete(`/api/${params.storeCode}/categories/${category.id}`)
-      toast.success('category deleted!')
+      ToastSuccess('category deleted!')
       route.refresh()
     } catch (error) {
-      toast.error('Remove products from category!')
+      ToastError('Remove products from category!')
 
     } finally {
       setLoading(false)

@@ -5,16 +5,16 @@ import { useState } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import axios from 'axios'
 import { ClipLoader } from 'react-spinners'
-import toast from 'react-hot-toast'
 
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { useModalStore } from '@/hooks/ModalStateStore'
 import { Modal } from './Modal'
 import { Button } from '@/components/ui/button'
+import { ToastError } from '../GlobalComponent/Toast'
 
 const formSchema = z.object({
-  storename: z.string().min(2).max(50)
+  storeName: z.string().min(2).max(50)
 })
 
 const StoreModal = () => {
@@ -22,7 +22,7 @@ const StoreModal = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      storename: ''
+      storeName: ''
     }
   })
 
@@ -36,7 +36,7 @@ const StoreModal = () => {
         window.location.assign(`/${id}`)
       }
     } catch (error) {
-      toast.error('Something went wrong!')
+      ToastError('Something went wrong!')
     } finally {
       setLoading(false)
     }
@@ -50,7 +50,7 @@ const StoreModal = () => {
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
             <FormField
-              name='storename'
+              name='storeName'
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Store Name</FormLabel>

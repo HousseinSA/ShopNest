@@ -4,13 +4,13 @@ import React, { useEffect, useState } from 'react'
 import { Size } from '@prisma/client'
 import { useRouter, useParams } from 'next/navigation'
 import axios from 'axios'
-import toast from 'react-hot-toast'
 
 import { Button } from '@/components/ui/button'
 import SectionHeader from '@/components/GlobalComponent/SectionHeader'
 import { Separator } from '@/components/ui/separator'
 import AlertModal from '@/components/Modals/AlertModal'
 import SizeForm from './SizeForm'
+import { ToastSuccess ,ToastError } from '@/components/GlobalComponent/Toast'
 
 interface storeSizeProps {
   size?: Size
@@ -35,10 +35,10 @@ const StoreSize: React.FC<storeSizeProps> = ({ size }) => {
       setLoading(true)
       await axios.delete(`/api/${params.storeCode}/sizes/${size.id}`)
       route.push(`/${params.storeCode}/sizes`)
-      toast.success('size deleted!')
+      ToastSuccess('size deleted!')
       route.refresh()
     } catch (error) {
-      toast.error('remove size from products')
+      ToastError('remove size from products')
      
     } finally {
       setLoading(false)

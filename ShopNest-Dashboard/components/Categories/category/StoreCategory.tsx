@@ -4,13 +4,13 @@ import React, { useState } from 'react'
 import { Billboard, Category } from '@prisma/client'
 import { useRouter, useParams } from 'next/navigation'
 import axios from 'axios'
-import toast from 'react-hot-toast'
 
 import { Button } from '@/components/ui/button'
 import SectionHeader from '@/components/GlobalComponent/SectionHeader'
 import { Separator } from '@/components/ui/separator'
 import AlertModal from '@/components/Modals/AlertModal'
 import CategoryForm from './CategoryForm'
+import {ToastSuccess, ToastError} from '@/components/GlobalComponent/Toast'
 
 interface CategoryProps {
   categoryData?: Category
@@ -36,10 +36,10 @@ const StoreCategory: React.FC<CategoryProps> = ({ categoryData, billboards }) =>
       setLoading(true)
       await axios.delete(`/api/${params.storeCode}/categories/${categoryData.id}`)
       route.push(`/${params.storeCode}/categories`)
-      toast.success('category deleted!')
+      ToastSuccess(`category ${categoryData.name} deleted!`)
       route.refresh()
-    } catch (error) {
-      toast.error('Remove products from category!')
+    } catch(error) {
+      ToastError(`Remove category ${categoryData.name} from products!`)
     } finally {
       setLoading(false)
       setIsOpen(false)

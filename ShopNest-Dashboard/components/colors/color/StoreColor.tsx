@@ -4,14 +4,13 @@ import React, { useState } from 'react'
 import { Color } from '@prisma/client'
 import { useRouter, useParams } from 'next/navigation'
 import axios from 'axios'
-import toast from 'react-hot-toast'
 
 import { Button } from '@/components/ui/button'
 import SectionHeader from '@/components/GlobalComponent/SectionHeader'
 import { Separator } from '@/components/ui/separator'
 import AlertModal from '@/components/Modals/AlertModal'
 import ColorForm from './ColorForm'
-
+import {ToastError, ToastSuccess} from '@/components/GlobalComponent/Toast'
 interface CategoryProps {
   colorData?: Color 
   colors: Color[] | null
@@ -36,10 +35,10 @@ const StoreColor: React.FC<CategoryProps> = ({ colorData, colors }) => {
       setLoading(true)
       await axios.delete(`/api/${params.storeCode}/colors/${colorData.id}`)
       route.push(`/${params.storeCode}/colors`)
-      toast.success('color deleted!')
+      ToastSuccess('color deleted!')
       route.refresh()
     } catch (error) {
-      toast.error('Remove color from products!')
+      ToastError('Remove color from products!')
     } finally {
       setLoading(false)
       setIsOpen(false)

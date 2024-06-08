@@ -9,7 +9,7 @@ generator client {
 
 model Store {
   id        String  @id @default(auto()) @map("_id") @db.ObjectId 
-  storename  String 
+  storeName  String 
   userId    String 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

@@ -37,7 +37,7 @@ const StoreSwitcher = ({ stores = [] }: StoreChangerProps) => {
 
   // formatting store array
   const formatedStores = stores.map((store) => ({
-    label: store?.storename,
+    label: store?.storeName,
     storeCode: store?.id
   }))
 

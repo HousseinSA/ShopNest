@@ -10,8 +10,8 @@ export async function PATCH(req: Request, { params }: { params: { storeCode: str
     }
 
     const body = await req.json()
-    const { storename } = body
-    if (!storename) {
+    const { storeName } = body
+    if (!storeName) {
       return new NextResponse('store name is required', { status: 400 })
     }
 
@@ -21,7 +21,7 @@ export async function PATCH(req: Request, { params }: { params: { storeCode: str
         userId: userId
       },
       data: {
-        storename
+        storeName
       }
     })
     return NextResponse.json(store)

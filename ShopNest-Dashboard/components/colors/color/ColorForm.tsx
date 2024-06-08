@@ -4,29 +4,26 @@ import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
-import toast from 'react-hot-toast'
-import { Color } from '@prisma/client'
+import { Color } from '@prisma/client's
 import { useParams, useRouter } from 'next/navigation'
 
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import FormButton from '@/components/GlobalComponent/FormButton'
+import {ToastSuccess, ToastError} from '@/components/GlobalComponent/Toast'
 
-// billBoardData props
+
 interface ColorFormProps {
-  colorData: Color |null
-  colors: Color[] 
+  colorData: Color | null
+  colors: Color[]
 }
 
 const ColorForm: React.FC<ColorFormProps> = ({ colorData, colors }) => {
-  // zod schema and type
   const formSchema = z.object({
     name: z.string().min(1),
-    value: z.string().min(4)
+    value: z.string().min(4, { message: 'add a color' })
   })
-
   type formValues = z.infer<typeof formSchema>
-
   const form = useForm<formValues>({
     resolver: zodResolver(formSchema),
     defaultValues: colorData || {
@@ -35,16 +32,13 @@ const ColorForm: React.FC<ColorFormProps> = ({ colorData, colors }) => {
     }
   })
 
-  // state and route
   const [loading, setLoading] = useState(false)
   const route = useRouter()
   const params = useParams()
 
-  // conditions if there is not billboardData
-  const toastMessage = colorData ? `color updated!` : ' color created!'
-  const action  = colorData ?(loading? "Updating color": "Update color"):(loading? 'Creating color':'Create color')
+  const toastMessage = colorData ? `Color updated!` : 'Color created!'
+  const action = colorData ? (loading ? 'Updating color' : 'Update color') : loading ? 'Creating color' : 'Create color'
 
-  // sending data to DB
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       setLoading(true)
@@ -53,21 +47,19 @@ const ColorForm: React.FC<ColorFormProps> = ({ colorData, colors }) => {
       } else {
         await axios.post(`/api/${params.storeCode}/colors`, values)
       }
-      // route refresh and message
-      route.push(`/${params.storeCode}/colors`)
-      toast.success(toastMessage)
+      route.push(`/${params.storeCode}/colors`) 
       route.refresh()
+      ToastSuccess(toastMessage)
     } catch (error) {
       if (error.response?.status === 402) {
-        toast.error(error.response.data)
+        ToastError(error.response.data)
       } else {
-        toast.error('Something went wrong')
+        ToastError('Something went wrong')
       }
     } finally {
       setLoading(false)
     }
   }
-
   return (
     <>
       <Form {...form}>
@@ -77,9 +69,9 @@ const ColorForm: React.FC<ColorFormProps> = ({ colorData, colors }) => {
               name='name'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>color name</FormLabel>
+                  <FormLabel>Color Name</FormLabel>
                   <FormControl>
-                    <Input disabled={loading} placeholder='color name' {...field} />
+                    <Input disabled={loading} placeholder='Color Name' {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -89,11 +81,11 @@ const ColorForm: React.FC<ColorFormProps> = ({ colorData, colors }) => {
               name='value'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Color value</FormLabel>
+                  <FormLabel>Color Value</FormLabel>
                   <FormControl>
-                    <div className='flex items-center space-x-4'>
-                      <Input disabled={loading} placeholder='color value' {...field} />
-                      <input type='color' className='color-picker' disabled={loading} {...field} value={field.value} onChange={(e) => field.onChange(e.target.value)} />
+                    <div className=' flex items-center space-x-4 '>
+                      <Input disabled={loading} placeholder='Color Value' value={field.value} onChange={(e) => field.onChange(e.target.value)} />
+                      <input type='color' className='color-picker' disabled={loading} value={field.value} onChange={(e) => field.onChange(e.target.value)} />
                     </div>
                   </FormControl>
                   <FormMessage />
@@ -102,13 +94,12 @@ const ColorForm: React.FC<ColorFormProps> = ({ colorData, colors }) => {
             />
           </div>
           <div className='mt-4'>
-          <FormButton loading={loading} action={action}/>
-
+            <FormButton loading={loading} action={action} />
           </div>
         </form>
       </Form>
     </>
-  ) 
+  )
 }
 
 export default ColorForm

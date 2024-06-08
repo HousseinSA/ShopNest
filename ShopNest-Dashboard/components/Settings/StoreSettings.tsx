@@ -4,7 +4,6 @@ import React, { useState } from 'react'
 import { Trash } from 'lucide-react'
 import { useRouter, useParams } from 'next/navigation'
 import axios from 'axios'
-import toast from 'react-hot-toast'
 
 import { Button } from '@/components/ui/button'
 import StoreSettingsForm from './StoreSettingsForm'
@@ -13,6 +12,7 @@ import ApiAlert from '@/components/GlobalComponent/ApiAlert'
 import useClientMethods from '@/hooks/use-client-methods'
 import SectionHeader from '@/components/GlobalComponent/SectionHeader'
 import AlertModal from '@/components/Modals/AlertModal'
+import { ToastSuccess, ToastError } from '../GlobalComponent/Toast'
 
 interface StoreSettingsProps {
   storeData: Store
@@ -38,10 +38,10 @@ const StoreSettings: React.FC<StoreSettingsProps> = ({ storeData }) => {
 
       await axios.delete(`/api/stores/${params.storeCode}`)
       route.push('/')
-      toast.success('store deleted!')
+      ToastSuccess(`${storeData.storeName} store deleted!`)
       route.refresh()
     } catch (error) {
-      toast.error('delete products and categories first', error)
+      ToastError(`remove all store ${storeData.storeName} items first. `)
     } finally {
       setLoading(false)
       setIsOpen(false)
@@ -50,9 +50,9 @@ const StoreSettings: React.FC<StoreSettingsProps> = ({ storeData }) => {
 
   return (
     <>
-      <AlertModal title='Delete Store?' loading={loading} onDelete={onStoreDelete} description='Are you sure you want to delete store?' isOpen={isOpen} setIsOpen={setIsOpen} />
+      <AlertModal title='Delete Store?' loading={loading} onDelete={onStoreDelete} description={`Are you sure you want to delete ${storeData.storeName} store?`} isOpen={isOpen} setIsOpen={setIsOpen} />
       <div className='flex flex-col space-y-4'>
-        <SectionHeader title={'Settings'} description={`Edit ${storeData?.storename} store`}>
+        <SectionHeader title={'Settings'} description={`Edit ${storeData?.storeName} store`}>
           <Button variant='destructive' aria-label='delete button' size='icon' className='rounded-full' onClick={() => setIsOpen(true)}>
             <Trash className='w-5 h-5' />
           </Button>

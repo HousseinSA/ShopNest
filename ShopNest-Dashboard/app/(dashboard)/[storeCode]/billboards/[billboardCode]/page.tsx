@@ -23,7 +23,7 @@ async function BillBoardPage({ params }: { params: { billboardCode: string; stor
 
       return (
         <div className='p-4 flex flex-col flex-1'>
-          <StoreBillBoard billBoardData={billboard} />
+          <StoreBillBoard billboardData={billboard} />
         </div>
       )
     }

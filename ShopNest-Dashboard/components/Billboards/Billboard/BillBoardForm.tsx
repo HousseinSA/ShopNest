@@ -4,22 +4,23 @@ import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
-import toast from 'react-hot-toast'
+
 import { Billboard } from '@prisma/client'
 import { useParams, useRouter } from 'next/navigation'
 
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import FormButton from '@/components/GlobalComponent/FormButton'
-
 import ImageUpload from '@/components/GlobalComponent/ImageUpload'
+import {ToastSuccess, ToastError} from '@/components/GlobalComponent/Toast'
 
-// billBoardData props
+
+// billboardData props
 interface BillboardFormProps {
-  billBoardData: Billboard | null
+  billboardData: Billboard | null
 }
 
-const BillBoardForm: React.FC<BillboardFormProps> = ({ billBoardData }) => {
+const BillBoardForm: React.FC<BillboardFormProps> = ({ billboardData }) => {
   // zod schema and type
   const formSchema = z.object({
     label: z.string().min(1),
@@ -30,7 +31,7 @@ const BillBoardForm: React.FC<BillboardFormProps> = ({ billBoardData }) => {
 
   const form = useForm<formValues>({
     resolver: zodResolver(formSchema),
-    defaultValues: billBoardData || {
+    defaultValues: billboardData || {
       label: '',
       imageUrl: ''
     }
@@ -42,28 +43,32 @@ const BillBoardForm: React.FC<BillboardFormProps> = ({ billBoardData }) => {
   const params = useParams()
 
   // conditions if there is not billboardData
-  const toastMessage = billBoardData ? `Billboard update!` : ' Billboard created!'
-  const action  = billBoardData ?(loading? "Updating billboard": "Update billboard"):(loading? 'Creating billboard':'Create billboard')
+<<<<<<<<<<<<<<  ✨ Codeium Command 🌟 >>>>>>>>>>>>>>>>
++  // The ternary operator checks if there is `billboardData`, if it does, it sets `toastMessage` to "Billboard update!", otherwise it sets it to "Billboard created!".
++  // This is a concise way to assign a different value to `toastMessage` based on the truthiness of `billboardData`.
+-  const toastMessage = billboardData ? `Billboard update!` : ' Billboard created!'
+<<<<<<<  c4e6674b-8af0-4a9b-9e2c-796a0018a551  >>>>>>>
+  const action  = billboardData ?(loading? "Updating billboard": "Update billboard"):(loading? 'Creating billboard':'Create billboard')
 
   // sending data to DB
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       setLoading(true)
-      if (billBoardData) {
+      if (billboardData) {
         await axios.patch(`/api/${params.storeCode}/billboards/${params.billboardCode}`, values)
       } else {
         await axios.post(`/api/${params.storeCode}/billboards`, values)
       }
       // Route refresh and success message
       route.push(`/${params.storeCode}/billboards`)
-      toast.success(toastMessage)
+      ToastSuccess(toastMessage)
       route.refresh()
     } catch (error) {
       
       if ((error.response?.status === 402)) {
-        toast.error(error.response.data)
+        ToastError(error.response.data)
       } else {
-        toast.error('Something went wrong')
+        ToastError('Something went wrong')
       }
     } finally {
       setLoading(false)
