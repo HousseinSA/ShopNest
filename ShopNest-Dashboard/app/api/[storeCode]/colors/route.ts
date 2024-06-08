@@ -14,7 +14,7 @@ export async function POST(req: Request, { params }: { params: { storeCode: stri
     if (!params.storeCode) {
       new NextResponse('No store code found', { status: 400 })
     }
-    // checking is there is store by this user
+    // checking if there is store by this user
     const storeByUserId = await prismaDB.store.findFirst({
       where: {
         id: params.storeCode,

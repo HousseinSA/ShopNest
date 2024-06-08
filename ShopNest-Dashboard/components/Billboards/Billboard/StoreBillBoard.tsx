@@ -4,22 +4,23 @@ import React, { useState } from 'react'
 import { Billboard } from '@prisma/client'
 import { useRouter, useParams } from 'next/navigation'
 import axios from 'axios'
-import toast from 'react-hot-toast'
 
 import { Button } from '@/components/ui/button'
 import SectionHeader from '@/components/GlobalComponent/SectionHeader'
 import BillBoardForm from './BillBoardForm'
 import { Separator } from '@/components/ui/separator'
 import AlertModal from '@/components/Modals/AlertModal'
+import {ToastSuccess, ToastError} from '@/components/GlobalComponent/Toast'
+
 
 interface BillBoardProps {
-  billBoardData?: Billboard 
+  billboardData?: Billboard 
 }
 
-const StoreBillBoard: React.FC<BillBoardProps> = ({ billBoardData }) => {
+const StoreBillBoard: React.FC<BillBoardProps> = ({ billboardData }) => {
   // conditions for path header
-  const title = billBoardData ? `Edit ${billBoardData.label} billboard` : 'Create billboard'
-  const description = billBoardData ? `Edit Billboard ${billBoardData.label}` : 'Add a new billboard'
+  const title = billboardData ? `Edit ${billboardData.label} billboard` : 'Create billboard'
+  const description = billboardData ? `Edit Billboard ${billboardData.label}` : 'Add a new billboard'
 
   // store delete modal state
   const [isOpen, setIsOpen] = useState(false)
@@ -33,12 +34,12 @@ const StoreBillBoard: React.FC<BillBoardProps> = ({ billBoardData }) => {
   const onBillboardDelete = async () => {
     try {
       setLoading(true)
-      await axios.delete(`/api/${params.storeCode}/billboards/${billBoardData.id}`)
+      await axios.delete(`/api/${params.storeCode}/billboards/${billboardData.id}`)
       route.push(`/${params.storeCode}/billboards`)
-      toast.success('billboard deleted!')
+      ToastSuccess('billboard deleted!')
       route.refresh() 
     } catch (error) {
-      toast.error('Remove billboard from categories!')
+      ToastError('Remove billboard from categories!')
     } finally {
       setLoading(false)
       setIsOpen(false)
@@ -47,17 +48,17 @@ const StoreBillBoard: React.FC<BillBoardProps> = ({ billBoardData }) => {
 
   return (
     <>
-      <AlertModal title='delete billboard' loading={loading} onDelete={onBillboardDelete} description='Are you sure you want to delete billboard?' isOpen={isOpen} setIsOpen={setIsOpen} />
+      <AlertModal title={`Delete ${billboardData?.label} billboard`} loading={loading} onDelete={onBillboardDelete} description={`Are you sure you want to delete ${billboardData?.label} billboard?`} isOpen={isOpen} setIsOpen={setIsOpen} />
       <div className='flex flex-col space-y-4'>
         <SectionHeader title={title} description={description}>
-          {billBoardData && (
+          {billboardData && (
             <Button variant='destructive' aria-label='delete button' size='icon' className='rounded-full' onClick={() => setIsOpen(true)}>
               <Trash className='w-5 h-5' />
             </Button>
           )}
         </SectionHeader>
         <Separator />
-        <BillBoardForm billBoardData={billBoardData} />
+        <BillBoardForm billboardData={billboardData} />
       </div>
     </>
   )
