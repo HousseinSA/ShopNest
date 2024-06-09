@@ -1,10 +1,9 @@
 'use client'
 import React from 'react'
-import { Plus } from 'lucide-react'
 import { useRouter, useParams } from 'next/navigation'
 
-import SectionHeader from '@/components/GlobalComponent/SectionHeader'
-import { Button } from '@/components/ui/button'
+import SectionHeader from '@/components/GlobalComponent/storeHead/SectionHeader'
+import HeadButton from '@/components/GlobalComponent/storeHead/HeadButton'
 import { Separator } from '@/components/ui/separator'
 import { ColorProps, columns } from '@/components/colors/ColorTable/columns'
 import { DataTable } from '@/components/colors/ColorTable/data-table'
@@ -27,10 +26,7 @@ const StoreColors: React.FC<StoreCategoryProps> = ({ colors }) => {
     <>
       <div className='flex flex-col space-y-4'>
         <SectionHeader title={`Colors (${colors.length})`} description='Manage store colors'>
-          <Button variant='outline' onClick={onAddNew}>
-            <Plus className='w-5 h-5' />
-            Add New
-          </Button>
+        <HeadButton onAddNew={onAddNew}>Add Color</HeadButton>
         </SectionHeader>
         <Separator />
         <DataTable filterKey='name' columns={columns} data={colors} />
