@@ -3,7 +3,9 @@ import React from 'react'
 import { Plus } from 'lucide-react'
 import { useRouter, useParams } from 'next/navigation'
 
-import SectionHeader from '@/components/GlobalComponent/SectionHeader'
+
+import SectionHeader from '@/components/GlobalComponent/storeHead/SectionHeader'
+import HeadButton from '@/components/GlobalComponent/storeHead/HeadButton'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { BillboardProps, columns } from '@/components/Billboards/BillboardsTable/columns'
@@ -27,10 +29,9 @@ const StoreBillBoards: React.FC<BillBoardsProps> = ({ billBoards }) => {
     <>
       <div className='flex flex-col space-y-4'>
         <SectionHeader title={`Billboards (${billBoards.length})`} description='Manage store  billboards'>
-          <Button variant='outline' onClick={onAddNew}>
-            <Plus className='w-5 h-5' />
-            Add New
-          </Button>
+        <HeadButton onAddNew ={onAddNew}>
+              Add Product 
+          </HeadButton>
         </SectionHeader>
         <Separator />
         <DataTable filterKey='label' columns={columns} data={billBoards} />

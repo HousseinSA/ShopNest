@@ -5,9 +5,7 @@ import { ColumnDef } from '@tanstack/react-table'
 import ActionsColumn from './ActionsColumn'
 import Image from 'next/image'
 
-
-// This type is used to define the shape of our data.
-// You can use a Zod schema here if you want.
+//image type for zod 
 type productImages = {
   id: string;
   productCode: string;
@@ -34,7 +32,7 @@ export const columns: ColumnDef<ProductProps>[] = [
     accessorKey: 'image',
     header: 'Product',
     cell: ({ row }) => (
-      <div className='flex items-center gap-4'>
+      <div  className='flex items-center gap-4 '>
       <Image className='rounded-md' width={100} height={50} src={row.original.images[0].url} alt={row.original.name} />
       </div>
     )
@@ -91,7 +89,7 @@ export const columns: ColumnDef<ProductProps>[] = [
   },
   {
     accessorKey: 'action',
-    header: 'Action',
+    header: 'Action', 
     cell: ({ row }) => <ActionsColumn product={row.original} />
   }
 ]

@@ -51,9 +51,9 @@ const ActionsColumn: React.FC<CellActionProps> = ({ product }) => {
 
   return (
     <>
-      <AlertModal title='delete product' description='Are you sure you want to delete product?' loading={loading} onDelete={onProductDelete} isOpen={isOpen} setIsOpen={setIsOpen} />
+      <AlertModal title='delete product' description={`Are you sure you want to delete ${product.name} product?`} loading={loading} onDelete={onProductDelete} isOpen={isOpen} setIsOpen={setIsOpen} />
       <DropdownMenu>
-        <DropdownMenuTrigger asChild>
+        <DropdownMenuTrigger >
           <Button variant='ghost' size='sm'>
             <span className='sr-only'>open menu</span>
             <MoreHorizontal className='h-5 w-5' />

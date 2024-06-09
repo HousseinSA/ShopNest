@@ -3,8 +3,8 @@ import React from 'react'
 import { Plus } from 'lucide-react'
 import { useRouter, useParams } from 'next/navigation'
 
-import SectionHeader from '@/components/GlobalComponent/SectionHeader'
-import { Button } from '@/components/ui/button'
+import SectionHeader from '@/components/GlobalComponent/storeHead/SectionHeader'
+import HeadButton from '@/components/GlobalComponent/storeHead/HeadButton'
 import { Separator } from '@/components/ui/separator'
 import { ProductProps, columns } from '@/components/products/ProductsTable/columns'
 import { DataTable } from '@/components/products/ProductsTable/data-table'
@@ -25,10 +25,9 @@ const StoreProducts: React.FC<StoreProductProps> = ({ products }) => {
     <>
       <div className='flex flex-col space-y-4'>
         <SectionHeader title={`Products (${products?.length})`} description='Manage store products'>
-          <Button variant='outline' onClick={onAddNew}>
-            <Plus className='w-5 h-5' />
-            Add New
-          </Button>
+        <HeadButton onAddNew ={onAddNew}>
+              Add Product 
+          </HeadButton>
         </SectionHeader>
         <Separator />
         <DataTable filterKey='name' columns={columns} data={products} />

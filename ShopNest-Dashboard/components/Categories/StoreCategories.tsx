@@ -3,7 +3,9 @@ import React from 'react'
 import { Plus } from 'lucide-react'
 import { useRouter, useParams } from 'next/navigation'
 
-import SectionHeader from '@/components/GlobalComponent/SectionHeader'
+
+import SectionHeader from '@/components/GlobalComponent/storeHead/SectionHeader'
+import HeadButton from '@/components/GlobalComponent/storeHead/HeadButton'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { CategoryProps, columns } from '@/components/Categories/CategoryTable/columns'
@@ -27,10 +29,9 @@ const StoreCategories: React.FC<StoreCategoryProps> = ({ categories }) => {
     <>
       <div className='flex flex-col space-y-4'>
         <SectionHeader title={`Categories (${categories.length})`} description='Manage store categories'>
-          <Button variant='outline' onClick={onAddNew}>
-            <Plus className='w-5 h-5' />
-            Add New
-          </Button>
+        <HeadButton onAddNew ={onAddNew}>
+              Add Category 
+          </HeadButton>
         </SectionHeader>
         <Separator />
         <DataTable filterKey='name' columns={columns} data={categories} />
