@@ -6,7 +6,8 @@ import { useRouter, useParams } from 'next/navigation'
 import axios from 'axios'
 
 import { Button } from '@/components/ui/button'
-import SectionHeader from '@/components/GlobalComponent/SectionHeader'
+import SectionHeader from '@/components/GlobalComponent/storeHead/SectionHeader'
+
 import ProductForm from '@/components/products/Product/ProductForm'
 import { Separator } from '@/components/ui/separator'
 import AlertModal from '@/components/Modals/AlertModal'

@@ -10,7 +10,8 @@ import StoreSettingsForm from './StoreSettingsForm'
 import { Separator } from '@/components/ui/separator'
 import ApiAlert from '@/components/GlobalComponent/ApiAlert'
 import useClientMethods from '@/hooks/use-client-methods'
-import SectionHeader from '@/components/GlobalComponent/SectionHeader'
+import SectionHeader from '@/components/GlobalComponent/storeHead/SectionHeader'
+
 import AlertModal from '@/components/Modals/AlertModal'
 import { ToastSuccess, ToastError } from '../GlobalComponent/Toast'
 
