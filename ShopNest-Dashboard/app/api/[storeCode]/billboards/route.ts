@@ -69,3 +69,23 @@ export async function POST(req: Request, { params }: { params: { storeCode: stri
     return new NextResponse('Internal Error', { status: 500 })
   }
 }
+
+// getting billboard 
+
+export async function GET(req: Request, { params }: { params: { storeCode: string } }) {
+  try {
+    if (!params.storeCode) {
+      new NextResponse('store code is not valid.', { status: 400 })
+    }
+
+    const billboard = await prismaDB.billboard.findMany({
+      where: {
+        storeCode: params.storeCode
+      }
+    })
+    return NextResponse.json(billboard)
+  } catch (error) {
+    console.log(`CATEGORY_GET`, error)  
+    return new NextResponse('Internal Error', { status: 500 })
+  }
+}

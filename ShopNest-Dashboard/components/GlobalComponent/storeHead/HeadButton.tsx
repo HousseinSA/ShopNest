@@ -11,7 +11,7 @@ interface ButtonProps {
 
 const HeadButton:React.FC<ButtonProps> = ({onAddNew, children}) => {
   return (
-    <Button variant='outline' className='bg-[#437e41] text-white' onClick={onAddNew}>
+    <Button className='bg-[#437e41] hover:opacity-75 text-white' onClick={onAddNew}>
     <Plus className='w-5 h-5' />
     {children}
   </Button>
