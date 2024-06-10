@@ -28,12 +28,12 @@ interface StoreProductProps {
 const ProductForm: React.FC<StoreProductProps> = ({ productData, sizes, colors, categories }) => {
   // zod schema and type
   const formSchema = z.object({
-    name: z.string().min(2, { message: 'Name must be at least 2 character long.' }),
-    price: z.coerce.number().min(1, { message: 'Price must be at least 1.' }),
-    images: z.object({ url: z.string().min(2, { message: 'Image URL must be provided' }) }).array(),
-    colorCode: z.string().min(2, { message: 'Color must be provided.' }),
-    sizeCode: z.string().min(2, { message: 'Size must be provided.' }),
-    categoryCode: z.string().min(2, { message: 'Category must be provided.' }),
+    name: z.string().min(2, { message: 'Add product name .' }),
+    price: z.coerce.number().min(1, { message: 'Add price.' }),
+    images: z.object({ url: z.string().min(2, { message: 'Add image' }) }).array(),
+    colorCode: z.string().min(2, { message: 'Select color.' }),
+    sizeCode: z.string().min(2, { message: 'Select size.' }),
+    categoryCode: z.string().min(2, { message: 'Select category.' }),
     isFeatured: z.boolean().default(false).optional(),
     isArchived: z.boolean().default(false).optional()
   })
