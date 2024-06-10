@@ -19,6 +19,7 @@ const CategoriesPage = async ({ params }: { params: { storeCode: string } }) => 
       }
     })
 
+
     const formattedCategory: CategoryProps[] = categories?.map((category) => ({
       id: category.id,
       name: category.name,

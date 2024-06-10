@@ -64,3 +64,23 @@ export async function POST(req: Request, { params }: { params: { storeCode: stri
     return new NextResponse('Internal Error', { status: 500 })
   }
 }
+
+// getting categories 
+
+export async function GET(req: Request, { params }: { params: { storeCode: string } }) {
+  try {
+    if (!params.storeCode) {
+      new NextResponse('store code is not valid.', { status: 400 })
+    }
+
+    const categories = await prismaDB.category.findMany({
+      where: {
+        storeCode: params.storeCode
+      }
+    })
+    return NextResponse.json(categories)
+  } catch (error) {
+    console.log(`CATEGORY_GET`, error)
+    return new NextResponse('Internal Error', { status: 500 })
+  }
+}

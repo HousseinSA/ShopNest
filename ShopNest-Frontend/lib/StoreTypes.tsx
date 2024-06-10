@@ -4,7 +4,7 @@ export interface Billboard {
   imageUrl: string
 }
 export interface Category {
-  id: string
+  id: string  
   name: string
   billboard: Billboard
 }
