@@ -1,36 +1,25 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import ButtonAction from "@/components/buttonAction"
-
+import ButtonAction from "@/components/buttonAction";
 import Navigation from "./Navigation";
 import getCategoriesData from "@/lib/fetchData/getCategories";
-
-export const revalidate = 0
 
 const Header = async () => {
   const categories = await getCategoriesData();
   return (
-    <header className="mx-auto py-2 md:py-3 lg:py-5 max-w-7xl border-b">
-      <div className=" relative  flex items-center px-4 sm:px-6 lg:px-8">
-        <div className="w-auto h-auto">
-          <Link href={"/"}>
-            <Image
-              alt="logo"
-              loading="lazy"
-              width="200"
-              height="150"
-              decoding="async"
-              data-nimg="1"
-              src="/_next/image?url=%2Fshopnest-high-resolution-logo-transparent.png&w=640&q=75"
-            />
+    <header className="py-4 md:py-5 lg:py-6 sticky left-0 top-0 z-20 mx-auto right-0 bg-white shadow-md w-full max-w-7xl border-b ">
+      <div className="flex items-center gap-5 mx-4 ">
+        <div className="ml-2 sm:ml-3 md:ml-5">
+          <Link href={'/'}>
+          <Image src="/shopnest-logo.png" width={200} alt="logo" height={200} />
           </Link>
         </div>
         <Navigation categoriesData={categories} />
-        <ButtonAction/>
+        <ButtonAction />
       </div>
     </header>
   );
-};  
+};
 
 export default Header;

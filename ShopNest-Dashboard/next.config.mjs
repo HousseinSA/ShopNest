@@ -1,4 +1,4 @@
-/** @type {import('next').NextConfig} */
+/** @type {import('next').NextConwfig} */
 const nextConfig = {
   images: {
     // remotePatterns: [
