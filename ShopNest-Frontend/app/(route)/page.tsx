@@ -1,16 +1,21 @@
 import Container from "@/components/ui/container";
 import Billboard from "@/components/billboard";
 import getBillboard from "@/lib/fetchData/getBillboard";
+import getProducts from "@/lib/fetchData/getProducts";
+import Products from "@/components/products";
 
-
-export const revalidate = 0
+export const revalidate = 0;
 const HomePage = async () => {
-const data = await getBillboard('665f21dbe93867b368fb6b6f')    
+  const billboard = await getBillboard("665f21dbe93867b368fb6b6f");
+  const products = await getProducts({ isFeatured: true });
   return (
     <Container>
-      <div className='space-y-10 pb-10'>
-        <Billboard  billboardData={data}/>
-        </div> 
+      <div className="space-y-10 pb-10">
+        <Billboard billboardData={billboard} />
+      </div>
+      <div className="space-y-10 pb-10">
+        <Products title="Featured Products" products={products} />
+      </div>
     </Container>
   );
 };

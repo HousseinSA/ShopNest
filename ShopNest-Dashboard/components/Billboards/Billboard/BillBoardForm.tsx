@@ -4,12 +4,11 @@ import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
-
 import { Billboard } from '@prisma/client'
 import { useParams, useRouter } from 'next/navigation'
 
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
+import { Textarea } from '@/components/ui/textarea'
 import FormButton from '@/components/GlobalComponent/FormButton'
 import ImageUpload from '@/components/GlobalComponent/ImageUpload'
 import {ToastSuccess, ToastError} from '@/components/GlobalComponent/Toast'
@@ -73,7 +72,7 @@ const BillBoardForm: React.FC<BillboardFormProps> = ({ billboardData }) => {
   
 
   return (
-    <div className='grid md:grid-cols-3 gap-8 lg:grid-cols-6'>
+    <div className='grid md:grid-cols-2 gap-8 lg:grid-cols-4'>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <FormField
@@ -94,7 +93,7 @@ const BillBoardForm: React.FC<BillboardFormProps> = ({ billboardData }) => {
               <FormItem>
                 <FormLabel>Billboard label</FormLabel>
                 <FormControl>
-                  <Input disabled={loading} placeholder='billboard name' {...field} />
+                  <Textarea disabled={loading} placeholder='Enter billboard info' {...field}/>
                 </FormControl>
                 <FormMessage />
               </FormItem>

@@ -3,7 +3,7 @@ interface ContainerProps {
 }
 const Container:React.FC<ContainerProps> =({children}) =>{
     return (
-        <div>{children}</div>
+        <div >{children}</div>
     )
 }
 
