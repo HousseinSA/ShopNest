@@ -24,7 +24,7 @@ function ProductCard({product}:Product): React.ReactElement {
           layout="fill"
           src={product.images[0].url}
           alt={product.name}
-          className="aspect-square object-fit rounded-md"
+          className="aspect-square object-contain object-center rounded-xl "
         />
         <div className="opacity-0 group-hover:opacity-100 transition absolute w-full px-6 bottom-5 ">
           <div className="flex justify-center gap-x-4">
@@ -37,15 +37,13 @@ function ProductCard({product}:Product): React.ReactElement {
       </div>
       {/* discreption */}
       <div>
-        <p className="font-semibold text-lg text-[#1E421D]">
+        <p className="font-semibold text-lg text-primary-mainColor">
           {product.category.name}
         </p>
-        <p className="text-sm text-gray-500">{product.name}</p>
+        <p className="text-sm text-gray-500 m-0">{product.name}</p>
       </div>
       {/* price */}
-      <div className="flex justify-between">
         <Currency data={product.price} />
-      </div>
     </div>
   );
 };

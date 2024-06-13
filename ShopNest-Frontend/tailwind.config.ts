@@ -21,7 +21,8 @@
           foreground: 'hsl(var(--foreground))',
           primary: {
             DEFAULT: 'hsl(var(--primary))',
-            foreground: 'hsl(var(--primary-foreground))'
+            foreground: 'hsl(var(--primary-foreground))', 
+            mainColor:'#1E421D'
           },
           secondary: {
             DEFAULT: 'hsl(var(--secondary))',
