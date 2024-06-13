@@ -16,14 +16,14 @@ const GalleryTab: React.FC<ImageProps> = ({ image }) => {
               src={image.url}
               alt="product image"
               layout="fill"
-              className="object-cover object-center"
+              className="object-fit object-center"
             />
           </span>
           <span
             className={`absolute inset-0 rounded-md ring-2 ring-offset-2 ${
               selected ? "ring-[#1E421D]" : "ring-transparent"
             }`}
-          />
+          />  
         </div>
       )}
     </Tab>
