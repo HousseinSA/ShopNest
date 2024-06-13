@@ -1,5 +1,6 @@
 'use client'
 import React, { useEffect, useState} from 'react'
+import { cn } from '@/lib/utils'
 
 const PriceFormatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -9,10 +10,11 @@ const PriceFormatter = new Intl.NumberFormat('en-US', {
   })
 interface CurrencyValue {
     data:number
+    ,className?:string
 }
 
   
-  const Currency:React.FC<CurrencyValue> = ({data}) => {
+  const Currency:React.FC<CurrencyValue> = ({data ,className}) => { 
     const [isMounted, setIsMounted]  = useState(false)
     useEffect(()=>{
       setIsMounted(true)
@@ -22,9 +24,9 @@ interface CurrencyValue {
       return null
     }
     return (
-      <div className='text-sm font-semibold text-[#1E421D]'>
+      <span className={cn('text-sm font-semibold text-primary-mainColor', className)}>
             {PriceFormatter.format(data)}
-      </div>
+      </span>
     )
   }
   
