@@ -20,8 +20,8 @@ interface BillBoardProps {
 
 const StoreBillBoard: React.FC<BillBoardProps> = ({ billboardData }) => {
   // conditions for path header
-  const title = billboardData ? `Edit ${billboardData.label} billboard` : 'Create billboard'
-  const description = billboardData ? `Edit Billboard ${billboardData.label}` : 'Add a new billboard'
+  const title = billboardData ? `Update Billboard` : 'Create Billboard';
+  const description = billboardData ? `Modify the existing billboard details` : 'Add a new billboard to your collection';
 
   // store delete modal state
   const [isOpen, setIsOpen] = useState(false)
@@ -49,7 +49,7 @@ const StoreBillBoard: React.FC<BillBoardProps> = ({ billboardData }) => {
 
   return (
     <>
-      <AlertModal title={`Delete ${billboardData?.label} billboard`} loading={loading} onDelete={onBillboardDelete} description={`Are you sure you want to delete ${billboardData?.label} billboard?`} isOpen={isOpen} setIsOpen={setIsOpen} />
+      <AlertModal title={`Delete billboard`} loading={loading} onDelete={onBillboardDelete} description={`Are you sure you want to delete this billboard?`} isOpen={isOpen} setIsOpen={setIsOpen} />
       <div className='flex flex-col space-y-4'>
         <SectionHeader title={title} description={description}>
           {billboardData && (

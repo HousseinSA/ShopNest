@@ -63,14 +63,25 @@ const MainNav = () => {
   ]
 
   return (
-    <nav className='flex items-center space-x-4 md:space-x-6 mx-6'>
-      {routes.map((route) => {
-        return (
-          <Link className={cn('text-sm font-medium transition-colors hover:text-primary', route.active ? 'text-[#437e41] font-bolder  dark:text-white' : 'text-muted-foreground')} key={route.link} href={route.link}>
-            {route.label}
-          </Link>
-        )
-      })}
+    <nav className='flex items-center gap-4 md:gap-6 '>
+      {routes.map((route) => (
+        <Link
+          className={cn(
+            'relative group text-md transition-colors  hover:text-primary-mainColor',
+            route.active ? 'text-primary-mainColor font-bold dark:text-white' : 'text-black'
+          )}
+          key={route.link}
+          href={route.link}
+        >
+          {route.label}
+            <span
+              className={cn(
+                'absolute left-0 bottom-[-2px] w-full h-[2px] bg-primary-hoverMain transition-transform duration-300 transform scale-x-0 group-hover:scale-x-100',
+                route.active ? 'scale-x-100' : 'scale-x-0'
+              )}
+            />
+        </Link>
+      ))}
     </nav>
   )
 }

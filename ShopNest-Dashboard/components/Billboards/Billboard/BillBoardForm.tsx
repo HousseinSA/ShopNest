@@ -36,7 +36,7 @@ const BillBoardForm: React.FC<BillboardFormProps> = ({ billboardData }) => {
     }
   })
 
-  // state and route
+  // state and routep
   const [loading, setLoading] = useState(false)
   const route = useRouter()
   const params = useParams()
@@ -82,7 +82,7 @@ const BillBoardForm: React.FC<BillboardFormProps> = ({ billboardData }) => {
                 <FormLabel>Background image</FormLabel>
                 <FormControl>
                   <ImageUpload disabled={loading} value={field.value ? [field.value] : []} onChange={(url) => field.onChange(url)} onRemove={() => field.onChange('')} />
-                </FormControl>
+                </FormControl>  
                 <FormMessage /> 
               </FormItem>
             )}
