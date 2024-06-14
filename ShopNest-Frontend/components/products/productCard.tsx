@@ -18,8 +18,8 @@ function ProductCard({product}:Product): React.ReactElement {
     route.push(`/product/${product.id}`)
   }
   return (
-    <div onClick={onClick}  className="rounded-xl cursor-pointer bg-white group space-y-4 border p-3 shadow-md">
-      <div className="aspect-square relative bg-gray-100 rounded-xl">
+    <div onClick={onClick}  className="rounded-xl cursor-pointer bg-white group  border p-3 shadow-md">
+      <div className="aspect-square relative bg-white rounded-xl">
         <Image
           layout="fill"
           src={product.images[0].url}
@@ -37,10 +37,10 @@ function ProductCard({product}:Product): React.ReactElement {
       </div>
       {/* discreption */}
       <div>
-        <p className="font-semibold text-lg text-primary-mainColor">
+        <p className="font- text-lg text-primary-mainColor">
           {product.category.name}
         </p>
-        <p className="text-sm text-gray-500 m-0">{product.name}</p>
+        <p className="text-sm font-semibold text-gray-700 m-0">{product.name}</p>
       </div>
       {/* price */}
         <Currency data={product.price} />

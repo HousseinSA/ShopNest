@@ -1,6 +1,6 @@
 'use client'
 
-import { CldUploadWidget } from 'next-cloudinary'
+import { CldUploadWidget, CldImage } from 'next-cloudinary'
 import React, { useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
@@ -36,21 +36,20 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ disabled, onChange, onRemove,
         {value.map((url) => (
           <div key={url} className='relative w-[250px] h-[250px] flex items-center justify-center bg-gray-100 rounded-md overflow-hidden'>
             <div className='absolute top-2 right-2 z-10'>
-              <Button
-                type='button'
-                onClick={() => onRemove(url)}
-                variant='outline'
-                className='rounded-full outline-none py-3 px-3 hover:bg-red-500 hover:opacity-100 opacity-50 group'
-              >
+              <Button type='button' onClick={() => onRemove(url)} variant='outline' className='rounded-full outline-none py-3 px-3 hover:bg-red-500 hover:opacity-100 opacity-50 group'>
                 <Trash className='h-4 w-4 group-hover:text-white' />
               </Button>
             </div>
-            <Image
+            <CldImage
               src={url}
               alt={'uploaded image'}
-              layout="fill"
-              objectFit="cover"
-              className="rounded-lg"
+              crop={{
+                type: 'fill', // Change "auto" to "fill" or any other supported type
+                source: true
+              }}
+              width={250}
+              height={250}
+              className='rounded-lg'
             />
           </div>
         ))}

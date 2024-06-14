@@ -19,11 +19,9 @@ interface CategoryProps {
 
 const StoreColor: React.FC<CategoryProps> = ({ colorData, colors }) => {
   // conditions for path header
-  const title = colorData ? `Edit ${colorData.name} color` : 'Create color'
-  const description = colorData ? `Edit color ${colorData.name}` : 'Add a new color'
 
-  // store delete modal state
-  const [isOpen, setIsOpen] = useState(false)
+  const title = colorData ? `Update ${colorData.name} Color` : 'Create New Color';
+  const description = colorData ? `Update the details for color ${colorData.name}` : 'Add a new color option to your palette';  const [isOpen, setIsOpen] = useState(false)
   const [loading, setLoading] = useState(false)
 
   // get the url path and route
