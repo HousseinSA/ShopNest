@@ -16,11 +16,11 @@ const ButtonAction = () => {
     return null
   }
   return (
-    <div  className='ml-auto flex gap-x-4 items-center '>
-      <Button  className='relative bg-[#437e41] rounded-full p-3 disabled:cursor-not-allowed transition hover:opacity-75 flex items-center text-white'>
-        <ShoppingBag  size={20} color='white'/>
-      <div className='absolute -top-3 -left-1 w-6 h-6 p-1 justify-center flex items-center bg-red-500 rounded-full'>
-        <span className='text-xs'>0</span>
+    <div  className='ml-auto w-8 h-8 sm:h-10 sm:w-10 md:h-12 md:w-12 '>
+      <Button  className='relative bg-primary-mainColor rounded-full p-2 w-full h-full  disabled:cursor-not-allowed transition hover:bg-primary-hoverMain flex items-center text-white'>
+        <ShoppingBag  size={18} color='white'/>
+      <div className='absolute md:-top-2 -top-1.5 w-4 h-4     -left-1    md:w-6 md:h-6  justify-center flex items-center bg-red-500 rounded-full'>
+        <span className='text-xs font-semibold md:font-bold lg:text-sm  '>0</span>
       </div>
       </Button>
     </div>

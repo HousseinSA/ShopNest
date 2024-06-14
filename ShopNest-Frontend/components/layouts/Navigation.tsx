@@ -19,18 +19,15 @@ const Navigation: React.FC<NavigationProps>  = ({ categoriesData }) => {
   }))
   return (
     <nav className="mx-4 flex items-center space-x-2 lg:space-x-4"> 
-      {CategoriesRoutes?.map((category) => {
-        
-        return (
+        {CategoriesRoutes?.map((category) => (
           <Link
-            className={cn('text-md font-medium transition-colors hover:text-primary', category.active ? 'text-[#437e41] font-bolder  dark:text-white' : 'text-muted-foreground') }
+            className={cn('text-md font-medium transition-colors hover:text-primary-hoverMain', category.active ? 'text-primary-mainColor font-bolder  dark:text-white' : 'text-muted-foreground')}
             href={category.href}
             key={category.href}
-          >
+          > 
             {category.name}
           </Link>
-        )
-      })}
+        ))}
     </nav>
     
   )
