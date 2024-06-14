@@ -9,7 +9,7 @@ interface Button {
 const  ButtonIcon:React.FC<Button> = ({icon}) => {
     const [change, setChange] = useState(false)
   return (
-    <button onClick={()=>setChange(!change)} className="rounded-full p-2 hover:scale-110 transition flex items-center justify-center border shadow-md bg-[#437e41]">
+    <button onClick={()=>setChange(!change)} className="rounded-full p-2 hover:scale-110 transition flex items-center justify-center border shadow-md bg-primary-mainColor">
         {icon}
     </button>
   )

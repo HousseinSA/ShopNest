@@ -14,8 +14,8 @@ const Gallery: React.FC<GalaryProps> = ({ images }) => {
     <TabGroup as="div" className="grid-span-2 lg:grid-span-1 w-full ">
       <TabPanels>
         {images.map((image) => (
-          <TabPanel key={image.id}>
-            <div className=" relative aspect-square  w-full flex justify-center  items-center flex-1  h-[350px] sm:rounded-lg overflow-hidden ">
+          <TabPanel key={image.id}> 
+            <div className="relative aspect-square w-full flex justify-center  items-center flex-1  h-[350px] sm:rounded-lg overflow-hidden">
               <Image
                 src={image.url}
                 alt="image Product"
