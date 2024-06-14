@@ -24,7 +24,7 @@ interface CurrencyValue {
       return null
     }
     return (
-      <span className={cn('text-sm font-semibold text-primary-mainColor', className)}>
+      <span className={cn('text-sm font-base text-primary-mainColor', className)}>
             {PriceFormatter.format(data)}
       </span>
     )

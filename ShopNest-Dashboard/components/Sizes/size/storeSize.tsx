@@ -19,10 +19,9 @@ interface storeSizeProps {
 
 const StoreSize: React.FC<storeSizeProps> = ({ size }) => {
   // conditions for path header
-  const title = size ? `Edit ${size.name} size` : 'Create size'
-  const description = size ? `Edit size ${size.name}` : 'Add a new size'
-
-  // store delete modal state
+  const title = size ? `Update ${size.name} Size` : 'Create New Size';
+  const description = size ? `Update the details for size ${size.name}` : 'Add a new size option to your collection';
+    // store delete modal state
   const [isOpen, setIsOpen] = useState(false)
   const [loading, setLoading] = useState(false)
 
