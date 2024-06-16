@@ -1,25 +1,25 @@
 'use client'
 
-
 import { ColumnDef } from '@tanstack/react-table'
 import ActionsColumn from './ActionsColumn'
 import Image from 'next/image'
+import { CldImage } from 'next-cloudinary'
 
-//image type for zod 
+//image type for zod
 type productImages = {
-  id: string;
-  productCode: string;
-  createdAt: Date;
-  updatedAt: Date;
-  url: string;
+  id: string
+  productCode: string
+  createdAt: Date
+  updatedAt: Date
+  url: string
 }
 
 export type ProductProps = {
   id: string
   name: string
   price: string
-  isFeatured: boolean,
-  images:productImages[],
+  isFeatured: boolean
+  images: productImages[]
   isArchived: boolean
   category: string
   size: string
@@ -32,15 +32,15 @@ export const columns: ColumnDef<ProductProps>[] = [
     accessorKey: 'image',
     header: 'Product',
     cell: ({ row }) => (
-      <div  className='flex items-center gap-4 '>
-      <Image className='rounded-md' width={100} height={50} src={row.original.images[0].url} alt={row.original.name} />
+      <div className='flex items-center gap-4 '>
+        <CldImage removeBackground className='rounded-md' width={100} height={50} src={row.original.images[0].url} alt={row.original.name} />
       </div>
     )
-  },  
+  },
   {
     accessorKey: 'name',
     header: 'Name'
-  },  
+  },
   {
     accessorKey: 'price',
     header: 'Price'
@@ -52,8 +52,7 @@ export const columns: ColumnDef<ProductProps>[] = [
   {
     accessorKey: 'size',
     header: 'Size',
-    cell: ({ row }) => <div className='uppercase'>{row.original.size}</div> 
-
+    cell: ({ row }) => <div className='uppercase'>{row.original.size}</div>
   },
   {
     accessorKey: 'color',
@@ -66,15 +65,14 @@ export const columns: ColumnDef<ProductProps>[] = [
   },
   {
     accessorKey: 'createdAt',
-    header: 'Date',
-   
+    header: 'Date'
   },
   {
     accessorKey: 'isFeatured',
     header: 'Featured',
     cell: ({ row }) => (
       <div className='flex items-center gap-4'>
-       <span>{row.original.isFeatured? 'Yes':'No'}</span>
+        <span>{row.original.isFeatured ? 'Yes' : 'No'}</span>
       </div>
     )
   },
@@ -83,13 +81,13 @@ export const columns: ColumnDef<ProductProps>[] = [
     header: 'Archived',
     cell: ({ row }) => (
       <div className='flex items-center gap-4'>
-       <span>{row.original.isArchived? 'Yes':'No'}</span>
+        <span>{row.original.isArchived ? 'Yes' : 'No'}</span>
       </div>
     )
   },
   {
     accessorKey: 'action',
-    header: 'Action', 
+    header: 'Action',
     cell: ({ row }) => <ActionsColumn product={row.original} />
   }
 ]
