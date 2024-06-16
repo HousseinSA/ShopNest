@@ -36,30 +36,33 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ disabled, onChange, onRemove,
         {value.map((url) => (
           <div key={url} className='relative w-[250px] h-[250px] flex items-center justify-center bg-gray-100 rounded-md overflow-hidden'>
             <div className='absolute top-2 right-2 z-10'>
-              <Button type='button' onClick={() => onRemove(url)} variant='outline' className='rounded-full outline-none py-3 px-3 hover:bg-red-500 hover:opacity-100 opacity-50 group'>
+              <Button type='button' title='Delete product' onClick={() => onRemove(url)} variant='outline' className='rounded-full outline-none py-3 px-3 hover:bg-red-500 hover:opacity-100 opacity-50 group'>
                 <Trash className='h-4 w-4 group-hover:text-white' />
               </Button>
             </div>
             <CldImage
               src={url}
+              removeBackground
               alt={'uploaded image'}
-              crop={{
-                type: 'fill', // Change "auto" to "fill" or any other supported type
-                source: true
-              }}
-              width={250}
-              height={250}
+              width={350}
+              height={350}
               className='rounded-lg'
             />
           </div>
         ))}
       </div>
 
-      <CldUploadWidget onUpload={onUpload} uploadPreset='q5jplcc9'>
-        {({ open }) => (
+      <CldUploadWidget options={{
+        styles:{
+          palette: {
+            window: "#FFF",
+            windowBorder: "#90A0B3",}
+        }
+      }}   onUpload={onUpload} uploadPreset='q5jplcc9'>
+        {({ open, }) => (
           <Button type='button' disabled={disabled} variant='secondary' onClick={() => open?.()}>
             <ImagePlus className='h-4 w-4 mr-2' />
-            Upload an Image
+            Upload Image
           </Button>
         )}
       </CldUploadWidget>
