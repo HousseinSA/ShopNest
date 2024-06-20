@@ -1,6 +1,6 @@
 'use client'
 import { Trash } from 'lucide-react'
-import React, { useEffect, useState } from 'react'
+import React, {  useState } from 'react'
 import { Size } from '@prisma/client'
 import { useRouter, useParams } from 'next/navigation'
 import axios from 'axios'

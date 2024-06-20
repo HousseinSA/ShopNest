@@ -1,10 +1,12 @@
 'use client'
 
 import { CldUploadWidget, CldImage } from 'next-cloudinary'
-import React, { useEffect, useState } from 'react'
-import { Button } from '@/components/ui/button'
-import Image from 'next/image'
+import React from 'react'
 import { ImagePlus, Trash } from 'lucide-react'
+
+import { Button } from '@/components/ui/button'
+import OnlyClient from '@/components/GlobalComponent/OnlyClient'
+
 
 interface ImageUploadProps {
   disabled?: boolean
@@ -15,22 +17,13 @@ interface ImageUploadProps {
 
 const ImageUpload: React.FC<ImageUploadProps> = ({ disabled, onChange, onRemove, value }) => {
   // mount on client render
-  const [isMounted, setIsMounted] = useState(false)
-
-  useEffect(() => {
-    setIsMounted(true)
-  }, [])
-
-  if (!isMounted) {
-    return null
-  }
-
   // onUpload
   const onUpload = (result: any) => {
     onChange(result.info.secure_url)
   }
 
   return (
+    <OnlyClient>
     <div>
       <div className='flex flex-wrap gap-4 my-4'>
         {value.map((url) => (
@@ -67,6 +60,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ disabled, onChange, onRemove,
         )}
       </CldUploadWidget>
     </div>
+    </OnlyClient>
   )
 }
 

@@ -79,7 +79,7 @@ const BillBoardForm: React.FC<BillboardFormProps> = ({ billboardData }) => {
             name='imageUrl'
             render={({ field }) => (
               <FormItem className='mb-4'>
-                <FormLabel>Background image</FormLabel>
+                <FormLabel>billboard image</FormLabel>
                 <FormControl>
                   <ImageUpload disabled={loading} value={field.value ? [field.value] : []} onChange={(url) => field.onChange(url)} onRemove={() => field.onChange('')} />
                 </FormControl>  
