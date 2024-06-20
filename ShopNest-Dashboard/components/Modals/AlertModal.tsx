@@ -1,6 +1,8 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { ArrowBigLeft, Trash } from 'lucide-react'
+import OnlyClient from '@/components/GlobalComponent/OnlyClient'
+
 
 import { Button } from '@/components/ui/button'
 import { Modal } from './Modal'
@@ -17,19 +19,10 @@ interface AlertModalProps {
 
 // component
 const AlertModal: React.FC<AlertModalProps> = ({ title, description, loading, onDelete, isOpen, setIsOpen }) => {
-  //  states
-  const [mounted, setMounted] = useState(false)
 
-  // modalMounted on render
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  if (!mounted) {
-    return null
-  }
 
   return (
+    <OnlyClient>
     <Modal title={title} description={description} isOpen={isOpen} onClose={() => setIsOpen(false)}>
       <div className='flex justify-center mt-4 space-x-4'>
         <Button onClick={() => setIsOpen(false)} disabled={loading} variant='outline'>
@@ -40,6 +33,7 @@ const AlertModal: React.FC<AlertModalProps> = ({ title, description, loading, on
         </Button>
       </div>
     </Modal>
+    </OnlyClient>
   )
 }
 

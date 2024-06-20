@@ -33,7 +33,6 @@ const StoreProducts: React.FC<StoreProductProps> = ({ products }) => {
         <DataTable filterKey='name' columns={columns} data={products} />
       </div>
       <SectionHeader title='API' description='api calls for products' />
-  
       <APIList apiName='products' apiId='apiId' />
     </>
   )

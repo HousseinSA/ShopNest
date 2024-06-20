@@ -18,7 +18,7 @@ interface CellActionProps {
 const ActionsColumn: React.FC<CellActionProps> = ({ category }) => {
   // route
   const route = useRouter()
-  const params = useParams()
+  const params= useParams()
   // on update
   function onUpdate(code: string) {
     route.push(`/${params.storeCode}/categories/${code}`)
@@ -34,7 +34,6 @@ const ActionsColumn: React.FC<CellActionProps> = ({ category }) => {
   // alert Modal state
   const [isOpen, setIsOpen] = useState(false)
   const [loading, setLoading] = useState(false)
-
 
   // delete category from database
   const onCategoryDelete = async () => {
@@ -63,7 +62,8 @@ const ActionsColumn: React.FC<CellActionProps> = ({ category }) => {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          <DropdownMenuLabel>Actions</DropdownMenuLabel>
+          <DropdownMenuLabel>Actions menu
+</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem onClick={() => onUpdate(category.id)}>
             <Edit className='w-5 h-5 mr-2' /> Update

@@ -2,8 +2,8 @@
 
 import { ColumnDef } from '@tanstack/react-table'
 import ActionsColumn from './ActionsColumn'
-import Image from 'next/image'
 import { CldImage } from 'next-cloudinary'
+import OnlyClient from '@/components/GlobalComponent/OnlyClient'
 
 //image type for zod
 type productImages = {
@@ -32,9 +32,7 @@ export const columns: ColumnDef<ProductProps>[] = [
     accessorKey: 'image',
     header: 'Product',
     cell: ({ row }) => (
-      <div className='flex items-center gap-4 '>
-        <CldImage removeBackground className='rounded-md' width={100} height={50} src={row.original.images[0].url} alt={row.original.name} />
-      </div>
+        <CldImage removeBackground className='rounded-md object-contain object-center w-20 h-16' width={100} height={50} src={row.original.images[0].url} alt={row.original.name} />
     )
   },
   {
@@ -88,6 +86,7 @@ export const columns: ColumnDef<ProductProps>[] = [
   {
     accessorKey: 'action',
     header: 'Action',
-    cell: ({ row }) => <ActionsColumn product={row.original} />
+    cell: ({ row }  ) =><OnlyClient> <ActionsColumn product={row.original} />
+    </OnlyClient>
   }
 ]

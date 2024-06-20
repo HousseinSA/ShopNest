@@ -1,19 +1,20 @@
 'use client'
 import React from 'react'
-
 import { ColumnDef, flexRender, getCoreRowModel, useReactTable, getPaginationRowModel, ColumnFiltersState, getFilteredRowModel } from '@tanstack/react-table'
 
+import { useActionState } from '@/hooks/ModalStateStore'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 
-interface DataTableProps<TData, TValue> {
+
+interface DataTableProps<TData extends { id: string }, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
   filterKey: string
 }
 
-export function DataTable<TData, TValue>({ columns, data, filterKey }: DataTableProps<TData, TValue>) {
+export function DataTable<TData extends { id: string }, TValue>({ columns, data, filterKey }: DataTableProps<TData, TValue>) {
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([])
   const table = useReactTable({
     data,
@@ -27,6 +28,7 @@ export function DataTable<TData, TValue>({ columns, data, filterKey }: DataTable
     }
   })
 
+  const { toggleDropDown } = useActionState()
   return (
     <div>
       <div className='flex items-center py-4'>
@@ -40,7 +42,7 @@ export function DataTable<TData, TValue>({ columns, data, filterKey }: DataTable
                 {headerGroup.headers.map((header) => {
                   return <TableHead key={header.id}>{header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}</TableHead>
                 })}
-              </TableRow  >
+              </TableRow>
             ))}
           </TableHeader>
           <TableBody>
@@ -48,9 +50,11 @@ export function DataTable<TData, TValue>({ columns, data, filterKey }: DataTable
               table.getRowModel().rows.map((row) => (
                 <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell title='edit' className='cursor-pointer' key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
+                    <TableCell 
+                    onClick={() => toggleDropDown(row.original.id)} 
+                    data-title='edit Product' className='cursor-pointer' key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
                   ))}
-                </TableRow>       
+                </TableRow>
               ))
             ) : (
               <TableRow>

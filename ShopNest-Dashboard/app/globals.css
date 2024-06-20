@@ -93,3 +93,54 @@
   .color-picker::-webkit-color-swatch {
     border-radius: 100%;
   }
+
+
+  /* tool tip */
+  [data-title] {
+    position: relative;
+    cursor: pointer;
+  }
+  
+  [data-title]::before {
+    content: attr(data-title);
+    visibility: hidden;
+    opacity: 0;
+    width: max-content;
+    max-width: 160px;
+    background-color: #437e41;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 10px;
+    position: absolute;
+    z-index: 1;
+    bottom: 115%; /* Adjusted to place tooltip above the arrow */
+    left: 50%;
+    z-index: 100;
+    transform: translateX(-50%);
+    transition: opacity 0.3s, visibility 0s linear;
+    pointer-events: none;
+  }
+  
+  [data-title]::after {
+    content: '';
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    bottom: 100%; /* Positioning to connect with the tooltip */
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: #437e41 transparent transparent transparent;
+    transition: opacity 0.3s, visibility 0s linear ;
+    pointer-events: none;
+  }
+  
+  [data-title]:hover::before,
+  [data-title]:hover::after {
+    visibility: visible;
+    opacity: 1;
+    transition-delay: .3s;
+  }
+  

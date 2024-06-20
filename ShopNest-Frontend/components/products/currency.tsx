@@ -1,6 +1,7 @@
 'use client'
-import React, { useEffect, useState} from 'react'
 import { cn } from '@/lib/utils'
+import OnlyClient from '@/components/GlobalComponent/OnlyClient'
+
 
 const PriceFormatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -15,18 +16,13 @@ interface CurrencyValue {
 
   
   const Currency:React.FC<CurrencyValue> = ({data ,className}) => { 
-    const [isMounted, setIsMounted]  = useState(false)
-    useEffect(()=>{
-      setIsMounted(true)
-    },[])
 
-    if(!isMounted){
-      return null
-    }
     return (
+      <OnlyClient>
       <span className={cn('text-sm font-base text-primary-mainColor', className)}>
             {PriceFormatter.format(data)}
       </span>
+      </OnlyClient>
     )
   }
   
