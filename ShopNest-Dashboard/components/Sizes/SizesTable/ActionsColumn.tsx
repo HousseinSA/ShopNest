@@ -60,7 +60,8 @@ const ActionsColumn: React.FC<CellActionProps> = ({ size }) => {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          <DropdownMenuLabel>Actions</DropdownMenuLabel>
+          <DropdownMenuLabel>Actions menu
+</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem onClick={() => onUpdate(size.id)}>
             <Edit className='w-5 h-5 mr-2' /> Update

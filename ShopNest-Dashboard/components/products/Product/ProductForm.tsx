@@ -122,7 +122,7 @@ const ProductForm: React.FC<StoreProductProps> = ({ productData, sizes, colors, 
               name='images'
               render={({ field }) => (
                 <FormItem className={`${field.value.length !== 0 && 'col-span-full'}`}>
-                  <FormLabel>Images</FormLabel>
+                  <FormLabel>product images </FormLabel>
                   <FormControl className='col-span-4 m-0'>
                     <ImageUpload value={field.value.map((image) => image.url)} disabled={loading} onChange={(url) => field.onChange([...field.value, { url }])} onRemove={(url) => field.onChange([...field.value.filter((current) => current.url !== url)])} />
                   </FormControl>

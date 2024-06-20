@@ -1,15 +1,14 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
+import OnlyClient from '@/components/GlobalComponent/OnlyClient'
 
 import StoreModal from '@/components/Modals/StoreModal'
 const ModalProvider = () => {
-  // show modal on render 
-  const [mounted, setMounted] = useState(false)
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-  
-  return <>{mounted && <StoreModal />}</>
+  return (
+    <>
+      <OnlyClient><StoreModal /></OnlyClient>
+    </>
+  )
 }
 
 export default ModalProvider
