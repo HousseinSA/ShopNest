@@ -1,6 +1,6 @@
 'use client'
 import {ShoppingBag} from 'lucide-react'
-import OnlyClient from '@/components/GlobalComponent/OnlyClient'
+import OnlyClient from '@/components/OnlyClient'
 
 
 import {Button} from '@/components/ui/button'

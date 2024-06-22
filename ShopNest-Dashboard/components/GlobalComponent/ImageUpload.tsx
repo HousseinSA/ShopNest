@@ -12,10 +12,11 @@ interface ImageUploadProps {
   disabled?: boolean
   onChange: (value: string) => void
   onRemove: (value: string) => void
-  value: string[]
+  value: string[],
+  removeState:boolean
 }
 
-const ImageUpload: React.FC<ImageUploadProps> = ({ disabled, onChange, onRemove, value }) => {
+const ImageUpload: React.FC<ImageUploadProps> = ({ disabled, onChange, onRemove, value, removeState }) => {
   // mount on client render
   // onUpload
   const onUpload = (result: any) => {
@@ -35,7 +36,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ disabled, onChange, onRemove,
             </div>
             <CldImage
               src={url}
-              removeBackground
+              removeBackground={removeState}
               alt={'uploaded image'}
               width={350}
               height={350}

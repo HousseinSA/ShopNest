@@ -1,4 +1,4 @@
-import queryString , {StringifiableRecord} from 'query-string'
+import qs , {StringifiableRecord} from 'query-string'
 
 import { Product } from "@/lib/StoreTypes"
 
@@ -12,11 +12,11 @@ interface Query extends StringifiableRecord {
 const URL = `${process.env.NEXT_PUBLIC_STORE_URL}/products`
 const getProducts = async (query:Query): Promise<Product[]> => {
 
-  const url = queryString.stringifyUrl({
+  const url = qs.stringifyUrl({
     url: URL,
     query
   })
-  console.log(url)
+  
   const response = await fetch(`${url}`)
   return response.json()
 }

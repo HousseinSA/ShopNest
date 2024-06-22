@@ -18,23 +18,23 @@ const Info: React.FC<InfoProps> = ({ product }) => {
         <Currency className="text-2xl text-gray-900" data={product.price} />
       </div>
       <hr className="my-4" />
-      <div className="flex  flex-col gap-4">
-        <div className="flex items-center gap-x-2">
-          <h3 className="font-semibold text-primary-mainColor">Size:</h3>
+      <div className="flex flex-col gap-4">
+        <div className="flex items-center gap-x-4">
+          <h3 className="font-bold text-primary-mainColor">Size:</h3>
           <div className="font-semibold capitalize">{product.size.name}</div>
         </div>
-        <div className="flex items-center gap-x-2">
-          <h3 className="font-semibold text-primary-mainColor">Color:</h3>
+        <div className="flex items-center gap-x-4">
+          <h3 className="font-bold text-primary-mainColor">Color:</h3>
           <div
             style={{ background: product?.color?.value }}
             className="w-10 h-10 rounded-full"
           />
         </div>
       </div>
-      <div className="mt-5  ">
+      <div className="mt-5 ">
         <Button className="  bg-primary-mainColor flex gap-x-2 hover:bg-primary-hoverMain ">
-          Add To Cart
           <ShoppingCart/>
+          Add To Cart
         </Button>`
       </div>
     </div>

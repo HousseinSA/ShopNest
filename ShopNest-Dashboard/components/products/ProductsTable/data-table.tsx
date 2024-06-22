@@ -2,11 +2,10 @@
 import React from 'react'
 import { ColumnDef, flexRender, getCoreRowModel, useReactTable, getPaginationRowModel, ColumnFiltersState, getFilteredRowModel } from '@tanstack/react-table'
 
-import { useActionState } from '@/hooks/ModalStateStore'
+// import { useActionState } from '@/hooks/StoreState'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-
 
 interface DataTableProps<TData extends { id: string }, TValue> {
   columns: ColumnDef<TData, TValue>[]
@@ -28,7 +27,8 @@ export function DataTable<TData extends { id: string }, TValue>({ columns, data,
     }
   })
 
-  const { toggleDropDown } = useActionState()
+  // const { toggleDropDown, closeDropDown } = useActionState()
+
   return (
     <div>
       <div className='flex items-center py-4'>
@@ -51,8 +51,13 @@ export function DataTable<TData extends { id: string }, TValue>({ columns, data,
                 <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>
                   {row.getVisibleCells().map((cell) => (
                     <TableCell 
-                    onClick={() => toggleDropDown(row.original.id)} 
-                    data-title='edit Product' className='cursor-pointer' key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
+                      // onMouseLeave={closeDropDown} 
+                      // onClick={() => 
+                        // toggleDropDown(row.original.id)
+                      // }
+                      className='cursor-pointer' key={cell.id}>
+                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                    </TableCell>
                   ))}
                 </TableRow>
               ))
