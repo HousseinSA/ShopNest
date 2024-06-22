@@ -10,7 +10,9 @@ export const useModalStore = create<ModalStoreProps>((set) => ({
   ModalOpenState: false,
   openModal: () => set({ ModalOpenState: true }),
   closeModal: () => set({ ModalOpenState: false })
-  }))
+}))
+
+// action state
 
 interface ActionState {
   openProductId: string | null

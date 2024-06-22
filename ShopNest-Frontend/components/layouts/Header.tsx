@@ -1,5 +1,7 @@
-import Image from "next/image";
+
 import Link from "next/link";
+import Image from 'next/image'
+
 import ButtonAction from "@/components/buttonAction";
 import Navigation from "./Navigation";
 import getCategoriesData from "@/lib/fetchData/getCategories";

@@ -1,6 +1,5 @@
 'use client'
 import React from 'react'
-import { Plus } from 'lucide-react'
 import { useRouter, useParams } from 'next/navigation'
 
 import SectionHeader from '@/components/GlobalComponent/storeHead/SectionHeader'

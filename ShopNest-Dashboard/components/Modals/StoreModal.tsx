@@ -8,7 +8,7 @@ import { ClipLoader } from 'react-spinners'
 
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import { useModalStore } from '@/hooks/ModalStateStore'
+import { useModalStore } from '@/hooks/StoreState'
 import { Modal } from './Modal'
 import { Button } from '@/components/ui/button'
 import { ToastError } from '../GlobalComponent/Toast'

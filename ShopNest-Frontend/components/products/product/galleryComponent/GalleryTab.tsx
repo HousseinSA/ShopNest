@@ -1,6 +1,8 @@
-import Image from "next/image";
+// import Image from "next/image";
 import { Tab } from "@headlessui/react";
 import { Image as ImageType } from "@/lib/StoreTypes";
+import {  CldImage } from 'next-cloudinary'
+
 
 interface ImageProps {
   image: ImageType;
@@ -12,11 +14,12 @@ const GalleryTab: React.FC<ImageProps> = ({ image }) => {
       {({ selected }) => (
         <div>
           <span className="absolute inset-0 aspect-square rounded-md w-full h-full overflow-hidden ">
-            <Image
+            <CldImage
+            removeBackground
               src={image.url}
               alt="product image"
-              layout="fill"
-              className="object-fit object-center"
+              fill
+              className="object-contain object-center"
             />
           </span>
           <span

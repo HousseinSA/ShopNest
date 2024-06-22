@@ -1,7 +1,7 @@
 'use client'
 import { useEffect } from 'react'
 
-import { useModalStore } from '@/hooks/ModalStateStore'
+import { useModalStore } from '@/hooks/StoreState'
 
 export default function Home() {
   // modal state change on render
