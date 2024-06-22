@@ -63,6 +63,8 @@ export async function GET(req: Request, { params }: { params: { storeCode: strin
       where: {
         id: params.categoryCode,
         storeCode: params.storeCode
+      }, include:{
+        billboard:true
       }
     })
     return NextResponse.json(category)

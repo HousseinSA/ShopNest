@@ -1,27 +1,28 @@
 "use client";
 
-import Image from "next/image";
 import { TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/react";
+import {  CldImage } from 'next-cloudinary'
 
 import GalleryTab from "@/components/products/product/galleryComponent/GalleryTab";
 import { Image as ImageType } from "@/lib/StoreTypes";
-interface GalaryProps {
+interface GalleryProps {
   images: ImageType[];
 }
 
-const Gallery: React.FC<GalaryProps> = ({ images }) => {
+const Gallery: React.FC<GalleryProps> = ({ images }) => {
   return (
     <TabGroup as="div" className="grid-span-2 lg:grid-span-1 w-full ">
       <TabPanels>
         {images.map((image) => (
           <TabPanel key={image.id}> 
-            <div className="relative aspect-square w-full flex justify-center  items-center flex-1  h-[350px] sm:rounded-lg overflow-hidden">
-              <Image
+            <div className="relative aspect-square w-full flex justify-center items-center h-[350px] sm:rounded-lg overflow-hidden">
+              <CldImage
+              removeBackground
                 src={image.url}
                 alt="image Product"
                 width={450}
                 height={450}
-                className="object-cover object-center "
+                className="object-cover object-center"
               />
             </div>
           </TabPanel>

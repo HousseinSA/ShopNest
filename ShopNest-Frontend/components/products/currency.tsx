@@ -1,6 +1,6 @@
 'use client'
 import { cn } from '@/lib/utils'
-import OnlyClient from '@/components/GlobalComponent/OnlyClient'
+import OnlyClient from '@/components/OnlyClient'
 
 
 const PriceFormatter = new Intl.NumberFormat('en-US', {
@@ -19,7 +19,7 @@ interface CurrencyValue {
 
     return (
       <OnlyClient>
-      <span className={cn('text-sm font-base text-primary-mainColor', className)}>
+      <span className={cn('text-sm font-bold text-primary-mainColor', className)}>
             {PriceFormatter.format(data)}
       </span>
       </OnlyClient>

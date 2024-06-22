@@ -9,18 +9,18 @@ import { Button } from '@/components/ui/button'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import AlertModal from '@/components/Modals/AlertModal'
 import { ToastSuccess, ToastError } from '@/components/GlobalComponent/Toast'
-import { useActionState } from '@/hooks/ModalStateStore'
+// import { useActionState } from '@/hooks/StoreState'
 
 interface CellActionProps {
   product: ProductProps
 }
 
 const ActionsColumn: React.FC<CellActionProps> = ({ product }) => {
-  const { openProductId, toggleDropDown, closeDropDown } = useActionState()
+  // const { openProductId, toggleDropDown, closeDropDown } = useActionState()
   const route = useRouter()
   const params = useParams()
   const dropdownRef = useRef<HTMLDivElement | null>(null)
-  
+
   const onUpdate = (code: string) => {
     route.push(`/${params.storeCode}/products/${code}`)
     // closeDropDown()
@@ -50,25 +50,29 @@ const ActionsColumn: React.FC<CellActionProps> = ({ product }) => {
     }
   }
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        closeDropDown()
-      }
-    }
-    document.addEventListener('mousedown', handleClickOutside)
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
-    }
-  }, [closeDropDown])
+  // useEffect(() => {
+  //   const handleClickOutside = (event: MouseEvent) => {
+  //     if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        // closeDropDown()
+  //     }
+  //   }
+  //   document.addEventListener('mousedown', handleClickOutside)
+  //   return () => {
+  //     document.removeEventListener('mousedown', handleClickOutside)
+  //   }
+  // }, [closeDropDown])
 
   return (
     <>
       <AlertModal title='Delete Product' description={`Are you sure you want to delete ${product.name}?`} loading={loading} onDelete={onProductDelete} isOpen={isOpen} setIsOpen={setIsOpen} />
       <div ref={dropdownRef}>
-        <DropdownMenu open={openProductId === product.id}>
+        <DropdownMenu
+//  open={openProductId === product.id}
+>
           <DropdownMenuTrigger asChild>
-            <Button variant='ghost' size='sm' onClick={() => toggleDropDown(product.id)}>
+            <Button variant='ghost' size='sm'
+            //  onClick={() => toggleDropDown(product.id)}
+             >
               <span className='sr-only'>Open menu</span>
               <MoreHorizontal className='h-5 w-5' />
             </Button>
@@ -76,13 +80,13 @@ const ActionsColumn: React.FC<CellActionProps> = ({ product }) => {
           <DropdownMenuContent>
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={() => onUpdate(product.id)}>
+            <DropdownMenuItem onClick={(e) => { e.stopPropagation(); onUpdate(product.id); }}>
               <Edit className='w-5 h-5 mr-2' /> Update
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => onCopy(product.id)}>
+            <DropdownMenuItem onClick={(e) => { e.stopPropagation(); onCopy(product.id); }}>
               <Copy className='w-5 h-5 mr-2' /> Copy
             </DropdownMenuItem>
-            <DropdownMenuItem className='bg-red-200' onClick={() => setIsOpen(true)}>
+            <DropdownMenuItem className='bg-red-200' onClick={(e) => { e.stopPropagation(); setIsOpen(true); }}>
               <Trash className='w-5 h-5 mr-2' /> Delete
             </DropdownMenuItem>
           </DropdownMenuContent>

@@ -22,7 +22,7 @@ import {
   CommandList
 } from '@/components/ui/command'
 import { cn } from '@/lib/utils'
-import { useModalStore } from '@/hooks/ModalStateStore'
+import { useModalStore } from '@/hooks/StoreState'
 
 interface StoreChangerProps {
   stores: Store[]

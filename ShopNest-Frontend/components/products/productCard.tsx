@@ -1,8 +1,9 @@
 'use client'
-import Image from "next/image";
 import React from "react";
 import { useRouter } from   "next/navigation";
-import { Expand, ShoppingCart } from "lucide-react";
+import { Scaling, ShoppingCart } from "lucide-react";
+import {  CldImage } from 'next-cloudinary'
+
 
 import { Product as ProductData } from "@/lib/StoreTypes";
 import ButtonIcon from "@/components/ui/IconButton";
@@ -20,15 +21,16 @@ function ProductCard({product}:Product): React.ReactElement {
   return (
     <div onClick={onClick}  className="rounded-xl cursor-pointer bg-white group  border p-3 shadow-md">
       <div className="aspect-square relative bg-white rounded-xl">
-        <Image
-          layout="fill"
+        <CldImage
+        removeBackground
+        fill
           src={product.images[0].url}
           alt={product.name}
           className="aspect-square object-contain object-center rounded-xl "
         />
         <div className="opacity-0 group-hover:opacity-100 transition absolute w-full px-6 bottom-5 ">
           <div className="flex justify-center gap-x-4">
-            <ButtonIcon icon={<Expand size={15} className="text-white" />} />
+            <ButtonIcon icon={<Scaling size={15} className="text-white" />} />
             <ButtonIcon
               icon={<ShoppingCart size={15} className="text-white" />}
             />

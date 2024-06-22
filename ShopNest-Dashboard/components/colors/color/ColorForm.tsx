@@ -6,12 +6,12 @@ import { useForm } from 'react-hook-form'
 import axios from 'axios'
 import { Color } from '@prisma/client'
 import { useParams, useRouter } from 'next/navigation'
+import convertCssColorNameToHex from 'convert-css-color-name-to-hex'
 
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import FormButton from '@/components/GlobalComponent/FormButton'
-import {ToastSuccess, ToastError} from '@/components/GlobalComponent/Toast'
-
+import { ToastSuccess, ToastError } from '@/components/GlobalComponent/Toast'
 
 interface ColorFormProps {
   colorData: Color | null
@@ -47,7 +47,7 @@ const ColorForm: React.FC<ColorFormProps> = ({ colorData, colors }) => {
       } else {
         await axios.post(`/api/${params.storeCode}/colors`, values)
       }
-      route.push(`/${params.storeCode}/colors`) 
+      route.push(`/${params.storeCode}/colors`)
       route.refresh()
       ToastSuccess(toastMessage)
     } catch (error) {
@@ -85,7 +85,7 @@ const ColorForm: React.FC<ColorFormProps> = ({ colorData, colors }) => {
                   <FormControl>
                     <div className=' flex items-center space-x-4 '>
                       <Input disabled={loading} placeholder='Color Value' value={field.value} onChange={(e) => field.onChange(e.target.value)} />
-                      <input type='color' className='color-picker' disabled={loading} value={field.value} onChange={(e) => field.onChange(e.target.value)} />
+                      <input type='color' className='color-picker' disabled={loading} value={convertCssColorNameToHex(field.value)} onChange={(e) => field.onChange(e.target.value)} />
                     </div>
                   </FormControl>
                   <FormMessage />
