@@ -13,11 +13,11 @@ const URL = `${process.env.NEXT_PUBLIC_STORE_URL}/products`
 const getProducts = async (query:Query): Promise<Product[]> => {
 
   const url = qs.stringifyUrl({
-    url: URL,
+    url: URL   ,
     query
   })
   
-  const response = await fetch(`${url}`)
+  const response = await fetch(url)
   return response.json()
 }
 
