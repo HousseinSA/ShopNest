@@ -13,7 +13,7 @@ interface Product {
   product: ProductData;
 }
 
-function ProductCard({product}:Product): React.ReactElement {
+const ProductCard :React.FC<Product>=({product})=> {
   const route = useRouter()
   const onClick = ()=>{
     route.push(`/product/${product.id}`)
