@@ -4,7 +4,7 @@ import { useParams } from 'next/navigation'
 import React from 'react'
 
 import useClientMethods from '@/hooks/use-client-methods'
-import ApiAlert from '@/components/GlobalComponent/ApiAlert'
+import ApiAlert from '@/components/globals/ApiAlert'
 
 interface APIListProps {
   apiName: string

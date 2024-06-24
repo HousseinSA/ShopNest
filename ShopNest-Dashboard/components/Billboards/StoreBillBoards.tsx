@@ -4,13 +4,13 @@ import { Plus } from 'lucide-react'
 import { useRouter, useParams } from 'next/navigation'
 
 
-import SectionHeader from '@/components/GlobalComponent/storeHead/SectionHeader'
-import HeadButton from '@/components/GlobalComponent/storeHead/HeadButton'
+import SectionHeader from '@/components/globals/storeHead/SectionHeader'
+import HeadButton from '@/components/globals/storeHead/HeadButton'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { BillboardProps, columns } from '@/components/Billboards/BillboardsTable/columns'
 import { DataTable } from '@/components/Billboards/BillboardsTable/data-table'
-import APIList from '@/components/GlobalComponent/APIList'
+import APIList from '@/components/globals/APIList'
 
 interface BillBoardsProps {
   billBoards: BillboardProps[]

@@ -9,9 +9,9 @@ import { useParams, useRouter } from 'next/navigation'
 
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form'
 import { Textarea } from '@/components/ui/textarea'
-import FormButton from '@/components/GlobalComponent/FormButton'
-import ImageUpload from '@/components/GlobalComponent/ImageUpload'
-import {ToastSuccess, ToastError} from '@/components/GlobalComponent/Toast'
+import FormButton from '@/components/globals/FormButton'
+import ImageUpload from '@/components/globals/ImageUpload'
+import {ToastSuccess, ToastError} from '@/components/globals/Toast'
 
 
 // billboardData props

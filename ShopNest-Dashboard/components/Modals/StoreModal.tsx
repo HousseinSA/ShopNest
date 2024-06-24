@@ -11,7 +11,7 @@ import { Input } from '@/components/ui/input'
 import { useModalStore } from '@/hooks/StoreState'
 import { Modal } from './Modal'
 import { Button } from '@/components/ui/button'
-import { ToastError } from '../GlobalComponent/Toast'
+import { ToastError } from '../globals/Toast'
 
 const formSchema = z.object({
   storeName: z.string().min(2).max(50)
