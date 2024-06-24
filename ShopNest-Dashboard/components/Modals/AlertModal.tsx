@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import { ArrowBigLeft, Trash } from 'lucide-react'
-import OnlyClient from '@/components/GlobalComponent/OnlyClient'
+import OnlyClient from '@/components/globals/OnlyClient'
 
 
 import { Button } from '@/components/ui/button'

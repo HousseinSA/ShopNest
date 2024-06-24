@@ -6,12 +6,12 @@ import { useRouter, useParams } from 'next/navigation'
 import axios from 'axios'
 
 import { Button } from '@/components/ui/button'
-import SectionHeader from '@/components/GlobalComponent/storeHead/SectionHeader'
+import SectionHeader from '@/components/globals/storeHead/SectionHeader'
 
 import { Separator } from '@/components/ui/separator'
 import AlertModal from '@/components/Modals/AlertModal'
 import CategoryForm from './CategoryForm'
-import {ToastSuccess, ToastError} from '@/components/GlobalComponent/Toast'
+import {ToastSuccess, ToastError} from '@/components/globals/Toast'
 
 interface CategoryProps {
   categoryData?: Category

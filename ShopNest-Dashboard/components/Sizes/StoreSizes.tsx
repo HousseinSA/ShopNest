@@ -3,12 +3,12 @@ import React from 'react'
 
 import { useRouter, useParams } from 'next/navigation'
 
-import SectionHeader from '@/components/GlobalComponent/storeHead/SectionHeader'
-import HeadButton from '@/components/GlobalComponent/storeHead/HeadButton'
+import SectionHeader from '@/components/globals/storeHead/SectionHeader'
+import HeadButton from '@/components/globals/storeHead/HeadButton'
 import { Separator } from '@/components/ui/separator'
 import { SizeProps, columns } from '@/components/Sizes/SizesTable/columns'
 import { DataTable } from '@/components/Sizes/SizesTable/data-table'
-import APIList from '@/components/GlobalComponent/APIList'
+import APIList from '@/components/globals/APIList'
 
 interface StoreSizesProps {
   sizes: SizeProps[]

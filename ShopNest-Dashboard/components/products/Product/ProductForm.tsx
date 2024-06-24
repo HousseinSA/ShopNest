@@ -12,10 +12,10 @@ import { Checkbox } from '@/components/ui/checkbox'
 
 
 import { Input } from '@/components/ui/input'
-import FormButton from '@/components/GlobalComponent/FormButton'
-import ImageUpload from '@/components/GlobalComponent/ImageUpload'
-import ItemsSelector from '@/components/GlobalComponent/ItemsSelector'
-import {ToastSuccess, ToastError} from '@/components/GlobalComponent/Toast'
+import FormButton from '@/components/globals/FormButton'
+import ImageUpload from '@/components/globals/ImageUpload'
+import ItemsSelector from '@/components/globals/ItemsSelector'
+import {ToastSuccess, ToastError} from '@/components/globals/Toast'
 
 // productData props
 interface StoreProductProps {

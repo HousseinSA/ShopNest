@@ -1,5 +1,5 @@
 import Container from "@/components/ui/container";
-import Billboard from "@/components/billboard";
+import Billboard from "@/components/globals/billboard";
 import getBillboard from "@/lib/fetchData/getBillboard";
 import getProducts from "@/lib/fetchData/getProducts";
 import Products from "@/components/products/products";

@@ -8,7 +8,7 @@ import { BillboardProps } from '@/components/Billboards/BillboardsTable/columns'
 import { Button } from '@/components/ui/button'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import AlertModal from '@/components/Modals/AlertModal'
-import {ToastSuccess, ToastError} from '@/components/GlobalComponent/Toast'
+import {ToastSuccess, ToastError} from '@/components/globals/Toast'
 
 
 interface CellActionProps {
