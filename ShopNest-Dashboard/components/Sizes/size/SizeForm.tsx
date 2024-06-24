@@ -10,8 +10,8 @@ import { useParams, useRouter } from 'next/navigation'
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 
-import FormButton from '@/components/GlobalComponent/FormButton'
-import {ToastSuccess, ToastError} from '@/components/GlobalComponent/Toast'
+import FormButton from '@/components/globals/FormButton'
+import {ToastSuccess, ToastError} from '@/components/globals/Toast'
 
 // billBoardData props
 interface SizeForm {

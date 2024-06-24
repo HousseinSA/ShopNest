@@ -5,7 +5,7 @@ import React from 'react'
 import { ImagePlus, Trash } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
-import OnlyClient from '@/components/GlobalComponent/OnlyClient'
+import OnlyClient from '@/components/globals/OnlyClient'
 
 
 interface ImageUploadProps {

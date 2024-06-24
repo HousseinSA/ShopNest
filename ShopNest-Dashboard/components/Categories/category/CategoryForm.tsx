@@ -11,10 +11,10 @@ import { useParams, useRouter } from 'next/navigation'
 
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import FormButton from '@/components/GlobalComponent/FormButton'
+import FormButton from '@/components/globals/FormButton'
 
-import ItemsSelector from '@/components/GlobalComponent/ItemsSelector'
-import {ToastSuccess, ToastError} from '@/components/GlobalComponent/Toast'
+import ItemsSelector from '@/components/globals/ItemsSelector'
+import {ToastSuccess, ToastError} from '@/components/globals/Toast'
 
 
 // billBoardData props

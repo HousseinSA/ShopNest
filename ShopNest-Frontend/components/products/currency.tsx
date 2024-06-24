@@ -1,6 +1,6 @@
 'use client'
 import { cn } from '@/lib/utils'
-import OnlyClient from '@/components/OnlyClient'
+import OnlyClient from '@/components/globals/OnlyClient'
 
 
 const PriceFormatter = new Intl.NumberFormat('en-US', {

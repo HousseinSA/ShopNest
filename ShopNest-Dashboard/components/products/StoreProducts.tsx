@@ -2,12 +2,12 @@
 import React from 'react'
 import { useRouter, useParams } from 'next/navigation'
 
-import SectionHeader from '@/components/GlobalComponent/storeHead/SectionHeader'
-import HeadButton from '@/components/GlobalComponent/storeHead/HeadButton'
+import SectionHeader from '@/components/globals/storeHead/SectionHeader'
+import HeadButton from '@/components/globals/storeHead/HeadButton'
 import { Separator } from '@/components/ui/separator'
 import { ProductProps, columns } from '@/components/products/ProductsTable/columns'
 import { DataTable } from '@/components/products/ProductsTable/data-table'
-import APIList from '@/components/GlobalComponent/APIList'
+import APIList from '@/components/globals/APIList'
 
 interface StoreProductProps {
   products: ProductProps[] | undefined

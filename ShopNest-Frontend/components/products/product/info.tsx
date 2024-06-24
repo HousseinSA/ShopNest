@@ -4,11 +4,20 @@ import { ShoppingCart } from "lucide-react";
 import { Product } from "@/lib/StoreTypes";
 import Currency from "@/components/products/currency";
 import {Button} from '@/components/ui/button';
+import useCartState from "@/lib/state/CartState";
+import { ReactEventHandler } from "react";
 
 interface InfoProps {
   product: Product;
 }
 const Info: React.FC<InfoProps> = ({ product }) => {
+  const {addItem} = useCartState()
+
+  // add cart item state 
+  const onAddItem:ReactEventHandler<HTMLButtonElement> = (event) =>{
+event.stopPropagation()
+    addItem(product)
+  }
   return (
     <div>
       <h1 className="text-3xl font-bold text-primary-mainColor">
@@ -32,7 +41,7 @@ const Info: React.FC<InfoProps> = ({ product }) => {
         </div>
       </div>
       <div className="mt-5 ">
-        <Button className="  bg-primary-mainColor flex gap-x-2 hover:bg-primary-hoverMain ">
+        <Button onClick={onAddItem} className="bg-primary-mainColor flex gap-x-2 hover:bg-primary-hoverMain">
           <ShoppingCart/>
           Add To Cart
         </Button>`

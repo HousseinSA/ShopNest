@@ -6,12 +6,12 @@ import { useRouter, useParams } from 'next/navigation'
 import axios from 'axios'
 
 import { Button } from '@/components/ui/button'
-import SectionHeader from '@/components/GlobalComponent/storeHead/SectionHeader'
+import SectionHeader from '@/components/globals/storeHead/SectionHeader'
 
 import ProductForm from '@/components/products/Product/ProductForm'
 import { Separator } from '@/components/ui/separator'
 import AlertModal from '@/components/Modals/AlertModal'
-import { ToastError, ToastSuccess } from '@/components/GlobalComponent/Toast'
+import { ToastError, ToastSuccess } from '@/components/globals/Toast'
 
 interface ProductProps {
   productData?: Product

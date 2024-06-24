@@ -3,7 +3,7 @@
 import { ColumnDef } from '@tanstack/react-table'
 import ActionsColumn from './ActionsColumn'
 import { CldImage } from 'next-cloudinary'
-import OnlyClient from '@/components/GlobalComponent/OnlyClient'
+import OnlyClient from '@/components/globals/OnlyClient'
 
 //image type for zod
 type productImages = {

@@ -10,7 +10,7 @@ import { useRouter } from 'next/navigation'
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import { ToastError, ToastSuccess } from '../GlobalComponent/Toast'
+import { ToastError, ToastSuccess } from '../globals/Toast'
 
 // storeData props
 interface StoreSettingsProps {

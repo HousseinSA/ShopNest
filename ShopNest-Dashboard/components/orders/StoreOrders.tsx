@@ -2,7 +2,7 @@
 import React from 'react'
 
 
-import SectionHeader from '@/components/GlobalComponent/storeHead/SectionHeader'
+import SectionHeader from '@/components/globals/storeHead/SectionHeader'
 
 import { Separator } from '@/components/ui/separator'
 import { OrderProps, columns } from '@/components/orders/orderTable/columns'

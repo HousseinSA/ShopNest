@@ -2,12 +2,12 @@
 import React from 'react'
 import { useRouter, useParams } from 'next/navigation'
 
-import SectionHeader from '@/components/GlobalComponent/storeHead/SectionHeader'
-import HeadButton from '@/components/GlobalComponent/storeHead/HeadButton'
+import SectionHeader from '@/components/globals/storeHead/SectionHeader'
+import HeadButton from '@/components/globals/storeHead/HeadButton'
 import { Separator } from '@/components/ui/separator'
 import { ColorProps, columns } from '@/components/colors/ColorTable/columns'
 import { DataTable } from '@/components/colors/ColorTable/data-table'
-import APIList from '@/components/GlobalComponent/APIList'
+import APIList from '@/components/globals/APIList'
 
 interface StoreCategoryProps {
   colors: ColorProps[]
