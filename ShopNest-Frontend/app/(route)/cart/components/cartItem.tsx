@@ -38,7 +38,7 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
         </div>
         <div className="relative pr-9 sm:pr-0 sm:grid sm:grid-cols-2 sm:gap-x-4">
           <div className="flex justify-between">
-            <p className="text-black font-semibold text-lg">{item.name}</p>
+            <p className="text-black font-semibold text-lg capitalize ">{item.name}</p>
           </div>
           <div className="mt-1 text-sm capitalize flex items-center gap-x-4">
             <p className="text-gray-500">{item.color.name}</p>

@@ -13,7 +13,7 @@
     "strict": false,
     "noEmit": true,
     "incremental": true,
-    "esModuleInterop": true,
+    "esModuleInterop": true,  
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
@@ -23,7 +23,8 @@
       {
         "name": "next"
       }
-    ]
+    ],
+    "typeRoots": ["./node_modules/@types", "./types"]
   },
   "include": [
     "next-env.d.ts",

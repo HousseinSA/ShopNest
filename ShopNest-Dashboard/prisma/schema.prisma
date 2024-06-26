@@ -114,5 +114,4 @@ model OrderItem {
   orderCode String @db.ObjectId
   productCode  String @db.ObjectId
   product Product  @relation(fields: [productCode], references: [id])
-
 }
