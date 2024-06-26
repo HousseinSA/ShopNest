@@ -18,25 +18,36 @@ const useCartState = create(
         const currentItems = get().items
         const existingItem = currentItems.find((it) => it.id === item.id)
         if (existingItem) {
-          return toast('Item already in cart!')
+          return toast('Item already in cart!', {
+            duration: 2000,
+            position: 'bottom-center',
+          })
         }
         set({
           items: [...get().items, item],
         })
-        toast('item successfully added!')
+        toast.success('item successfully added!', {
+          duration: 2000,
+          position: 'bottom-center',
+        })
       },
       deleteItem: (id: string) => {
         set({
           items: [...get().items.filter((item) => item.id !== id)],
         })
-        toast('item deleted!')
+        toast.success('item deleted!', {
+          duration: 2000,
+          position: 'bottom-center',
+        })
       },
       deleteAll: () => {
         set({
           items: [],
         })
-      toast('items deleted!')
-
+        toast.success('items deleted!', {
+          duration: 2000,
+          position: 'bottom-center',
+        })
       },
     }),
     {

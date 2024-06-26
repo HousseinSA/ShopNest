@@ -1,16 +1,18 @@
 'use client'
+import React, {MouseEventHandler} from 'react'
+import { cn } from '@/lib/utils'
 
-import { useState } from "react"
 
 interface Button {
  icon: React.ReactElement
- onClick : ()=>void
+ onClick :MouseEventHandler<HTMLButtonElement> 
+ className?:string
 }
 
-const  ButtonIcon:React.FC<Button> = ({icon, onClick}) => {
+const  ButtonIcon:React.FC<Button> = ({icon, onClick,className}) => {
 
   return (
-    <button onClick={onClick} className="rounded-full p-2 hover:scale-110 transition flex items-center justify-center border shadow-md bg-primary-mainColor hover:bg-primary-hoverMain">
+    <button onClick={onClick} className={cn("rounded-full p-2 hover:scale-110 transition flex items-center justify-center border shadow-md bg-primary-mainColor hover:bg-primary-hove rMain",className)}>
         {icon}
     </button>
   )

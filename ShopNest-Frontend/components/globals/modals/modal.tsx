@@ -16,10 +16,10 @@ interface ModalProps {
   children: React.ReactNode
 }
 
-const Modal: React.FC<ModalProps> = ({ open, onClose, children }) => {
+const Modal : React.FC<ModalProps> = ({ open, onClose, children }) => {
   return (
     <Transition show={open} appear as={Fragment}>
-      <Dialog as="div" className="relative z-10 " onClose={onClose}>
+      <Dialog as="div" className="relative z-30" onClose={onClose}>
         <div className="fixed inset-0 bg-black bg-opacity-25" />
         <div className="inset-0 fixed overflow-y-auto">
           <div className="flex items-center min-h-full justify-center text-center p-4">
@@ -32,7 +32,7 @@ const Modal: React.FC<ModalProps> = ({ open, onClose, children }) => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <DialogPanel className="w-full max-w-3xl overflow-hidden text-left rounded-lg  align-middle">
+              <DialogPanel className="h-full max-w-3xl overflow-hidden text-left rounded-lg align-middle">
                 <div className="flex items-center px-4 overflow-hidden pb-6 bg-white pt-10 shadow-2xl sm:px-6 sm:pt-8 md:p-6 lg:p-8">
                   <div className="absolute right-4 top-5">
                     <ButtonIcon icon={<X size={15} color='white'/> } onClick={onClose} />

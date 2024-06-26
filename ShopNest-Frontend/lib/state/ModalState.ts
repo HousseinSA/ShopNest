@@ -7,8 +7,6 @@ interface PreviewModal {
     open:(product:Product)=> void
     close:()=>void
 }
-
-
  const usePreviewModal = create<PreviewModal>((set) => ({
   isOpen: false,
   product: undefined,

@@ -49,12 +49,12 @@ const ProductCard: React.FC<Product> = ({ product }) => {
         <div className="opacity-0 group-hover:opacity-100 transition absolute w-full px-6 bottom-5 ">
           <div className="flex justify-center gap-x-4">
             <ButtonIcon
-              icon={<Scaling size={15} className="text-white" />}
+              icon={<Scaling size={15} color='white'  />}
               onClick={onPreview}
             />
             <ButtonIcon
               onClick={onAddToCart}
-              icon={<ShoppingCart size={15} className="text-white" />}
+              icon={<ShoppingCart size={15} color='white'/>}
             />
           </div>
         </div>
@@ -64,7 +64,7 @@ const ProductCard: React.FC<Product> = ({ product }) => {
         <p className="font-bold text-lg capitalize text-primary-mainColor">
           {product.category.name}
         </p>
-        <p className="text-sm font-semibold text-gray-700 m-0">
+        <p className="text-sm font-semibold capitalize text-gray-700 m-0">
           {product.name}
         </p>
       </div>

@@ -5,6 +5,7 @@ import "@/app/globals.css"
 import Footer from "@/components/layouts/Footer"
 import Header from "@/components/layouts/Header"
 import ModalProvider from "@/components/globals/modals/modalProvider"
+import ToastProvider from "@/components/globals/ToastProvider"
 
 const urbanist = Urbanist({ subsets: ["latin"] })
 
@@ -24,6 +25,7 @@ export default function RootLayout({
       <link rel="icon" href="/shopnest-favicon-color.png" type="image/x-icon" />
       </head>
       <body className={urbanist.className}>
+        <ToastProvider/>
         <ModalProvider/>
         <Header />
         {children}
