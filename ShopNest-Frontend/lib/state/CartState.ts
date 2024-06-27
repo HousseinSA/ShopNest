@@ -44,10 +44,6 @@ const useCartState = create(
         set({
           items: [],
         })
-        toast.success('items deleted!', {
-          duration: 2000,
-          position: 'bottom-center',
-        })
       },
     }),
     {
