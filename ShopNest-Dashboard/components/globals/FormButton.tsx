@@ -11,7 +11,7 @@ interface FormButton {
 
 const FormButton: React.FC<FormButton>= ({loading, action}) => {
   return (
-    <Button  disabled={loading} className='flex items-center gap-2 bg-primary-mainColor hover:bg-primary-hoverMain' type={'submit'}>
+    <Button  disabled={loading} className='flex items-center gap-2 bg-primary hover:primary-foreground' type={'submit'}>
     {loading === true && <ClipLoader size={15} color='#fff' />} {action}
   </Button>
   )

@@ -31,7 +31,9 @@ export const columns: ColumnDef<OrderProps>[] = [
   },
   {
     accessorKey: 'isPaid',
-    header: 'Paid'
+    header: 'Paid',
+    cell: ({ row }) => <>{row.original?.isPaid ?'Yes':"No"}</>
+
   },
   {
     accessorKey: 'createdAt',

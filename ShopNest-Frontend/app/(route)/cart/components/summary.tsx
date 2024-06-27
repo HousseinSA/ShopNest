@@ -13,11 +13,11 @@ const Summary = () => {
   const { items, deleteAll } = useCartState()
   const removeAll = () => deleteAll()
   const [loading, setLoading] = useState(false)
-  const [toastShown, setToastShown] = useState(false)
   const totalPrice = items.reduce(
     (total, item) => total + Number(item.price),
     0
   )
+
 
   // useEffect to give feedback message
   useEffect(() => {
@@ -25,18 +25,17 @@ const Summary = () => {
     const canceled = searchParams.get('canceled')
     if (success ) {
       removeAll()
-      toast.success('Payment Completed', {
-        duration: 2000,
-        position: 'bottom-center',
-      })
+      toast.success('Payment Completed')
       setLoading(false)
     }
     if (canceled ) {
       toast.error('Something went wrong')
-      setToastShown(true)
       setLoading(false)
     }
+
+    
   }, [searchParams])
+
 
   const onSummary = async () => {
     setLoading(true)
@@ -46,8 +45,8 @@ const Summary = () => {
         productsIds: items.map((item) => item.id),
       }
     )
-   
     window.location = response.data.url
+    console.log(response.data.url)
   }
 
 

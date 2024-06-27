@@ -24,7 +24,7 @@ const Navigation: React.FC<NavigationProps> = ({ categoriesData }) => {
         <Link
           className={cn(
             'relative group text-md transition-colors capitalize hover:text-primary-mainColor',
-            category.active ? 'text-primary-mainColor font-bold dark:text-white' : 'text-black'
+            category.active ? 'text-primary-mainColor font-bold ' : 'text-black'
           )}
           href={category.href}
           key={category.href}
