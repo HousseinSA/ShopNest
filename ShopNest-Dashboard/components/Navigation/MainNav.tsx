@@ -67,8 +67,8 @@ const MainNav = () => {
       {routes.map((route) => (
         <Link
           className={cn(
-            'relative group text-md transition-colors  hover:text-primary-mainColor',
-            route.active ? 'text-primary-mainColor font-bold dark:text-white' : 'text-black'
+            'relative group text-md transition-colors hover:primary-foreground',
+            route.active ? 'text-primary font-bold ' : 'text-black'
           )}
           key={route.link}
           href={route.link}
@@ -76,8 +76,8 @@ const MainNav = () => {
           {route.label}
             <span
               className={cn(
-                'absolute left-0 bottom-[-2px] w-full h-[2px] bg-primary-hoverMain transition-transform duration-300 transform scale-x-0 group-hover:scale-x-100',
-                route.active ? 'scale-x-100' : 'scale-x-0'
+                'absolute left-0 bottom-[-2px] w-full h-[2px] bg-primary dark:bg-secondary transition-transform duration-300 transform scale-x-0 group-hover:scale-x-100',
+                route.active ? 'scale-x-100' : 'scale-x-0'  
               )}
             />
         </Link>

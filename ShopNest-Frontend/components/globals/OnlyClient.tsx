@@ -4,7 +4,7 @@ interface OnlyClientProps {
   children: React.ReactNode
 }
 
-export const OnlyClient: React.FC<OnlyClientProps> = ({ children }) => {
+ const OnlyClient: React.FC<OnlyClientProps> = ({ children }) => {
   const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
