@@ -1,45 +1,54 @@
 'use client'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useSearchParams } from 'next/navigation'
 import toast from 'react-hot-toast'
 
 import Currency from '@/components/products/currency'
-import { Button } from '@/components/ui/button'
 import useCartState from '@/lib/state/CartState'
+import FormButton from "@/components/globals/formButton"
 
 const Summary = () => {
   const searchParams = useSearchParams()
   const { items, deleteAll } = useCartState()
   const removeAll = () => deleteAll()
+  const [loading, setLoading] = useState(false)
+  const [toastShown, setToastShown] = useState(false)
   const totalPrice = items.reduce(
     (total, item) => total + Number(item.price),
     0
   )
 
   // useEffect to give feedback message
-
   useEffect(() => {
-    if (searchParams.get('success')) {
+    const success = searchParams.get('success')
+    const canceled = searchParams.get('canceled')
+    if (success ) {
       removeAll()
-      toast.success('Payment Completed')
+      toast.success('Payment Completed', {
+        duration: 2000,
+        position: 'bottom-center',
+      })
+      setLoading(false)
     }
-    if (searchParams.get('canceled')) {
+    if (canceled ) {
       toast.error('Something went wrong')
+      setToastShown(true)
+      setLoading(false)
     }
-  }, [searchParams, removeAll])
+  }, [searchParams])
 
   const onSummary = async () => {
+    setLoading(true)
     const response = await axios.post(
       `${process.env.NEXT_PUBLIC_STORE_URL}/checkout`,
       {
         productsIds: items.map((item) => item.id),
       }
     )
+   
     window.location = response.data.url
   }
-
-  console.log('url that i send to',`${process.env.NEXT_PUBLIC_STORE_URL}/checkout`)
 
 
   return (
@@ -55,12 +64,13 @@ const Summary = () => {
           <Currency data={totalPrice} />
         </div>
       </div>
-      <Button
+      <FormButton 
         onClick={onSummary}
-        className="w-full mt-5 rounded-2xl bg-primary-mainColor hover:bg-primary-hoverMain "
+        className="w-full mt-5 rounded-2xl "
+        loading={loading}
       >
-        Checkout
-      </Button>
+        {loading ? 'Checking' : 'Checkout'}
+      </FormButton>
     </div>
   )
 }
