@@ -52,12 +52,12 @@ const Summary = () => {
 
   return (
     <div className="mt-10 rounded-lg px-4 py-6 sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8 bg-gray-50 ">
-      <h2 className="text-lg font-medium text-primary-mainColor">
+      <h2 className="text-lg font-medium text-primary">
         Order Summary
       </h2>
       <div className="mt-6 space-y-4">
         <div className="flex items-center justify-between border-t border-gray-200 pt-4">
-          <div className="text-base font-medium text-primary-mainColor">
+          <div className="text-base font-medium text-primary">
             Order Total
           </div>
           <Currency data={totalPrice} />
@@ -67,6 +67,7 @@ const Summary = () => {
         onClick={onSummary}
         className="w-full mt-5 rounded-2xl "
         loading={loading}
+        disabled={items.length === 0}
       >
         {loading ? 'Checking' : 'Checkout'}
       </FormButton>
