@@ -35,8 +35,8 @@ export default async function DashboardLayout({ children, params: { storeCode } 
   }
   return (
     <>
-      <Navbar />
-      {children}
+        <Navbar />
+        {children}
     </>
   )
 }

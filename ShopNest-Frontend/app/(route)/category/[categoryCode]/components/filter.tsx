@@ -46,9 +46,9 @@ const Filter: React.FC<FilterProps> = ({ data, name, valueKey }) => {
             <div key={filter.id} className="flex items-center">
               <Button
                 className={cn(
-                  'border-primary-mainColor p-2 px-4 border  bg-white text-black capitalize rounded-2xl hover:text-white hover:bg-primary-hoverMain',
+                  'border-primary p-2 px-4 border  bg-white text-black capitalize rounded-2xl hover:text-white hover:primary-foreground',
                   selectedValue === filter.id &&
-                    'bg-primary-mainColor text-white'
+                    'bg-primary text-white'
                 )}
                 onClick={() => onClick(filter.id)}
               >

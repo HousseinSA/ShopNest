@@ -19,7 +19,7 @@ interface CurrencyValue {
 
     return (
       <OnlyClient>
-      <span className={cn('text-sm font-bold text-primary-mainColor', className)}>
+      <span className={cn('text-sm font-bold text-primary', className)}>
             {PriceFormatter.format(data)}
       </span>
       </OnlyClient>

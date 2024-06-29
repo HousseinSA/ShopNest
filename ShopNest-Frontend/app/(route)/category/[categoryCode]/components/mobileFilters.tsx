@@ -20,7 +20,7 @@ const MobileFilters: React.FC<FilterProps> = ({ sizes, colors }) => {
   return (
     <>
       <Button
-        className="flex rounded-2xl bg-primary-mainColor hover:bg-primary-hoverMain items-center gap-3 lg:hidden"
+        className="flex rounded-2xl bg-primary hover:primary-foreground items-center gap-3 lg:hidden"
         onClick={onOpen}
       >
         Filters

@@ -9,7 +9,6 @@ interface OverViewProps {
 const Overview :React.FC<OverViewProps>= ({data}) => {
   
   return (
-
     <OnlyClient>
     <ResponsiveContainer width='100%' height={350}>
       <BarChart data={data}>

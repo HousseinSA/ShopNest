@@ -1,6 +1,6 @@
 import React from 'react'
 import { ClerkProvider } from '@clerk/nextjs'
-import Head from 'next/head'  
+import Head from 'next/head'
 
 import { Inter as FontSans } from 'next/font/google'
 import '@/app/globals.css'
@@ -18,21 +18,22 @@ const fontSans = FontSans({
 export const metadata = {
   title: 'ShopNest Dashboard',
   description: "ShopNest Dashboard for managing Store's data"
-} 
+}
 const RootLayout = async ({ children }: { children: React.ReactNode }) => {
   return (
+    
     <ClerkProvider>
-      <html lang='en'>
+      <html suppressHydrationWarning lang='en'>
         <Head>
-        <link rel="icon" href="/shopnest.svg" sizes="any" />
+          <link rel='icon' href='/shopnest.svg' sizes='any' />
         </Head>
         <body className={cn('min-h-screen bg-background font-sans antialiased', fontSans.variable)}>
-        <ThemeProvider attribute='class' defaultTheme='dark' enableSystem>
+      <ThemeProvider attribute='class' defaultTheme='' enableSystem>
+            <ToastProvider />
+            <ModalProvider />
+            {children}
+</ThemeProvider>
 
-          <ToastProvider />
-          <ModalProvider />
-          {children}
-    </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>
