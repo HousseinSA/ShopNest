@@ -10,11 +10,12 @@ interface FormButton {
     children:string
     className?:string
     onClick?:()=>void
+    disabled:boolean
 }
 
-const FormButton: React.FC<FormButton>= ({loading, children, className  ,onClick}) => {
+const FormButton: React.FC<FormButton>= ({loading, children, className, disabled  ,onClick}) => {
   return (
-    <Button  onClick={onClick} disabled={loading} className={cn('flex items-center gap-2 bg-primary-mainColor hover:bg-primary-hoverMain', className)} type={'submit'}>
+    <Button  onClick={onClick} disabled={loading ||disabled} className={cn('flex items-center gap-2 bg-primary hover:primary-foreground', className)} type={'submit'}>
     {loading === true && <ClipLoader size={15} color='#fff' />} {children}
   </Button>
   )
