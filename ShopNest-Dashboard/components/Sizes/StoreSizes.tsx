@@ -8,7 +8,6 @@ import HeadButton from '@/components/globals/storeHead/HeadButton'
 import { Separator } from '@/components/ui/separator'
 import { SizeProps, columns } from '@/components/Sizes/SizesTable/columns'
 import { DataTable } from '@/components/Sizes/SizesTable/data-table'
-import APIList from '@/components/globals/APIList'
 
 interface StoreSizesProps {
   sizes: SizeProps[]
