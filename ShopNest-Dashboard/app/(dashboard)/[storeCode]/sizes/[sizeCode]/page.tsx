@@ -39,7 +39,7 @@ async function SizePage({ params }: { params: { sizeCode: string; storeCode: str
    }
   
     return (
-      <div className='p-4 flex flex-col flex-1'>
+      <div className='p-4 flex flex-col  flex-1'>
         <StoreSize  />
       </div>
     )

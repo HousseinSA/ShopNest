@@ -19,7 +19,7 @@ const SizesPage = async ({ params }: { params: { storeCode: string } }) => {
     const formattedSizes: SizeProps[] = sizes?.map((size) => ({
       id: size.id,
       name: size.name,
-      value: size.value,
+      value:size.value,
       createdAt: format(size.createdAt, 'MMMM do, yyyy')
     }))
 

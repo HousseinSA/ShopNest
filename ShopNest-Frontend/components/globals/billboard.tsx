@@ -7,11 +7,9 @@ interface BillboardProps {
 
 const Billboard: React.FC<BillboardProps> = ({ billboardData }) => {
   return (
-    <div className="p-4 sm:p-6 lg:p-8
-    //  overflow-hidden 
+    <div className="p-4 sm:p-6 lg:p-8  overflow-hidden 
      rounded-xl">
-      <div className="relative rounded-lg
-      //  overflow-hidden
+      <div className="relative rounded-lg overflow-hidden
         aspect-square h-[200px] md:h-[300px]  md:aspect-[2.4/1] w-full" >
         <Image
         width='1000'
