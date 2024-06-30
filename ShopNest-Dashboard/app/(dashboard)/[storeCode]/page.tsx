@@ -17,7 +17,6 @@ import { getGraphData } from '@/lib/actions/getGraphData'
 interface StoreParams {
   params: { storeCode: string }
 }
-
 const StorePage: React.FC<StoreParams> = async ({ params }: { params: { storeCode: string } }) => {
   const { userId } = auth()
   if (!userId) {
@@ -38,6 +37,8 @@ const StorePage: React.FC<StoreParams> = async ({ params }: { params: { storeCod
   const salesCount = await getSalesCount(params.storeCode)
   const stockCount = await getInStockCount(params.storeCode)
   const graphData = await getGraphData(params.storeCode)
+
+
 
   return (
     <div className='flex-col'>

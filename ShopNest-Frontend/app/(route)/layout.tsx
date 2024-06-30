@@ -24,7 +24,7 @@ export default function RootLayout({
       <head>
       <link rel="icon" href="/shopnest-favicon-color.png" type="image/x-icon" />
       </head>
-      <body className={urbanist.className} >
+      <body className={'relative'} >
         <ToastProvider/>
         <ModalProvider/>
         <Header />
