@@ -8,26 +8,24 @@ import axios from 'axios'
 import { Category, Billboard } from '@prisma/client'
 import { useParams, useRouter } from 'next/navigation'
 
-
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import FormButton from '@/components/globals/FormButton'
 
 import ItemsSelector from '@/components/globals/ItemsSelector'
-import {ToastSuccess, ToastError} from '@/components/globals/Toast'
-
+import { ToastSuccess, ToastError } from '@/components/globals/Toast'
 
 // billBoardData props
 interface categoryFormProps {
-  categoryData: Category | null
-  billboards: Billboard[] 
+  categoryData?: Category
+  billboards: Billboard[]
 }
 
 const CategoryForm: React.FC<categoryFormProps> = ({ categoryData, billboards }) => {
   // zod schema and type
-  const formSchema = z.object({ 
+  const formSchema = z.object({
     name: z.string().min(1),
-    billboardCode: z.string().min(1, { message: "select a billboard" })
+    billboardCode: z.string().min(1, { message: 'select a billboard' })
   })
 
   type formValues = z.infer<typeof formSchema>
@@ -47,7 +45,7 @@ const CategoryForm: React.FC<categoryFormProps> = ({ categoryData, billboards })
 
   // conditions if there is not billboardData
   const toastMessage = categoryData ? `Category updated!` : ' Category created!'
-const action  = categoryData ?(loading? "Updating category": "Update category"):(loading? 'Creating category':'Create category')
+  const action = categoryData ? (loading ? 'Updating category' : 'Update category') : loading ? 'Creating category' : 'Create category'
   // sending data to DB
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
@@ -71,7 +69,6 @@ const action  = categoryData ?(loading? "Updating category": "Update category"):
       setLoading(false)
     }
   }
-  
 
   return (
     <>
@@ -104,8 +101,7 @@ const action  = categoryData ?(loading? "Updating category": "Update category"):
             />
           </div>
           <div className='mt-4'>
-          <FormButton loading={loading} action={action}/>
-
+            <FormButton loading={loading} action={action} />
           </div>
         </form>
       </Form>

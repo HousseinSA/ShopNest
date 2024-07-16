@@ -20,8 +20,8 @@ interface CategoryProps {
 
 const StoreCategory: React.FC<CategoryProps> = ({ categoryData, billboards }) => {
   // conditions for  path header
-  const title = categoryData ? `Update ${categoryData.name} Category` : 'Create New Category';
-  const description = categoryData ? `Update the details for category ${categoryData.name}` : 'Add a new category to your catalog';  // store delete modal state
+  const title = categoryData ? `Update Category` : 'Create New Category';
+  const description = categoryData ? `Update category details` : 'Add a new category to your catalog';  // store delete modal state
   const [isOpen, setIsOpen] = useState(false)
   const [loading, setLoading] = useState(false)
 

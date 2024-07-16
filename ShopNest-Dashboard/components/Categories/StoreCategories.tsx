@@ -10,7 +10,6 @@ import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { CategoryProps, columns } from '@/components/Categories/CategoryTable/columns'
 import { DataTable } from '@/components/Categories/CategoryTable/data-table'
-import APIList from '@/components/globals/APIList'
 
 interface StoreCategoryProps {
   categories: CategoryProps[]
@@ -36,9 +35,6 @@ const StoreCategories: React.FC<StoreCategoryProps> = ({ categories }) => {
         <Separator />
         <DataTable filterKey='name' columns={columns} data={categories} />
       </div>
-      <SectionHeader title='API' description='api calls for categories' />
-      <Separator /> 
-      <APIList apiName='categories' apiId='apiId' />
     </>
   )
 }

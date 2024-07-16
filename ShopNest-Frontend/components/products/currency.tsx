@@ -11,15 +11,13 @@ const PriceFormatter = new Intl.NumberFormat('en-US', {
   })
 interface CurrencyValue {
     data:number
-    ,className?:string
+    className?:string
 }
 
-  
-  const Currency:React.FC<CurrencyValue> = ({data ,className}) => { 
-
+  const Currency:React.FC<CurrencyValue> = ({data, className}) => { 
     return (
       <OnlyClient>
-      <span className={cn('text-sm font-bold text-primary', className)}>
+      <span className={cn('text-sm font-bold text-primary ', className)}>
             {PriceFormatter.format(data)}
       </span>
       </OnlyClient>

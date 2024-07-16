@@ -9,16 +9,16 @@ import validateObjectId from '@/lib/mongodDBValidate'
 const CategoriesPage = async ({ params }: { params: { storeCode: string } }) => {
   const validStoreCode = validateObjectId(params.storeCode)
   if (validStoreCode) {
-    const categories = await prismaDB.category.findMany({
-      where: {
-        storeCode: params.storeCode
-      },
-      include: { billboard: true },
-      orderBy: {
-        createdAt: 'desc'
-      }
-    })
-
+    const categories = await 
+      prismaDB.category.findMany({
+        where: {
+          storeCode: params.storeCode
+        },
+        include: { billboard: true },
+        orderBy: {
+          createdAt: 'desc'
+        }
+      })
 
     const formattedCategory: CategoryProps[] = categories?.map((category) => ({
       id: category.id,
@@ -34,7 +34,7 @@ const CategoriesPage = async ({ params }: { params: { storeCode: string } }) => 
     )
   }
 
-  redirect(`/`) 
+  redirect(`/`)
 }
 
 export default CategoriesPage

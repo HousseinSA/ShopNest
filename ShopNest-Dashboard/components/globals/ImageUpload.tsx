@@ -1,5 +1,6 @@
 'use client'
 
+import { cn } from '@/lib/utils'
 import { CldUploadWidget, CldImage } from 'next-cloudinary'
 import React from 'react'
 import { ImagePlus, Trash } from 'lucide-react'
@@ -13,10 +14,11 @@ interface ImageUploadProps {
   onChange: (value: string) => void
   onRemove: (value: string) => void
   value: string[],
-  removeState:boolean
+  removeState:boolean, 
+  location?:boolean
 }
 
-const ImageUpload: React.FC<ImageUploadProps> = ({ disabled, onChange, onRemove, value, removeState }) => {
+const ImageUpload: React.FC<ImageUploadProps> = ({ disabled, onChange, onRemove, value, removeState, location }) => {
   // mount on client render
   // onUpload
   const onUpload = (result: any) => {
@@ -40,7 +42,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ disabled, onChange, onRemove,
               alt={'uploaded image'}
               width={350}
               height={350}
-              className='rounded-lg'
+              className={cn('rounded-lg', location && ' object-fill h-full')}
             />
           </div>
         ))}

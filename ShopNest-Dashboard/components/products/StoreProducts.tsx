@@ -7,7 +7,6 @@ import HeadButton from '@/components/globals/storeHead/HeadButton'
 import { Separator } from '@/components/ui/separator'
 import { ProductProps, columns } from '@/components/products/ProductsTable/columns'
 import { DataTable } from '@/components/products/ProductsTable/data-table'
-import APIList from '@/components/globals/APIList'
 
 interface StoreProductProps {
   products: ProductProps[] | undefined
@@ -31,8 +30,6 @@ const StoreProducts: React.FC<StoreProductProps> = ({ products }) => {
         <Separator />
         <DataTable filterKey='name' columns={columns} data={products} />
       </div>
-      <SectionHeader title='API' description='api calls for products' />
-      <APIList apiName='products' apiId='apiId' />
     </>
   )
 }

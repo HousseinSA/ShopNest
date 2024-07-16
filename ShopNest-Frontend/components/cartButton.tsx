@@ -18,7 +18,7 @@ const {items} = useCartState()
 
   return (
     <OnlyClient>
-    <div  className='ml-auto w-8 h-8 md:h-11 md:w-11'>
+    <div  className=' w-8 h-8 md:h-11 md:w-11'>
       <Button id='cart-icon' onClick={()=>route.push('/cart')}   className='relative bg-primary rounded-full p-2 w-full h-full  disabled:cursor-not-allowed transition hover:primary-foreground flex items-center text-white'>
         <ShoppingBag  size={18} color='white'/>
       <div className='absolute md:-top-2 -top-1.5 w-4 h-4  md:w-5 md:h-5 -left-1 justify-center flex items-center bg-red-500 rounded-full'>

@@ -24,7 +24,7 @@ const ColorsPage = async ({ params }: { params: { storeCode: string } }) => {
       createdAt: format(color.createdAt, 'MMMM do, yyyy')
     }))
 
-    return (
+    return (    
       <div className='p-4 flex flex-col flex-1'>
         <StoreColors colors={formattedCategory} />
       </div>
