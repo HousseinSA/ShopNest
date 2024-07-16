@@ -10,7 +10,7 @@ const ProductsPage = async ({ params }: { params: { storeCode: string } }) => {
   const validBillBoardCode = validateObjectId(params.storeCode)
 
   if (validBillBoardCode) {
-    const products = await prismaDB.product.findMany({
+    const products = await  prismaDB.product.findMany({
       where: {
         storeCode: params.storeCode
       },

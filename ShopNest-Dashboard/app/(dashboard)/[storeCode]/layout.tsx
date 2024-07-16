@@ -3,38 +3,35 @@ import { auth } from '@clerk/nextjs'
 import { redirect } from 'next/navigation'
 
 import prismaDB from '@/lib/prismaClient'
-import Navbar from '@/components/Navigation/Navbar'
-
+import Head from '@/components/Navigation/Head'
 import '@/app/globals.css'
+import { withTimeout } from '../../../lib/timeout'
 
 interface DashboardLayoutProps {
   children: React.ReactNode
-  params: { storeCode: string }
+  params: { storeCode:string }
 }
-export default async function DashboardLayout({ children, params: { storeCode } }: DashboardLayoutProps) {
-    
+
+export default async function  DashboardLayout({ children, params: { storeCode } }: DashboardLayoutProps) {
   const { userId } = auth()
   if (!userId) {
     redirect('/sign-in')
   }
-
-  try {
     const storeData = await prismaDB.store.findFirst({
       where: {
         id: storeCode,
         userId
       }
     })
+
     if (!storeData) {
       redirect('/')
     }
-  } catch (error) {
-    console.log(error)
-  }
+
   return (
     <>
-        <Navbar />
-        {children}
+      <Head />
+      {children}
     </>
   )
 }

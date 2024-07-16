@@ -19,7 +19,7 @@ import {ToastSuccess, ToastError} from '@/components/globals/Toast'
 
 // productData props
 interface StoreProductProps {
-  productData: (Product & { images: Image[] }) | null
+  productData?: Product
   sizes: Size[]
   colors: Color[]
   categories: Category[]
@@ -78,7 +78,6 @@ const ProductForm: React.FC<StoreProductProps> = ({ productData, sizes, colors, 
       ToastSuccess(toastMessage)
       route.refresh()
     } catch (error) {
-      console.log(error)
       if (error.response?.status === 402) {
         ToastError(error.response.data)
       } else {

@@ -14,11 +14,10 @@ import FormButton from '@/components/globals/FormButton'
 import { ToastSuccess, ToastError } from '@/components/globals/Toast'
 
 interface ColorFormProps {
-  colorData: Color | null
-  colors: Color[]
+  colorData?: Color 
 }
 
-const ColorForm: React.FC<ColorFormProps> = ({ colorData, colors }) => {
+const ColorForm: React.FC<ColorFormProps> = ({ colorData }) => {
   const formSchema = z.object({
     name: z.string().min(1),
     value: z.string().min(4, { message: 'add a color' })

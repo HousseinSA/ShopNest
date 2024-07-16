@@ -27,8 +27,6 @@ async function ProductPage({ params }: { params: { productCode: string; storeCod
     }
   })
 
-
-
   if (validProductCode) {
     const product = await prismaDB.product.findUnique({
       where: {
@@ -37,8 +35,7 @@ async function ProductPage({ params }: { params: { productCode: string; storeCod
       },
       include: { images: true }
     })
-
-    if (product) {
+    if (product) {  
       return (
         <div className='p-4 flex flex-col flex-1'>
           <StoreProduct categories={categories} sizes={sizes} colors={colors} productData={product} />

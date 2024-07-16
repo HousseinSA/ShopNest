@@ -46,9 +46,7 @@ const Summary = () => {
       }
     )
     window.location = response.data.url
-    console.log(response.data.url)
   }
-
 
   return (
     <div className="mt-10 rounded-lg px-4 py-6 sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8 bg-gray-50 ">

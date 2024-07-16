@@ -10,7 +10,6 @@ import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { BillboardProps, columns } from '@/components/Billboards/BillboardsTable/columns'
 import { DataTable } from '@/components/Billboards/BillboardsTable/data-table'
-import APIList from '@/components/globals/APIList'
 
 interface BillBoardsProps {
   billBoards: BillboardProps[]
@@ -25,20 +24,19 @@ const StoreBillBoards: React.FC<BillBoardsProps> = ({ billBoards }) => {
     route.push(`/${params.storeCode}/billboards/new`)
   }
 
+  
+
   return (
     <>
       <div className='flex flex-col space-y-4'>
         <SectionHeader title={`Billboards (${billBoards.length})`} description='Manage store billboards'>
         <HeadButton onAddNew ={onAddNew}>
-              Add Product 
+              Add Billboard
           </HeadButton>
         </SectionHeader>
         <Separator />
         <DataTable filterKey='label' columns={columns} data={billBoards} />
       </div>
-      <SectionHeader title='API ' description='api calls for billboards' />
-      <Separator />
-      <APIList apiName='billboards' apiId='apiId' />
     </>
   )
 }

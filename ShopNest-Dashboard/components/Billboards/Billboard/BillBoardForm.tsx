@@ -16,7 +16,7 @@ import {ToastSuccess, ToastError} from '@/components/globals/Toast'
 
 // billboardData props
 interface BillboardFormProps {
-  billboardData: Billboard | null
+  billboardData?: Billboard 
 }
 
 const BillBoardForm: React.FC<BillboardFormProps> = ({ billboardData }) => {
@@ -81,7 +81,7 @@ const BillBoardForm: React.FC<BillboardFormProps> = ({ billboardData }) => {
               <FormItem className='mb-4'>
                 <FormLabel>billboard image</FormLabel>
                 <FormControl>
-                  <ImageUpload disabled={loading} value={field.value ? [field.value] : []} removeState={false} onChange={(url) => field.onChange(url)} onRemove={() => field.onChange('')} />
+                  <ImageUpload disabled={loading} value={field.value ? [field.value] : []} removeState={false} onChange={(url) => field.onChange(url)} onRemove={() => field.onChange('')} location={true} />
                 </FormControl>  
                 <FormMessage /> 
               </FormItem>
