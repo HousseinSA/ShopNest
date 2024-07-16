@@ -13,7 +13,7 @@ import { cn } from '@/lib/utils'
 import { useModalStore } from '@/hooks/StoreState'
 
 interface StoreChangerProps {
-  stores: Store[]
+  stores: Store[]|[]
 }
 const StoreSwitcher: React.FC<StoreChangerProps> = ({ stores }) => {
   // routes params

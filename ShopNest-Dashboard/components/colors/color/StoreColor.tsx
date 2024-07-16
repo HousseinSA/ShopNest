@@ -14,10 +14,9 @@ import ColorForm from './ColorForm'
 import {ToastError, ToastSuccess} from '@/components/globals/Toast'
 interface CategoryProps {
   colorData?: Color 
-  colors: Color[] | null
 }
 
-const StoreColor: React.FC<CategoryProps> = ({ colorData, colors }) => {
+const StoreColor: React.FC<CategoryProps> = ({ colorData }) => {
   // conditions for path header
 
   const title = colorData ? `Update ${colorData.name} Color` : 'Create New Color';
@@ -56,7 +55,7 @@ const StoreColor: React.FC<CategoryProps> = ({ colorData, colors }) => {
           )}
         </SectionHeader>
         <Separator />
-        <ColorForm  colors={colors} colorData={colorData} />
+        <ColorForm colorData={colorData} />
       </div>
     </>
   )

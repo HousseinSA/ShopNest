@@ -10,9 +10,18 @@ import Currency from '@/components/products/currency'
 import usePreviewModal from '@/lib/state/ModalState'
 import useCartState from '@/lib/state/CartState'
 import { triggerAnimation } from '@/components/products/addToCartTrigger'
+import Image from 'next/image'
 
+interface testingProduct {
+  name: string
+  id: string
+  image: string
+  price: number
+  category: string
+}
 interface Product {
   product: ProductData
+  // product: testingProduct
 }
 
 const ProductCard: React.FC<Product> = ({ product }) => {
@@ -48,7 +57,7 @@ const ProductCard: React.FC<Product> = ({ product }) => {
       onClick={onClick}
       className="rounded-xl cursor-pointer bg-white group border p-3 shadow-md relative"
     >
-      <div className="aspect-square relative bg-white rounded-xl">
+      <div className="aspect-square relative bg-white rounded-xl ">
         <CldImage
           ref={imgRef}
           removeBackground
@@ -72,10 +81,11 @@ const ProductCard: React.FC<Product> = ({ product }) => {
       </div>
       {/* description */}
       <div>
-        <p className="font-bold text-lg capitalize text-primary">
+        <p className="font-bold text-lg capitalize text-primary ">
           {product.category.name}
+          {/* {product.category} */}
         </p>
-        <p className="text-sm font-semibold capitalize text-gray-700 m-0">
+        <p className="text-sm font-semibold capitalize text-gray-700 m-0 ">
           {product.name}
         </p>
       </div>

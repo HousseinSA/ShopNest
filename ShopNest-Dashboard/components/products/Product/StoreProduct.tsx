@@ -23,7 +23,9 @@ const StoreProduct: React.FC<ProductProps> = ({ productData, categories, colors,
   // conditions for path header
 
   const title = productData ? `Update ${productData.name} Product` : 'Create New Product';
-  const description = productData ? `Update the details for product ${productData.name}` : 'Add a new product to your store';console.log(productData)
+  const description = productData ? `Update the details for product ${productData.name}` : 'Add a new product to your store';
+
+  
   // store delete modal state
   const [isOpen, setIsOpen] = useState(false)
   const [loading, setLoading] = useState(false)

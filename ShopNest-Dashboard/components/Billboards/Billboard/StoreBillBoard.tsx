@@ -50,17 +50,17 @@ const StoreBillBoard: React.FC<BillBoardProps> = ({ billboardData }) => {
   return (
     <>
       <AlertModal title={`Delete billboard`} loading={loading} onDelete={onBillboardDelete} description={`Are you sure you want to delete this billboard?`} isOpen={isOpen} setIsOpen={setIsOpen} />
-      <div className='flex flex-col space-y-4'>
-        <SectionHeader title={title} description={description}>
-          {billboardData && (
-            <Button variant='destructive' aria-label='delete button' size='icon' className='rounded-full' onClick={() => setIsOpen(true)}>
-              <Trash className='w-5 h-5' />
-            </Button>
-          )}
-        </SectionHeader>
-        <Separator />
-        <BillBoardForm billboardData={billboardData} />
-      </div>
+        <div className='flex flex-col space-y-4'>
+          <SectionHeader title={title} description={description}>
+            {billboardData && (
+              <Button variant='destructive' aria-label='delete button' size='icon' className='rounded-full' onClick={() => setIsOpen(true)}>
+                <Trash className='w-5 h-5' />
+              </Button>
+            )}
+          </SectionHeader>
+          <Separator />
+          <BillBoardForm billboardData={billboardData} />
+        </div>
     </>
   )
 }

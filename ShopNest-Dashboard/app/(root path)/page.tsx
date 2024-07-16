@@ -1,7 +1,7 @@
 'use client'
 import { useEffect } from 'react'
-
 import { useModalStore } from '@/hooks/StoreState'
+import Head from '@/components/Navigation/Head'
 
 export default function Home() {
   // modal state change on render
@@ -12,5 +12,9 @@ export default function Home() {
     }
   }, [ModalOpenState, openModal])
 
-  return <div className=''>root page</div>
+  return (
+    <>
+      <Head />
+    </>
+  )
 }

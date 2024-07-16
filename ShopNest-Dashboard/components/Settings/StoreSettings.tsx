@@ -61,7 +61,6 @@ const StoreSettings: React.FC<StoreSettingsProps> = ({ storeData }) => {
         <Separator />
         <StoreSettingsForm storeData={storeData} />
         <Separator />
-        <ApiAlert title='test' description={`${origin}/api/${storeData.id}`} variant='public' />
       </div>
     </>
   )

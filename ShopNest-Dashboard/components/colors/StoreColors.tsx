@@ -7,7 +7,6 @@ import HeadButton from '@/components/globals/storeHead/HeadButton'
 import { Separator } from '@/components/ui/separator'
 import { ColorProps, columns } from '@/components/colors/ColorTable/columns'
 import { DataTable } from '@/components/colors/ColorTable/data-table'
-import APIList from '@/components/globals/APIList'
 
 interface StoreCategoryProps {
   colors: ColorProps[]
@@ -31,9 +30,7 @@ const StoreColors: React.FC<StoreCategoryProps> = ({ colors }) => {
         <Separator />
         <DataTable filterKey='name' columns={columns} data={colors} />
       </div>
-      <SectionHeader title='API ' description='api calls for colors' />
-      <Separator />
-      <APIList apiName='colors' apiId='apiId' />
+
     </>
   )
 }

@@ -11,12 +11,12 @@ export async function POST(req: Request) {
 
   try {
     event = stripe.webhooks.constructEvent(body, signature, process.env.STRIPE_WEB_HOOK)
-  } catch (error: any) {
+  } catch(error:any) {
     console.error(`Webhook signature verification failed: ${error.message}`)
     return new NextResponse(`Webhook error: ${error.message}`, { status: 400 })
   }
 
-  const session = event.data.object as Stripe.Checkout.Session
+  const session= event.data.object as Stripe.Checkout.Session
   const address = session?.customer_details?.address
   const addressArray = [address?.line1, address?.line2, address?.city, address?.state, address?.postal_code, address?.country]
   const addressString = addressArray.filter((loc) => loc !== null).join(',')

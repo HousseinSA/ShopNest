@@ -34,9 +34,6 @@ const StoreSizes: React.FC<StoreSizesProps> = ({ sizes }) => {
         <Separator />
         <DataTable filterKey='name' columns={columns} data={sizes} />
       </div>
-      {/* <SectionHeader title='API ' description='api calls for sizes' /> */}
-      {/* <Separator /> */}
-      {/* <APIList apiName='sizes' apiId='apiId' /> */}
     
     </>
   )

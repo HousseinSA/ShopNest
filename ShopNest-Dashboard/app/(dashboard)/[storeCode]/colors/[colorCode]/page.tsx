@@ -13,11 +13,6 @@ async function ColorPage({ params }: { params: { colorCode: string; storeCode: s
     redirect(`/${params.storeCode}/colors`)
   }
 
-  const colors = await prismaDB.color.findMany({
-    where: {
-      storeCode: params.storeCode
-    }
-  })
 
   if (validColorCode) {
     const color = await prismaDB.color.findUnique({
@@ -29,7 +24,7 @@ async function ColorPage({ params }: { params: { colorCode: string; storeCode: s
     if (color) {
       return (
         <div className='p-4 flex flex-col flex-1'>
-          <StoreColor colors={colors} colorData={color} />
+          <StoreColor  colorData={color} />
         </div>
       )
     }
@@ -37,7 +32,7 @@ async function ColorPage({ params }: { params: { colorCode: string; storeCode: s
 
   return (
     <div className='p-4 flex flex-col flex-1'>
-      <StoreColor colors={colors} />
+      <StoreColor  />
     </div>
   )
 }

@@ -15,7 +15,7 @@ import {ToastSuccess, ToastError} from '@/components/globals/Toast'
 
 // billBoardData props
 interface SizeForm {
-  sizeData: Size | null
+  sizeData?: Size 
 }
 
 const CategoryForm: React.FC<SizeForm> = ({ sizeData,  }) => {
@@ -58,7 +58,6 @@ const action  = sizeData ?(loading? "Updating size": "Update size"):(loading? 'C
       ToastSuccess(toastMessage)
       route.refresh()
     } catch (error) {
-      console.log(error)
       if (error.response?.status === 402) {
         ToastError(error.response.data)
       } else {
