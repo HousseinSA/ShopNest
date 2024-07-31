@@ -33,7 +33,7 @@ event.stopPropagation()
         {product.name}
       </h1>
       <div className="flex items-end mt-3">
-        <Currency className="text-2xl text-gray-900" data={product.price} />
+        <Currency className="text-2xl text-gray-700" data={product.price} />
       </div>
       <hr className="my-4" />
       <div className="flex flex-col gap-4">

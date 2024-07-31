@@ -3,7 +3,7 @@
 import { cn } from '@/lib/utils'
 import { CldUploadWidget, CldImage } from 'next-cloudinary'
 import React from 'react'
-import { ImagePlus, Trash } from 'lucide-react'
+// import { ImagePlus, Trash } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import OnlyClient from '@/components/globals/OnlyClient'
@@ -33,7 +33,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ disabled, onChange, onRemove,
           <div key={url} className='relative w-[250px] h-[250px] flex items-center justify-center bg-gray-100 rounded-md overflow-hidden'>
             <div className='absolute top-2 right-2 z-10'>
               <Button type='button' title='Delete product' onClick={() => onRemove(url)} variant='outline' className='rounded-full outline-none py-3 px-3 hover:bg-red-500 hover:opacity-100 opacity-50 group'>
-                <Trash className='h-4 w-4 group-hover:text-white' />
+                {/* <Trash className='h-4 w-4 group-hover:text-white' /> */}
               </Button>
             </div>
             <CldImage
@@ -57,7 +57,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ disabled, onChange, onRemove,
       }}   onUpload={onUpload} uploadPreset='q5jplcc9'>
         {({ open, }) => (
           <Button type='button' disabled={disabled} variant='secondary' onClick={() => open?.()}>
-            <ImagePlus className='h-4 w-4 mr-2' />
+            {/* <ImagePlus className='h-4 w-4 mr-2' /> */}
             Upload Image
           </Button>
         )}

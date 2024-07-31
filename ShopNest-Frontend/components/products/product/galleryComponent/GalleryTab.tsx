@@ -13,7 +13,7 @@ const GalleryTab: React.FC<ImageProps> = ({ image }) => {
     <Tab className="relative flex aspect-square cursor-pointer items-center justify-center rounded-md bg-white">
       {({ selected }) => (
         <div>
-          <span className="absolute inset-0 aspect-square rounded-md w-full h-full overflow-hidden ">
+          <span className="absolute inset-0 aspect-square rounded-md w-full h-full overflow-hidden">
             <CldImage
             removeBackground
               src={image.url}
@@ -27,7 +27,7 @@ const GalleryTab: React.FC<ImageProps> = ({ image }) => {
               selected ? "ring-primary" : "ring-transparent"
             }`}
           />  
-        </div>
+        </div>  
       )}
     </Tab>
   );

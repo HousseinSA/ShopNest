@@ -7,7 +7,7 @@ import StoreSwitcher from './StoreSwitcher'
 import { ThemeToggler } from '@/lib/Providers/theme/ThemeToggler'
 
 const Head = async () => {
-  const { userId} = auth()
+  const {userId} = auth()
   if (!userId) {
     redirect('/')
   }

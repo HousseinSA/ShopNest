@@ -6,12 +6,12 @@ import SectionHeader from '@/components/globals/storeHead/SectionHeader'
 import { Separator } from '@/components/ui/separator'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { PriceFormatter } from '@/lib/PriceFormatter'
-import { getTotalRevenue } from '@/lib/actions/getTotalRevenue'
-import { getSalesCount } from '@/lib/actions/getSalesCount'
-import { getInStockCount } from '@/lib/actions/getInStockCount'
+import { getTotalRevenue } from '@/lib/dashboardActions/getTotalRevenue'
+import { getSalesCount } from '@/lib/dashboardActions/getSalesCount'
+import { getInStockCount } from '@/lib/dashboardActions/getInStockCount'
 import validateObjectId from '@/lib/mongodDBValidate'
 import Overview from '@/components/Dashboard/overview'
-import { getGraphData } from '@/lib/actions/getGraphData'
+import { getGraphData } from '@/lib/dashboardActions/getGraphData'
 import CardHead from '@/components/Dashboard/CardHead'
 
 interface StoreParams {
@@ -31,7 +31,6 @@ const DashboardPage: React.FC<StoreParams> = async ({ params }: { params: { stor
   const salesCount = await getSalesCount(params.storeCode)
   const stockCount = await getInStockCount(params.storeCode)
   const graphData = await getGraphData(params.storeCode)
-
   return (
     <div className='flex-col'>
       <div className='flex-1 space-y-4 p-8 pt-6'>

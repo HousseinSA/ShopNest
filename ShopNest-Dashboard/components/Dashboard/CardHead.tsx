@@ -8,9 +8,9 @@ interface CardHeadProps {
   title: string
 }
 
-const Total_Revenue = <DollarSign size={20} className='text-primary' />
-const productsInStuck = <Package size={20} className='text-primary' />
-const sales = <CreditCard size={20} className='text-primary' />
+const Total_Revenue = <DollarSign size={20} className='text-primary'  />
+const productsInStuck =  <Package size={20} className='text-primary' /> 
+const sales = <CreditCard size={20} className='text-primary' /> 
 const titles = [
   { title: 'Total Revenue', icon: Total_Revenue },
   { title: 'Sales', icon: sales },

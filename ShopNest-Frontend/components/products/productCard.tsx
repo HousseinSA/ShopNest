@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useRef, useEffect, MouseEventHandler } from 'react'
+import React, {  useRef, MouseEventHandler } from 'react'
 import { useRouter } from 'next/navigation'
 import { Scaling, ShoppingCart } from 'lucide-react'
 import { CldImage } from 'next-cloudinary'
@@ -10,18 +10,9 @@ import Currency from '@/components/products/currency'
 import usePreviewModal from '@/lib/state/ModalState'
 import useCartState from '@/lib/state/CartState'
 import { triggerAnimation } from '@/components/products/addToCartTrigger'
-import Image from 'next/image'
 
-interface testingProduct {
-  name: string
-  id: string
-  image: string
-  price: number
-  category: string
-}
 interface Product {
   product: ProductData
-  // product: testingProduct
 }
 
 const ProductCard: React.FC<Product> = ({ product }) => {

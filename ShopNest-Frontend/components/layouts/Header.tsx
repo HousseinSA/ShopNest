@@ -10,7 +10,7 @@ import MobileMenu from "./Navigation/mobileMenu";
 const Header = async () => {
   const categories = await getCategoriesData();
   return (
-      <header className="py-4 md:py-5 lg:py-6 sticky left-0 top-0 z-20 mx-auto right-0 bg-white shadow-sm  w-full max-w-7xl border-b">
+      <header className="py-4 md:py-5 lg:py-6 sticky left-0 top-0 z-20 mx-auto right-0 bg-white bg-opacity-70 backdrop-blur-md w-full max-w-7xl">
         <div className="flex items-center gap-5 mx-4">
           <div className="flex-shrink-0" >
             <Link href={'/'}>
