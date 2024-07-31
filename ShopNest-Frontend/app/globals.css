@@ -7,7 +7,7 @@
     @apply rounded-lg  uppercase text-sm hover:-translate-y-0.5 transform transition focus:outline-none focus:ring focus:ring-offset-2 font-semibold sm:text-base tracking-wider py-2 px-4
   }
   .btn-primary {
-    @apply bg-blue-500  sm:hover:bg-blue-400  focus:ring-blue-400 active:bg-blue-700  text-white ;
+    @apply bg-brand  sm:hover:bg-brand-light  focus:ring-brand-light active:bg-brand-dark  text-white ;
   }
   .btn-secondary {
     @apply bg-gray-500 text-white active:bg-gray-700 focus:ring-gray-400  sm:hover:bg-gray-400
