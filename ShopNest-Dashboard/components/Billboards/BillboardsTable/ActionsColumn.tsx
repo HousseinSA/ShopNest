@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from 'react'
-import { Copy, Edit, MoreHorizontal, Trash } from 'lucide-react'
+// import { Copy, Edit, MoreHorizontal, Trash } from 'lucide-react'
 import axios from 'axios'
 import { useParams, useRouter } from 'next/navigation'
 
@@ -56,7 +56,7 @@ const ActionsColumn: React.FC<CellActionProps> = ({ billboard }) => {
         <DropdownMenuTrigger asChild>
           <Button variant='ghost' size='sm'>
             <span className='sr-only'>open menu</span>
-            <MoreHorizontal className='h-5 w-5' />
+            {/* <MoreHorizontal className='h-5 w-5' /> */}
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
@@ -64,13 +64,13 @@ const ActionsColumn: React.FC<CellActionProps> = ({ billboard }) => {
 </DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem onClick={() => onUpdate(billboard.id)}>
-            <Edit className='w-5 h-5 mr-2' /> Update
+            {/* <Edit className='w-5 h-5 mr-2' /> Update */}
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => onCopy(billboard.id)}>
-            <Copy className='w-5 h-5 mr-2' /> Copy
+            {/* <Copy className='w-5 h-5 mr-2' /> Copy */}
           </DropdownMenuItem>
           <DropdownMenuItem className='bg-red-200' onClick={() => setIsOpen(true)}>
-            <Trash className='w-5 h-5 mr-2' /> Delete
+            {/* <Trash className='w-5 h-5 mr-2' /> Delete */}
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

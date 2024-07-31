@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from 'react'
-// import { Copy, Edit, MoreHorizontal, Trash } from 'lucide-react'
+import { Copy, Edit, MoreHorizontal, Trash } from 'lucide-react'
 import axios from 'axios'
 import { useParams, useRouter } from 'next/navigation'
 
@@ -11,7 +11,8 @@ import AlertModal from '@/components/Modals/AlertModal'
 import { ToastSuccess, ToastError } from '@/components/globals/Toast'
 
 interface CellActionProps {
-  color: ColorProps
+  color:ColorProps
+  size?:
 }
 
 const ActionsColumn: React.FC<CellActionProps> = ({ color }) => {
@@ -23,7 +24,7 @@ const ActionsColumn: React.FC<CellActionProps> = ({ color }) => {
     route.push(`/${params.storeCode}/colors/${code}`)
   }
 
-  // handel  copy
+  // handel copy
   const onCopy = (code: string): void => {
     navigator.clipboard.writeText(code)
     ToastSuccess('Copied!')
@@ -55,20 +56,20 @@ const ActionsColumn: React.FC<CellActionProps> = ({ color }) => {
         <DropdownMenuTrigger asChild>
           <Button variant='ghost' size='sm'>
             <span className='sr-only'>open menu</span>
-            {/* <MoreHorizontal className='h-5 w-5' /> */}
+            <MoreHorizontal className='h-5 w-5' />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuLabel>Actions</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem onClick={() => onUpdate(color.id)}>
-            {/* <Edit className='w-5 h-5 mr-2' /> Update */}
+            <Edit className='w-5 h-5 mr-2' /> Update
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => onCopy(color.id)}>
-            {/* <Copy className='w-5 h-5 mr-2' /> Copy */}
+            <Copy className='w-5 h-5 mr-2' /> Copy
           </DropdownMenuItem>
           <DropdownMenuItem className='bg-red-200' onClick={() => setIsOpen(true)}>
-            {/* <Trash className='w-5 h-5 mr-2' /> Delete */}
+            <Trash className='w-5 h-5 mr-2' /> Delete
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

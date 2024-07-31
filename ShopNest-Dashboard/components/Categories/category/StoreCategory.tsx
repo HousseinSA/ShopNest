@@ -1,5 +1,5 @@
 'use client'
-import { Trash } from 'lucide-react'
+// import { Trash } from 'lucide-react'
 import React, { useState } from 'react'
 import { Billboard, Category } from '@prisma/client'
 import { useRouter, useParams } from 'next/navigation'
@@ -52,7 +52,7 @@ const StoreCategory: React.FC<CategoryProps> = ({ categoryData, billboards }) =>
         <SectionHeader title={title} description={description}>
           {categoryData && (
             <Button variant='destructive' aria-label='delete button' size='icon' className='rounded-full' onClick={() => setIsOpen(true)}>
-              <Trash className='w-5 h-5' />
+              {/* <Trash className='w-5 h-5' /> */}
             </Button>
           )}
         </SectionHeader>
