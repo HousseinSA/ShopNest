@@ -7,6 +7,7 @@ import { Product } from '@/lib/StoreTypes'
 import ButtonIcon from '@/components/ui/IconButton'
 import useCartState from '@/lib/state/CartState'
 import Currency from '@/components/products/currency'
+import {CapitalizedFirstLetter} from '@/components/globals/CapitalizedFirstLetter'
 
 interface CartItemProps {
   item: Product
@@ -18,7 +19,7 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
     deleteItem(item.id)
   }
   return (
-    <li className="flex py-6 border-b gap-x-4 sm:gap-x-6">
+    <li className="flex py-6 border-b last:border-b-0 gap-x-4 sm:gap-x-6">
       <div className="relative h-24 w-24 rounded-md overflow-hidden sm:h-48 sm:w-48">
         <CldImage
           fill
@@ -38,7 +39,7 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
         </div>
         <div className="relative pr-9 sm:pr-0 sm:grid sm:grid-cols-2 sm:gap-x-4">
           <div className="flex justify-between">
-            <p className="text-black font-semibold text-lg capitalize ">{item.name}</p>
+            <p className="text-black font-semibold text-lg ">{CapitalizedFirstLetter(item.name)}</p>
           </div>
           <div className="mt-1 text-sm capitalize flex items-center gap-x-4">
             <p className="text-gray-500">{item.color.name}</p>

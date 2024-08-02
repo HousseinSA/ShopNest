@@ -42,7 +42,7 @@ const ActionsColumn: React.FC<CellActionProps> = ({ product }) => {
       ToastSuccess('Product deleted!')
       route.refresh()
     } catch (error) {
-      ToastError('Can\'t delete product, try again')
+      ToastError("Can't delete product, try again")
     } finally {
       setLoading(false)
       setIsOpen(false)
@@ -53,7 +53,7 @@ const ActionsColumn: React.FC<CellActionProps> = ({ product }) => {
   // useEffect(() => {
   //   const handleClickOutside = (event: MouseEvent) => {
   //     if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        // closeDropDown()
+  // closeDropDown()
   //     }
   //   }
   //   document.addEventListener('mousedown', handleClickOutside)
@@ -67,12 +67,14 @@ const ActionsColumn: React.FC<CellActionProps> = ({ product }) => {
       <AlertModal title='Delete Product' description={`Are you sure you want to delete ${product.name}?`} loading={loading} onDelete={onProductDelete} isOpen={isOpen} setIsOpen={setIsOpen} />
       <div ref={dropdownRef}>
         <DropdownMenu
-//  open={openProductId === product.id}
->
+        //  open={openProductId === product.id}
+        >
           <DropdownMenuTrigger asChild>
-            <Button variant='ghost' size='sm'
-            //  onClick={() => toggleDropDown(product.id)}
-             >
+            <Button
+              variant='ghost'
+              size='sm'
+              //  onClick={() => toggleDropDown(product.id)}
+            >
               <span className='sr-only'>Open menu</span>
               <MoreHorizontal className='h-5 w-5' />
             </Button>
@@ -80,14 +82,35 @@ const ActionsColumn: React.FC<CellActionProps> = ({ product }) => {
           <DropdownMenuContent>
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={(e) => { e.stopPropagation(); onUpdate(product.id); }}>
-              <Edit className='w-5 h-5 mr-2' /> Update
+            <DropdownMenuItem
+              onClick={(e) => {
+                e.stopPropagation()
+                onUpdate(product.id)
+              }}
+            >
+              <div className='hover:text-primary flex space-x-2 w-full'>
+                <Edit className='w-5 h-5 mr-2' /> Update
+              </div>
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={(e) => { e.stopPropagation(); onCopy(product.id); }}>
-              <Copy className='w-5 h-5 mr-2' /> Copy
+            <DropdownMenuItem
+              onClick={(e) => {
+                e.stopPropagation()
+                onCopy(product.id)
+              }}
+            >
+              <div className='hover:text-primary flex space-x-2 w-full'>
+                <Copy className='w-5 h-5 mr-2' /> Copy
+              </div>
             </DropdownMenuItem>
-            <DropdownMenuItem className='bg-red-200' onClick={(e) => { e.stopPropagation(); setIsOpen(true); }}>
-              <Trash className='w-5 h-5 mr-2' /> Delete
+            <DropdownMenuItem
+              onClick={(e) => {
+                e.stopPropagation()
+                setIsOpen(true)
+              }}
+            >
+              <div className='hover:text-red-500 flex space-x-2 w-full'>
+                <Trash className='w-5 h-5 mr-2' /> Delete
+              </div>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

@@ -7,7 +7,7 @@ import '@/app/globals.css'
 import { cn } from '@/lib/utils'
 import ModalProvider from '@/lib/Providers/ModalProvider'
 import ToastProvider from '@/lib/Providers/ToastProvider'
-import { ThemeProvider } from '@/lib/Providers/theme/themeProvider'
+// import { ThemeProvider } from '@/lib/Providers/theme/themeProvider'
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -26,11 +26,11 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
           <link rel='icon' href='/shopnest.svg' sizes='any' />
         </Head>
         <body className={cn('min-h-screen bg-background font-sans antialiased', fontSans.variable)}>
-          <ThemeProvider attribute='class' defaultTheme='system' enableSystem> 
+          {/* <ThemeProvider attribute='class' defaultTheme='system' enableSystem>  */}
             <ToastProvider /> 
             <ModalProvider />
             {children}
-          </ThemeProvider>
+          {/* </ThemeProvider> */}
         </body>
       </html>
     </ClerkProvider>

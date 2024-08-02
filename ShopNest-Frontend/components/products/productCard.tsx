@@ -1,5 +1,5 @@
 'use client'
-import React, {  useRef, MouseEventHandler } from 'react'
+import React, { useRef, MouseEventHandler } from 'react'
 import { useRouter } from 'next/navigation'
 import { Scaling, ShoppingCart } from 'lucide-react'
 import { CldImage } from 'next-cloudinary'
@@ -10,7 +10,7 @@ import Currency from '@/components/products/currency'
 import usePreviewModal from '@/lib/state/ModalState'
 import useCartState from '@/lib/state/CartState'
 import { triggerAnimation } from '@/components/products/addToCartTrigger'
-
+import {CapitalizedFirstLetter} from '@/components/globals/CapitalizedFirstLetter'
 interface Product {
   product: ProductData
 }
@@ -72,12 +72,11 @@ const ProductCard: React.FC<Product> = ({ product }) => {
       </div>
       {/* description */}
       <div>
-        <p className="font-bold text-lg capitalize text-primary ">
-          {product.category.name}
-          {/* {product.category} */}
+        <p className="font-bold text-lg text-primary ">
+        {CapitalizedFirstLetter(product.category.name) }
         </p>
-        <p className="text-sm font-semibold capitalize text-gray-700 m-0 ">
-          {product.name}
+        <p className="text-sm font-semibold text-gray-700 m-0 ">
+          {CapitalizedFirstLetter(product.name) }
         </p>
       </div>
       {/* price */}

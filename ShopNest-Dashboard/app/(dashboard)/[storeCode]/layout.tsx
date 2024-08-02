@@ -5,7 +5,6 @@ import { redirect } from 'next/navigation'
 import prismaDB from '@/lib/prismaClient'
 import Head from '@/components/Navigation/Head'
 import '@/app/globals.css'
-import { withTimeout } from '../../../lib/timeout'
 
 interface DashboardLayoutProps {
   children: React.ReactNode
@@ -27,7 +26,6 @@ export default async function  DashboardLayout({ children, params: { storeCode }
     if (!storeData) {
       redirect('/')
     }
-
   return (
     <>
       <Head />

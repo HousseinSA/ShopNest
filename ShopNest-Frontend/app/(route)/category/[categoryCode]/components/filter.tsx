@@ -1,40 +1,39 @@
-'use client';
-import React from 'react';
-import { useRouter } from 'next/navigation';
-import { useSearchParams } from 'next/navigation';
-import qs from 'query-string';
-import { Size, Color } from '@/lib/StoreTypes';
-import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
+'use client'
+import React from 'react'
+import { useRouter } from 'next/navigation'
+import { useSearchParams } from 'next/navigation'
+import qs from 'query-string'
+import { Size, Color } from '@/lib/StoreTypes'
+import { Button } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
 
 interface FilterProps {
-  data: (Size | Color)[];
-  name: string;
-  valueKey: string;
+  data: (Size | Color)[]
+  name: string
+  valueKey: string
 }
 
 const Filter: React.FC<FilterProps> = ({ data, name, valueKey }) => {
-  const route = useRouter();
-  const searchParams = useSearchParams();
-  
-  const selectedValue = searchParams.get(valueKey);
+  const route = useRouter()
+  const searchParams = useSearchParams()
+
+  const selectedValue = searchParams.get(valueKey)
   const onClick = (id: string) => {
-    const currentParams = qs.parse(searchParams.toString());
+    const currentParams = qs.parse(searchParams.toString())
     const query = {
       ...currentParams,
-      [valueKey]: id
-    };
-  
+      [valueKey]: id,
+    }
     if (currentParams[valueKey] === id) {
-      delete query[valueKey];
+      delete query[valueKey]
     }
 
     const url = qs.stringifyUrl({
       url: window.location.pathname,
-      query
-    });
-    route.push(url);
-  };
+      query,
+    })
+    route.push(url)
+  }
 
   return (
     <div>
@@ -47,8 +46,7 @@ const Filter: React.FC<FilterProps> = ({ data, name, valueKey }) => {
               <Button
                 className={cn(
                   'border-primary p-2 px-4 border  bg-white text-black capitalize rounded-2xl hover:text-white hover:primary-foreground',
-                  selectedValue === filter.id &&
-                    'bg-primary text-white'
+                  selectedValue === filter.id && 'bg-primary text-white'
                 )}
                 onClick={() => onClick(filter.id)}
               >
@@ -59,7 +57,7 @@ const Filter: React.FC<FilterProps> = ({ data, name, valueKey }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Filter;
+export default Filter

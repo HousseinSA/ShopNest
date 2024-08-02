@@ -48,7 +48,7 @@ export function DataTable<TData, TValue>({ columns, data, filterKey }: DataTable
               table.getRowModel().rows.map((row) => (
                 <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell title='edit' className='cursor-pointer' key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
+                    <TableCell  key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
 
                   ))}
                 </TableRow>

@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer className="bg-white border-t absolute bottom-0 w-full flex justify-center">
       <div className="mx-auto py-5 text-center ">
-        <p>&copy; {year} <span className='text-primary font-bold'> ShopNest </span>, All rights reserved.</p>
+        <p className="font-semibold">&copy; {year} <span className='text-primary '>ShopNest</span>, All rights reserved.</p>
       </div>
     </footer>
   )

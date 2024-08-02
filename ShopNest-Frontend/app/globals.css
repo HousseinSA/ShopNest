@@ -70,7 +70,7 @@
   /* skeleton styling */
   .skeleton {
     opacity: 0.7;
-    animation: skeleton-loading .5s linear infinite alternate;
+    animation: skeleton-loading  .3s linear infinite alternate;
     background-color: hsl(200, 20%, 80%); /* Slightly darker gray */
     border-radius: 1rem;
   }

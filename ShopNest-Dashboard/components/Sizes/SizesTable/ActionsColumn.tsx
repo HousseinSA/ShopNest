@@ -4,12 +4,11 @@ import { Copy, Edit, MoreHorizontal, Trash } from 'lucide-react'
 import axios from 'axios'
 import { useParams, useRouter } from 'next/navigation'
 
-
 import { SizeProps } from '@/components/Sizes/SizesTable/columns'
 import { Button } from '@/components/ui/button'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import AlertModal from '@/components/Modals/AlertModal'
-import {ToastSuccess, ToastError} from '@/components/globals/Toast'
+import { ToastSuccess, ToastError } from '@/components/globals/Toast'
 
 interface CellActionProps {
   size: SizeProps
@@ -22,7 +21,7 @@ const ActionsColumn: React.FC<CellActionProps> = ({ size }) => {
   // on update
   function onUpdate(code: string) {
     route.push(`/${params.storeCode}/sizes/${code}`)
-  } 
+  }
 
   // handel copy
   const onCopy = (code: string): void => {
@@ -60,17 +59,22 @@ const ActionsColumn: React.FC<CellActionProps> = ({ size }) => {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          <DropdownMenuLabel>Actions menu
-</DropdownMenuLabel>
+          <DropdownMenuLabel>Actions menu</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem onClick={() => onUpdate(size.id)}>
-            <Edit className='w-5 h-5 mr-2' /> Update
+            <div className='hover:text-primary flex space-x-2 w-full'>
+              <Edit className='w-5 h-5 mr-2' /> Update
+            </div>
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => onCopy(size.id)}>
-            <Copy className='w-5 h-5 mr-2' /> Copy
+            <div className='hover:text-primary flex space-x-2 w-full'>
+              <Copy className='w-5 h-5 mr-2' /> Copy
+            </div>
           </DropdownMenuItem>
-          <DropdownMenuItem className='bg-red-200' onClick={() => setIsOpen(true)}>
-            <Trash className='w-5 h-5 mr-2' /> Delete
+          <DropdownMenuItem onClick={() => setIsOpen(true)}>
+            <div className='hover:text-red-500 flex space-x-2 w-full'>
+              <Trash className='w-5 h-5 mr-2' /> Delete
+            </div>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

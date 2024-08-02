@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from 'react'
-// import { Copy, Edit, MoreHorizontal, Trash } from 'lucide-react'
+import { Copy, Edit, MoreHorizontal, Trash } from 'lucide-react'
 import axios from 'axios'
 import { useParams, useRouter } from 'next/navigation'
 
@@ -8,8 +8,7 @@ import { CategoryProps } from '@/components/Categories/CategoryTable/columns'
 import { Button } from '@/components/ui/button'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import AlertModal from '@/components/Modals/AlertModal'
-import {ToastSuccess, ToastError} from '@/components/globals/Toast'
-
+import { ToastSuccess, ToastError } from '@/components/globals/Toast'
 
 interface CellActionProps {
   category: CategoryProps
@@ -18,11 +17,10 @@ interface CellActionProps {
 const ActionsColumn: React.FC<CellActionProps> = ({ category }) => {
   // route
   const route = useRouter()
-  const params= useParams()
+  const params = useParams()
   // on update
   function onUpdate(code: string) {
     route.push(`/${params.storeCode}/categories/${code}`)
-   
   }
 
   // handel copy
@@ -44,7 +42,6 @@ const ActionsColumn: React.FC<CellActionProps> = ({ category }) => {
       route.refresh()
     } catch (error) {
       ToastError('Remove products from category!')
-
     } finally {
       setLoading(false)
       setIsOpen(false)
@@ -58,24 +55,29 @@ const ActionsColumn: React.FC<CellActionProps> = ({ category }) => {
         <DropdownMenuTrigger asChild>
           <Button variant='ghost' size='sm'>
             <span className='sr-only'>open menu</span>
-            {/* <MoreHorizontal className='h-5 w-5' /> */}
+            <MoreHorizontal className='h-5 w-5' />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          <DropdownMenuLabel>Actions menu
-          </DropdownMenuLabel>
+          <DropdownMenuLabel>Actions menu</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem onClick={() => onUpdate(category.id)}>
-            {/* <Edit className='w-5 h-5 mr-2' /> */}
-             Update
+            <div className='hover:text-primary flex space-x-2 w-full'>
+              <Edit className='w-5 h-5 mr-2' />
+              Update
+            </div>
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => onCopy(category.id)}>
-            {/* <Copy className='w-5 h-5 mr-2' /> */}
-             Copy
+            <div className='hover:text-primary flex space-x-2 w-full'>
+              <Copy className='w-5 h-5 mr-2' />
+              Copy
+            </div>
           </DropdownMenuItem>
-          <DropdownMenuItem className='bg-red-200' onClick={() => setIsOpen(true)}>
-            {/* <Trash className='w-5 h-5 mr-2' /> */}
-             Delete
+          <DropdownMenuItem  onClick={() => setIsOpen(true)}>
+            <div className='hover:text-red-500 flex space-x-2 w-full'>
+              <Trash className='w-5 h-5 mr-2' />
+              Delete
+            </div>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
