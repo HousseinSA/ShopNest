@@ -39,7 +39,7 @@ const Filter: React.FC<FilterProps> = ({ data, name, valueKey }) => {
   return (
     <div>
       <div className="mb-8">
-        <h3 className="font-bold text-lg">{name}</h3>
+        <h3 className="font-bold text-lg text-primary">{name}</h3>
         <hr className="my-4" />
         <div className="flex flex-wrap gap-2">
           {data.map((filter) => (

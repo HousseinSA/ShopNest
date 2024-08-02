@@ -17,7 +17,7 @@ const LoadingSkeleton = () => {
             <div className="lg:hidden block">
               <div
                 className="skeleton-text skeleton"
-                style={{ height: '1.5rem', width: '30%' }}
+                style={{ height: '1.2rem', width: '30%' }}
               ></div>
               <div className="flex flex-wrap gap-2 mt-4">
                 {skeletonItems.slice(0, 8).map((_, index) => (
@@ -25,9 +25,8 @@ const LoadingSkeleton = () => {
                     key={index}
                     className="skeleton-text skeleton"
                     style={{
-                      height: '2.5rem',
+                      height: '.8rem',
                       width: '5rem',
-                      borderRadius: '1.25rem',
                     }}
                   ></div>
                 ))}
@@ -46,15 +45,25 @@ const LoadingSkeleton = () => {
                     key={index}
                     className="skeleton-text skeleton"
                     style={{
-                      height: '2.5rem',
+                      height: '1.5rem',
                       width: '5rem',
-                      borderRadius: '1.25rem',
+                    }}
+                  ></div>
+                ))}
+              </div>
+              <div className="flex flex-wrap gap-2 mt-4">
+                {skeletonItems.slice(0, 4).map((_, index) => (
+                  <div
+                    key={index}
+                    className="skeleton-text skeleton"
+                    style={{
+                      height: '1.5rem',
+                      width: '5rem',
                     }}
                   ></div>
                 ))}
               </div>
             </div>
-
             {/* Products Skeleton */}
             <div className="mt-6 lg:mt-0 lg:col-span-4">
               <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-4">

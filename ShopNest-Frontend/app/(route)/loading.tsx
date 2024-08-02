@@ -11,7 +11,7 @@ const LoadingSkeleton = () => {
       </div>
       <div className="flex flex-col gap-y-8 sm:px-6 lg:px-8">
         <div className="p-4 sm:p-6 lg:p-8">
-          <div className="skeleton-text skeleton" style={{ height: '1.5rem', width: '30%' }}></div>
+          <div className="skeleton-text skeleton mb-2" style={{ height: '1.2rem', width: '30%' }}></div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
             {skeletonItems.map((_, index) => (
            <div
