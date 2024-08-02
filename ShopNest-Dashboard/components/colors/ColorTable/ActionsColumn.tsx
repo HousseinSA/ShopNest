@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from 'react'
-// import { Copy, Edit, MoreHorizontal, Trash } from 'lucide-react'
+import { Copy, Edit, MoreHorizontal, Trash } from 'lucide-react'
 import axios from 'axios'
 import { useParams, useRouter } from 'next/navigation'
 
@@ -55,20 +55,28 @@ const ActionsColumn: React.FC<CellActionProps> = ({ color }) => {
         <DropdownMenuTrigger asChild>
           <Button variant='ghost' size='sm'>
             <span className='sr-only'>open menu</span>
-            {/* <MoreHorizontal className='h-5 w-5' /> */}
+            <MoreHorizontal className='h-5 w-5' />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuLabel>Actions</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem onClick={() => onUpdate(color.id)}>
-            {/* <Edit className='w-5 h-5 mr-2' /> Update */}
+          <div className='hover:text-primary flex space-x-2 w-full'>
+            <Edit className='w-5 h-5 mr-2' /> Update
+          </div>
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => onCopy(color.id)}>
-            {/* <Copy className='w-5 h-5 mr-2' /> Copy */}
+          <div className='hover:text-primary flex space-x-2 w-full'>
+
+            <Copy className='w-5 h-5 mr-2' /> Copy
+          </div>
           </DropdownMenuItem>
-          <DropdownMenuItem className='bg-red-200' onClick={() => setIsOpen(true)}>
-            {/* <Trash className='w-5 h-5 mr-2' /> Delete */}
+          <DropdownMenuItem  onClick={() => setIsOpen(true)}>
+          <div className='hover:text-red-500 flex space-x-2 w-full'>
+            <Trash className='w-5 h-5 mr-2' /> Delete
+          </div>
+            
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

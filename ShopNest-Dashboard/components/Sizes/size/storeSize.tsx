@@ -57,10 +57,7 @@ const StoreSize: React.FC<storeSizeProps> = ({ size }) => {
         <SectionHeader title={title} description={description}>
           {size && (
             <Button variant='destructive' aria-label='delete button' size='icon' className='rounded-full' 
-            
             onClick={() => setIsOpen(true)}
-            
-            
             >
               <Trash className='w-5 h-5' />
             </Button>

@@ -11,16 +11,16 @@ const Loading = () => {
     <div className='grid gap-4 grid-cols-3'>
       {/* Card Skeletons */}
       <div className='skeleton space-y-4 py-4 pl-2'>
-        <div className='skeleton-text' style={{ height: '1rem', width: '80%',  }}></div>
-        <div className='skeleton-text' style={{ height: '1.5rem', width: '60%',  }}></div>
+        <div className='skeleton-text' style={{ height: '1.2rem', width: '80%',  }}></div>
+        <div className='skeleton-text' style={{ height: '1rem', width: '60%',  }}></div>
       </div>
       <div className='skeleton space-y-4 py-4 pl-2'>
-        <div className='skeleton-text' style={{ height: '1rem', width: '80%',  }}></div>
-        <div className='skeleton-text' style={{ height: '1.5rem', width: '60%',  }}></div>
+        <div className='skeleton-text' style={{ height: '1.2rem', width: '80%',  }}></div>
+        <div className='skeleton-text' style={{ height: '1rem', width: '60%',  }}></div>
       </div>
       <div className='skeleton space-y-4 py-4 pl-2'>
-        <div className='skeleton-text' style={{ height: '1rem', width: '80%',  }}></div>
-        <div className='skeleton-text' style={{ height: '1.5rem', width: '60%',  }}></div>
+        <div className='skeleton-text' style={{ height: '1.2rem', width: '80%',  }}></div>
+        <div className='skeleton-text' style={{ height: '1rem', width: '60%',  }}></div>
       </div>
     </div>
     

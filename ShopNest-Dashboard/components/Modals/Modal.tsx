@@ -20,7 +20,7 @@ export const Modal: React.FC<ModalProps> = ({ title, description, isOpen, onClos
       <DialogContent>
         <DialogHeader>
           <DialogTitle>{title}</DialogTitle>
-          <DialogDescription>{description}</DialogDescription>
+          <DialogDescription className='text-primary' >{description}</DialogDescription>
         </DialogHeader>
         {children}
       </DialogContent>

@@ -52,17 +52,6 @@
     --ring: 142.4 71.8% 29.2%;
   }
 }
-
-  @layer base {
-    * {
-      @apply border-border;
-    }
-    body {
-      @apply bg-background text-foreground;
-      text-transform: capitalize;
-    }
-  }
-
   .color-picker {
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -131,7 +120,7 @@
   /* skeleton styling */
   .skeleton {
     opacity: 0.7;
-    animation: skeleton-loading .5s linear infinite alternate;
+    animation: skeleton-loading .3s linear infinite alternate;
     background-color: hsl(200, 20%, 80%); /* Slightly darker gray */
     border-radius: 1rem;
   }
