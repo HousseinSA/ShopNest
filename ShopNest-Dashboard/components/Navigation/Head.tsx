@@ -19,7 +19,7 @@ const Head = async () => {
         <StoreSwitcher stores={storeList } />
         <MainNav />
         <div className='ml-auto flex items-center space-x-3'>
-          <ThemeToggler/>
+          {/* <ThemeToggler/> */}
           <UserButton afterSignOutUrl='/' />
         </div>
       </div>

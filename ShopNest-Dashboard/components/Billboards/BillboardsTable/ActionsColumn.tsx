@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from 'react'
-// import { Copy, Edit, MoreHorizontal, Trash } from 'lucide-react'
+import { Copy, Edit, MoreHorizontal, Trash } from 'lucide-react'
 import axios from 'axios'
 import { useParams, useRouter } from 'next/navigation'
 
@@ -8,8 +8,7 @@ import { BillboardProps } from '@/components/Billboards/BillboardsTable/columns'
 import { Button } from '@/components/ui/button'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import AlertModal from '@/components/Modals/AlertModal'
-import {ToastSuccess, ToastError} from '@/components/globals/Toast'
-
+import { ToastSuccess, ToastError } from '@/components/globals/Toast'
 
 interface CellActionProps {
   billboard: BillboardProps
@@ -25,7 +24,7 @@ const ActionsColumn: React.FC<CellActionProps> = ({ billboard }) => {
   }
 
   // handel copy
-  const onCopy = (code: string): void => {
+  const onCopy = (code:string): void => {
     navigator.clipboard.writeText(code)
     ToastSuccess('Copied!')
   }
@@ -56,21 +55,22 @@ const ActionsColumn: React.FC<CellActionProps> = ({ billboard }) => {
         <DropdownMenuTrigger asChild>
           <Button variant='ghost' size='sm'>
             <span className='sr-only'>open menu</span>
-            {/* <MoreHorizontal className='h-5 w-5' /> */}
+            <MoreHorizontal className='h-5 w-5' />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          <DropdownMenuLabel>Actions menu
-</DropdownMenuLabel>
+          <DropdownMenuLabel>Actions menu</DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <DropdownMenuItem onClick={() => onUpdate(billboard.id)}>
-            {/* <Edit className='w-5 h-5 mr-2' /> Update */}
-          </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => onCopy(billboard.id)}>
-            {/* <Copy className='w-5 h-5 mr-2' /> Copy */}
-          </DropdownMenuItem>
-          <DropdownMenuItem className='bg-red-200' onClick={() => setIsOpen(true)}>
-            {/* <Trash className='w-5 h-5 mr-2' /> Delete */}
+          <DropdownMenuItem  onClick={() => onUpdate(billboard.id)}> 
+            <div className='hover:text-primary flex space-x-2 w-full'>
+            <Edit className='w-5 h-5 mr-2' /> Update
+            </div>
+            </DropdownMenuItem>
+          <DropdownMenuItem  onClick={() => onCopy(billboard.id)}><div className='hover:text-primary flex space-x-2 w-full'> <Copy className='w-5 h-5 mr-2' /> Copy </div></DropdownMenuItem>
+          <DropdownMenuItem  onClick={() => setIsOpen(true)}>
+          <div className='hover:text-red-500 flex space-x-2 w-full'>
+            <Trash className='w-5 h-5 mr-2 ' /> Delete
+          </div>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

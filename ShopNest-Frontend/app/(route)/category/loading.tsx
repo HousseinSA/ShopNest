@@ -19,20 +19,7 @@ const LoadingSkeleton = () => {
                 className="skeleton-text skeleton"
                 style={{ height: '1.2rem', width: '30%' }}
               ></div>
-              <div className="flex flex-wrap gap-2 mt-4">
-                {skeletonItems.slice(0, 8).map((_, index) => (
-                  <div
-                    key={index}
-                    className="skeleton-text skeleton"
-                    style={{
-                      height: '.8rem',
-                      width: '5rem',
-                    }}
-                  ></div>
-                ))}
-              </div>
             </div>
-
             {/* Desktop Filters Skeleton */}
             <div className="lg:block hidden">
               <div
@@ -51,6 +38,10 @@ const LoadingSkeleton = () => {
                   ></div>
                 ))}
               </div>
+              <div
+                className="skeleton-text skeleton mt-4 "
+                style={{ height: '1.5rem', width: '30%' }}
+              ></div>
               <div className="flex flex-wrap gap-2 mt-4">
                 {skeletonItems.slice(0, 4).map((_, index) => (
                   <div
@@ -69,17 +60,17 @@ const LoadingSkeleton = () => {
               <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-4">
                 {skeletonItems.map((_, index) => (
                   <div
-                    key={index}
+                  key={index}
                     className="rounded-xl cursor-pointer bg-white group border p-3 shadow-md relative skeleton"
                   >
                     <div className="aspect-square relative bg-white rounded-xl skeleton"></div>
                     <div>
                       <p
-                        className="font-bold text-lg capitalize text-primary skeleton-text skeleton"
+                        className=" skeleton-text skeleton"
                         style={{ height: '1rem', width: '50%' }}
                       ></p>
                       <p
-                        className="text-sm font-semibold capitalize text-gray-700 m-0 skeleton-text skeleton"
+                        className=" m-0 skeleton-text skeleton"
                         style={{ height: '1rem', width: '70%' }}
                       ></p>
                     </div>

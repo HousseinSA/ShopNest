@@ -23,10 +23,9 @@ const Navigation: React.FC<NavigationProps> = ({ categoriesData }) => {
       {CategoriesRoutes?.map((category) => (
         <Link
         className={cn(
-          'relative group text-md transition-colors text-secondary-foreground  hover:primary-foreground',
+          'relative group capitalize text-md transition-colors text-secondary-foreground  hover:primary-foreground',
           category.active && 'text-primary font-bold ' 
         )}
-          
           href={`${category.href}`}
           key={category.href}
         >
