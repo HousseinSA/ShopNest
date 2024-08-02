@@ -3,8 +3,8 @@ import Billboard from '@/components/globals/billboard'
 import getBillboard from '@/lib/fetchData/getBillboard'
 import getProducts from '@/lib/fetchData/getProducts'
 import Products from '@/components/products/products'
-import Tailwind from './tailwind/tailwind'
-import ProductCard from '../../components/products/productCard'
+// import Tailwind from './tailwind/tailwind'
+// import ProductCard from '../../components/products/productCard'
 
 export const revalidate = 0
 const HomePage = async () => {
