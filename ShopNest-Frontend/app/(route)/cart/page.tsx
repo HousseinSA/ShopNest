@@ -1,5 +1,5 @@
 'use client'
-import { ShoppingCart } from 'lucide-react'
+import {ShoppingCart } from 'lucide-react'
 
 import Summary from './components/summary'
 import CartItem from './components/cartItem'
@@ -25,7 +25,7 @@ const CartPage = () => {
             <div className="lg:col-span-7">
               {items.length === 0 && (
                 <p className="font-semibold text-medium text-primary">
-                  No items added to cart
+                  Cart is empty!
                 </p>
               )}
               <ul>
