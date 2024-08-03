@@ -2,7 +2,8 @@ import { redirect } from 'next/navigation'
 import { auth } from '@clerk/nextjs'
 import React from 'react'
 
-import validateObjectId from '@/lib/mongodDBValidate'
+import validateObjectId from '@/lib/mongodb/mongodDBValidate'
+
 import prismaDB from '@/lib/prismaClient'
 // import StoreSettingsForm from '@/components/StoreSettings/StoreSettings'
 import StoreSettings from '@/components/Settings/StoreSettings'
