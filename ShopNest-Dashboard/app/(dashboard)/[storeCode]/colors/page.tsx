@@ -3,7 +3,8 @@ import { format } from 'date-fns'
 import prismaDB from '@/lib/prismaClient'
 import { ColorProps } from '@/components/colors/ColorTable/columns'
 import StoreColors from '@/components/colors/StoreColors'
-import validateObjectId from '@/lib/mongodDBValidate'
+import validateObjectId from '@/lib/mongodb/mongodDBValidate'
+
 import { redirect } from 'next/navigation'
 const ColorsPage = async ({ params }: { params: { storeCode: string } }) => {
   const validStoreCode = validateObjectId(params.storeCode)

@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation'
 import StoreCategory from '@/components/Categories/category/StoreCategory'
-import validateObjectId from '@/lib/mongodDBValidate'
+import validateObjectId from '@/lib/mongodb/mongodDBValidate'
+
 import prismaDB from '@/lib/prismaClient'
 
 async function CategoryPage({ params }: { params: { categoryCode: string; storeCode: string } }) {
