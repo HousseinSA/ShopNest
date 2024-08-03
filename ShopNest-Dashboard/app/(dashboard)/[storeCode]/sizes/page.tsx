@@ -3,7 +3,8 @@ import { format } from 'date-fns'
 import prismaDB from '@/lib/prismaClient'
 import { SizeProps } from '@/components/Sizes/SizesTable/columns'
 import StoreSizes from '@/components/Sizes/StoreSizes'
-import validateObjectId from '@/lib/mongodDBValidate'
+import validateObjectId from '@/lib/mongodb/mongodDBValidate'
+
 const SizesPage = async ({ params }: { params: { storeCode: string } }) => {
   const validStoreCode = validateObjectId(params.storeCode)
   if (validStoreCode) {

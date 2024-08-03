@@ -12,6 +12,9 @@ const urbanist = Urbanist({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'ShopNest E-commerce',
   description: 'Modern E-commerce website',
+  icons:{
+    icon:'/icon.ico'
+  }
 }
 
 export default function RootLayout({

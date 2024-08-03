@@ -1,7 +1,8 @@
 import prismaDB from '@/lib/prismaClient'
 import { redirect } from 'next/navigation'
 import StoreColor from '@/components/colors/color/StoreColor'
-import validateObjectId from '@/lib/mongodDBValidate'
+import validateObjectId from '@/lib/mongodb/mongodDBValidate'
+
 
 async function ColorPage({ params }: { params: { colorCode: string; storeCode: string } }) {
   const validStoreCode = validateObjectId(params.storeCode)

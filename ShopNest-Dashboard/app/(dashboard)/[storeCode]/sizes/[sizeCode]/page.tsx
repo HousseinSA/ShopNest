@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation'
 import StoreSize from '@/components/Sizes/size/storeSize'
-import validateObjectId from '@/lib/mongodDBValidate'
+import validateObjectId from '@/lib/mongodb/mongodDBValidate'
+
 import prismaDB from '@/lib/prismaClient'
 
 async function SizePage({ params }: { params: { sizeCode: string; storeCode: string } }) {
