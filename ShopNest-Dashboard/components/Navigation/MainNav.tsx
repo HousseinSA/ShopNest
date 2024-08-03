@@ -9,6 +9,7 @@
     // paths and params
     const pathname = usePathname()
     const params = useParams()
+    const Store = 'http://localhost:3001/'
     const storeDashboard = `/${params.storeCode}`
     const settings = `/${params.storeCode}/settings`
     const billboard = `/${params.storeCode}/billboards`
@@ -17,9 +18,11 @@
     const colors = `/${params.storeCode}/colors`
     const products = `/${params.storeCode}/products`
     const orders = `/${params.storeCode}/orders`
-
+    
     // routes array for navigation
     const routes = [
+      {link:Store, label:'Store', active:pathname === Store}
+      ,
       {
         link: storeDashboard,
         label: 'Dashboard',
