@@ -28,7 +28,7 @@ export default function RootLayout({
           type="image/x-icon"
         />
       </head>
-      <body className={'relative'}>
+      <body className="relative">
         <ToastProvider />
         <ModalProvider />
         <Header />
