@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 import { cn } from '@/lib/utils'
 import { Category } from '@/lib/StoreTypes'
-import useSSE from '../../../hooks/useSSE'
+import useSSE from '@/hooks/useSSE'
 
 interface NavigationProps {
   categoriesData: Category[]
@@ -13,31 +13,36 @@ interface NavigationProps {
 
 const Navigation: React.FC<NavigationProps> = ({ categoriesData }) => {
   const [categories, setCategories] = useState(categoriesData)
-  // database change event listener
   const sseData = useSSE('/api/updates')
-  console.log(categories)
+
   console.log(sseData)
+
   useEffect(() => {
     if (sseData) {
-      if (sseData.ns.coll === 'Category') {
+      // console.log('SSE Data:', sseData)
+      if (sseData.ns.coll === "Category") {
+        const categoryId = sseData.documentKey._id.toString() // Ensure ID is a string
         if (sseData.operationType === 'update') {
-          setCategories((prevCategories) => 
+          setCategories((prevCategories) =>
             prevCategories.map((category) =>
-              category.id === sseData.documentKey._id
+              category.id === categoryId
                 ? { ...category, ...sseData.updateDescription.updatedFields }
                 : category
             )
-          );
+          )
         } else if (sseData.operationType === 'insert') {
-          setCategories((prevCategories) => [...prevCategories, sseData.fullDocument]);
-        } else if (sseData.operationType === 'delete') {
-          setCategories((prevCategories) => 
-            prevCategories.filter((category) => category.id !== sseData.documentKey._id)
-          );
+          setCategories((prevCategories) => [
+            ...prevCategories,
+            sseData.fullDocument,
+          ])
+        } else if (sseData.operationType === "delete" ) {
+          setCategories((prevCategories) =>
+            prevCategories.filter((category) => category.id !== categoryId)
+          )
         }
       }
     }
-  }, [sseData]);
+  }, [sseData])
 
   const pathname = usePathname()
   const CategoriesRoutes = categories?.map((category) => ({
@@ -53,12 +58,12 @@ const Navigation: React.FC<NavigationProps> = ({ categoriesData }) => {
   CategoriesRoutes.push(dashboard)
 
   return (
-    <nav className="mx-4 items-center space-x-2 sm:flex hidden lg:space-x-4">
+    <nav className={'mx-4 items-center space-x-2 sm:flex hidden lg:space-x-4'}>
       {CategoriesRoutes?.map((category) => (
         <Link
           className={cn(
             'relative group capitalize text-md transition-colors text-secondary-foreground  hover:primary-foreground',
-            category.active && 'text-primary font-bold '
+            category.active && 'text-primary font-bold ' ,
           )}
           href={`${category.href}`}
           key={category.href}

@@ -56,7 +56,7 @@ export function DataTable<TData, TValue>({ columns, data, filterKey }: DataTable
             ) : (
               <TableRow>
                 <TableCell colSpan={columns.length} className='h-24 text-center'>
-                  No results.
+                  No sizes.
                 </TableCell>
               </TableRow>
             )}
