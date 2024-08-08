@@ -64,7 +64,7 @@ export function DataTable<TData extends { id: string }, TValue>({ columns, data,
             ) : (
               <TableRow>
                 <TableCell colSpan={columns.length} className='h-24 text-center'>
-                  No results.
+                  No products.
                 </TableCell>
               </TableRow>
             )}

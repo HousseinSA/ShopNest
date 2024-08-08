@@ -23,11 +23,10 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ disabled, onChange, onRemove,
   const onUpload = (result: any) => {
     onChange(result.info.secure_url)
   }
-
   return (
     <OnlyClient>
       <div>
-        <div className='flex flex-wrap gap-4 my-4'>
+        <div className={cn('flex flex-wrap gap-4', value.length === 0 ? 'my-0' : 'my-4')}>
           {value.map((url) => (
             <div key={url} className='relative w-[250px] h-[250px] flex items-center justify-center bg-gray-100 rounded-md overflow-hidden'>
               <div className='absolute top-2 right-2 z-10'>
@@ -55,7 +54,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ disabled, onChange, onRemove,
           {({ open }) => (
             <Button type='button' disabled={disabled} variant='secondary' onClick={() => open?.()}>
               <ImagePlus className='h-4 w-4 mr-2' />
-              Upload Image
+              Upload Images
             </Button>
           )}
         </CldUploadWidget>

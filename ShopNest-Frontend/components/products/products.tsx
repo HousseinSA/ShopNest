@@ -17,13 +17,10 @@ const Products: React.FC<ProductsProps> = ({
   const [products, setProducts] = useState(productsData)
 
   const sseData = useSSE('/api/updates')
-  console.log(sseData)
+  // console.log(sseData) // eslint-disable
   useEffect(() => {
     if (sseData) {
-      if (
-        sseData.operationType === 'update' &&
-        sseData.ns.coll === 'Products'
-      ) {
+      if (sseData.operationType === 'update' && sseData.ns.coll === 'Product') {
         setProducts((prevProducts) => {
           const updatedProducts = prevProducts.map((product) =>
             product.id === sseData.documentKey._id
@@ -32,7 +29,10 @@ const Products: React.FC<ProductsProps> = ({
           )
           return updatedProducts
         })
-      }else if (sseData.operationType === 'insert' && sseData.ns.coll === 'Products') {
+      } else if (
+        sseData.operationType === 'insert' &&
+        sseData.ns.coll === 'Product'
+      ) {
         setProducts((prevProducts) => [...prevProducts, sseData.fullDocument])
       }
     }
