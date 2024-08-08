@@ -4,10 +4,10 @@ import { BillboardProps } from '@/components/Billboards/BillboardsTable/columns'
 import StoreBillBoards from '@/components/Billboards/StoreBillBoards'
 import prismaDB from '@/lib/prismaClient'
 import { redirect } from 'next/navigation'
-import validateObjectId from '@/lib/mongodb/mongodDBValidate'
+import validateObjectId from  '@/lib/mongodb/mongodDBValidate'
+
 const BillboardsPage = async ({ params }: { params: { storeCode: string } }) => {
   
-
   const validStoreCode = validateObjectId(params.storeCode)
   if (validStoreCode) {
     

@@ -42,7 +42,7 @@ const ProductCard: React.FC<Product> = ({ product }) => {
       triggerAnimation(imgRef)
     }
   }
-
+  
   return (
     <div
       onClick={onClick}

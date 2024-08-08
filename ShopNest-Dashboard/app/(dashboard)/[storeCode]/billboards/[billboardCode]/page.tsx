@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation'
 import StoreBillBoard from '@/components/Billboards/Billboard/StoreBillBoard'
-import validateObjectId from '@/lib/mongodb/mongodDBValidate'
+import validateObjectId from  '@/lib/mongodb/mongodDBValidate'
 
 import prismaDB from '@/lib/prismaClient'
 

@@ -4,7 +4,7 @@ import { ProductProps } from '@/components/products/ProductsTable/columns'
 import StoreProducts from '@/components/products/StoreProducts'
 import prismaDB from '@/lib/prismaClient'
 import { PriceFormatter } from '@/lib/PriceFormatter'
-import validateObjectId from '@/lib/mongodb/mongodDBValidate'
+import validateObjectId from  '@/lib/mongodb/mongodDBValidate'
 
 import { redirect } from 'next/navigation'
 const ProductsPage = async ({ params }: { params: { storeCode: string } }) => {

@@ -20,7 +20,7 @@ const StoreBillBoards: React.FC<BillBoardsProps> = ({ billBoards }) => {
   const onAddNew = () => {
     route.push(`/${params.storeCode}/billboards/new`)
   }
-
+ 
   return (
     <>
       <div className='flex flex-col space-y-4'>

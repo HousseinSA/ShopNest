@@ -9,7 +9,7 @@ import { PriceFormatter } from '@/lib/PriceFormatter'
 import { getTotalRevenue } from '@/lib/dashboardActions/getTotalRevenue'
 import { getSalesCount } from '@/lib/dashboardActions/getSalesCount'
 import { getInStockCount } from '@/lib/dashboardActions/getInStockCount'
-import validateObjectId from '@/lib/mongodb/mongodDBValidate'
+import validateObjectId from  '@/lib/mongodb/mongodDBValidate'
 
 import Overview from '@/components/Dashboard/overview'
 import { getGraphData } from '@/lib/dashboardActions/getGraphData'

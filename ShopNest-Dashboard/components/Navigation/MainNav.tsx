@@ -1,7 +1,7 @@
   'use client'
   import Link from 'next/link'
   import { useParams, usePathname } from 'next/navigation'
-  import React from 'react'
+  import React, { useEffect } from 'react'
 
   import { cn } from '@/lib/utils'
 

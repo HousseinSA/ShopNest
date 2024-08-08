@@ -1,12 +1,9 @@
 'use client'
-import React from 'react'
-// import { Plus } from 'lucide-react'
+import React, { useEffect } from 'react'
 import { useRouter, useParams } from 'next/navigation'
-
 
 import SectionHeader from '@/components/globals/storeHead/SectionHeader'
 import HeadButton from '@/components/globals/storeHead/HeadButton'
-import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { CategoryProps, columns } from '@/components/Categories/CategoryTable/columns'
 import { DataTable } from '@/components/Categories/CategoryTable/data-table'
@@ -29,7 +26,7 @@ const StoreCategories: React.FC<StoreCategoryProps> = ({ categories }) => {
       <div className='flex flex-col space-y-4'>
         <SectionHeader title={`Categories (${categories.length})`} description='Manage store categories'>
         <HeadButton onAddNew ={onAddNew}>
-              Add Category 
+              Add category
           </HeadButton>
         </SectionHeader>
         <Separator />

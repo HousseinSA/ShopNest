@@ -34,7 +34,7 @@ export default function Error({
 
   const userFriendlyMessage = getUserFriendlyMessage(error)
   return (
-    <div className="w-full h-screen flex flex-col space-y-8 justify-center items-center overflow-hidden">
+    <div className="w-full min-h-screen flex flex-col space-y-8 justify-center items-center overflow-hidden">
       <h2 className="text-primary text-lg lg:text-2xl text-center w-full">
         {userFriendlyMessage}
       </h2>
