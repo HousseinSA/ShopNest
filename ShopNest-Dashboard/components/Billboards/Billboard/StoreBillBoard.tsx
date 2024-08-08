@@ -1,6 +1,6 @@
 'use client'
 import { Trash } from 'lucide-react'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Billboard } from '@prisma/client'
 import { useRouter, useParams } from 'next/navigation'
 import axios from 'axios'
@@ -46,6 +46,24 @@ const StoreBillBoard: React.FC<BillBoardProps> = ({ billboardData }) => {
       setIsOpen(false)
     }
   }
+
+
+  // stream event 
+  useEffect(() => {
+    const eventSource = new EventSource('/api/updates');
+
+    eventSource.onmessage = (event) => {
+      const newUpdate = event.data;
+    }
+
+    eventSource.onerror = (error) => {
+      console.error('SSE error:', error);
+    };
+
+    return () => {
+      eventSource.close();
+    };
+  }, []);
 
   return (
     <>

@@ -6,7 +6,6 @@ import CartItem from './components/cartItem'
 import OnlyClient from '@/components/globals/OnlyClient'
 import Container from '@/components/ui/container'
 import useCartState from '@/lib/state/CartState'
-import { useEffect, useState } from 'react'
 const CartPage = () => {
   const { items } = useCartState()
 
