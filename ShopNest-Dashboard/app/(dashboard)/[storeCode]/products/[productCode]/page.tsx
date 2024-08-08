@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation'
 
 import StoreProduct from '@/components/products/Product/StoreProduct'
-import validateObjectId from '@/lib/mongodb/mongodDBValidate'
+import validateObjectId from  '@/lib/mongodb/mongodDBValidate'
 
 import prismaDB from '@/lib/prismaClient'
 

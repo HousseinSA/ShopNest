@@ -4,7 +4,7 @@ import { redirect } from 'next/navigation'
 import prismaDB from '@/lib/prismaClient'
 import { CategoryProps } from '@/components/Categories/CategoryTable/columns'
 import StoreCategories from '@/components/Categories/StoreCategories'
-import validateObjectId from '@/lib/mongodb/mongodDBValidate'
+import validateObjectId from  '@/lib/mongodb/mongodDBValidate'
 
 
 const CategoriesPage = async ({ params }: { params: { storeCode: string } }) => {
