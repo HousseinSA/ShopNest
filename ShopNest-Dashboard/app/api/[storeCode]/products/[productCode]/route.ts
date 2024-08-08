@@ -14,7 +14,7 @@ export async function PATCH(req: Request, { params }: { params: { storeCode: str
       return new NextResponse('No fields provided for update', { status: 400 })
     }
 
-    // Check if a product with the same name already exists in this store, excluding the current product
+    // Check for existing product with the same name, excluding the current product
     const existingProduct = await prismaDB.product.findFirst({
       where: {
         storeCode: params.storeCode,
@@ -32,8 +32,7 @@ export async function PATCH(req: Request, { params }: { params: { storeCode: str
       return new NextResponse('Product with this name already exists', { status: 402 })
     }
 
-    // Update the product
-    await prismaDB.product.update({
+    const updatedProduct = await prismaDB.product.update({
       where: {
         id: params.productCode,
         storeCode: params.storeCode
@@ -46,52 +45,29 @@ export async function PATCH(req: Request, { params }: { params: { storeCode: str
         categoryCode,
         isFeatured,
         isArchived,
-        images: { deleteMany: {} } // Clear existing images
-      }
+        images: {
+          // Manage images
+          deleteMany: {
+            url: {
+              notIn: images.map((image: { url: string }) => image.url)
+            }
+          },
+          createMany: {
+            data: images.map((image: { url: string }) => ({ url: image.url }))
+          }
+        },
+        updatedAt: new Date() // Update the timestamp to reflect the update
+      },
+      include: { images: true }
     })
 
-    // Add new images
-      const product = await prismaDB.product.update({
-        where: {
-          id: params.productCode
-        },
-        data: {
-          images: {
-            createMany: {
-              //@ts-ignore
-              data: [...new Set(images.map((image: { url: string }) => image.url))].map(url => ({ url }))
-            }
-          }
-        }
-      })
-
-    return NextResponse.json(product)
+    return NextResponse.json(updatedProduct)
   } catch (error) {
     console.log(`PRODUCT_PATCH`, error)
     return new NextResponse('Internal Error', { status: 500 })
   }
 }
 
-export async function GET(req: Request, { params }: { params: { storeCode: string; productCode: string } }) {
-  try {
-    if (!params.productCode) {
-      return new NextResponse('Product code is required', { status: 400 })
-    }
-
-    const product = await prismaDB.product.findUnique({
-      where: {
-        id: params.productCode,
-        storeCode: params.storeCode
-      },
-      include: { images: true, category: true, size: true, color: true }
-    })
-
-    return NextResponse.json(product)
-  } catch (error) {
-    console.log(`PRODUCT_GET`, error)
-    return new NextResponse('Internal Error', { status: 500 })
-  }
-}
 
 export async function DELETE(req: Request, { params }: { params: { storeCode: string; productCode: string } }) {
   try {
