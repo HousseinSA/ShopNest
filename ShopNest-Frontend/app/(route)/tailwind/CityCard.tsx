@@ -17,7 +17,7 @@ const CityCard = ({city}:CityProps) => {
       />
       <div className="px-6 py-4 ">
         <h3 className="text-lg font-semibold text-gray-800 uppercase">{city.name}</h3>
-        <p className="text-gray-700">{city.averagePrice}$/ night average  </p>
+        <p className="text-highlight">{city.averagePrice}$/ night average  </p>
         <div className="mt-4">
           <a
             className="font-semibold text-brand hover:text-brand-light"

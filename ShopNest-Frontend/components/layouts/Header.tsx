@@ -26,8 +26,10 @@ const Header = ({ categories }: categoryProps) => {
             <Image
               src="/shopnest-logo.png"
               width={200}
-              alt="logo"
               height={200}
+              alt="logo"
+              priority={true}
+              layout='fixed'
             />
           </Link>
         </div>

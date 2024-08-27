@@ -1,5 +1,5 @@
 const loading = () => {
-  const skeletonItems = Array.from({ length: 4 })
+  const skeletonItems = Array.from({ length: 5 })
   return (
     <div className="mx-auto px-4 py-10 sm:px-6 lg:px-8 space-y-10 pb-10">
       <div className="flex flex-col gap-y-8 sm:px-6 lg:px-8">
@@ -21,7 +21,7 @@ const loading = () => {
                     }}
                   ></div>
                   <div
-                    className="skeleton-text  ml-4"
+                    className="skeleton-text ml-4 "
                     style={{ width: '12rem', height: '1rem' }}
                   ></div>
                 </div>
@@ -30,15 +30,14 @@ const loading = () => {
                 <div
                   style={{ width: '30rem', height: '15rem' }}
                   className=" skeleton p-4"
-                >
-                </div>
+                ></div>
               </div>
             </div>
           </div>
         </div>
-        <div className="flex flex-col w-full space-y-8">
+        <div className="flex flex-col w-full space-y-8 mt-3 ">
           {skeletonItems.map((_, index) => (
-            <div className="flex justify-between w-1/2">
+            <div className="flex items-center gap-4 w-1/2">
               <div
                 key={index}
                 className="skeleton "
@@ -49,7 +48,7 @@ const loading = () => {
                 }}
               ></div>
               <div
-                className="skeleton-text  "
+                className="skeleton-text "
                 style={{ width: '12rem', height: '1rem' }}
               ></div>
             </div>

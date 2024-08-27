@@ -1,6 +1,6 @@
 'use client'
 
-import { LegacyRef } from 'react'
+import { LegacyRef , useEffect} from 'react'
 
 import { TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react'
 import { CldImage } from 'next-cloudinary'
@@ -15,18 +15,32 @@ interface GalleryProps {
 }
 
 const Gallery: React.FC<GalleryProps> = ({ images, imgRef, modalState }) => {
+
+  useEffect(()=>{
+      const stateDelay  = setTimeout(()=>{
+        if(modalState){
+          modalState = false
+        }
+      } ,2000)
+      modalState = true
+
+      return ()=> clearTimeout(stateDelay)
+
+    
+  },[])
+
+
   return (
     <TabGroup
       as="div"
-      className={` ${modalState ?  'w-full space-y-8' :'grid-span-2 lg:grid-span-1 grid lg:grid-cols-2 gap-6 w-full'}`}
+      className= ' w-full space-y-8'
     >
       <TabPanels className="lg:col-span-1">
         {images.map((image) => (
           <TabPanel key={image.id} className="relative">
             <div className="flex justify-center items-center h-[350px] sm:h-[450px] lg:h-auto rounded-lg overflow-hidden">
-              <CldImage
+              <CldImage removeBackground
                 ref={imgRef}
-                removeBackground
                 src={image.url}
                 alt="Product Image"
                 width={450}

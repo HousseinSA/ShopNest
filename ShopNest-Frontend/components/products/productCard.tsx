@@ -10,7 +10,7 @@ import Currency from '@/components/products/currency'
 import usePreviewModal from '@/lib/state/ModalState'
 import useCartState from '@/lib/state/CartState'
 import { triggerAnimation } from '@/components/products/addToCartTrigger'
-import {CapitalizedFirstLetter} from '@/components/globals/CapitalizedFirstLetter'
+import { CapitalizedFirstLetter } from '@/components/globals/CapitalizedFirstLetter'
 interface Product {
   product: ProductData
 }
@@ -42,7 +42,7 @@ const ProductCard: React.FC<Product> = ({ product }) => {
       triggerAnimation(imgRef)
     }
   }
-  
+
   return (
     <div
       onClick={onClick}
@@ -50,8 +50,8 @@ const ProductCard: React.FC<Product> = ({ product }) => {
     >
       <div className="aspect-square relative bg-white rounded-xl ">
         <CldImage
-          ref={imgRef}
           removeBackground
+          ref={imgRef}
           fill
           src={product.images[0].url}
           alt={product.name}
@@ -72,11 +72,11 @@ const ProductCard: React.FC<Product> = ({ product }) => {
       </div>
       {/* description */}
       <div>
-        <p className="font-bold text-lg text-primary ">
-        {CapitalizedFirstLetter(product.category.name) }
+        <p className="font-bold text-lg text-primary">
+          {CapitalizedFirstLetter(product.category.name)}
         </p>
-        <p className="text-sm font-semibold text-gray-700 m-0 ">
-          {CapitalizedFirstLetter(product.name) }
+        <p className="text-sm font-semibold text-highlight m-0 ">
+          {CapitalizedFirstLetter(product.name)}
         </p>
       </div>
       {/* price */}

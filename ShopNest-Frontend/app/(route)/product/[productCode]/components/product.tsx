@@ -2,15 +2,15 @@
 import React, {useRef} from 'react'
 
 
-import { Product } from '@/lib/StoreTypes'
+import { Product as productProp } from '@/lib/StoreTypes'
 import Gallery from "@/components/products/product/galleryComponent/gallery";
 import Info from "@/components/products/product/info";
 
-interface ProductMainProps {
-    product: Product
+interface productProps {
+    product: productProp
 }
 
-const ProductMain:React.FC<ProductMainProps> = ({product}) => {
+const Product:React.FC<productProps> = ({product}) => {
     const imgRef = useRef<HTMLImageElement>(null)
     return (
     <div className="grid grid-cols-1 w-full  lg:grid-cols-2 lg:gap-8">
@@ -24,4 +24,4 @@ const ProductMain:React.FC<ProductMainProps> = ({product}) => {
   )
 }
 
-export default ProductMain
+export default Product
