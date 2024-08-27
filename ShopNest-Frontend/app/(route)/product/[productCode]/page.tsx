@@ -3,8 +3,8 @@ import React from 'react'
 import getProducts from '@/lib/fetchData/getProducts'
 import getProduct from '@/lib/fetchData/getProduct'
 import Container from '@/components/ui/container'
-import Products from '@/components/products/products'
-import ProductMain from './components/productMain'
+import Product from './components/product'
+import RelatedProducts from '@/components/products/RelatedProducts'
 
 interface ProductProps {
   params: {
@@ -13,17 +13,20 @@ interface ProductProps {
 }
 
 export const revalidate = 0
-const ProductPage: React.FC<ProductProps> = async ({ params }) => {
+const ProductPage = async ({ params }: ProductProps) => {
   const product = await getProduct(params.productCode)
   const productByCategory = await getProducts({
     categoryCode: product.category.id,
   })
-  // const imgRef = useRef<HTMLImageElement>(null)
+  const relatedProducts = productByCategory?.filter(
+    (item) => item.id !== product.id
+  )
+
   return (
     <Container>
-      <ProductMain product={product} />
-      <hr className="my-4" />
-      <Products title="Related products" products={productByCategory} />
+      <Product product={product} />
+      {relatedProducts.length !== 0 && <hr className="my-4" />}
+      <RelatedProducts title="Related products" products={relatedProducts} />
     </Container>
   )
 }

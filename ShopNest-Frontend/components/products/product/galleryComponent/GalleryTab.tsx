@@ -1,11 +1,10 @@
 // import Image from "next/image";
-import { Tab } from "@headlessui/react";
-import { Image as ImageType } from "@/lib/StoreTypes";
-import {  CldImage } from 'next-cloudinary'
-
+import { Tab } from '@headlessui/react'
+import { Image as ImageType } from '@/lib/StoreTypes'
+import { CldImage } from 'next-cloudinary'
 
 interface ImageProps {
-  image: ImageType;
+  image: ImageType
 }
 
 const GalleryTab: React.FC<ImageProps> = ({ image }) => {
@@ -14,8 +13,8 @@ const GalleryTab: React.FC<ImageProps> = ({ image }) => {
       {({ selected }) => (
         <div>
           <span className="absolute inset-0 aspect-square rounded-md w-full h-full overflow-hidden">
-            <CldImage
-            removeBackground
+            <CldImage removeBackground
+              // removeBackground
               src={image.url}
               alt="product image"
               fill
@@ -24,13 +23,13 @@ const GalleryTab: React.FC<ImageProps> = ({ image }) => {
           </span>
           <span
             className={`absolute inset-0 rounded-md ring-2 ring-offset-2 ${
-              selected ? "ring-primary" : "ring-transparent"
+              selected ? 'ring-primary' : 'ring-transparent'
             }`}
-          />  
-        </div>  
+          />
+        </div>
       )}
     </Tab>
-  );
-};
+  )
+}
 
-export default GalleryTab;
+export default GalleryTab

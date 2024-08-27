@@ -28,3 +28,17 @@ export const useActionState = create<ActionState>((set, get) => ({
   },
   closeDropDown: () => set({ openProductId: null })
 }))
+
+
+
+// mobile Menu state 
+
+interface MobileMenuState {
+  isOpen:boolean
+  setIsOpen:()=>void
+}
+
+export const useMobileMenuState = create<MobileMenuState>((set, get)=>({
+  isOpen:false, 
+  setIsOpen:()=> set({ isOpen:!get().isOpen })
+}))

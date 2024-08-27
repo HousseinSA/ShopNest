@@ -9,7 +9,6 @@ export default function Error({ error, reset }: { error: Error & { digest?: stri
     route.push('/');
   };
 
-  
   const getUserFriendlyMessage = (error: Error)=>  {
     if (!navigator.onLine) {
       return "Network issue: Please check your internet connection.";

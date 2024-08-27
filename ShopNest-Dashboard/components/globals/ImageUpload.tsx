@@ -38,7 +38,6 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ disabled, onChange, onRemove,
             </div>
           ))}
         </div>
-
         <CldUploadWidget
           options={{
             styles: {
@@ -52,7 +51,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ disabled, onChange, onRemove,
           uploadPreset='q5jplcc9'
         >
           {({ open }) => (
-            <Button type='button' disabled={disabled} variant='secondary' onClick={() => open?.()}>
+            <Button type='button' disabled={disabled} className='bg-primary' onClick={() => open?.()}>
               <ImagePlus className='h-4 w-4 mr-2' />
               Upload Images
             </Button>

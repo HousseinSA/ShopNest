@@ -4,13 +4,14 @@ import { useState, useEffect } from 'react'
 import { Product } from '@/lib/StoreTypes'
 import ProductCard from '@/components/products/productCard'
 import useSSE from '@/hooks/useSSE'
+import product from './product/product'
 
 interface ProductsProps {
   products: Product[]
   title: string
 }
 
-const Products: React.FC<ProductsProps> = ({
+const RelatedProducts: React.FC<ProductsProps> = ({
   products: productsData,
   title,
 }) => {
@@ -37,6 +38,11 @@ const Products: React.FC<ProductsProps> = ({
       }
     }
   }, [sseData])
+
+  if(products.length ===0 ){
+    return null
+  }
+  
   return (
     <div className="p-4 sm:p-6 lg:p-8">
       <h3 className="text-2xl sm:text-3xl text-primary md:text-4xl font-bold mb-6">
@@ -51,4 +57,4 @@ const Products: React.FC<ProductsProps> = ({
   )
 }
 
-export default Products
+export default RelatedProducts

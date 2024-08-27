@@ -13,7 +13,6 @@ export async function PATCH(req: Request, { params }: { params: { storeCode: str
       return new NextResponse('color name and value are required', { status: 400 })
     }
 
-    console.log('color value',value)
     
   // Check if a color with the same name already exists in this store
   const existingColor = await prismaDB.color.findFirst({

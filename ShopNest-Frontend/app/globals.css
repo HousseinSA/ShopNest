@@ -1,18 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* 
-@layer components {
-  .btn {
-    @apply rounded-lg  uppercase text-sm hover:-translate-y-0.5 transform transition focus:outline-none focus:ring focus:ring-offset-2 font-semibold sm:text-base tracking-wider py-2 px-4
-  }
-  .btn-primary {
-    @apply bg-brand  sm:hover:bg-brand-light  focus:ring-brand-light active:bg-brand-dark  text-white ;
-  }
-  .btn-secondary {
-    @apply bg-gray-500 text-white active:bg-gray-700 focus:ring-gray-400  sm:hover:bg-gray-400
-  }
-} */
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 @layer base {
   *,
@@ -20,6 +10,8 @@
   html {
     box-sizing: border-box;
     margin: 0;
+    font-family: "Quicksand", sans-serif;
+    color: #41413f;
   }
   :root {
     --background: 0 0% 100%;
@@ -31,7 +23,8 @@
     --primary: 142.1 76.2% 36.3%;
     --primary-foreground: 355.7 100% 97.3%;
     --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
+    --secondary-foreground: #41413f;
+    ;
     --muted: 240 4.8% 95.9%;
     --muted-foreground: 240 3.8% 46.1%;
     --accent: 240 4.8% 95.9%;
