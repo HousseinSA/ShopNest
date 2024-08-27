@@ -38,7 +38,7 @@ export async function POST(req: Request) {
       })
 
       const productsIds = order.orderItems.map((orderItem) => orderItem?.productCode)
-      console.log(productsIds)
+      // console.log(productsIds)
 
       await prismaDB.product.updateMany({
         where: {

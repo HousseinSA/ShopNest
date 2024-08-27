@@ -24,7 +24,7 @@ const config: Config = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       colors: {
-        brand:{
+        brand: {
           DEFAULT: '#0fa9e6',
           light: '#3fbaeb',
           dark: '#0c87b8',
@@ -58,6 +58,7 @@ const config: Config = {
           DEFAULT: 'hsl(var(--popover))',
           foreground: 'hsl(var(--popover-foreground))',
         },
+        highlight: 'var(--highlight)',
         card: {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',

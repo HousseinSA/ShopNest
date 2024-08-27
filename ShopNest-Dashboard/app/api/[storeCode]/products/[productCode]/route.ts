@@ -68,7 +68,6 @@ export async function PATCH(req: Request, { params }: { params: { storeCode: str
   }
 }
 
-
 export async function DELETE(req: Request, { params }: { params: { storeCode: string; productCode: string } }) {
   try {
     if (!params.productCode) {
@@ -84,6 +83,27 @@ export async function DELETE(req: Request, { params }: { params: { storeCode: st
     return NextResponse.json(product)
   } catch (error) {
     console.log(`PRODUCT_DELETE`, error)
+    return new NextResponse('Internal Error', { status: 500 })
+  }
+}
+
+// get  product
+export async function GET(req: Request, { params }: { params: { storeCode: string; productCode: string } }) {
+  try {
+    if (!params.productCode) {
+      return new NextResponse('product code is required', { status: 400 })
+    }
+    const product = await prismaDB.product.findUnique({
+      where: {
+        id: params.productCode,
+        storeCode: params.storeCode
+      },
+      include: { images: true, category: true, size: true, color: true },
+    })
+    return NextResponse.json(product)
+  } catch (error) {
+    console.log(`PRODUCT_GET`, error)
+
     return new NextResponse('Internal Error', { status: 500 })
   }
 }

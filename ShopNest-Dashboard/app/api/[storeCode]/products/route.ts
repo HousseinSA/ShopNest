@@ -8,7 +8,7 @@ export async function POST(req: Request, { params }: { params: { storeCode: stri
     if (!userId) {
       return new NextResponse('Unauthorized user', { status: 401 })
     }
-    
+
     // checking is there is store by this user
     const storeByUserId = await prismaDB.store.findFirst({
       where: {
@@ -27,27 +27,27 @@ export async function POST(req: Request, { params }: { params: { storeCode: stri
     if (!params.storeCode) {
       new NextResponse('No store code found', { status: 400 })
     }
-      // Check if a product with the same name already exists in this store
-      const existingProduct = await prismaDB.product.findFirst({
-        where: {
-          storeCode: params.storeCode,
-          AND: {
-            OR: [
-              {
-                name: {
-                  equals: name,
-                  mode: 'insensitive'
-                }
+    // Check if a product with the same name already exists in this store
+    const existingProduct = await prismaDB.product.findFirst({
+      where: {
+        storeCode: params.storeCode,
+        AND: {
+          OR: [
+            {
+              name: {
+                equals: name,
+                mode: 'insensitive'
               }
-            ]
-          }
+            }
+          ]
         }
-      })
-  
-      if (existingProduct) {
-        return new NextResponse('Product already exists', { status: 402 })
       }
-  
+    })
+
+    if (existingProduct) {
+      return new NextResponse('Product already exists', { status: 402 })
+    }
+
     const product = await prismaDB.product.create({
       data: {
         name,
