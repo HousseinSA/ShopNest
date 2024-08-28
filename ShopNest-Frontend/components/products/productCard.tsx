@@ -48,7 +48,7 @@ const ProductCard: React.FC<Product> = ({ product }) => {
       onClick={onClick}
       className="rounded-xl cursor-pointer bg-white group border p-3 shadow-md relative"
     >
-      <div className="aspect-square relative bg-white rounded-xl ">
+      <div className="aspect-square relative bg-white rounded-xl">
         <CldImage
           removeBackground
           ref={imgRef}
@@ -70,12 +70,12 @@ const ProductCard: React.FC<Product> = ({ product }) => {
           </div>
         </div>
       </div>
-      {/* description */}
+      {/* description */} 
       <div>
         <p className="font-bold text-lg text-primary">
           {CapitalizedFirstLetter(product.category.name)}
         </p>
-        <p className="text-sm font-semibold text-highlight m-0 ">
+        <p className="text-sm font-semibold text-highlight m-0">
           {CapitalizedFirstLetter(product.name)}
         </p>
       </div>

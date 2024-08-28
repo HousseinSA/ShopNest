@@ -15,18 +15,11 @@ const HomePage = async () => {
     <Container>
       <div className="space-y-4 pb-10">
         <Billboard billboardData={billboard} />
-      <div className="flex flex-col gap-y-8 px-4 sm:px-0 ">
+      <div className="flex flex-col gap-y-8 px-4 sm:px-0">
         <Products title="Featured Products" products={products} />
       </div>
       </div>
     </Container>
-    // // <Tailwind />
-
-    //   <div className="max-w-xl grid grid-cols-4 gap-4 mx-auto mt-10">
-    //     {products.map((product) => (
-    //       <ProductCard key={product.id} product={product} />
-    //     ))}
-    //   </div>
   )
 }
 
