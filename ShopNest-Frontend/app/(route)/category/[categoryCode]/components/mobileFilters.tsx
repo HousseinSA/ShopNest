@@ -19,12 +19,14 @@ const MobileFilters: React.FC<FilterProps> = ({ sizes, colors }) => {
   const onClose = () => setIsOpen(false)
   return (
     <>
-      <ButtonIcon
-        icon={<FilterIcon size={20} />}
+      <Button
         onClick={onOpen}
         className="flex rounded-2xl bg-primary hover:primary-foreground items-center gap-3 lg:hidden"
-        children={'Filters'}
-      />
+      >
+        <FilterIcon size={20} />
+        Filters
+      </Button>
+
       <Dialog
         open={isOpen}
         as="div"
