@@ -1,62 +1,67 @@
-const loading = () => {
-  const skeletonItems = Array.from({ length: 5 })
+const Loading = () => {
+  const skeletonItems = Array.from({ length: 5 });
+  
   return (
-    <div className="mx-auto px-4 py-10 sm:px-6 lg:px-8 space-y-10 pb-10">
-      <div className="flex flex-col gap-y-8 sm:px-6 lg:px-8">
-        <div className="p-4 sm:p-6 lg:p-8">
-          <div className="flex gap-6">
-            <div className="flex  justify-between gap-6 w-full">
-              <div className="flex flex-col gap-4">
-                <div
-                  className="skeleton-text mb-4"
-                  style={{ width: '15rem', height: '1.2rem' }}
-                ></div>
-                <div className="flex justify-between  items-center w-full ">
-                  <div
-                    className="skeleton "
-                    style={{
-                      width: '10rem',
-                      height: '10rem',
-                      borderRadius: '1rem',
-                    }}
-                  ></div>
-                  <div
-                    className="skeleton-text ml-4 "
-                    style={{ width: '12rem', height: '1rem' }}
-                  ></div>
+    <div className="px-4 py-16 sm:px-6 md:px-8 min-h-screen">
+      <div className="flex items-center space-x-4">
+        <div className="bg-primary rounded-full p-2">
+          {/* Skeleton for cart icon */}
+          <div className="skeleton" style={{ width: '24px', height: '24px', borderRadius: '50%' }}></div>
+        </div>
+        <h1 className="font-bold text-primary text-3xl">
+          <div className="skeleton" style={{ width: '10rem', height: '1.5rem' }}></div>
+        </h1>
+      </div>
+      <div className="mt-10 lg:grid lg:grid-cols-12 lg:items-start gap-x-10">
+        <div className="lg:col-span-7">
+          <p className="font-semibold text-medium text-primary">
+            {/* Skeleton for empty cart message */}
+            <div className="skeleton" style={{ width: '10rem', height: '1rem' }}></div>
+          </p>
+          <ul>
+            {skeletonItems.map((_, index) => (
+              <li key={index} className="flex py-6 border-b last:border-b-0 gap-x-4 sm:gap-x-6">
+                {/* Skeleton for cart item image */}
+                <div className="relative h-24 w-24 rounded-md overflow-hidden sm:h-48 sm:w-48">
+                  <div className="skeleton" style={{ width: '100%', height: '100%' }}></div>
                 </div>
+                <div className="relative flex flex-col flex-1 justify-between">
+                  {/* Skeleton for item details */}
+                  <div className="relative pr-9 sm:pr-0 sm:grid sm:grid-cols-2 sm:gap-x-4">
+                    <div className="flex justify-between">
+                      <div className="skeleton" style={{ width: '10rem', height: '1rem' }}></div>
+                    </div>
+                    <div className="mt-1 text-sm capitalize flex items-center gap-x-4">
+                      <div className="skeleton" style={{ width: '4rem', height: '1rem' }}></div>
+                      <div className="skeleton" style={{ width: '4rem', height: '1rem' }}></div>
+                    </div>
+                    <div className="skeleton" style={{ width: '6rem', height: '1rem' }}></div>
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="lg:col-span-5 lg:mt-0 lg:p-8 bg-gray-50">
+          {/* Skeleton for summary section */}
+          <h2 className="text-lg font-medium text-primary">
+            <div className="skeleton" style={{ width: '8rem', height: '1.5rem' }}></div>
+          </h2>
+          <div className="mt-6 space-y-4">
+            <div className="flex items-center justify-between border-t border-gray-200 pt-4">
+              <div className="text-base font-medium text-primary">
+                <div className="skeleton" style={{ width: '6rem', height: '1rem' }}></div>
               </div>
-              <div className="skeleton">
-                <div
-                  style={{ width: '30rem', height: '15rem' }}
-                  className=" skeleton p-4"
-                ></div>
-              </div>
+              <div className="skeleton" style={{ width: '4rem', height: '1rem' }}></div>
+            </div>
+            <div className="mt-5">
+              <div className="skeleton" style={{ width: '100%', height: '2.5rem' }}></div>
             </div>
           </div>
         </div>
-        <div className="flex flex-col w-full space-y-8 mt-3 ">
-          {skeletonItems.map((_, index) => (
-            <div className="flex items-center gap-4 w-1/2">
-              <div
-                key={index}
-                className="skeleton "
-                style={{
-                  width: '10rem',
-                  height: '10rem',
-                  borderRadius: '1rem',
-                }}
-              ></div>
-              <div
-                className="skeleton-text "
-                style={{ width: '12rem', height: '1rem' }}
-              ></div>
-            </div>
-          ))}
-        </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default loading
+export default Loading;

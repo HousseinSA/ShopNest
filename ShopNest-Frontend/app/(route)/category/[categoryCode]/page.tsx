@@ -1,26 +1,26 @@
-import React from 'react';
+import React from 'react'
 
-import getProducts from '@/lib/fetchData/getProducts';
-import getSizes from '@/lib/fetchData/getSizes';
-import getColors from '@/lib/fetchData/getColors';
-import getCategory from '@/lib/fetchData/getCategory';
-import Container from '@/components/ui/container';
-import Billboard from '@/components/globals/billboard';
-import Filter from './components/filter';
-import ProductCard from '@/components/products/productCard';
-import NoResults from './components/noResults';
-import MobileFilters from './components/mobileFilters';
+import getProducts from '@/lib/fetchData/getProducts'
+import getSizes from '@/lib/fetchData/getSizes'
+import getColors from '@/lib/fetchData/getColors'
+import getCategory from '@/lib/fetchData/getCategory'
+import Container from '@/components/ui/container'
+import Billboard from '@/components/globals/billboard'
+import Filter from './components/filter'
+import ProductCard from '@/components/products/productCard'
+import NoResults from './components/noResults'
+import MobileFilters from './components/mobileFilters'
 
-export const revalidate = 0;
+export const revalidate = 0
 
 interface categoryProps {
   params: {
-    categoryCode: string;
-  };
+    categoryCode: string
+  }
   searchParams: {
-    colorCode: string;
-    sizeCode: string;
-  };
+    colorCode: string
+    sizeCode: string
+  }
 }
 
 const CategoryPage: React.FC<categoryProps> = async ({
@@ -31,10 +31,10 @@ const CategoryPage: React.FC<categoryProps> = async ({
     categoryCode: params.categoryCode,
     colorCode: searchParams.colorCode,
     sizeCode: searchParams.sizeCode,
-  });
-  const sizes = await getSizes();
-  const colors = await getColors();
-  const category = await getCategory(params.categoryCode);
+  })
+  const sizes = await getSizes()
+  const colors = await getColors()
+  const category = await getCategory(params.categoryCode)
   return (
     <div className="bg-white">
       <Container>
@@ -48,7 +48,7 @@ const CategoryPage: React.FC<categoryProps> = async ({
             </div>
             <div className=" mt-6 lg:mt-0 lg:col-span-4">
               {products.length === 0 && <NoResults />}
-              <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-4">
+              <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-6">
                 {products.map((item) => (
                   <ProductCard key={item.id} product={item} />
                 ))}
@@ -58,7 +58,7 @@ const CategoryPage: React.FC<categoryProps> = async ({
         </div>
       </Container>
     </div>
-  );
-};
+  )
+}
 
-export default CategoryPage;
+export default CategoryPage

@@ -1,20 +1,28 @@
 'use client'
-import React, {MouseEventHandler} from 'react'
+import React, { MouseEventHandler } from 'react'
+
 import { cn } from '@/lib/utils'
+import { Button } from '@/components/ui/button'
 
-
-interface Button {
- icon: React.ReactElement
- onClick :MouseEventHandler<HTMLButtonElement> 
- className?:string
+interface ButtonProps {
+  icon: React.ReactElement
+  onClick: MouseEventHandler<HTMLButtonElement>
+  className?: string
+  children?: React.ReactNode
 }
 
-const  ButtonIcon:React.FC<Button> = ({icon, onClick,className}) => {
-
+const ButtonIcon: React.FC<ButtonProps> = ({ icon, onClick, className, children }) => {
   return (
-    <button onClick={onClick} className={cn("rounded-full p-2 hover:scale-110 transition flex items-center justify-center border shadow-md bg-primary hover:primary-foreground",className)}>
-        {icon}
-    </button>
+    <Button
+      onClick={onClick}
+      className={cn(
+        "rounded-full w-10 h-10 p-2 hover:scale-110 transition flex items-center justify-center border shadow-md bg-primary text-primary-foreground",
+        className
+      )}
+    >
+      {icon}
+      {children}
+    </Button>
   )
 }
 
