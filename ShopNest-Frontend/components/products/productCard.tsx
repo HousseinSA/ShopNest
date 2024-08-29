@@ -70,7 +70,7 @@ const ProductCard: React.FC<Product> = ({ product }) => {
           </div>
         </div>
       </div>
-      {/* description */} 
+      {/* description */}
       <div>
         <p className="font-bold text-lg text-primary">
           {CapitalizedFirstLetter(product.category.name)}

@@ -8,7 +8,7 @@ import product from './product/product'
 
 interface ProductsProps {
   products: Product[]
-  title: string
+  title?: string
 }
 
 const RelatedProducts: React.FC<ProductsProps> = ({
@@ -39,15 +39,17 @@ const RelatedProducts: React.FC<ProductsProps> = ({
     }
   }, [sseData])
 
-  if(products.length === 0 ){
+  if (products.length === 0) {
     return null
   }
-  
+
   return (
     <div className=" sm:p-6 lg:p-8">
-      <h3 className="text-2xl sm:text-3xl text-primary md:text-4xl font-bold mb-6">
-        {title}
-      </h3>
+      {title && (
+        <h3 className="text-2xl sm:text-3xl text-primary md:text-4xl font-bold mb-6">
+          {title}
+        </h3>
+      )}
       <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />

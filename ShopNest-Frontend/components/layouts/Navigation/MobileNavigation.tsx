@@ -1,17 +1,20 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 
 import { cn } from '@/lib/utils'
 import { Category as CategoryProp } from '@/lib/StoreTypes'
-import useSSE from '@/hooks/useSSE'
 
 interface NavigationProps {
   categoriesData: CategoryProp[]
+  menuStatus: () => void
 }
 
-const MobileNavigation: React.FC<NavigationProps> = ({ categoriesData }) => {
+const MobileNavigation: React.FC<NavigationProps> = ({
+  categoriesData,
+  menuStatus,
+}) => {
   const pathname = usePathname()
   const CategoriesRoutes = categoriesData?.map((category) => ({
     href: `/category/${category.id}`,
@@ -19,12 +22,17 @@ const MobileNavigation: React.FC<NavigationProps> = ({ categoriesData }) => {
     active: pathname === `/category/${category.id}`,
   }))
   return (
-    <nav className={'mx-4 items-center flex-col space-x-2 flex space-y-4'}>
+    <nav
+      className={
+        'mx-4 items-center flex-col mt-6 h-full  flex gap-4'
+      }
+    >
       {CategoriesRoutes?.map((category) => (
         <Link
+        onClick={menuStatus}
           className={cn(
             'relative group capitalize text-md transition-colors text-secondary-foreground  hover:primary-foreground',
-            category.active && 'text-primary font-bold ' ,
+            category.active && 'text-primary font-bold '
           )}
           href={`${category.href}`}
           key={category.href}
