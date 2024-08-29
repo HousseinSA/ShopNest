@@ -16,11 +16,11 @@ interface CurrencyValue {
 
   const Currency:React.FC<CurrencyValue> = ({data, className}) => { 
     return (
-      // <OnlyClient>
+      <OnlyClient>
       <span className={cn('text-sm font-bold text-primary ', className)}>
             {PriceFormatter.format(data)}
       </span>
-      // </OnlyClient>
+      </OnlyClient>
     )
   }
   

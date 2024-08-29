@@ -8,7 +8,7 @@ interface OverViewProps {
 }
 const Overview: React.FC<OverViewProps> = ({ data }) => {
   return (
-    // <OnlyClient>
+    <OnlyClient>
       <ResponsiveContainer width='100%' height={350}>
         <BarChart data={data}>
           <XAxis dataKey={'name'} stroke='#888888' fontSize={12} tickLine={false} axisLine={false} />
@@ -16,7 +16,7 @@ const Overview: React.FC<OverViewProps> = ({ data }) => {
           <Bar dataKey='total' fill='#16A34A' radius={[4, 4, 0, 0]} />
         </BarChart>
       </ResponsiveContainer>
-    // </OnlyClient>
+    </OnlyClient>
   )
 }
 

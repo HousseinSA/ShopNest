@@ -8,20 +8,26 @@ import MobileMenu from './Navigation/mobileMenu'
 import { cn } from '@/lib/utils'
 import React, { useEffect, useState } from 'react'
 import { Category } from '@/lib/StoreTypes'
+import useCategoryList from '@/lib/state/categoriesState'
 
 type categoryProps = {
   categories: Category[]
 }
 
 const Header = ({ categories }: categoryProps) => {
+  const { updateCategories } = useCategoryList()
+
+  useEffect(() => {
+    updateCategories(categories)
+  }, [])
   return (
     <header
       className={cn(
-        'py-4 md:py-5 lg:py-6 mx-auto transition duration-500 max-w-7xl',
+        'py-4 md:py-5 lg:py-6 mx-auto transition duration-500 max-w-7xl'
       )}
     >
       <div className="flex items-center justify-between sm:justify-start gap-5 mx-4">
-      <div className="flex-shrink-0">
+        <div className="flex-shrink-0">
           <Link href={'/'}>
             <Image
               src="/shopnest-logo.png"
@@ -29,13 +35,13 @@ const Header = ({ categories }: categoryProps) => {
               height={200}
               alt="logo"
               priority={true}
-              className="w-28 sm:w-32 md:w-40 lg:w-48"  // Adjust widths for responsiveness
+              className="w-28 sm:w-32 md:w-40 lg:w-48" 
             />
           </Link>
         </div>
-        <Navigation categoriesData={categories}  />
+        <Navigation categoriesData={categories} />
         <div className=" ml-0 sm:ml-auto space-x-4 flex items-center">
-          <CartButton  />
+          <CartButton />
           <div className="block sm:hidden">
             <MobileMenu />
           </div>
