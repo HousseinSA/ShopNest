@@ -10,6 +10,8 @@ import Filter from './components/filter'
 import ProductCard from '@/components/products/productCard'
 import NoResults from './components/noResults'
 import MobileFilters from './components/mobileFilters'
+import Products from '@/components/products/RelatedProducts'
+
 
 export const revalidate = 0
 
