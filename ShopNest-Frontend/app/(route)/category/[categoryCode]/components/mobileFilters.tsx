@@ -35,11 +35,11 @@ const MobileFilters: React.FC<FilterProps> = ({ sizes, colors }) => {
       >
         <div className="fixed inset-0 bg-black bg-opacity-25" />
         <div className="fixed inset-0 flex">
-          <DialogPanel className="relative w-full ml-auto h-full max-w-xs flex bg-white overflow-y-auto shadow-xl pb-6 flex-col py-4">
+          <DialogPanel className="relative w-2/3  h-full flex bg-white overflow-y-auto shadow-xl pb-6 flex-col py-4">
             <div className="flex justify-end items-center px-4">
               <ButtonIcon
                 icon={<X size={15} color="white" />}
-                onClick={onOpen}
+                onClick={onClose}
               />
             </div>
             <div className="p-4">

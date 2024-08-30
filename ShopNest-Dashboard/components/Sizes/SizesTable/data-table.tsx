@@ -10,7 +10,7 @@ import { Input } from '@/components/ui/input'
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
-  filterKey: string
+  filterKey?: string
 }
 
 export function DataTable<TData, TValue>({ columns, data, filterKey }: DataTableProps<TData, TValue>) {

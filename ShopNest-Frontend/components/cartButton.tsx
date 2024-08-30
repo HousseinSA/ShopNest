@@ -1,8 +1,6 @@
 'use client'
 import { ShoppingBag } from 'lucide-react'
 import { useRouter } from 'next/navigation'
-
-import OnlyClient from '@/components/globals/OnlyClient'
 import useCartState from '@/lib/state/CartState'
 import { Button } from '@/components/ui/button'
 
