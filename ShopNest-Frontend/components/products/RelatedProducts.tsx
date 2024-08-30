@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react'
 import { Product } from '@/lib/StoreTypes'
 import ProductCard from '@/components/products/productCard'
 import useSSE from '@/hooks/useSSE'
-import product from './product/product'
 
 interface ProductsProps {
   products: Product[]

@@ -1,28 +1,15 @@
-import { useState, useEffect } from 'react'
-import { Menu, X } from 'lucide-react'
-import MobileNavigation from '@/components/layouts/Navigation/MobileNavigation'
-import getCategoriesData from '@/lib/fetchData/getCategories'
-import useCategoryList from '@/lib/state/categoriesState'
+import { useState } from 'react';
+import { Menu, X } from 'lucide-react';
+import MobileNavigation from '@/components/layouts/Navigation/MobileNavigation';
+import useCategoryList from '@/lib/state/categoriesState';
 
 const HamburgerMenu: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false)
-  const { categoriesList, updateCategories } = useCategoryList()
+  const [isOpen, setIsOpen] = useState(false);
+  const { categoriesList } = useCategoryList();
 
   const toggleMenu = () => {
-    setIsOpen(!isOpen)
-  }
-
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const fetchingCategories = await getCategoriesData()
-        updateCategories(fetchingCategories)
-      } catch (error) {
-        console.error('Failed to fetch categories:', error)
-      }
-    }
-    fetchCategories()
-  }, [updateCategories])
+    setIsOpen(!isOpen);
+  };
 
   return (
     <div className="relative">
@@ -37,10 +24,17 @@ const HamburgerMenu: React.FC = () => {
             }`}
           />
         )}
-        {isOpen && <div className="fixed inset-0 bg-black bg-opacity-25" />}
       </button>
+      
+      {isOpen && (
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-50 z-40 backdrop-blur-sm transition-opacity duration-300" 
+          onClick={toggleMenu} 
+        />
+      )}
+      
       <div
-        className={`fixed top-0 left-0 w-2/3 h-full bg-white shadow-lg transition-transform duration-300 transform ${
+        className={`fixed top-0 left-0 w-2/3 h-full bg-white shadow-lg z-50 transition-transform duration-300 transform ${
           isOpen ? 'translate-x-0 opacity-100' : '-translate-x-full opacity-0'
         }`}
       >
@@ -51,15 +45,15 @@ const HamburgerMenu: React.FC = () => {
               className={`text-primary transition-all duration-300 ${
                 isOpen
                   ? 'opacity-100 transform scale-100'
-                  : 'opacity-0 transform scale-75 '
+                  : 'opacity-0 transform scale-75'
               }`}
             />
           </button>
         </div>
-        <MobileNavigation menuStatus={()=>toggleMenu()} categoriesData={categoriesList} />
+        <MobileNavigation  categoriesData={categoriesList} menuStatus={toggleMenu} />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default HamburgerMenu
+export default HamburgerMenu;

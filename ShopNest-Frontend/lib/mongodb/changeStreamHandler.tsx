@@ -3,7 +3,7 @@ import clientPromise from './mongodbClient'
 export async function initChangeStream() {
   try {
     const client = await clientPromise;
-    const database = client.db('ShopNest');
+    const database = client.db('ShopNest'); 
     const changeStream = database.watch();
 
     changeStream.on('change', (change) => {
