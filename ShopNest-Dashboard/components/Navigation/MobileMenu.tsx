@@ -1,34 +1,32 @@
 'use client'
-import {useMobileMenuState} from '@/hooks/StoreState'
+import React, { useState, useEffect } from 'react'
+import { Menu, X } from 'lucide-react'
+import MainNav from '@/components/Navigation/MainNav'
+import { useMobileMenuState } from '@/hooks/StoreState'
 
-const MobileMenu = () => {
-const {setIsOpen, isOpen} = useMobileMenuState()
+const HamburgerMenu: React.FC = () => {
+const {isOpen, setIsOpen} = useMobileMenuState()
+  const toggleMenu = () => {
+    setIsOpen()
+  }
+
+
   return (
-    <>
-      <button className='flex flex-col justify-between w-6 h-6' onClick={setIsOpen}>
-        <span className={`bg-gray-800 h-1 rounded-md transition-transform duration-300 ease-in-out transform ${isOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
-        <span className={`bg-gray-800 h-1 rounded-md transition-opacity duration-300 ease-in-out ${isOpen ? 'opacity-0' : ''}`}></span>
-        <span className={`bg-gray-800 h-1 rounded-md transition-transform duration-300 ease-in-out transform ${isOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
+    <div className='relative'>
+      <button onClick={toggleMenu}>
+        {!isOpen && <Menu size={25} className={`text-primary transition-all duration-300 ${isOpen ? 'opacity-0 transform scale-75' : 'opacity-100 transform scale-100'}`} />}
+        {isOpen && <div className='fixed inset-0 bg-black bg-opacity-50 h-full w-full z-50 backdrop-blur-sm duration-300 transition-opacity' />}
       </button>
-
-      <div className={`fixed top-0 left-0 w-full h-screen bg-primary transform ${isOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out z-50`}>
-        <div className='flex flex-col items-center justify-center h-full space-y-4 text-white'>
-          <a href='#' className='text-xl'>
-            Home
-          </a>
-          <a href='#' className='text-xl'>
-            About
-          </a>
-          <a href='#' className='text-xl'>
-            Services
-          </a>
-          <a href='#' className='text-xl'>
-            Contact
-          </a>
+      <div className={`fixed top-0 left-0 w-2/3 h-full bg-white  z-50  transition-transform duration-300 transform ${isOpen ? 'translate-x-0 opacity-100' : '-translate-x-full opacity-0'}`}>
+        <div className='flex justify-end p-4'>
+          <button onClick={toggleMenu}>
+            <X size={25} className={`text-primary transition-all duration-300 ${isOpen ? 'opacity-100 transform scale-100' : 'opacity-0 transform scale-75 '}`} />
+          </button>
         </div>
+        <MainNav/>
       </div>
-    </>
+    </div>
   )
 }
 
-export default MobileMenu
+export default HamburgerMenu

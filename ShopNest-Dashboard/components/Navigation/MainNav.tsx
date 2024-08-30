@@ -66,12 +66,12 @@ const MainNav = () => {
   ]
 
   // state
-  const { isOpen } = useMobileMenuState()
+  const { isOpen, setIsOpen } = useMobileMenuState()
 
   return (
-    <nav className={cn('flex items-center gap-4 md:gap-6 ', isOpen ? 'flex-col' : 'flex-row')}>
+    <nav className={cn('flex items-center gap-4 md:gap-6 ', isOpen ? 'flex-col justify-center' : 'flex-row')}>
       {routes.map((route) => (
-        <Link className={cn('relative group text-md transition-colors text-secondary-foreground  hover:primary-foreground', route.active && 'text-primary font-bold ')} key={route.link} href={route.link}>
+        <Link onClick={() => setIsOpen()} className={cn('relative group text-md transition-colors text-secondary-foreground  hover:primary-foreground', route.active && 'text-primary font-bold ')} key={route.link} href={route.link}>
           {route.label}
           <span className={cn('absolute left-0 bottom-[-2px] w-full h-[2px] rounded-md bg-primary  transition-transform duration-300 transform scale-x-0 group-hover:scale-x-100', route.active ? 'scale-x-100' : 'scale-x-0')} />
         </Link>
