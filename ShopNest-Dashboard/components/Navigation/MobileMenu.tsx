@@ -1,15 +1,14 @@
 'use client'
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { Menu, X } from 'lucide-react'
-import MainNav from '@/components/Navigation/MainNav'
 import { useMobileMenuState } from '@/hooks/StoreState'
+import MobileNav from './MobileNav'
 
 const HamburgerMenu: React.FC = () => {
-const {isOpen, setIsOpen} = useMobileMenuState()
+  const { isOpen, setIsOpen } = useMobileMenuState()
   const toggleMenu = () => {
     setIsOpen()
   }
-
 
   return (
     <div className='relative'>
@@ -23,7 +22,7 @@ const {isOpen, setIsOpen} = useMobileMenuState()
             <X size={25} className={`text-primary transition-all duration-300 ${isOpen ? 'opacity-100 transform scale-100' : 'opacity-0 transform scale-75 '}`} />
           </button>
         </div>
-        <MainNav/>
+        <MobileNav />
       </div>
     </div>
   )

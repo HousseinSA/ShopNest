@@ -43,9 +43,9 @@ const StoreSwitcher: React.FC<StoreChangerProps> = ({ stores }) => {
   return (
     <Popover open={openList} onOpenChange={setOpenList}>
       <PopoverTrigger asChild>
-        <Button variant='outline' size='sm' role='combobox' aria-expanded={openList} aria-label='select Store' className='w-[200px] flex items-center justify-between'>
+        <Button variant='outline' size='sm' role='combobox' aria-expanded={openList} aria-label='select Store' className=' w-auto xs:w-[200px] flex items-center justify-between'>
           <MdStoreMallDirectory className='mr-2 h-4 w-4 ' />
-          {activeStore?.label}
+         <p className='hidden xs:block'> {activeStore?.label}</p>
           <IoChevronDownSharp className='ml-auto h-4 w-4 opacity-50' />
         </Button>
       </PopoverTrigger>

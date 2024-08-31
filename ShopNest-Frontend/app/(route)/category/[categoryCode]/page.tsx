@@ -7,10 +7,10 @@ import getCategory from '@/lib/fetchData/getCategory'
 import Container from '@/components/ui/container'
 import Billboard from '@/components/globals/billboard'
 import Filter from './components/filter'
-import ProductCard from '@/components/products/productCard'
+import ProductCard from '@/components/products/product/productCard'
 import NoResults from './components/noResults'
 import MobileFilters from './components/mobileFilters'
-import Products from '@/components/products/RelatedProducts'
+import Products from '@/components/products/product/RelatedProducts'
 
 
 export const revalidate = 0
@@ -37,6 +37,8 @@ const CategoryPage: React.FC<categoryProps> = async ({
   const sizes = await getSizes()
   const colors = await getColors()
   const category = await getCategory(params.categoryCode)
+
+  
   return (
     <div className="bg-white">
       <Container>

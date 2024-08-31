@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react'
 
 import { Product } from '@/lib/StoreTypes'
-import ProductCard from '@/components/products/productCard'
+import ProductCard from '@/components/products/product/productCard'
 import useSSE from '@/hooks/useSSE'
 
 interface ProductsProps {
@@ -43,9 +43,10 @@ const RelatedProducts: React.FC<ProductsProps> = ({
   }
 
   return (
-    <div className=" sm:p-6 lg:p-8">
+    <div className="sm:px-4 sm:pb-4 mb-4 lg:px-6 lg:pb-6 overflow-auto ">
+      {products.length !== 0 && <hr className="my-3 md:my-4 " />}
       {title && (
-        <h3 className="text-2xl sm:text-3xl text-primary md:text-4xl font-bold mb-6">
+        <h3 className="text-xl xs:text-2xl sm:text-3xl text-primary md:text-4xl font-bold mb-4">
           {title}
         </h3>
       )}
