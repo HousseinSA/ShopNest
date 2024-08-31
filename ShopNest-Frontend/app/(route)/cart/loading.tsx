@@ -4,7 +4,7 @@ const Loading = () => {
   return (
     <div className="px-4 py-16 sm:px-6 md:px-8 min-h-screen">
       <div className="flex items-center space-x-4">
-        <div className="bg-primary rounded-full p-2">
+        <div className="skeleton rounded-full p-2">
           {/* Skeleton for cart icon */}
           <div className="skeleton" style={{ width: '24px', height: '24px', borderRadius: '50%' }}></div>
         </div>

@@ -10,7 +10,7 @@
   html {
     box-sizing: border-box;
     margin: 0;
-    font-family: "Quicksand", sans-serif;
+    font-family: 'Quicksand', sans-serif;
   }
   :root {
     --background: 0 0% 100%;
@@ -25,7 +25,6 @@
     --secondary-foreground: #41413f;
     --highlight: #707070;
 
-    ;
     --muted: 240 4.8% 95.9%;
     --muted-foreground: 240 3.8% 46.1%;
     --accent: 240 4.8% 95.9%;
@@ -61,27 +60,26 @@
   }
 }
 
-  /* skeleton styling */
-  .skeleton {
-    opacity: 0.7;
-    animation: skeleton-loading  .3s linear infinite alternate;
-    background-color: hsl(200, 20%, 80%); /* Slightly darker gray */
-    border-radius: 1rem;
+/* skeleton styling */
+.skeleton {
+  opacity: 0.7;
+  animation: skeleton-loading 0.3s linear infinite alternate;
+  background-color: hsl(200, 20%, 80%); /* Slightly darker gray */
+  border-radius: 1rem;
+}
+
+.skeleton-text {
+  width: 100%;
+  background-color: hsl(200, 20%, 90%); /* Lighter gray */
+  border-radius: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: hsl(200, 20%, 85%); /* Slightly darker gray */
   }
-  
-  .skeleton-text {
-    width: 100%;
-    background-color: hsl(200, 20%, 90%); /* Lighter gray */
-    border-radius: 1rem;
-    margin-bottom: 0.5rem;
+  100% {
+    background-color: hsl(200, 20%, 80%); /* Darker gray */
   }
-  
-  @keyframes skeleton-loading {
-    0% {
-      background-color: hsl(200, 20%, 85%); /* Slightly darker gray */
-    }
-    100% {
-      background-color: hsl(200, 20%, 80%); /* Darker gray */
-    }
-  }
-  
+}
