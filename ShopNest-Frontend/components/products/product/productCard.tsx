@@ -48,14 +48,14 @@ const ProductCard: React.FC<Product> = ({ product }) => {
       onClick={onClick}
       className="rounded-xl cursor-pointer bg-white group border p-3 shadow-md relative"
     >
-      <div className="aspect-square relative bg-white rounded-xl">
+      <div className=" aspect-square relative bg-white rounded-xl">
         <CldImage
           removeBackground
           ref={imgRef}
           fill
           src={product.images[0].url}
           alt={product.name}
-          className="aspect-square object-contain object-center rounded-xl"
+          className="w-full h-full object-contain object-center rounded-xl"
         />
         <div className="opacity-0 group-hover:opacity-100 transition absolute w-full px-6 bottom-5">
           <div className="flex justify-center gap-x-4">

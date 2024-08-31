@@ -4,7 +4,7 @@ import getProducts from '@/lib/fetchData/getProducts'
 import getProduct from '@/lib/fetchData/getProduct'
 import Container from '@/components/ui/container'
 import Product from './components/product'
-import RelatedProducts from '@/components/products/RelatedProducts'
+import RelatedProducts from '@/components/products/product/RelatedProducts'
 
 interface ProductProps {
   params: {
@@ -25,7 +25,6 @@ const ProductPage = async ({ params }: ProductProps) => {
   return (
     <Container>
       <Product product={product} />
-      {relatedProducts.length !== 0 && <hr className="my-4" />}
       <RelatedProducts title="Related products" products={relatedProducts} />
     </Container>
   )
