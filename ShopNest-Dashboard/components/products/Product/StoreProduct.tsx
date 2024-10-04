@@ -1,7 +1,7 @@
 'use client'
 import { Trash } from 'lucide-react'
 import React, { useState } from 'react'
-import { Category, Color, Product, Size } from '@prisma/client'
+import { Category, Color, Product ,Size } from '@prisma/client'
 import { useRouter, useParams } from 'next/navigation'
 import axios from 'axios'
 
@@ -22,8 +22,8 @@ interface ProductProps {
 const StoreProduct: React.FC<ProductProps> = ({ productData, categories, colors, sizes }) => {
   // conditions for path header
 
-  const title = productData ? `Update ${productData.name} Product` : 'Create New Product';
-  const description = productData ? `Update the details for product ${productData.name}` : 'Add a new product to your store';
+  const title = productData ? `Update  Product` : 'Create New Product';
+  const description = productData ? `Update product details` : 'Add a new product to your store';
 
   
   // store delete modal state
