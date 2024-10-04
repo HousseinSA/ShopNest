@@ -13,7 +13,7 @@ interface productProps {
 const Product:React.FC<productProps> = ({product}) => {
     const imgRef = useRef<HTMLImageElement>(null)
     return (
-    <div className="grid grid-cols-1 w-full mb-0 sm:px-6 lg:px-8 lg:grid-cols-2 lg:gap-8">
+    <div className="grid grid-cols-1 w-full sm:px-6 lg:px-8 lg:grid-cols-2 lg:gap-8">
     <Gallery  imgRef={imgRef} images={product.images} 
      />
     <div className="mt-10 md:mt-16 lg:mt-0">

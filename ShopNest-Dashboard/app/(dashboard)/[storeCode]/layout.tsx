@@ -29,9 +29,9 @@ export default async function DashboardLayout({ children, params: { storeCode } 
 
   const storeList = await prismaDB.store.findMany({ where: { userId } });
   return (
-    <>
+    <div className='max-w-7xl mx-auto'>
       <Head storeList={storeList} />
       {children}
-    </>
+    </div>
   )
 }

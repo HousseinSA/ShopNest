@@ -31,7 +31,7 @@ const Gallery: React.FC<GalleryProps> = ({ images, imgRef, modalState }) => {
         {images.map((image) => (
           <TabPanel key={image.id} className="relative">
             <div className="flex items-center justify-center w-full">
-              <div className="flex justify-center items-center min-w-[350px] sm:w-[350px] xs:w-[300px] rounded-lg overflow-hidden">
+              <div className="flex justify-center items-center min-w-[350px] sm:w-[350px] xs:w-[300px] min-h-[350px] sm:h-[350px] xs:h-[300px]  rounded-lg overflow-hidden">
                 <CldImage
                   removeBackground
                   ref={imgRef}

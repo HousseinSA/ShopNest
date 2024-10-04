@@ -33,7 +33,6 @@ export const columns: ColumnDef<ProductProps>[] = [
     header: 'Product',
     cell: ({ row }) => (
         <CldImage removeBackground
-        //  removeBackground
            className='rounded-md object-contain object-center w-20 h-16' width={100} height={50} src={row.original.images[0].url} alt={row.original.name} />
     )
   },

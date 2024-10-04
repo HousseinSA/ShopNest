@@ -20,7 +20,7 @@ export async function POST(req: Request, { params }: { params: { storeCode: stri
       return new NextResponse('Unauthorized user', { status: 400 })
     }
     const body = await req.json()
-    const { name, price, images, colorCode, sizeCode, categoryCode, isFeatured, isArchived } = body
+    const { name, price, images, colorCode, brand, description, sizeCode, categoryCode, isFeatured, isArchived } = body
     if (!name && !price && !colorCode && !sizeCode && !categoryCode && !images) {
       return new NextResponse('Some fields are not provided', { status: 400 })
     }
@@ -54,6 +54,8 @@ export async function POST(req: Request, { params }: { params: { storeCode: stri
         price,
         colorCode: colorCode,
         sizeCode: sizeCode,
+        brand,        
+        description,
         categoryCode: categoryCode,
         storeCode: params.storeCode,
         isFeatured,

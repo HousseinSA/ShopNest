@@ -46,7 +46,6 @@ const ActionsColumn: React.FC<CellActionProps> = ({ product }) => {
     } finally {
       setLoading(false)
       setIsOpen(false)
-      // closeDropDown()
     }
   }
 
@@ -64,7 +63,7 @@ const ActionsColumn: React.FC<CellActionProps> = ({ product }) => {
 
   return (
     <>
-      <AlertModal title='Delete Product' description={`Are you sure you want to delete ${product.name}?`} loading={loading} onDelete={onProductDelete} isOpen={isOpen} setIsOpen={setIsOpen} />
+      <AlertModal title='Delete Product' description={`Are you sure you want to delete this product?`} loading={loading} onDelete={onProductDelete} isOpen={isOpen} setIsOpen={setIsOpen} />
       <div ref={dropdownRef}>
         <DropdownMenu
         //  open={openProductId === product.id}
