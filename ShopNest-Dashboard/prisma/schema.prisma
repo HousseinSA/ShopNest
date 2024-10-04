@@ -81,7 +81,9 @@ model Product {
   id           String      @id @default(auto()) @map("_id") @db.ObjectId
   name         String
   price        Int
-  storeCode    String      @db.ObjectId
+  brand        String?
+  description  String?   
+  storeCode String @db.ObjectId
   store        Store       @relation(fields: [storeCode], references: [id])
   categoryCode String      @db.ObjectId
   category     Category    @relation(fields: [categoryCode], references: [id])
@@ -96,6 +98,7 @@ model Product {
   images       Image[]
   orderItems   OrderItem[]
 }
+
 
 model Image {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId

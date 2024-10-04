@@ -37,10 +37,10 @@ export default async function RootLayout({
           type="image/x-icon"
         />
       </head>
-      <body className="relative min-h-screen ">
+      <body className="relative w-full h-full ">
         <ToastProvider />
         <ModalProvider />
-        <div className='bg-white w-full sticky left-0 top-0 z-20 right-0'>
+        <div className='bg-white w-full h-full sticky left-0 top-0 z-20 right-0 overflow-auto '>
         <Header categories={categories}  />
         </div>
         {children}

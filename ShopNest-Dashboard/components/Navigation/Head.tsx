@@ -19,7 +19,6 @@ const Head= ({storeList}:HeadProps) => {
 
 
   return (
-    <div className="border-b border">
       <div className="flex items-center h-16 p-4">
         <StoreSwitcher stores={storeList} />
         <div className="hidden lg:block ml-4">
@@ -33,7 +32,6 @@ const Head= ({storeList}:HeadProps) => {
           </div>
         </div>
       </div>
-    </div>
   );
 };
 

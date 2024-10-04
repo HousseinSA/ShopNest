@@ -28,18 +28,22 @@ const Info: React.FC<InfoProps> = ({ product, imgRef }) => {
 
   return (
     <div>
-      <h1 className=" text-xl sm:text-3xl font-bold text-primary">{CapitalizedFirstLetter(product.name)}</h1>
+      <h1 className=" text-xl sm:text-xl md:text-2xl font-semibold text-primary ">{CapitalizedFirstLetter(product.name)}</h1>
       <div className="flex items-end mt-3">
-        <Currency className="text-2xl text-highlight" data={product.price} />
+        <Currency className="text-xl text-highlight" data={product.price} />
       </div>
       <hr className="my-3" />
       <div className="flex flex-col gap-3">
         <div className="flex items-center gap-x-4">
-          <h3 className="font-bold text-primary">Size:</h3>
+          <h3 className="font-semibold text-primary">Brand:</h3>
           <div className="font-semibold text-highlight capitalize">{product.size.name}</div>
         </div>
         <div className="flex items-center gap-x-4">
-          <h3 className="font-bold text-primary">Color:</h3>
+          <h3 className="font-semibold text-primary">Size:</h3>
+          <div className="font-semibold text-highlight capitalize">{product.size.name}</div>
+        </div>
+        <div className="flex items-center gap-x-4">
+          <h3 className="font-semibold text-primary">Color:</h3>
           {product.color.value === 'white' ? (
             <div className="font-semibold capitalize text-highlight ">white</div>
           ) : (

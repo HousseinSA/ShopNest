@@ -43,10 +43,10 @@ const RelatedProducts: React.FC<ProductsProps> = ({
   }
 
   return (
-    <div className="sm:px-4 sm:pb-4 mb-4 lg:px-6 lg:pb-6 overflow-auto ">
+    <div className="sm:px-4 sm:pb-4 mb-4 lg:px-10 lg:py-10 overflow-auto">
       {products.length !== 0 && <hr className="my-3 md:my-4 " />}
       {title && (
-        <h3 className="text-xl xs:text-2xl sm:text-3xl text-primary md:text-4xl font-bold mb-4">
+        <h3 className=" text-primary text-xl sm:text-xl md:text-2xl font-semibold mb-4">
           {title}
         </h3>
       )}

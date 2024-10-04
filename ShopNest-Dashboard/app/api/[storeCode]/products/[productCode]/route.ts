@@ -8,7 +8,7 @@ export async function PATCH(req: Request, { params }: { params: { storeCode: str
     }
 
     const body = await req.json()
-    const { name, price, images, colorCode, sizeCode, categoryCode, isFeatured, isArchived } = body
+    const { name, price,brand, description ,images, colorCode, sizeCode, categoryCode, isFeatured, isArchived } = body
 
     if (!name && !price && !colorCode && !sizeCode && !categoryCode && !images) {
       return new NextResponse('No fields provided for update', { status: 400 })
@@ -40,6 +40,8 @@ export async function PATCH(req: Request, { params }: { params: { storeCode: str
       data: {
         name,
         price,
+        brand,      
+        description,
         colorCode,
         sizeCode,
         categoryCode,
