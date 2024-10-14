@@ -20,7 +20,7 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
   return (
     <li className="flex py-6 border-b last:border-b-0 gap-x-4 sm:gap-x-6">
       <div className="relative h-24 w-24 rounded-md overflow-hidden sm:h-48 sm:w-48">
-        <CldImage removeBackground
+        <CldImage //removeBackground
           fill
           src={item.images[0].url}
           className="aspect-square object-contain object-center rounded-xl"

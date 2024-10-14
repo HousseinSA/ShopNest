@@ -12,7 +12,7 @@ interface ImageUploadProps {
   disabled?: boolean
   onChange: (value: string) => void
   onRemove: (value: string) => void
-  value: string[]
+  value: string[] 
   removeState: boolean
   location?: boolean
 }
@@ -22,19 +22,23 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ disabled, onChange, onRemove,
   // onUpload
   const onUpload = (result: any) => {
     onChange(result.info.secure_url)
+    console.log('image result', result)
   }
-  return (
+
+  return (  
     <OnlyClient>
       <div>
         <div className={cn('flex flex-wrap gap-4', value.length === 0 ? 'my-0' : 'my-4')}>
           {value.map((url) => (
             <div key={url} className='relative w-[250px] h-[250px] flex items-center justify-center bg-gray-100 rounded-md overflow-hidden'>
               <div className='absolute top-2 right-2 z-10'>
-                <Button type='button' title='Delete product' onClick={() => onRemove(url)} variant='outline' className='rounded-full outline-none py-3 px-3 hover:bg-red-500 hover:opacity-100 opacity-70 bg-primary group'>
+<Button type='button' title='Delete product' onClick={() => onRemove(url)} variant='outline' className='rounded-full outline-none py-3 px-3 hover:bg-red-500 hover:opacity-100 opacity-70 bg-primary group'>
                   <Trash className='h-4 w-4 text-white' />
                 </Button>
               </div>
-              <CldImage src={url} removeBackground={removeState} alt={'uploaded image'} width={350} height={350} className={cn('rounded-lg', location && ' object-fill h-full')} />
+              <CldImage src={url}
+              //removeBackground={removeState}
+              alt={'uploaded image'} width={350} height={350} className={cn('rounded-lg', location && ' object-fill h-full')} />
             </div>
           ))}
         </div>
@@ -51,7 +55,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ disabled, onChange, onRemove,
           uploadPreset='q5jplcc9'
         >
           {({ open }) => (
-            <Button type='button' disabled={disabled} className='bg-primary' onClick={() => open?.()}>
+            <Button type='button' disabled={disabled} className='bg-primary' onClick={() => open()}>
               <ImagePlus className='h-4 w-4 mr-2' />
               Upload Images
             </Button>

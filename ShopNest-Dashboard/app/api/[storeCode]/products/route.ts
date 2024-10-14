@@ -4,48 +4,53 @@ import { NextResponse } from 'next/server'
 
 export async function POST(req: Request, { params }: { params: { storeCode: string } }) {
   try {
-    const { userId } = auth()
+    const { userId } = auth();
     if (!userId) {
-      return new NextResponse('Unauthorized user', { status: 401 })
+      return new NextResponse('Unauthorized user', { status: 401 });
     }
 
-    // checking is there is store by this user
+    // checking if there is a store by this user
     const storeByUserId = await prismaDB.store.findFirst({
       where: {
         id: params.storeCode,
         userId
       }
-    })
+    });
     if (!storeByUserId) {
-      return new NextResponse('Unauthorized user', { status: 400 })
+      return new NextResponse('Unauthorized user', { status: 400 });
     }
-    const body = await req.json()
-    const { name, price, images, colorCode, brand, description, sizeCode, categoryCode, isFeatured, isArchived } = body
-    if (!name && !price && !colorCode && !sizeCode && !categoryCode && !images) {
-      return new NextResponse('Some fields are not provided', { status: 400 })
+
+    const body = await req.json();
+    const { name, price, images, colorCode, brand, description, sizeCode, categoryCode, isFeatured, isArchived } = body;
+
+    if (!name || !price || !colorCode || !sizeCode || !categoryCode || !images) {
+      return new NextResponse('Some fields are not provided', { status: 400 });
     }
-    if (!params.storeCode) {
-      new NextResponse('No store code found', { status: 400 })
-    }
+
     // Check if a product with the same name already exists in this store
     const existingProduct = await prismaDB.product.findFirst({
       where: {
         storeCode: params.storeCode,
-        AND: {
-          OR: [
-            {
-              name: {
-                equals: name,
-                mode: 'insensitive'
-              }
-            }
-          ]
+        name: {
+          equals: name,
+          mode: 'insensitive'
         }
       }
-    })
+    });
 
     if (existingProduct) {
-      return new NextResponse('Product already exists', { status: 402 })
+      return new NextResponse('Product already exists', { status: 402 });
+    }
+
+    // Check if any of the image URLs already exist
+    const existingImages = await prismaDB.image.findMany({
+      where: {
+        url: { in: images.map((image: { url: string }) => image.url) }
+      }
+    });
+
+    if (existingImages.length > 0) {
+      return new NextResponse('One or more images already exist', { status: 400 });
     }
 
     const product = await prismaDB.product.create({
@@ -54,7 +59,7 @@ export async function POST(req: Request, { params }: { params: { storeCode: stri
         price,
         colorCode: colorCode,
         sizeCode: sizeCode,
-        brand,        
+        brand,
         description,
         categoryCode: categoryCode,
         storeCode: params.storeCode,
@@ -62,18 +67,19 @@ export async function POST(req: Request, { params }: { params: { storeCode: stri
         isArchived,
         images: {
           createMany: {
-            data: [...images.map((image: { url: string }) => image)]
+            data: images.map((image: { url: string }) => image)
           }
         }
       }
-    })
+    });
 
-    return NextResponse.json(product)
+    return NextResponse.json(product);
   } catch (error) {
-    console.log(`PRODUCT_POST`, error)
-    return new NextResponse('Internal Error', { status: 500 })
+    console.log(`PRODUCT_POST`, error);
+    return new NextResponse('Internal Error', { status: 500 });
   }
 }
+
 export async function GET(req: Request, { params }: { params: { storeCode: string } }) {
   const { searchParams } = new URL(req.url)
   const categoryCode = searchParams.get('categoryCode') || undefined

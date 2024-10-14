@@ -118,7 +118,7 @@
     opacity: 1;
     transition-delay: .3s;
   }
-  
+
   /* skeleton styling */
   .skeleton {
     opacity: 0.7;

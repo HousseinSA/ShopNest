@@ -34,15 +34,19 @@ const Info: React.FC<InfoProps> = ({ product, imgRef }) => {
       </div>
       <hr className="my-3" />
       <div className="flex flex-col gap-3">
-        <div className="flex items-center gap-x-4">
+        <div className="flex items-center gap-x-1">
           <h3 className="font-semibold text-primary">Brand:</h3>
-          <div className="font-semibold text-highlight capitalize">{product.size.name}</div>
+          <div className="font-semibold text-highlight capitalize">{product.brand}</div>
         </div>
-        <div className="flex items-center gap-x-4">
+        <div className="flex  gap-x-1">
+          <h3 className="font-semibold text-primary">Description:</h3>
+          <div className=" text-highlight ">{product.description}</div>
+        </div>
+        <div className="flex items-center gap-x-1">
           <h3 className="font-semibold text-primary">Size:</h3>
           <div className="font-semibold text-highlight capitalize">{product.size.name}</div>
         </div>
-        <div className="flex items-center gap-x-4">
+        <div className="flex items-center gap-x-1">
           <h3 className="font-semibold text-primary">Color:</h3>
           {product.color.value === 'white' ? (
             <div className="font-semibold capitalize text-highlight ">white</div>
@@ -56,7 +60,7 @@ const Info: React.FC<InfoProps> = ({ product, imgRef }) => {
         <div className="mt-2">
           <Button
             onClick={onAddItem}
-            className="bg-primary flex gap-x-2 hover:primary-foreground"
+            className="bg-primary flex gap-x-1 hover:primary-foreground"
           >
             <ShoppingCart />
             Add To Cart

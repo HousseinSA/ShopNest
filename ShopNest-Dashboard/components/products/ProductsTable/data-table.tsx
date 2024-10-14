@@ -30,7 +30,7 @@ export function DataTable<TData extends { id: string }, TValue>({ columns, data,
   // const { toggleDropDown, closeDropDown } = useActionState()
 
   return (
-    <div>
+    <div >
       <div className='flex items-center py-4'>
         <Input placeholder='Search' value={(table.getColumn(filterKey)?.getFilterValue() as string) ?? ''} onChange={(event) => table.getColumn(filterKey)?.setFilterValue(event.target.value)} className='max-w-sm' />
       </div>
@@ -48,18 +48,14 @@ export function DataTable<TData extends { id: string }, TValue>({ columns, data,
           <TableBody>
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
-                <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>
-                  {row.getVisibleCells().map((cell) => (
-                    <TableCell 
-                      // onMouseLeave={closeDropDown} 
-                      // onClick={() => 
-                        // toggleDropDown(row.original.id)
-                      // }
-                      className='cursor-pointer' key={cell.id}>
-                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                    </TableCell>
-                  ))}
-                </TableRow>
+                  <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>
+                    {row.getVisibleCells().map((cell) => (
+                      <TableCell
+                        className='cursor-pointer' title='Edit product' key={cell.id}>
+                          {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                      </TableCell>
+                    ))}
+                  </TableRow>
               ))
             ) : (
               <TableRow>
