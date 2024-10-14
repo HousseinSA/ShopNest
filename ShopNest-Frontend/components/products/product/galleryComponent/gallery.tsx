@@ -33,13 +33,13 @@ const Gallery: React.FC<GalleryProps> = ({ images, imgRef, modalState }) => {
             <div className="flex items-center justify-center w-full">
               <div className="flex justify-center items-center min-w-[350px] sm:w-[350px] xs:w-[300px] min-h-[350px] sm:h-[350px] xs:h-[300px]  rounded-lg overflow-hidden">
                 <CldImage
-                  removeBackground
+                  //removeBackground
                   ref={imgRef}
                   src={image.url}
                   alt="Product Image"
                   width={400}
                   height={400}
-                  className=" object-contain w-full h-auto"
+                  className=" object-contain  h-auto sm:px-8 px-14"
                 />
               </div>
             </div>

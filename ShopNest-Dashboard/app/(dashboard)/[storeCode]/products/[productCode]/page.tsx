@@ -50,6 +50,8 @@ async function ProductPage({ params }: { params: { productCode: string; storeCod
     redirect(`/${params.storeCode}/products`)
   }
 
+
+
   // Return StoreProduct without product data if productCode is invalid or product is not found
   return (
     <div className='p-4 flex flex-col flex-1'>

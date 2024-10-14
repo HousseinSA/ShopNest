@@ -92,6 +92,8 @@ const ProductForm: React.FC<StoreProductProps> = ({ productData, sizes, colors, 
     }
   }
 
+  
+
   return (
     <>
       <Form {...form}>
@@ -144,7 +146,7 @@ const ProductForm: React.FC<StoreProductProps> = ({ productData, sizes, colors, 
                   <FormMessage />
                 </FormItem>
               )}
-            />
+            />  
             <FormField
               control={form.control}
               name='images'
@@ -152,14 +154,21 @@ const ProductForm: React.FC<StoreProductProps> = ({ productData, sizes, colors, 
                 <FormItem className={`${field.value.length !== 0 && 'col-span-full'}`}>
                   <FormLabel>Product images</FormLabel>
                   <FormControl className='col-span-4 m-0'>
+                    <>
                     <ImageUpload
                       value={field.value.map((image) => image.url)}
                       removeState={true}
                       disabled={loading}
+                      // onChange={(url) => {
+                      //   // Create a unique array by filtering out duplicates
+                      //   const uniqueImages = [...new Set([...field.value.map(image => image.url), url])];
+                      //   field.onChange(uniqueImages.map((url) => ({ url })));
+                      // }}
                       onChange={(url) => field.onChange([...field.value, { url }])}
                       onRemove={(url) => field.onChange([...field.value.filter((current) => current.url !== url)])}
                     />
-                  </FormControl>
+                    </>
+                  </FormControl>  
                   <FormMessage />
                 </FormItem>
               )}
@@ -210,7 +219,7 @@ const ProductForm: React.FC<StoreProductProps> = ({ productData, sizes, colors, 
                   <FormControl>
                     <ItemsSelector
                       items={sizes}
-                      itemType='size'
+                      itemType='size' 
                       value={field.value}
                       defaultValue={field.value}
                       valueChange={field.onChange}

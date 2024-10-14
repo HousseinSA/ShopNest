@@ -28,7 +28,7 @@ export async function POST(req: Request, { params }: { params: { storeCode: stri
     }
   });
 
-  console.log('store code', params.storeCode)
+  // console.log('store code', params.storeCode)
 
   const line_items: Stripe.Checkout.SessionCreateParams.LineItem[] = products.map((product) => ({
     quantity: 1,
