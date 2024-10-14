@@ -95,14 +95,14 @@ model Product {
   size         Size        @relation(fields: [sizeCode], references: [id])
   colorCode    String      @db.ObjectId
   color        Color       @relation(fields: [colorCode], references: [id])
-  images       Image[]
+  images       Image[] 
   orderItems   OrderItem[]
 }
 
 
 model Image {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  url         String
+  url         String    @unique
   productCode String   @db.ObjectId
   product     Product  @relation(fields: [productCode], references: [id], onDelete: Cascade)
   createdAt   DateTime @default(now())

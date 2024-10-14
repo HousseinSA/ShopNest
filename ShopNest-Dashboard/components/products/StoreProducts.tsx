@@ -23,9 +23,7 @@ const StoreProducts: React.FC<StoreProductProps> = ({ products }) => {
     <>
       <div className='flex flex-col space-y-4'>
         <SectionHeader title={`Products (${products?.length})`} description='Manage store products'>
-        <HeadButton onAddNew ={onAddNew}>
-              Add Product 
-          </HeadButton>
+          <HeadButton onAddNew={onAddNew}>Add Product</HeadButton>
         </SectionHeader>
         <Separator />
         <DataTable filterKey='name' columns={columns} data={products} />

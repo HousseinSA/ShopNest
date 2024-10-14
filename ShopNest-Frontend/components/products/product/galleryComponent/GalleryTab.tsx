@@ -14,7 +14,7 @@ const GalleryTab: React.FC<ImageProps> = ({ image }) => {
       {({ selected }) => (
         <div>
           <span className={cn("absolute inset-0 aspect-square border-none  rounded-md w-full h-full overflow-hidden outline ", selected ? 'outline-primary' : 'outline-transparent')}>
-            <CldImage removeBackground
+            <CldImage //removeBackground
               src={image.url}
               alt="product image"
               fill
