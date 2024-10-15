@@ -11,7 +11,7 @@ const CartButton = () => {
 
   return (
     // <OnlyClient>
-      <div className=" w-8 h-8 md:h-11 md:w-11    ">
+      <div className=" w-8 h-8 md:h-11 md:w-11">
         <Button
           id="cart-icon"
           onClick={() => route.push('/cart')}
