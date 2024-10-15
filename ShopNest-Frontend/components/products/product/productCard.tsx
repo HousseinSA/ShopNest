@@ -22,7 +22,6 @@ const ProductCard: React.FC<Product> = ({ product }) => {
   const onClick = () => {
     route.push(`/product/${product.id}`)
   }
-
   // previewModal handler state
   const { open } = usePreviewModal()
   const onPreview: MouseEventHandler<HTMLButtonElement> = (event) => {

@@ -3,6 +3,7 @@ import { auth } from '@clerk/nextjs'
 import { NextResponse } from 'next/server'
 
 export async function POST(req: Request, { params }: { params: { storeCode: string } }) {
+
   try {
     const { userId } = auth();
     if (!userId) {

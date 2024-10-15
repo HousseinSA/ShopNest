@@ -7,7 +7,7 @@ export async function initChangeStream() {
     const changeStream = database.watch();
 
     changeStream.on('change', (change) => {
-      console.log('Change detected:', change);
+      // console.log('Change detected:', change);
       // Add logic to send updates to the client using SSE
     });
 

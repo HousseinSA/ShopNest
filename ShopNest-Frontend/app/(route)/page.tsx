@@ -13,7 +13,7 @@ const HomePage = async () => {
     <Container>
       <div className="space-y-4 pb-10">
         <Billboard billboardData={billboard} />
-        <div className="flex flex-col gap-y-8 px-4 sm:px-0 overflow-auto ">
+        <div className="flex flex-col gap-y-8 px-4 sm:px-0 pb-20 lg:pb-0">
           <Products title="Featured Products" products={products} />
         </div>
       </div>
