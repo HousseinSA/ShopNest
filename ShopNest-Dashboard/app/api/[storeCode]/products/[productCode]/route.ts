@@ -1,7 +1,10 @@
 import prismaDB from '@/lib/prismaClient';
+import { auth } from '@clerk/nextjs';
 import { NextResponse } from 'next/server';
 
+
 export async function PATCH(req: Request, { params }: { params: { storeCode: string; productCode: string } }) {
+
   try {
     if (!params.productCode) {
       return new NextResponse('Product code is required', { status: 400 });
@@ -78,5 +81,38 @@ export async function PATCH(req: Request, { params }: { params: { storeCode: str
   } catch (error) {
     console.log('PRODUCT_PATCH', error);
     return new NextResponse('Internal Error', { status: 500 });
+  }
+}
+
+export async function GET(req: Request, { params }: { params: { storeCode: string,productCode: string } }) {
+  const { searchParams } = new URL(req.url)
+  const categoryCode = searchParams.get('categoryCode') || undefined
+  const sizeCode = searchParams.get('sizeCode') || undefined
+  const colorCode = searchParams.get('colorCode') || undefined
+  const isFeatured = searchParams.get('isFeatured')
+  try {
+    const { userId } = auth()
+
+    if (!params.storeCode) {
+      new NextResponse('No store code found', { status: 400 })
+    }
+
+    const product = await prismaDB.product.findUnique({
+      where: {
+        storeCode: params.storeCode,
+        categoryCode,
+        id:params.productCode,
+        colorCode,
+        sizeCode,
+        isFeatured: isFeatured ? true : undefined,
+        isArchived: false
+      },
+      include: { images: true, category: true, size: true, color: true },
+    })
+
+    return NextResponse.json(product)
+  } catch (error) {
+    console.log(`PRODUCTS_GET`, error)
+    return new NextResponse('Internal Error', { status: 500 })
   }
 }
