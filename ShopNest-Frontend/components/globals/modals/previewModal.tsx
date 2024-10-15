@@ -14,7 +14,7 @@ const PreviewModal = () => {
     return null
   }
   return <Modal open={isOpen} onClose={close}>
-    <div className="grid grid-cols-1   sm:grid-cols-2  md:grid-cols-12 items-start gap-y-6 lg:gap-x-6"  >
+    <div className="grid grid-cols-1   sm:grid-cols-2 lg:grid-cols-12 items-start gap-y-6 lg:gap-x-6"  >
         <div className="sm:col-span-4 lg:col-span-5">
             <Gallery modalState={isOpen} imgRef={imgRef} images={product.images}/>
         </div>

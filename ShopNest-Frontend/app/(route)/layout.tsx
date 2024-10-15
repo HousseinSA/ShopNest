@@ -37,7 +37,7 @@ export default async function RootLayout({
           type="image/x-icon"
         />
       </head>
-      <body className="relative w-full h-full ">
+      <body className="relative min-h-screen w-full  ">
         <ToastProvider />
         <ModalProvider />
         <div className='bg-white w-full h-full sticky left-0 top-0 z-20 right-0 overflow-auto '>

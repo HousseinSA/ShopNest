@@ -24,7 +24,6 @@ interface StoreProductProps {
   colors: Color[]
   categories: Category[]
 }
-
 const ProductForm: React.FC<StoreProductProps> = ({ productData, sizes, colors, categories }) => {
   // zod schema and type
   const formSchema = z.object({
