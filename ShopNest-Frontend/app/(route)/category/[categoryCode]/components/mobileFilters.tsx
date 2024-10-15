@@ -5,15 +5,17 @@ import { FilterIcon, X } from 'lucide-react'
 import { Dialog, DialogPanel } from '@headlessui/react'
 import Filter from './filter'
 
-import { Size, Color } from '@/lib/StoreTypes'
+import { Size, Color , Product} from '@/lib/StoreTypes'
 import ButtonIcon from '@/components/ui/IconButton'
 
 interface FilterProps {
   colors: Color[]
   sizes: Size[]
+  brands: string[]
+  products: Product[]
 }
 
-const MobileFilters: React.FC<FilterProps> = ({ sizes, colors }) => {
+const MobileFilters: React.FC<FilterProps> = ({ sizes, colors, brands,products }) => {
   const [isOpen, setIsOpen] = useState(false)
   const onOpen = () => setIsOpen(true)
   const onClose = () => setIsOpen(false)
@@ -22,7 +24,7 @@ const MobileFilters: React.FC<FilterProps> = ({ sizes, colors }) => {
     <>
       <Button
         onClick={onOpen}
-        className="flex rounded-2xl bg-primary hover:bg-primary-foreground items-center gap-3 lg:hidden"
+        className="flex rounded-2xl bg-primary hover:primary-foreground items-center gap-3 lg:hidden"
       >
         <FilterIcon size={20} />
         Filters
@@ -53,6 +55,8 @@ const MobileFilters: React.FC<FilterProps> = ({ sizes, colors }) => {
             <div className="p-4">
               <Filter valueKey="sizeCode" name="Sizes" data={sizes} />
               <Filter valueKey="colorCode" name="Colors" data={colors} />
+              {products.length > 0 &&               <Filter valueKey="brand" name="Brands" data={brands.map((brand) => ({ id: brand, name: brand }))} />
+            }
             </div>
           </DialogPanel>
         </div>
