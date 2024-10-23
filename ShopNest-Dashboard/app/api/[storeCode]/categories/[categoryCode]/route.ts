@@ -1,13 +1,22 @@
 import prismaDB from '@/lib/prismaClient'
 import { NextResponse } from 'next/server'
+<<<<<<< HEAD
 import { userInfo } from '@/lib/auth/userInfo'
 
 
+=======
+
+import { auth } from '@clerk/nextjs'
+>>>>>>> 88b9c6416d88ddc8eaccb7baa343d710445ce03c
 
 export async function PATCH(req: Request, { params }: { params: { storeCode: string; categoryCode: string } }) 
 {
   try {
+<<<<<<< HEAD
     const {userId} = await userInfo(params.storeCode)
+=======
+    const {userId} = auth()
+>>>>>>> 88b9c6416d88ddc8eaccb7baa343d710445ce03c
     if (!userId) {
       return new NextResponse('unauthorized user', { status: 401 })
     }

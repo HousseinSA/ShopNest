@@ -1,13 +1,22 @@
 import prismaDB from '@/lib/prismaClient'
+<<<<<<< HEAD
 import { NextResponse } from 'next/server'
 import { userInfo } from '@/lib/auth/userInfo'
 
+=======
+import { auth } from '@clerk/nextjs'
+import { NextResponse } from 'next/server'
+>>>>>>> 88b9c6416d88ddc8eaccb7baa343d710445ce03c
 
 export async function POST(req: Request, { params }: { params: { storeCode: string } }) {
 
   try {
+<<<<<<< HEAD
     const {userId} = await userInfo(params.storeCode)
 
+=======
+    const { userId } = auth();
+>>>>>>> 88b9c6416d88ddc8eaccb7baa343d710445ce03c
     if (!userId) {
       return new NextResponse('Unauthorized user', { status: 401 });
     }
@@ -90,7 +99,11 @@ export async function GET(req: Request, { params }: { params: { storeCode: strin
   const colorCode = searchParams.get('colorCode') || undefined
   const isFeatured = searchParams.get('isFeatured')
   try {
+<<<<<<< HEAD
     // const { userId } = auth()
+=======
+    const { userId } = auth()
+>>>>>>> 88b9c6416d88ddc8eaccb7baa343d710445ce03c
 
     if (!params.storeCode) {
       new NextResponse('No store code found', { status: 400 })

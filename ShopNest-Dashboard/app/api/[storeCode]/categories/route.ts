@@ -1,4 +1,5 @@
 import prismaDB from '@/lib/prismaClient'
+<<<<<<< HEAD
 import { NextResponse } from 'next/server'
 import { userInfo } from '@/lib/auth/userInfo'
 
@@ -7,6 +8,14 @@ export async function POST(req: Request, { params }: { params: { storeCode: stri
   try {
     const {userId} = await userInfo(params.storeCode)
 
+=======
+import { auth } from '@clerk/nextjs'
+import { NextResponse } from 'next/server'
+
+export async function POST(req: Request, { params }: { params: { storeCode: string } }) {
+  try {
+    const { userId } = auth()
+>>>>>>> 88b9c6416d88ddc8eaccb7baa343d710445ce03c
     const body = await req.json()
     const { name, billboardCode } = body
     

@@ -7,6 +7,7 @@ const nextConfig = {
         hostname: 'res.cloudinary.com',
         port: '',
         pathname: '**',
+<<<<<<< HEAD
       },
       {
         protocol: 'https',
@@ -16,6 +17,11 @@ const nextConfig = {
       }
     ],
    
+=======
+      }
+    ],
+    // domains: ['res.cloudinary.com']
+>>>>>>> 88b9c6416d88ddc8eaccb7baa343d710445ce03c
   }
 }
 

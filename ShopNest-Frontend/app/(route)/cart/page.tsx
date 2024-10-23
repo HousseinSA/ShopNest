@@ -8,17 +8,25 @@ import OnlyClient from '@/components/globals/OnlyClient'
 import Container from '@/components/ui/container'
 import useCartState from '@/lib/state/CartState'
 import { Button } from '@headlessui/react'
+<<<<<<< HEAD
 import RedirectWarper from '@/lib/redirect-logout-user/RedirectWarper'
 
 
+=======
+>>>>>>> 88b9c6416d88ddc8eaccb7baa343d710445ce03c
 const CartPage = () => {
   const { items } = useCartState()
 
   const route = useRouter()
+<<<<<<< HEAD
 
   return (
     <OnlyClient>
       <RedirectWarper/>
+=======
+  return (
+    <OnlyClient>
+>>>>>>> 88b9c6416d88ddc8eaccb7baa343d710445ce03c
       <Container>
         <div className="px-4 py-16 sm:px-6 md:px-8 min-h-screen">
           {/* Ensure min height */}

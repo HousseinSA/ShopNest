@@ -10,11 +10,19 @@ const CartButton = () => {
   const { items } = useCartState()
 
   return (
+<<<<<<< HEAD
+=======
+    // <OnlyClient>
+>>>>>>> 88b9c6416d88ddc8eaccb7baa343d710445ce03c
       <div className=" w-8 h-8 md:h-11 md:w-11">
         <Button
           id="cart-icon"
           onClick={() => route.push('/cart')}
+<<<<<<< HEAD
           className="relative bg-primary rounded-full p-2 w-full h-full disabled:cursor-not-allowed transition hover:primary-foreground flex items-center text-white"
+=======
+          className="relative bg-primary rounded-full p-2 w-full h-full  disabled:cursor-not-allowed transition hover:primary-foreground flex items-center text-white"
+>>>>>>> 88b9c6416d88ddc8eaccb7baa343d710445ce03c
         >
           <ShoppingBag size={18} color="white" />
           {items.length > 0 
@@ -27,6 +35,10 @@ const CartButton = () => {
 }
         </Button>
       </div>
+<<<<<<< HEAD
+=======
+    //  </OnlyClient>
+>>>>>>> 88b9c6416d88ddc8eaccb7baa343d710445ce03c
   )
 }
 

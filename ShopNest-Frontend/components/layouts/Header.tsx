@@ -9,7 +9,10 @@ import { cn } from '@/lib/utils'
 import React, { useEffect, useState } from 'react'
 import { Category } from '@/lib/StoreTypes'
 import useCategoryList from '@/lib/state/categoriesState'
+<<<<<<< HEAD
 import UserInfoWrap from '@/components/layouts/UserInfoWrap'
+=======
+>>>>>>> 88b9c6416d88ddc8eaccb7baa343d710445ce03c
 
 type categoryProps = {
   categories: Category[]
@@ -27,7 +30,10 @@ const Header = ({ categories }: categoryProps) => {
         'py-4 md:py-5 lg:py-6 mx-auto transition duration-500 max-w-7xl'
       )}
     >
+<<<<<<< HEAD
         
+=======
+>>>>>>> 88b9c6416d88ddc8eaccb7baa343d710445ce03c
       <div className="flex items-center justify-between sm:justify-start gap-5 mx-4">
         <div className="flex-shrink-0">
           <Link href={'/'}>
@@ -44,7 +50,10 @@ const Header = ({ categories }: categoryProps) => {
         <Navigation categoriesData={categories} />
         <div className=" ml-0 sm:ml-auto space-x-4 flex items-center">
           <CartButton />
+<<<<<<< HEAD
           <UserInfoWrap />
+=======
+>>>>>>> 88b9c6416d88ddc8eaccb7baa343d710445ce03c
           <div className="block sm:hidden">
             <MobileMenu />
           </div>
