@@ -1,5 +1,4 @@
 import { redirect } from 'next/navigation'
-import { auth } from '@clerk/nextjs'
 import React from 'react'
 
 import validateObjectId from  '@/lib/mongodb/mongodDBValidate'
@@ -7,16 +6,14 @@ import validateObjectId from  '@/lib/mongodb/mongodDBValidate'
 import prismaDB from '@/lib/prismaClient'
 // import StoreSettingsForm from '@/components/StoreSettings/StoreSettings'
 import StoreSettings from '@/components/Settings/StoreSettings'
+import { userInfo } from '@/lib/auth/userInfo'
 
 interface StoreSettingsProps {
   params: { storeCode: string }
 }
 
 const StorePage: React.FC<StoreSettingsProps> = async ({ params: { storeCode } }) => {
-  const { userId } = auth()
-  if (!userId) {
-    redirect('/sign-in')
-  }
+  const {userId} = await userInfo(storeCode)
   const validateStoreCode = validateObjectId(storeCode)
   if (!validateStoreCode) {
     redirect('/')

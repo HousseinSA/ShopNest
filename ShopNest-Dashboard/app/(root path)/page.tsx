@@ -1,6 +1,7 @@
 'use client'
 import { useEffect } from 'react'
 import { useModalStore } from '@/hooks/StoreState'
+
 import Head from '@/components/Navigation/Head'
 
 export default function Home() {
@@ -11,10 +12,9 @@ export default function Home() {
       openModal()
     }
   }, [ModalOpenState, openModal])
-
   return (
     <>
-      <Head />
+        <Head storeList={[]} session={null} />
     </>
   )
 }

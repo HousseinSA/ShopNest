@@ -83,3 +83,22 @@
     background-color: hsl(200, 20%, 80%); /* Darker gray */
   }
 }
+
+/* login page animation */
+
+/* styles.css or your global CSS file */
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(20%);
+    opacity: 1;
+  }
+}
+
+.login-wrapper {
+  animation: slideDown 0.5s ease forwards; /* Adjust duration and easing as needed */
+}

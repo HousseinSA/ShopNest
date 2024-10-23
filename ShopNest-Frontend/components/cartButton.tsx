@@ -10,12 +10,11 @@ const CartButton = () => {
   const { items } = useCartState()
 
   return (
-    // <OnlyClient>
       <div className=" w-8 h-8 md:h-11 md:w-11">
         <Button
           id="cart-icon"
           onClick={() => route.push('/cart')}
-          className="relative bg-primary rounded-full p-2 w-full h-full  disabled:cursor-not-allowed transition hover:primary-foreground flex items-center text-white"
+          className="relative bg-primary rounded-full p-2 w-full h-full disabled:cursor-not-allowed transition hover:primary-foreground flex items-center text-white"
         >
           <ShoppingBag size={18} color="white" />
           {items.length > 0 
@@ -28,7 +27,6 @@ const CartButton = () => {
 }
         </Button>
       </div>
-    //  </OnlyClient>
   )
 }
 

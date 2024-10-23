@@ -34,8 +34,8 @@
     "**/*.tsx",
     "app/layout.jsx",
     "components/ui/button.jsx",
-    "app/(root path)/_e.tsx",
+    "app/(dashboard)/(root path)/_e.tsx",
     "components/Modals/Modal.tsx"
-, "lib/dashboardActions/mongodb/mongodbClient.tsx"  ],
+, "lib/dashboardActions/mongodb/mongodbClient.tsx", "components/globals/NotRegisteredUser.jsx"  ],
   "exclude": ["node_modules"]
 }

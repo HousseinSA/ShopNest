@@ -1,11 +1,13 @@
 import prismaDB from '@/lib/prismaClient'
-import { auth } from '@clerk/nextjs'
 import { NextResponse } from 'next/server'
+import { userInfo } from '@/lib/auth/userInfo'
+
 
 export async function POST(req: Request, { params }: { params: { storeCode: string } }) {
 
   try {
-    const { userId } = auth();
+    const {userId} = await userInfo(params.storeCode)
+
     if (!userId) {
       return new NextResponse('Unauthorized user', { status: 401 });
     }
@@ -88,7 +90,7 @@ export async function GET(req: Request, { params }: { params: { storeCode: strin
   const colorCode = searchParams.get('colorCode') || undefined
   const isFeatured = searchParams.get('isFeatured')
   try {
-    const { userId } = auth()
+    // const { userId } = auth()
 
     if (!params.storeCode) {
       new NextResponse('No store code found', { status: 400 })

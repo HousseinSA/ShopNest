@@ -28,7 +28,6 @@ const StoreSettingsForm: React.FC<StoreSettingsProps> = ({ storeData }) => {
     resolver: zodResolver(formSchema),
     defaultValues: storeData
   })
-
   // state and route
   const [loading, setLoading] = useState(false)
   const route = useRouter()
@@ -66,9 +65,9 @@ const StoreSettingsForm: React.FC<StoreSettingsProps> = ({ storeData }) => {
               </FormItem>
             )}
           />
-          <div className='mt-4'>
-            <Button disabled={loading} className='ml-auto' type={'submit'}>
-              {loading === true && <ClipLoader size={15} color='#fff' />} Update Store
+          <div className='mt-4 '>
+            <Button disabled={loading} className=' ml-auto'  type={'submit'}>
+              {loading === true && <ClipLoader size={15} className='mr-2' color='#fff' />} Update Store
             </Button>
           </div>
         </form>

@@ -5,6 +5,7 @@ import getProduct from '@/lib/fetchData/getProduct'
 import Container from '@/components/ui/container'
 import Product from './components/product'
 import RelatedProducts from '@/components/products/product/RelatedProducts'
+import RedirectWarper from '@/lib/redirect-logout-user/RedirectWarper'
 
 interface ProductProps {
   params: {
@@ -24,6 +25,7 @@ const ProductPage = async ({ params }: ProductProps) => {
 
   return (
     <Container>
+      <RedirectWarper/>
       <Product product={product} />
       <RelatedProducts title="Related products" products={relatedProducts} />
     </Container>

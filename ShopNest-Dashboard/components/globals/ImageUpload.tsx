@@ -32,17 +32,20 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
       // Get the uploaded image URL from Cloudinary
       const imageUrl = result.info.secure_url;
 
-      // Remove the background of the uploaded image using ClipDrop API
-      const processedImageUrl = await RemoveBackground(imageUrl);
-
-      // If background removal works, upload the new image to Cloudinary
-      if (processedImageUrl) {
-        // Now we need to upload the processed image to Cloudinary and get the new URL
-        const cloudinaryResult = await uploadToCloudinary(processedImageUrl);
+      if(removeState){
+        const processedImageUrl = await RemoveBackground(imageUrl);
+        if (processedImageUrl) {
+          // Now we need to upload the processed image to Cloudinary and get the new URL
+          const cloudinaryResult = await uploadToCloudinary(processedImageUrl);
+          onChange(cloudinaryResult); // Call onChange with the new image URL
+        } else {
+          onChange(imageUrl); // If removal fails, fallback to the original image
+        }
+      }else {
+        const cloudinaryResult = await uploadToCloudinary(imageUrl);
         onChange(cloudinaryResult); // Call onChange with the new image URL
-      } else {
-        onChange(imageUrl); // If removal fails, fallback to the original image
       }
+   
     } catch (error) {
       console.error('Error during image upload:', error);
     }

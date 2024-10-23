@@ -54,21 +54,22 @@
     --ring: 142.4 71.8% 29.2%;
   }
 }
-  .color-picker {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    border: none;
-    cursor: pointer;
-    width: 3rem;
-    height: 2.5rem;
-    background-color: transparent;
-  }
+.color-picker {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  cursor: pointer;
+  width: 3rem;
+  height: 3rem; /* Making it a square for perfect rounding */
+  background-color: transparent;
+  border-radius: 50%; /* Fully rounded */
+}
 
-  .color-picker::-webkit-color-swatch {
-    border-radius: 100%;
-  }
-
+.color-picker::-webkit-color-swatch {
+  border-radius: 50%; /* Fully rounded color swatch */
+  border: none; /* Optional: remove border from swatch */
+}
 
   /* tool tip */
   [data-title] {
@@ -143,3 +144,24 @@
     }
   }
   
+
+
+  
+/* login page animation */
+
+/* styles.css or your global CSS file */
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(20%);
+    opacity: 1;
+  }
+}
+
+.login-wrapper {
+  animation: slideDown 0.5s ease forwards; /* Adjust duration and easing as needed */
+}

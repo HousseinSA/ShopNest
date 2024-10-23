@@ -8,6 +8,7 @@ import Billboard from '@/components/globals/billboard'
 import Filter from './components/filter'
 import ProductCard from '@/components/products/product/productCard'
 import MobileFilters from './components/mobileFilters'
+import RedirectWarper from '@/lib/redirect-logout-user/RedirectWarper'
 
 export const revalidate = 0
 
@@ -64,6 +65,7 @@ const uniqueBrands = brands.map((brand) => {
   return (
     <div className="bg-white">
       <Container>
+        <RedirectWarper/>
         <Billboard billboardData={category.billboard} />
         <div className="px-4 sm:px-6 lg:px-8 pb-20">
           <div className="lg:grid lg:grid-cols-5 lg:gap-x-6">

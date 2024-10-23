@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import axios from 'axios'
 import { useSearchParams } from 'next/navigation'
 import toast from 'react-hot-toast'
@@ -18,35 +18,66 @@ const Summary = () => {
     0
   )
 
+  const toastShown = useRef(false)
 
-  // useEffect to give feedback message
+  // useEffect to handle cart actions based on URL params
   useEffect(() => {
     const success = searchParams.get('success')
     const canceled = searchParams.get('canceled')
-    if (success ) {
-      removeAll()
-      toast.success('Payment Completed')
-      setLoading(false)
-    }
-    if (canceled ) {
-      toast.error('Something went wrong')
-      setLoading(false)
-    }
-
     
-  }, [searchParams])
+    if (success) {
+      removeAll()
+      setLoading(false)
+    }
+    
+    if (canceled) {
+      setLoading(false)
+    }
+  }, [searchParams, removeAll])
 
+  // Separate useEffect for toast messages
+  useEffect(() => {
+    const success = searchParams.get('success')
+    const canceled = searchParams.get('canceled')
+
+    if (success && !toastShown.current) {
+      toast.success('Payment Completed', {
+        duration: 2000,
+        position: 'bottom-center',
+      })
+      toastShown.current = true
+    }
+    
+    if (canceled && !toastShown.current) {
+      toast.error('Something went wrong', {
+        duration: 2000,
+        position: 'bottom-center',
+      })
+      toastShown.current = true
+    }
+
+    // Reset the ref when the params change
+    return () => {
+      toastShown.current = false
+    }
+  }, [searchParams])
 
   const onSummary = async () => {
     setLoading(true)
-    const response = await axios.post(
-      `${process.env.NEXT_PUBLIC_STORE_URL}/checkout`,
-      {
-        productsIds: items.map((item) => item.id),
-      }
-    )
-    
-    window.location = response.data.url
+    try {
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_STORE_URL}/checkout`,
+        {
+          productsIds: items.map((item) => item.id),
+        }
+      )
+      
+      window.location = response.data.url
+    } catch (error) {
+      console.error('Checkout error:', error)
+      toast.error('Failed to initiate checkout')
+      setLoading(false)
+    }
   }
 
   return (
@@ -68,7 +99,7 @@ const Summary = () => {
         loading={loading}
         disabled={items.length === 0}
       >
-        {loading ? 'Checking' : 'Checkout'}
+        {loading ? 'Processing...' : 'Checkout'}
       </FormButton>
     </div>
   )

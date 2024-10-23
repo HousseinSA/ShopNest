@@ -1,6 +1,5 @@
 import React from 'react'
 import { redirect } from 'next/navigation'
-import { auth } from '@clerk/nextjs'
 
 import SectionHeader from '@/components/globals/storeHead/SectionHeader'
 import { Separator } from '@/components/ui/separator'
@@ -18,11 +17,9 @@ import CardHead from '@/components/Dashboard/CardHead'
 interface StoreParams {
   params: { storeCode: string }
 }
+
 const DashboardPage: React.FC<StoreParams> = async ({ params }: { params: { storeCode: string } }) => {
-  const { userId } = auth()
-  if (!userId) {
-    redirect('/sign-in')
-  }
+
   const validStoreCode = validateObjectId(params.storeCode)
   if (!validStoreCode) {
     redirect(`/`)
