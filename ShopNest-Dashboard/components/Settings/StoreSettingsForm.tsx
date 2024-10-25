@@ -28,10 +28,6 @@ const StoreSettingsForm: React.FC<StoreSettingsProps> = ({ storeData }) => {
     resolver: zodResolver(formSchema),
     defaultValues: storeData
   })
-<<<<<<< HEAD
-=======
-
->>>>>>> 88b9c6416d88ddc8eaccb7baa343d710445ce03c
   // state and route
   const [loading, setLoading] = useState(false)
   const route = useRouter()
@@ -69,15 +65,9 @@ const StoreSettingsForm: React.FC<StoreSettingsProps> = ({ storeData }) => {
               </FormItem>
             )}
           />
-<<<<<<< HEAD
           <div className='mt-4 '>
             <Button disabled={loading} className=' ml-auto'  type={'submit'}>
               {loading === true && <ClipLoader size={15} className='mr-2' color='#fff' />} Update Store
-=======
-          <div className='mt-4'>
-            <Button disabled={loading} className='ml-auto' type={'submit'}>
-              {loading === true && <ClipLoader size={15} color='#fff' />} Update Store
->>>>>>> 88b9c6416d88ddc8eaccb7baa343d710445ce03c
             </Button>
           </div>
         </form>

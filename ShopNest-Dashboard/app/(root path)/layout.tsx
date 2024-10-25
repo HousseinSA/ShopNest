@@ -1,5 +1,4 @@
 import React from 'react'
-<<<<<<< HEAD
 
 import { redirect } from 'next/navigation'
 
@@ -18,31 +17,11 @@ const HomeLayout: React.FC<HomeLayoutProps> = async ({ children }) => {
   const { userId } = await userInfo(null)
   // Try to find a store associated with the user
   const store = await prismaDB.store.findFirst({
-=======
-import { auth } from '@clerk/nextjs'
-import { redirect } from 'next/navigation'
-
-import '@/app/globals.css'
-
-import prismaDB from '@/lib/prismaClient'
-interface HomeLayout {
-  children: React.ReactNode
-}
-
-// const validDateUserId
-const HomeLayout: React.FC<HomeLayout> = async ({ children }) => {
-  const { userId } = auth()
-  if (!userId) {
-    redirect('/sign-in')
-  }
-  const store  = await prismaDB.store.findFirst({
->>>>>>> 88b9c6416d88ddc8eaccb7baa343d710445ce03c
     where: {
       userId
     }
   })
 
-<<<<<<< HEAD
   // If the store exists, redirect to the store's page
 
   if (!store || store.id === '65fcb436995f2bfbc8e317cf') {
@@ -60,13 +39,6 @@ const HomeLayout: React.FC<HomeLayout> = async ({ children }) => {
       {children}
     </>
   )
-=======
-  if(store) {
-    redirect(`/${store?.id}`)
-  }
-
-  return <>{children}</>
->>>>>>> 88b9c6416d88ddc8eaccb7baa343d710445ce03c
 }
 
 export default HomeLayout

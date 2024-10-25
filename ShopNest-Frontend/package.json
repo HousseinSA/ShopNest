@@ -18,10 +18,7 @@
     "lucide-react": "^0.390.0",
     "mongodb": "^6.8.0",
     "next": "14.1.4",
-<<<<<<< HEAD
     "next-auth": "^4.24.8",
-=======
->>>>>>> 88b9c6416d88ddc8eaccb7baa343d710445ce03c
     "query-string": "^9.0.0",
     "react": "^18",
     "react-dom": "^18",

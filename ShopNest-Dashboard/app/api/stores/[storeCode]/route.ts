@@ -1,5 +1,4 @@
 import prismaDB from '@/lib/prismaClient'
-<<<<<<< HEAD
 import { NextResponse } from 'next/server'
 import { userInfo } from '@/lib/auth/userInfo'
 
@@ -7,13 +6,6 @@ import { userInfo } from '@/lib/auth/userInfo'
 export async function PATCH(req: Request, { params }: { params: { storeCode: string } }) {
   try {
     const {userId} = await userInfo(params.storeCode)
-=======
-import { auth } from '@clerk/nextjs'
-import { NextResponse } from 'next/server'
-export async function PATCH(req: Request, { params }: { params: { storeCode: string } }) {
-  try {
-    const { userId } = auth()
->>>>>>> 88b9c6416d88ddc8eaccb7baa343d710445ce03c
 
     if (!params.storeCode) {
       return new NextResponse('store code is required', { status: 400 })
@@ -43,11 +35,7 @@ export async function PATCH(req: Request, { params }: { params: { storeCode: str
 
 export async function DELETE(req: Request, { params }: { params: { storeCode: string } }) {
   try {
-<<<<<<< HEAD
     const {userId} = await userInfo(params.storeCode)
-=======
-    const { userId } = auth()
->>>>>>> 88b9c6416d88ddc8eaccb7baa343d710445ce03c
 
     if (!params.storeCode) {
       return new NextResponse('store code is required', { status: 400 })

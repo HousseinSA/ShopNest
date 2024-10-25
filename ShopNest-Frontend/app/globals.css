@@ -83,7 +83,6 @@
     background-color: hsl(200, 20%, 80%); /* Darker gray */
   }
 }
-<<<<<<< HEAD
 
 /* login page animation */
 
@@ -103,5 +102,3 @@
 .login-wrapper {
   animation: slideDown 0.5s ease forwards; /* Adjust duration and easing as needed */
 }
-=======
->>>>>>> 88b9c6416d88ddc8eaccb7baa343d710445ce03c

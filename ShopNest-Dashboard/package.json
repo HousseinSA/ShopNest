@@ -10,10 +10,6 @@
     "postinstall": "prisma generate"
   },
   "dependencies": {
-<<<<<<< HEAD
-=======
-    "@clerk/nextjs": "^4.29.10",
->>>>>>> 88b9c6416d88ddc8eaccb7baa343d710445ce03c
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
     "@hookform/resolvers": "^3.3.4",
@@ -27,11 +23,8 @@
     "@radix-ui/react-select": "^2.0.0",
     "@radix-ui/react-separator": "^1.0.3",
     "@radix-ui/react-slot": "^1.0.2",
-<<<<<<< HEAD
     "@stripe/react-stripe-js": "^2.8.1",
     "@stripe/stripe-js": "^4.9.0",
-=======
->>>>>>> 88b9c6416d88ddc8eaccb7baa343d710445ce03c
     "@tanstack/react-table": "^8.15.0",
     "axios": "^1.6.7",
     "bson-objectid": "^2.0.4",
@@ -42,11 +35,7 @@
     "date-fns": "^3.6.0",
     "lucide-react": "^0.357.0",
     "mongodb": "^6.8.0",
-<<<<<<< HEAD
     "next-auth": "^4.24.8",
-=======
-    "next-auth": "^4.24.7",
->>>>>>> 88b9c6416d88ddc8eaccb7baa343d710445ce03c
     "next-cloudinary": "^6.3.0",
     "next-themes": "^0.3.0",
     "react": "^18",

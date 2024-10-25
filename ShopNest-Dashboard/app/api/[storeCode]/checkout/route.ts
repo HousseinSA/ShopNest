@@ -28,10 +28,6 @@ export async function POST(req: Request, { params }: { params: { storeCode: stri
     }
   });
 
-<<<<<<< HEAD
-=======
-  // console.log('store code', params.storeCode)
->>>>>>> 88b9c6416d88ddc8eaccb7baa343d710445ce03c
 
   const line_items: Stripe.Checkout.SessionCreateParams.LineItem[] = products.map((product) => ({
     quantity: 1,
@@ -49,11 +45,7 @@ export async function POST(req: Request, { params }: { params: { storeCode: stri
       storeCode: params.storeCode,
       isPaid: false,
       orderItems: {
-<<<<<<< HEAD
         create: productsIds.map((productId:string) => ({
-=======
-        create: productsIds.map((productId: string) => ({
->>>>>>> 88b9c6416d88ddc8eaccb7baa343d710445ce03c
           product: {
             connect: {
               id: productId

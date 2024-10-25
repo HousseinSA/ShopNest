@@ -14,11 +14,7 @@ export type ColorProps = {
 export const columns: ColumnDef<ColorProps>[] = [
   {
     accessorKey: 'name',
-<<<<<<< HEAD
     header: 'Color name'
-=======
-    header: 'color name'
->>>>>>> 88b9c6416d88ddc8eaccb7baa343d710445ce03c
   },
   {
     accessorKey: 'value',

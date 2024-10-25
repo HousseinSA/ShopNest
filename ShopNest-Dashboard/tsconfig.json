@@ -1,9 +1,5 @@
 {
   "compilerOptions": {
-<<<<<<< HEAD
-<<<<<<<< HEAD:ShopNest-Dashboard/tsconfig.json
-=======
->>>>>>> 88b9c6416d88ddc8eaccb7baa343d710445ce03c
     "baseUrl": ".",
     "paths": {
       "@/components/*": ["components/*"],
@@ -11,31 +7,6 @@
       "@/hooks/*": ["hooks/*"],
       "@/app/*": ["app/*"]
     },
-<<<<<<< HEAD
-========
->>>>>>>> 88b9c6416d88ddc8eaccb7baa343d710445ce03c:ShopNest-Frontend/tsconfig.json
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "noEmit": true,
-<<<<<<<< HEAD:ShopNest-Dashboard/tsconfig.json
-    "incremental": true,
-    "esModuleInterop": true,  
-========
-    "esModuleInterop": true,
->>>>>>>> 88b9c6416d88ddc8eaccb7baa343d710445ce03c:ShopNest-Frontend/tsconfig.json
-    "module": "esnext",
-    "moduleResolution": "bundler",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
-<<<<<<<< HEAD:ShopNest-Dashboard/tsconfig.json
-    "downlevelIteration": true,
-========
-    "incremental": true,
->>>>>>>> 88b9c6416d88ddc8eaccb7baa343d710445ce03c:ShopNest-Frontend/tsconfig.json
-=======
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -49,16 +20,11 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "downlevelIteration": true,
->>>>>>> 88b9c6416d88ddc8eaccb7baa343d710445ce03c
     "plugins": [
       {
         "name": "next"
       }
     ],
-<<<<<<< HEAD
-<<<<<<<< HEAD:ShopNest-Dashboard/tsconfig.json
-=======
->>>>>>> 88b9c6416d88ddc8eaccb7baa343d710445ce03c
     "typeRoots": ["./node_modules/@types", "./types"]
   },
   "include": [
@@ -68,26 +34,8 @@
     "**/*.tsx",
     "app/layout.jsx",
     "components/ui/button.jsx",
-<<<<<<< HEAD
     "app/(dashboard)/(root path)/_e.tsx",
     "components/Modals/Modal.tsx"
 , "lib/dashboardActions/mongodb/mongodbClient.tsx", "components/globals/NotRegisteredUser.jsx"  ],
-========
-    "baseUrl": ".",
-    "paths": {
-      "@/components/*": ["components/*"],
-      "@/globals/*": ["components/globals/*"],
-      "@/lib/*": ["lib/*"],
-      "@/hooks/*": ["hooks/*"],
-      "@/app/*": ["app/*"],
-    }
-  },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
->>>>>>>> 88b9c6416d88ddc8eaccb7baa343d710445ce03c:ShopNest-Frontend/tsconfig.json
-=======
-    "app/(root path)/_e.tsx",
-    "components/Modals/Modal.tsx"
-, "lib/dashboardActions/mongodb/mongodbClient.tsx"  ],
->>>>>>> 88b9c6416d88ddc8eaccb7baa343d710445ce03c
   "exclude": ["node_modules"]
 }

@@ -1,1 +1,5 @@
 .env
+/ShopNest-Frontend/.env.local
+/ShopNest-Dashboard/.env.local
+/ShopNest-Frontend/.env
+/ShopNest-Dashboard/.env
