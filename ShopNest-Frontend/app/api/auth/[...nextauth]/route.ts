@@ -1,9 +1,9 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import type { AuthOptions } from "next-auth";
+import type { NextAuthOptions } from "next-auth"; // Use NextAuthOptions instead of AuthOptions
 
 // eslint-disable-next-line @typescript-eslint/no-misused-promises
-export const authOptions: AuthOptions = {
+const authOptions: NextAuthOptions = {
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_ID!,
@@ -28,18 +28,6 @@ export const authOptions: AuthOptions = {
   jwt: {
     secret: process.env.NEXTAUTH_SECRET, // Ensure this secret is the same in both projects
   },
-  // cookies: {
-  //   sessionToken: {
-  //     name: `next-auth.session-token`,
-  //     options: {
-  //       httpOnly: true,
-  //       secure: process.env.NODE_ENV === 'production', // True in production
-  //       sameSite: "none",
-  //       path: "/",
-  //     },
-  //   },
-  // },
-  
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
@@ -58,8 +46,10 @@ export const authOptions: AuthOptions = {
       return session;
     },
   },
-  
 };
 
+// Define the NextAuth API route handler
 const handler = NextAuth(authOptions);
+
+// Export the handler as the default export
 export { handler as GET, handler as POST };
