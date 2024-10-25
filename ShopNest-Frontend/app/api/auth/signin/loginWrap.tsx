@@ -1,9 +1,13 @@
-'use client'; // This file is a client component
-
+'use client';
 import { SessionProvider } from 'next-auth/react';
+import { Session } from 'next-auth'; // Import the Session type
 import LoginPage from '@/app/api/auth/signin/page';
 
-const LoginWrapper = ({ session }:any) => {
+interface LoginWrapperProps {
+  session: Session | null; // Specify the type of session
+}
+
+const LoginWrapper: React.FC<LoginWrapperProps> = ({ session }) => {
   return (
     <SessionProvider session={session}>
       <LoginPage />

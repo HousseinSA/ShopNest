@@ -1,10 +1,9 @@
 'use client'
-import { CldImage } from 'next-cloudinary'
 import { useEffect, useState } from 'react'
 
 import { Billboard as BillboardProp } from '@/lib/StoreTypes'
 import Image from 'next/image'
-import useSSE from '../../hooks/useSSE'
+import useSSE from '@/hooks/useSSE'
 
 interface BillboardProps {
   billboardData: BillboardProp

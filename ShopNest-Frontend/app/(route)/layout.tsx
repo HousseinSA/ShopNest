@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import { Urbanist } from 'next/font/google'
 
 import '@/app/globals.css'
 
@@ -10,7 +9,6 @@ import ToastProvider from '@/components/globals/ToastProvider'
 import getCategoriesData from '@/lib/fetchData/getCategories'
 import { Category } from '@/lib/StoreTypes'
 
-const urbanist = Urbanist({ subsets: ['latin'] });
 export const metadata: Metadata = {
   title: 'ShopNest E-commerce',
   description: 'Modern E-commerce website',

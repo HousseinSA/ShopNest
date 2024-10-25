@@ -34,7 +34,7 @@ const Summary = () => {
     }
 
     
-  }, [searchParams])
+  }, [searchParams , removeAll])
 
 
   const onSummary = async () => {
