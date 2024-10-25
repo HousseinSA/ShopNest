@@ -1,5 +1,4 @@
-'use client'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import axios from 'axios'
 import { useSearchParams } from 'next/navigation'
 import toast from 'react-hot-toast'
@@ -11,31 +10,34 @@ import FormButton from "@/components/globals/formButton"
 const Summary = () => {
   const searchParams = useSearchParams()
   const { items, deleteAll } = useCartState()
-  const removeAll = () => deleteAll()
+  
+  // Memoize removeAll to avoid it being recreated on each render
+  const removeAll = useCallback(() => {
+    deleteAll()
+  }, [deleteAll]);
+
   const [loading, setLoading] = useState(false)
   const totalPrice = items.reduce(
     (total, item) => total + Number(item.price),
     0
   )
 
-
   // useEffect to give feedback message
   useEffect(() => {
     const success = searchParams.get('success')
     const canceled = searchParams.get('canceled')
-    if (success ) {
-      removeAll()
+
+    if (success) {
+      removeAll() // Call the memoized removeAll function
       toast.success('Payment Completed')
       setLoading(false)
     }
-    if (canceled ) {
+
+    if (canceled) {
       toast.error('Something went wrong')
       setLoading(false)
     }
-
-    
-  }, [searchParams , removeAll])
-
+  }, [searchParams, removeAll]) // You can safely keep removeAll in dependencies now
 
   const onSummary = async () => {
     setLoading(true)

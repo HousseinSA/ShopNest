@@ -5,13 +5,17 @@ import Image from 'next/image'
 import { useState } from 'react'
 import { ClipLoader } from 'react-spinners'
 
+// Define a type for the providers
+type Provider = 'google' | 'guest';
+
 export default function LoginPage() {
-  const [loading, setLoading ] = useState(false)
-  const handleSignIn = async (provider:any) => {
-    if(provider === 'google'){
-      setLoading(true)
+  const [loading, setLoading] = useState(false);
+  
+  const handleSignIn = async (provider: Provider) => {
+    if (provider === 'google') {
+      setLoading(true);
     }
-    await signIn(provider)
+    await signIn(provider);
   }
 
   return (
@@ -36,17 +40,17 @@ export default function LoginPage() {
             <button
               type="button"
               onClick={() => handleSignIn('google')}
-              className="w-full p-2 text-white hover:bg-opacity-40 bg-primary justify-center gap-2 flex items-center rounded-md  hover:primary-foreground"  
+              className="w-full p-2 text-white hover:bg-opacity-40 bg-primary justify-center gap-2 flex items-center rounded-md hover:primary-foreground"
             >
-             {loading ?'Login...':'Login with Google' } 
-             {loading ? <ClipLoader size={15} color='#fff'/>: <Image src={'/Google.png'} alt='google' width={20} className='rounded-full ' height={20}/>} 
+              {loading ? 'Login...' : 'Login with Google'}
+              {loading ? <ClipLoader size={15} color='#fff' /> : <Image src={'/Google.png'} alt='google' width={20} className='rounded-full' height={20} />}
             </button>
             <button
               type="button"
               onClick={() => handleSignIn('guest')}
               className="w-full p-2 text-white bg-gray-700 rounded-md hover:bg-gray-800"
             >
-               Login as Guest
+              Login as Guest
             </button>
           </div>
         </div>

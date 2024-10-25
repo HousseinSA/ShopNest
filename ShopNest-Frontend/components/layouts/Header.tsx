@@ -20,14 +20,14 @@ const Header = ({ categories }: categoryProps) => {
 
   useEffect(() => {
     updateCategories(categories)
-  }, [])
+  }, [categories, updateCategories]) // Add dependencies here
+
   return (
     <header
       className={cn(
         'py-4 md:py-5 lg:py-6 mx-auto transition duration-500 max-w-7xl'
       )}
     >
-        
       <div className="flex items-center justify-between sm:justify-start gap-5 mx-4">
         <div className="flex-shrink-0">
           <Link href={'/'}>
