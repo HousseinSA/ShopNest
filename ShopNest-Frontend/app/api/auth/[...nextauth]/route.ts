@@ -1,9 +1,9 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import type { NextAuthOptions } from "next-auth"; // Use NextAuthOptions instead of AuthOptions
+import type { NextAuthOptions } from "next-auth";
 
 // eslint-disable-next-line @typescript-eslint/no-misused-promises
-const authOptions: NextAuthOptions = {
+export const authOptions: NextAuthOptions = {
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_ID!,
