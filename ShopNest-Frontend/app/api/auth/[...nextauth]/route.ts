@@ -52,13 +52,13 @@ export const authOptions: AuthOptions = {
         if (!session.user) {
           session.user = {}; // Ensure session.user is defined
         }
-        // Replace @ts-ignore with @ts-expect-error
-        // @ts-expect-error
+        // @ts-expect-error: Assigning user ID to session.user since TypeScript does not recognize session.user as a complete type.
         session.user.id = token.id; // Assign user ID
       }
       return session;
     },
   },
+  
 };
 
 const handler = NextAuth(authOptions);
