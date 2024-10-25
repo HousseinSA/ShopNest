@@ -1,4 +1,5 @@
-import ObjectID from 'bson-objectid'
+// @ts-ignore
+import ObjectID from 'bson-objectid' 
 
 function validateObjectId(storeCode: string): boolean {
   return ObjectID.isValid(storeCode)
