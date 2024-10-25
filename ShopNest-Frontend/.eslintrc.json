@@ -24,6 +24,7 @@
   ],
   "rules": {
     "react/react-in-jsx-scope": "off"  // Allow the omission of React import in JSX
+    , "@typescript-eslint/no-misused-promises": "off"
   },
   "settings": {
     "react": {

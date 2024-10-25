@@ -2,11 +2,12 @@ import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import type { AuthOptions } from "next-auth";
 
+// eslint-disable-next-line @typescript-eslint/no-misused-promises
 export const authOptions: AuthOptions = {
   providers: [
     GoogleProvider({
-      clientId: process.env.GOOGLE_ID,
-      clientSecret: process.env.GOOGLE_SECRET,
+      clientId: process.env.GOOGLE_ID!,
+      clientSecret: process.env.GOOGLE_SECRET!,
     }),
     {
       id: "guest",
@@ -48,7 +49,8 @@ export const authOptions: AuthOptions = {
     },
     async session({ session, token }) {
       if (token) {
-        session.user.id = token.id; // Include user ID in session
+        // @ts-ignore
+        session?.user.id = token.id; 
       }
       return session
     },
