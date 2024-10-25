@@ -1,15 +1,16 @@
-# StatMaster Project
+# ShopNest Dashboard
 
-![StatMaster Logo](/public/StatMaster.png)
+![ShopNest Logo](/public/shopnest-logo.png)
 
-StatMaster is a cutting-edge web application built with Next.js 14 and Tailwind CSS, offering detailed football statistics and information. Explore real-time data on football competitions, teams, and player performances.
+ShopNest is a powerful e-commerce dashboard built with Next.js 14 and Tailwind CSS. It allows you to manage products and categories, handle purchases, and efficiently connect with MongoDB for data storage.
 
 ## Key Features
 
 - **Next.js 14:** Leveraging the **latest** features for optimized development.
 - **Tailwind CSS:** Modern styling for a visually appealing UI.
-- **Football Data API Integration:** Real-time data from [Football-Data.org](https://www.football-data.org/).
-- **Comprehensive Information:** Detailed statistics, match results, standings, and more.
+- **MongoDB Integration:** Seamlessly manage your data with a robust NoSQL database.
+- **Product and Category Management:** Easily create and organize your products and categories.
+- **Order Management:** Streamline the purchase process for a better customer experience.
 - **User-Friendly Interface:** Intuitive design for a seamless user experience.
 - **Efficient Data Fetching:** Optimal balance between server-side and client-side rendering.
 
@@ -17,12 +18,4 @@ StatMaster is a cutting-edge web application built with Next.js 14 and Tailwind 
 
 1. **Clone the Project:**
    ```bash
-   git clone https://github.com/HousseinSA/StatMaster.git
-   ```
-
-## Connect with Me
-
-- **GitHub:** [Hussein's GitHub](https://github.com/HousseinSA/)
-- **LinkedIn:** [Hussein's LinkedIn](https://www.linkedin.com/in/husseinsa/)
-- **Instagram:** [Hussein's Instagram](https://www.instagram.com/hussein_codes/)
-- **Phone Number:** (222) 414-01147
+   git clone https://github.com/HousseinSA/ShopNest.git

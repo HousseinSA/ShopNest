@@ -1,7 +1,8 @@
 'use client'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 export default function NotRegisteredUser() {
-
+const route = useRouter()
   return (
     <>
       {/* Backdrop for the login modal */}
@@ -14,9 +15,12 @@ export default function NotRegisteredUser() {
             <Image src='/shopnest-logo.png' alt='ShopNest Logo' width={200} height={200} className='h-16' />
           </div>
           <div className='flex flex-col space-y-4 mt-4'>
-            <button type='button'
-            className='w-full p-4 font-bold text-black  justify-center gap-2 flex items- rounded-md  '>
-               Login first to access dashboard
+            <button
+              type="button"
+              onClick={()=>route.push('http://localhost:3000/')}
+              className="w-full p-4 text-white hover:bg-opacity-40 bg-primary justify-center gap-2 flex items-center rounded-md  hover:primary-foreground"  
+            >
+                Login first to access dashboard
             </button>
           </div>
         </div>

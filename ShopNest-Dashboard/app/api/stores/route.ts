@@ -4,7 +4,7 @@ import prismaDB from '@/lib/prismaClient'
 import { userInfo } from '@/lib/auth/userInfo'
 
 export async function POST(req: Request) {
-  const {userId} = await userInfo(params.storeCode)
+  const {userId} = await userInfo(null)
   try {
   
     const body = await req.json()
