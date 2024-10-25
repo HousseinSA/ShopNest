@@ -14,6 +14,5 @@ export const userInfo = async (storeCode ) => {
   // }else {
   //   userId = userId
   // }
-  console.log('userid in userinfo function', userId)
   return {userId, session}
 }

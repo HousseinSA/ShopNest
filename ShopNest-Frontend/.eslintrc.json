@@ -7,7 +7,8 @@
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:react/recommended"
+    "plugin:react/recommended",
+    "next/core-web-vitals"  // Next.js ESLint rules
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -22,6 +23,11 @@
     "@typescript-eslint"
   ],
   "rules": {
-    "react/react-in-jsx-scope": "off"
+    "react/react-in-jsx-scope": "off"  // Allow the omission of React import in JSX
+  },
+  "settings": {
+    "react": {
+      "version": "detect" // Automatically detect the React version
+    }
   }
 }

@@ -9,7 +9,7 @@ const MainNav = () => {
   // paths and params
   const pathname = usePathname()
   const params = useParams()
-  const Store = 'http://localhost:3001/'
+  const Store = 'http://localhost:3001/'  
   const storeDashboard = `/${params.storeCode}`
   const settings = `/${params.storeCode}/settings`
   const billboard = `/${params.storeCode}/billboards`

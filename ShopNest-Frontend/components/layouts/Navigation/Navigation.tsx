@@ -49,7 +49,7 @@ const Navigation: React.FC<NavigationProps> = ({ categoriesData }) => {
     active: pathname === `/category/${category.id}`,
   }))
   const dashboard = {
-    href: `http://localhost:3000/65fcb436995f2bfbc8e317cf`,
+    href: `http://localhost:3001/67168ed76339cddccbeb4ae4`,
     name: 'Dashboard',
     active: false,
   }
