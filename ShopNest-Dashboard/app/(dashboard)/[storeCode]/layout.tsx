@@ -20,6 +20,9 @@ export default async function DashboardLayout({ children, params: { storeCode } 
 if(userId && storeList.length === 0){
   storeList = await prismaDB.store.findMany({ where: { userId:'guest' } });
 }
+
+    console.log('getting user info',userId)
+    
   return (
     <div className='max-w-7xl mx-auto'>
       {!userId && <NotRegisteredUser/>}
