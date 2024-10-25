@@ -45,16 +45,20 @@ export const authOptions: AuthOptions = {
       if (user) {
         token.id = user.id;
       }
-      return token 
+      return token;
     },
     async session({ session, token }) {
       if (token) {
+        if (!session.user) {
+          session.user = {}; // Ensure session.user is defined
+        }
         // @ts-ignore
-        session?.user.id = token.id; 
+        session.user.id = token.id; // Assign user ID
       }
-      return session
+      return session;
     },
   },
+  
 };
 
 const handler = NextAuth(authOptions);
