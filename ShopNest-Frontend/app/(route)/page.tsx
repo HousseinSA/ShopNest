@@ -3,7 +3,7 @@ import Billboard from '@/components/globals/billboard';
 import getBillboard from '@/lib/fetchData/getBillboard';
 import getProducts from '@/lib/fetchData/getProducts';
 import Products from '@/components/products/product/RelatedProducts';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { authOptions } from '@/app/api/auth/[...nextauth]/authOptions';
 import { getServerSession } from 'next-auth/next';
 import LoginWrapper from '@/app/api/auth/signin/loginWrap';
 import { Billboard as BillboardType } from '@/lib/StoreTypes';
