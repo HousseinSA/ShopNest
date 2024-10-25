@@ -52,14 +52,14 @@ export const authOptions: AuthOptions = {
         if (!session.user) {
           session.user = {}; // Ensure session.user is defined
         }
-        // @ts-ignore
+        // Replace @ts-ignore with @ts-expect-error
+        // @ts-expect-error
         session.user.id = token.id; // Assign user ID
       }
       return session;
     },
   },
-  
 };
 
 const handler = NextAuth(authOptions);
-export { handler as GET, handler as POST }; 
+export { handler as GET, handler as POST };
