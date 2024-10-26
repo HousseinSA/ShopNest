@@ -49,6 +49,7 @@ const Navigation: React.FC<NavigationProps> = ({ categoriesData }) => {
     active: pathname === `/category/${category.id}`,
   }))
   const dashboard = {
+    // change for vercel
     href: `http://localhost:3001/67168ed76339cddccbeb4ae4`,
     name: 'Dashboard',
     active: false,

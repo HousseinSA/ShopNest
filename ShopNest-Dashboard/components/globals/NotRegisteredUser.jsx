@@ -17,6 +17,7 @@ const route = useRouter()
           <div className='flex flex-col space-y-4 mt-4'>
             <button
               type="button"
+              //change for vercel
               onClick={()=>route.push('http://localhost:3000/')}
               className="w-full p-4 text-white hover:bg-opacity-40 bg-primary justify-center gap-2 flex items-center rounded-md  hover:primary-foreground"  
             >

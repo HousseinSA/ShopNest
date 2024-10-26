@@ -10,6 +10,7 @@ const MobileNav = () => {
   // paths and params
   const pathname = usePathname()
   const params = useParams()
+  //change for vercel
   const Store = 'http://localhost:3001/'
   const storeDashboard = `/${params.storeCode}`
   const settings = `/${params.storeCode}/settings`
