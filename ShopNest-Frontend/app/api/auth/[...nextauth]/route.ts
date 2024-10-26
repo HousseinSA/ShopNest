@@ -8,3 +8,5 @@ const handler = NextAuth(authOptions);
 
 // Export the handler for each HTTP method
 export { handler as GET, handler as POST };
+
+export {authOptions}
