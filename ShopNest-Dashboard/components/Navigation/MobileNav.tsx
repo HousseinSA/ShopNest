@@ -11,7 +11,7 @@ const MobileNav = () => {
   const pathname = usePathname()
   const params = useParams()
   //change for vercel
-  const Store = 'http://localhost:3001/'
+  const Store = 'https://shopnest-frontend.vercel.app/'
   const storeDashboard = `/${params.storeCode}`
   const settings = `/${params.storeCode}/settings`
   const billboard = `/${params.storeCode}/billboards`
