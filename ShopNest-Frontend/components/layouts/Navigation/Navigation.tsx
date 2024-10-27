@@ -50,7 +50,7 @@ const Navigation: React.FC<NavigationProps> = ({ categoriesData }) => {
   }))
   const dashboard = {
     // change for vercel
-    href: `hhttps://shopnet-dashboard.vercel.app/67168ed76339cddccbeb4ae4`,
+    href: `https://shopnet-dashboard.vercel.app/67168ed76339cddccbeb4ae4`,
     name: 'Dashboard',
     active: false,
   }
