@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react';
 
-const Dashboard = () => {
+export const useFetchUserInfo = () => {
   const [session, setSession] = useState(null);
   useEffect(() => {
     const fetchSession = async () => {
@@ -34,4 +34,3 @@ const Dashboard = () => {
 
 };
 
-export default Dashboard;

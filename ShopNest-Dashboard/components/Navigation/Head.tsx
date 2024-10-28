@@ -4,6 +4,7 @@ import MainNav from '@/components/Navigation/MainNav';
 import StoreSwitcher from './StoreSwitcher';
 import MobileMenu from './MobileMenu';
 import UserInfoWrap from './UserInfoWrap';
+import { useFetchUserInfo } from '@/lib/fetchUserSession';
 
 interface HeadProps {
   storeList :{ id: string; storeName: string; userId: string; createdAt: Date; updatedAt: Date; }[] |null,
@@ -13,7 +14,8 @@ interface HeadProps {
 
 const Head= ({storeList, session}:HeadProps) => {
     
-
+const userFetchSession  = useFetchUserInfo()
+console.log('getting user info fetching it from frontend ',userFetchSession)
   return (
       <div className="flex items-center h-16 p-4">
         <StoreSwitcher stores={storeList} />
