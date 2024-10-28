@@ -1,5 +1,7 @@
+// lib/authOptions.ts
 import GoogleProvider from "next-auth/providers/google";
-import type { NextAuthOptions } from "next-auth";
+import { NextAuthOptions } from "next-auth";
+import { getDomainWithoutSubdomain } from "@/lib/getDomainWithoutSubdomain";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -17,14 +19,22 @@ export const authOptions: NextAuthOptions = {
       },
     },
   ],
-  pages: {
-    signIn: '/auth/signin',
-  },
   session: {
-    strategy: "jwt", // Use JWT session strategy
+    strategy: "jwt",
   },
   jwt: {
     secret: process.env.NEXTAUTH_SECRET,
+  },
+  cookies: {
+    sessionToken: {
+      name: "__Secure-next-auth.session-token",
+      options: {
+        path: '/',
+        domain: getDomainWithoutSubdomain(process.env.NEXTAUTH_URL!), // Set to base domain (e.g., .shopnest.com)
+        sameSite: 'lax',
+        secure: process.env.NODE_ENV === 'production',
+      },
+    },
   },
   callbacks: {
     async jwt({ token, user }) {
@@ -35,8 +45,7 @@ export const authOptions: NextAuthOptions = {
     },
     async session({ session, token }) {
       if (token) {
-        // Define user ID on session
-        session.user = session.user || {}; // Ensure session.user exists
+        session.user = session.user || {};
         // @ts-expect-error: Assigning user ID to session.user since TypeScript does not recognize session.user as a complete type.
         session.user.id = token.id;
       }
