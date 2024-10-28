@@ -1,3 +1,5 @@
+// app/api/auth/authOptions.ts
+
 import GoogleProvider from "next-auth/providers/google";
 import type { NextAuthOptions } from "next-auth";
 
@@ -26,18 +28,6 @@ export const authOptions: NextAuthOptions = {
   jwt: {
     secret: process.env.NEXTAUTH_SECRET, // Ensure this secret is the same in both projects
   },
-  cookies: {
-    sessionToken: {
-      name: `__Secure-next-auth.session-token`,
-      options: {
-        httpOnly: true,
-        sameSite: "none", // Allow cross-origin
-        secure: true, // Ensure this is true in production
-        path: '/',
-        domain: ".vercel.app", // Allow access across subdomains
-      },
-    },
-  },
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
@@ -50,8 +40,8 @@ export const authOptions: NextAuthOptions = {
         if (!session.user) {
           session.user = {}; // Ensure session.user is defined
         }
-     // @ts-expect-error: Assigning user ID to session.user since TypeScript does not recognize session.user as a complete type.
-        session.user.id = token.id;    
+        // @ts-expect-error: Assigning user ID to session.user since TypeScript does not recognize session.user as a complete type.
+        session.user.id = token.id; // Assign user ID
       }
       return session;
     },
