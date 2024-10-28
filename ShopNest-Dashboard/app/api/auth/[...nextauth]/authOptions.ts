@@ -1,5 +1,3 @@
-// app/api/auth/authOptions.ts
-
 import GoogleProvider from "next-auth/providers/google";
 import type { NextAuthOptions } from "next-auth";
 
@@ -20,13 +18,13 @@ export const authOptions: NextAuthOptions = {
     },
   ],
   pages: {
-    signIn: '/auth/signin', // Custom sign-in page
+    signIn: '/auth/signin',
   },
   session: {
-    strategy: "jwt", // Use JWT strategy for sessions
+    strategy: "jwt", // Use JWT session strategy
   },
   jwt: {
-    secret: process.env.NEXTAUTH_SECRET, // Ensure this secret is the same in both projects
+    secret: process.env.NEXTAUTH_SECRET,
   },
   callbacks: {
     async jwt({ token, user }) {
@@ -37,11 +35,10 @@ export const authOptions: NextAuthOptions = {
     },
     async session({ session, token }) {
       if (token) {
-        if (!session.user) {
-          session.user = {}; // Ensure session.user is defined
-        }
+        // Define user ID on session
+        session.user = session.user || {}; // Ensure session.user exists
         // @ts-expect-error: Assigning user ID to session.user since TypeScript does not recognize session.user as a complete type.
-        session.user.id = token.id; // Assign user ID
+        session.user.id = token.id;
       }
       return session;
     },

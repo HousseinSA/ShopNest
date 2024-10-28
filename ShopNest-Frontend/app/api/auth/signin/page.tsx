@@ -10,7 +10,6 @@ type Provider = 'google' | 'guest';
 
 export default function LoginPage() {
   const [loading, setLoading] = useState(false);
-  
   const handleSignIn = async (provider: Provider) => {
     if (provider === 'google') {
       setLoading(true);

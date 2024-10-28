@@ -13,7 +13,6 @@ export const revalidate = 0;
 
 const HomePage = async () => {
   const session: Session | null = await getServerSession(authOptions); // Specify the type for session
-  
   const products = await getProducts({ isFeatured: true });
   const billboard: BillboardType[] = await getBillboard();
   const firstBillboard: BillboardType = billboard[0]; // Now this works
