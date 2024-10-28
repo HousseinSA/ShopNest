@@ -14,7 +14,7 @@ export default function LoginPage() {
     if (provider === 'google') {
       setLoading(true);
     }
-    await signIn(provider);
+    await signIn(provider); 
   }
 
   return (
