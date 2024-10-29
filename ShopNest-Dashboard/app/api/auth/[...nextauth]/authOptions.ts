@@ -30,10 +30,9 @@ export const authOptions: NextAuthOptions = {
         : `next-auth.session-token`,
       options: {
         httpOnly: true,
-        sameSite: 'None', // Required for cross-site requests
+        sameSite: 'None',
         path: '/',
         secure: process.env.NODE_ENV === 'production',
-        domain: '.vercel.app',
       },
     },
   },
@@ -44,7 +43,6 @@ export const authOptions: NextAuthOptions = {
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
-        console.log("JWT callback:", token); // Log token to see its contents
       }
       return token;
     },
@@ -55,7 +53,6 @@ export const authOptions: NextAuthOptions = {
         }
          // @ts-expect-error: Assigning user ID to session.user since TypeScript does not recognize session.user as a complete type.
         session.user.id = token.id; // Assign user ID
-        console.log("Session callback:", session); // Log session to see its contents
       }
       return session;
     },
