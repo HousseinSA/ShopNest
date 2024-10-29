@@ -26,8 +26,12 @@ const UserInfo = () => {
         onClick={toggleMenu}
         className="flex items-center justify-center cursor-pointer rounded-full bg-primary hover:primary-foreground transition duration-300 w-8 h-8 md:h-11 md:w-11"
       >
+       {/*  @ts-expect-error: image may be undefined */}
+
         {session?.user?.image ? (
+          
           <Image
+       /*  @ts-expect-error: image may be undefined */
             src={session.user.image}
             alt="User Image"
             width={18}

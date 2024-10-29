@@ -36,7 +36,7 @@ export const authOptions: NextAuthOptions = {
         return { 
           id: "guest", 
           name: "Guest User", 
-          email: null
+          email: null,
         };
       },
     },
