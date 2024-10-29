@@ -18,10 +18,11 @@ export const authOptions: NextAuthOptions = {
     },
   ],
   pages: {
-    signIn: '/auth/signin', // Custom sign-in page
+    signIn: '/auth/signin',
   },
   session: {
-    strategy: "jwt", // Use JWT strategy for sessions
+    strategy: "jwt",
+    maxAge: 30 * 24 * 60 * 60, // 30 days
   },
   cookies: {
     sessionToken: {
@@ -30,34 +31,34 @@ export const authOptions: NextAuthOptions = {
         : `next-auth.session-token`,
       options: {
         httpOnly: true,
-        sameSite: 'lax',
+        sameSite: 'none',
         path: '/',
-        secure: process.env.NODE_ENV === 'production',
+        secure: true,
+        domain: process.env.NODE_ENV === 'production' 
+          ? process.env.COOKIE_DOMAIN    // Add this to your env variables
+          : undefined
       },
     },
-  },
-  jwt: {
-    secret: process.env.NEXTAUTH_SECRET, // Ensure this secret is the same in both projects
   },
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
-        console.log("JWT callback:", token); // Log token to see its contents
+        console.log("JWT callback:", token);
       }
       return token;
     },
     async session({ session, token }) {
       if (token) {
         if (!session.user) {
-          session.user = {}; // Ensure session.user is defined
+          session.user = {};
         }
-         // @ts-expect-error: Assigning user ID to session.user since TypeScript does not recognize session.user as a complete type.
-        session.user.id = token.id; // Assign user ID
-        console.log("Session callback:", session); // Log session to see its contents
+        // @ts-expect-error: Assigning user ID to session.user
+        session.user.id = token.id;
+        console.log("Session callback:", session);
       }
       return session;
     },
   },
-  
+  secret: process.env.NEXTAUTH_SECRET,
 };
