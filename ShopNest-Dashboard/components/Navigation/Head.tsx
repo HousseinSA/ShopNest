@@ -21,11 +21,9 @@ const Head= ({storeList, session}:HeadProps) => {
           <MainNav />
         </div>
         <div className="ml-auto flex items-center space-x-3">
-          <SessionProvider>
           <UserInfoWrap 
           session={session}
           />
-          </SessionProvider>
           <div className="block lg:hidden">
             <MobileMenu  />
           </div>

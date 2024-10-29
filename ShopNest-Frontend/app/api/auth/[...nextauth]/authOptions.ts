@@ -30,9 +30,10 @@ export const authOptions: NextAuthOptions = {
         : `next-auth.session-token`,
       options: {
         httpOnly: true,
-        sameSite: 'lax',
+        sameSite: 'None', // Required for cross-site requests
         path: '/',
         secure: process.env.NODE_ENV === 'production',
+        domain: '.vercel.app',
       },
     },
   },

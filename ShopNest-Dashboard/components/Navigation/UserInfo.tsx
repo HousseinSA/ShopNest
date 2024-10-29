@@ -1,21 +1,19 @@
 'use client';
 
 import { useState } from 'react';
-import { signOut, useSession } from 'next-auth/react';
+import { signOut } from 'next-auth/react';
 import { User2Icon } from 'lucide-react';
 import Image from 'next/image';
 import ClipLoader from 'react-spinners/ClipLoader';
 
 const UserInfo = (
-  // {session}
+  {session}
 ) => {
   const [isOpen, setIsOpen] = useState(false);
   const [loading , setLoading] = useState(false)
 
 // testing user session 
-const {data:session} = useSession()
 
-console.log('user client session', session)
   const handleLogout = () => {
     setLoading(true);
     signOut();

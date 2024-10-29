@@ -5,7 +5,7 @@ import UserInfo from '@/components/Navigation/UserInfo'
 const UserInfoWrap = ({session}) => {
   return (
       <UserInfo  
-      // session={session}
+      session={session}
       />
   );
 };
