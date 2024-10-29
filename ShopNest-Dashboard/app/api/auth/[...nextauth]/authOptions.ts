@@ -18,10 +18,10 @@ export const authOptions: NextAuthOptions = {
     },
   ],
   pages: {
-    signIn: '/auth/signin',
+    signIn: '/auth/signin', // Custom sign-in page
   },
   session: {
-    strategy: "jwt",
+    strategy: "jwt", // Use JWT strategy for sessions
   },
   cookies: {
     sessionToken: {
@@ -30,32 +30,34 @@ export const authOptions: NextAuthOptions = {
         : `next-auth.session-token`,
       options: {
         httpOnly: true,
-        sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax', // Changed for cross-domain in production
+        sameSite: 'lax',
         path: '/',
-        secure: true, // Always true in production
-        domain: process.env.NODE_ENV === 'production' 
-          ? '.vercel.app'  // This allows cookie sharing between subdomains
-          : undefined
+        secure: process.env.NODE_ENV === 'production',
       },
     },
+  },
+  jwt: {
+    secret: process.env.NEXTAUTH_SECRET, // Ensure this secret is the same in both projects
   },
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
+        console.log("JWT callback:", token); // Log token to see its contents
       }
       return token;
     },
     async session({ session, token }) {
       if (token) {
         if (!session.user) {
-          session.user = {};
+          session.user = {}; // Ensure session.user is defined
         }
-        // @ts-expect-error: Assigning user ID to session.user
-        session.user.id = token.id;
+         // @ts-expect-error: Assigning user ID to session.user since TypeScript does not recognize session.user as a complete type.
+        session.user.id = token.id; // Assign user ID
+        console.log("Session callback:", session); // Log session to see its contents
       }
       return session;
     },
   },
-  secret: process.env.NEXTAUTH_SECRET,
+  
 };
