@@ -1,4 +1,4 @@
-/** @type {import('next').NextConwfig} */
+/** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
     remotePatterns: [
@@ -13,11 +13,23 @@ const nextConfig = {
         hostname: 'lh3.googleusercontent.com',
         port: '',
         pathname: '**',
-      }
+      },
     ],
-    // domains: ['res.cloudinary.com']
+  },
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'Access-Control-Allow-Origin',
+            value: 'https://shopnest-frontend.vercel.app', // Set this to the dashboard URL in the frontend project
+          },
+          { key: 'Access-Control-Allow-Credentials', value: 'true' },
+        ],
+      },
+    ];
+  },
+};
 
-  }
-}
-
-export default nextConfig
+export default nextConfig;
