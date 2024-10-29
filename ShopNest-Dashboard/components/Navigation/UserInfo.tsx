@@ -6,10 +6,16 @@ import { User2Icon } from 'lucide-react';
 import Image from 'next/image';
 import ClipLoader from 'react-spinners/ClipLoader';
 
-const UserInfo = ({session}) => {
+const UserInfo = (
+  // {session}
+) => {
   const [isOpen, setIsOpen] = useState(false);
   const [loading , setLoading] = useState(false)
 
+// testing user session 
+const {data:session} = useSession()
+
+console.log('user client session', session)
   const handleLogout = () => {
     setLoading(true);
     signOut();

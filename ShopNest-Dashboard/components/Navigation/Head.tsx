@@ -4,6 +4,7 @@ import MainNav from '@/components/Navigation/MainNav';
 import StoreSwitcher from './StoreSwitcher';
 import MobileMenu from './MobileMenu';
 import UserInfoWrap from './UserInfoWrap';
+import { SessionProvider } from 'next-auth/react';
 
 interface HeadProps {
   storeList :{ id: string; storeName: string; userId: string; createdAt: Date; updatedAt: Date; }[] |null,
@@ -20,9 +21,11 @@ const Head= ({storeList, session}:HeadProps) => {
           <MainNav />
         </div>
         <div className="ml-auto flex items-center space-x-3">
+          <SessionProvider>
           <UserInfoWrap 
           session={session}
           />
+          </SessionProvider>
           <div className="block lg:hidden">
             <MobileMenu  />
           </div>
