@@ -8,7 +8,7 @@ import ClipLoader from 'react-spinners/ClipLoader';
 
 const UserInfo = (
   {session}
-
+  
 ) => {
   const [isOpen, setIsOpen] = useState(false);
   const [loading , setLoading] = useState(false)
@@ -18,6 +18,8 @@ const UserInfo = (
     signOut();
   };
 
+  console.log('session',session,status)
+  
   const toggleMenu = () => {
     setIsOpen((prev) => !prev);
   };

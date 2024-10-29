@@ -32,7 +32,7 @@ const DashboardPage: React.FC<StoreParams> = async ({ params }: { params: { stor
   return (
     <div className='flex-col'>
       <div className='flex-1 space-y-4 p-8 pt-6'>
-        <SectionHeader title='Dashboard' description='Your store overview ' />
+        <SectionHeader title='Dashboard' description='Your store overview' />
         <Separator />
         <div className='flex gap-4 flex-wrap'>
           <Card className='flex-1 min-w-[200]'>

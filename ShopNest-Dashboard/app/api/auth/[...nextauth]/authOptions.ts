@@ -1,44 +1,63 @@
-import { NextAuthOptions } from "next-auth";
-import CredentialsProvider from "next-auth/providers/credentials";
-import { getDomainWithoutSubdomain } from "@/lib/getDomainWithoutSubdomain";
-
-
-// Utility function to get the root domain from environment variable NEXTAUTH_URL
+import GoogleProvider from "next-auth/providers/google";
+import type { NextAuthOptions } from "next-auth";
 
 export const authOptions: NextAuthOptions = {
   providers: [
-    CredentialsProvider({
-      name: "Placeholder",
-      credentials: {},
-      authorize: async () => null, // No actual authorization logic needed here
+    GoogleProvider({
+      clientId: process.env.GOOGLE_ID!,
+      clientSecret: process.env.GOOGLE_SECRET!,
     }),
+    {
+      id: "guest",
+      name: "Guest",
+      type: "credentials",
+      credentials: {},
+      authorize: async () => {
+        return { id: "guest", name: "Guest User", email: null };
+      },
+    },
   ],
-  session: {
-    strategy: "jwt",
+  pages: {
+    signIn: '/auth/signin', // Custom sign-in page
   },
-  jwt: {
-    secret: process.env.NEXTAUTH_SECRET!, // Use the same secret as in the main app
+  session: {
+    strategy: "jwt", // Use JWT strategy for sessions
   },
   cookies: {
     sessionToken: {
-      name: "__Secure-next-auth.session-token",
+      name: process.env.NODE_ENV === 'production' 
+        ? `__Secure-next-auth.session-token`
+        : `next-auth.session-token`,
       options: {
-        path: "/",
-        domain: getDomainWithoutSubdomain(process.env.NEXTAUTH_URL!),
-        sameSite: "lax",
-        secure: process.env.NODE_ENV === "production",
+        httpOnly: true,
+        sameSite: 'lax',
+        path: '/',
+        secure: process.env.NODE_ENV === 'production',
       },
     },
   },
+  jwt: {
+    secret: process.env.NEXTAUTH_SECRET, // Ensure this secret is the same in both projects
+  },
   callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+        console.log("JWT callback:", token); // Log token to see its contents
+      }
+      return token;
+    },
     async session({ session, token }) {
       if (token) {
-        session.user = session.user || {};
-   // @ts-expect-error: Assigning user ID to session.user since TypeScript does not recognize session.user as a complete type.
-
-        session.user.id = token.id;
+        if (!session.user) {
+          session.user = {}; // Ensure session.user is defined
+        }
+         // @ts-expect-error: Assigning user ID to session.user since TypeScript does not recognize session.user as a complete type.
+        session.user.id = token.id; // Assign user ID
+        console.log("Session callback:", session); // Log session to see its contents
       }
       return session;
     },
   },
+  
 };
