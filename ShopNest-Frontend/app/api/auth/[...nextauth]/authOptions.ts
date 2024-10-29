@@ -55,7 +55,6 @@ export const authOptions: NextAuthOptions = {
         }
         // @ts-expect-error: Assigning user ID to session.user
         session.user.id = token.id;
-        console.log("Session callback:", session);
       }
       return session;
     },

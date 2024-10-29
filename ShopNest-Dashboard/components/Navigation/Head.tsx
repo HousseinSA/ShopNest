@@ -4,12 +4,11 @@ import MainNav from '@/components/Navigation/MainNav';
 import StoreSwitcher from './StoreSwitcher';
 import MobileMenu from './MobileMenu';
 import UserInfoWrap from './UserInfoWrap';
-import { SessionProvider } from 'next-auth/react';
-
 interface HeadProps {
   storeList :{ id: string; storeName: string; userId: string; createdAt: Date; updatedAt: Date; }[] |null,
   session:{user:{id:string, name:string, email:string, image:string}}| null
 } 
+
 
 
 const Head= ({storeList, session}:HeadProps) => {
