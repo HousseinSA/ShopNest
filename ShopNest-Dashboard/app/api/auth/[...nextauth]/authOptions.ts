@@ -44,7 +44,6 @@ export const authOptions: NextAuthOptions = {
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
-        console.log("JWT callback:", token);
       }
       return token;
     },
@@ -55,7 +54,6 @@ export const authOptions: NextAuthOptions = {
         }
         // @ts-expect-error: Assigning user ID to session.user
         session.user.id = token.id;
-        console.log("Session callback:", session);
       }
       return session;
     },

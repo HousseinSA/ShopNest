@@ -1,6 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { 
+  // useEffect,
+   useState } from 'react';
 import { signOut, useSession } from 'next-auth/react';
 import { User2Icon } from 'lucide-react';
 import Image from 'next/image';
@@ -10,6 +12,16 @@ const UserInfo = () => {
   const { data: session } = useSession();
   const [isOpen, setIsOpen] = useState(false);
   const [loading , setLoading] = useState(false)
+
+  // useEffect(()=>{
+  //   if(session?.user){
+  //     localStorage.setItem('user', JSON.stringify(session.user)); // Store user data
+  //   }else {
+  //     localStorage.removeItem('user'); 
+  //   }
+  // },[session])
+ 
+  
 
   const handleLogout = () => {
     setLoading(true)
