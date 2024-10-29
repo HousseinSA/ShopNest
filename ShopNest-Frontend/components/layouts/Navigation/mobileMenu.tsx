@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Menu, X } from 'lucide-react'
 import MobileNavigation from '@/components/layouts/Navigation/MobileNavigation'
 import useCategoryList from '@/lib/state/categoriesState'
-import ButtonIcon from '../../ui/IconButton'
+import ButtonIcon from '@/components/ui/IconButton'
 
 const HamburgerMenu: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false)
