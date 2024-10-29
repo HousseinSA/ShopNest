@@ -13,7 +13,6 @@ interface HeadProps {
 
 const Head= ({storeList, session}:HeadProps) => {
     
-
   return (
       <div className="flex items-center h-16 p-4">
         <StoreSwitcher stores={storeList} />

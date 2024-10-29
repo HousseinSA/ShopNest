@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-=======
-// lib/authOptions.ts
->>>>>>> 9c5b42b2d2cee955141eab3cdd611fada8dbd2b3
 import GoogleProvider from "next-auth/providers/google";
-import { NextAuthOptions } from "next-auth";
-import { getDomainWithoutSubdomain } from "@/lib/getDomainWithoutSubdomain";
+import type { NextAuthOptions } from "next-auth";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -22,12 +17,11 @@ export const authOptions: NextAuthOptions = {
       },
     },
   ],
-<<<<<<< HEAD
   pages: {
-    signIn: '/auth/signin',
+    signIn: '/auth/signin', // Custom sign-in page
   },
   session: {
-    strategy: "jwt",
+    strategy: "jwt", // Use JWT strategy for sessions
   },
   cookies: {
     sessionToken: {
@@ -43,51 +37,27 @@ export const authOptions: NextAuthOptions = {
     },
   },
   jwt: {
-    secret: process.env.NEXTAUTH_SECRET,
-=======
-  session: {
-    strategy: "jwt",
-  },
-  jwt: {
-    secret: process.env.NEXTAUTH_SECRET,
-  },
-  cookies: {
-    sessionToken: {
-      name: "__Secure-next-auth.session-token",
-      options: {
-        path: '/',
-        domain: getDomainWithoutSubdomain(process.env.NEXTAUTH_URL!), // Set to base domain (e.g., .shopnest.com)
-        sameSite: 'lax',
-        secure: process.env.NODE_ENV === 'production',
-      },
-    },
->>>>>>> 9c5b42b2d2cee955141eab3cdd611fada8dbd2b3
+    secret: process.env.NEXTAUTH_SECRET, // Ensure this secret is the same in both projects
   },
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
-        console.log("JWT callback:", token);
+        console.log("JWT callback:", token); // Log token to see its contents
       }
       return token;
     },
     async session({ session, token }) {
       if (token) {
-<<<<<<< HEAD
         if (!session.user) {
-          session.user = {};
+          session.user = {}; // Ensure session.user is defined
         }
-
-       // @ts-expect-error: Assigning user ID to session.user since TypeScript does not recognize session.user as a complete type.
-        session.user.id = token.id;
-        console.log("Session callback:", session);
-=======
-        session.user = session.user || {};
-        // @ts-expect-error: Assigning user ID to session.user since TypeScript does not recognize session.user as a complete type.
-        session.user.id = token.id;
->>>>>>> 9c5b42b2d2cee955141eab3cdd611fada8dbd2b3
+         // @ts-expect-error: Assigning user ID to session.user since TypeScript does not recognize session.user as a complete type.
+        session.user.id = token.id; // Assign user ID
+        console.log("Session callback:", session); // Log session to see its contents
       }
       return session;
     },
   },
+  
 };
