@@ -30,9 +30,11 @@ export const authOptions: NextAuthOptions = {
         : `next-auth.session-token`,
       options: {
         httpOnly: true,
-        sameSite: 'None',
+        sameSite: 'lax',
         path: '/',
-        secure: process.env.NODE_ENV === 'production',
+        secure:false
+        //  process.env.NODE_ENV === 'production',
+        
       },
     },
   },
