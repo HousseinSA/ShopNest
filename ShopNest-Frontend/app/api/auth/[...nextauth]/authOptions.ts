@@ -1,26 +1,6 @@
 import GoogleProvider from "next-auth/providers/google";
 import type { NextAuthOptions } from "next-auth";
 
-// Extend the Session type
-declare module "next-auth" {
-  interface Session {
-    accessToken?: string;
-    user: {
-      id: string;
-      name?: string | null;
-      email?: string | null;
-    }
-  }
-}
-
-// Extend the JWT type
-declare module "next-auth/jwt" {
-  interface JWT {
-    id: string;
-    accessToken?: string;
-  }
-}
-
 export const authOptions: NextAuthOptions = {
   providers: [
     GoogleProvider({
@@ -33,20 +13,15 @@ export const authOptions: NextAuthOptions = {
       type: "credentials",
       credentials: {},
       authorize: async () => {
-        return { 
-          id: "guest", 
-          name: "Guest User", 
-          email: null,
-        };
+        return { id: "guest", name: "Guest User", email: null };
       },
     },
   ],
   pages: {
-    signIn: '/auth/signin',
+    signIn: '/auth/signin', // Custom sign-in page
   },
   session: {
-    strategy: "jwt",
-    maxAge: 30 * 24 * 60 * 60, // 30 days
+    strategy: "jwt", // Use JWT strategy for sessions
   },
   cookies: {
     sessionToken: {
@@ -58,30 +33,29 @@ export const authOptions: NextAuthOptions = {
         sameSite: 'lax',
         path: '/',
         secure: process.env.NODE_ENV === 'production',
-        domain: process.env.NODE_ENV === 'production' 
-          ? '.vercel.app'
-          : 'localhost'
       },
     },
   },
+  jwt: {
+    secret: process.env.NEXTAUTH_SECRET, // Ensure this secret is the same in both projects
+  },
   callbacks: {
-    async jwt({ token, user, account }) {
+    async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
-      }
-      if (account) {
-        token.accessToken = account.access_token;
       }
       return token;
     },
     async session({ session, token }) {
-      if (session.user) {
-        session.user.id = token.id;
-        session.accessToken = token.accessToken;
+      if (token) {
+        if (!session.user) {
+          session.user = {}; // Ensure session.user is defined
+        }
+         // @ts-expect-error: Assigning user ID to session.user since TypeScript does not recognize session.user as a complete type.
+        session.user.id = token.id; // Assign user ID
       }
       return session;
     },
   },
-  secret: process.env.NEXTAUTH_SECRET,
-  debug: process.env.NODE_ENV === 'development',
+  
 };
