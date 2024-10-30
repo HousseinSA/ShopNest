@@ -21,10 +21,7 @@ if(userId && storeList.length === 0){
 }
 
 const testing  = await getUserSession()
-
 console.log('testing session',testing)
-
-console.log('testing',session)
 
   return (
     <div className='max-w-7xl mx-auto'>

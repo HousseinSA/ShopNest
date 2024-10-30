@@ -22,18 +22,18 @@ const UserInfo = ({ session }) => {
   const [user, setUser] = useState(null);
 
     
-  useEffect(() => {
-    const fetchUserSession = async () => {
-      const userSession = await getUserSession();
-      console.log('Testing user session:', userSession); // Log the user session data
-      if (userSession && userSession.user) {
-        setUser(userSession.user); // Set user data if available
-      }
+  // useEffect(() => {
+  //   const fetchUserSession = async () => {
+  //     const userSession = await getUserSession();
+  //     console.log('Testing user session:', userSession); // Log the user session data
+  //     if (userSession && userSession.user) {
+  //       setUser(userSession.user); // Set user data if available
+  //     }
 
-    };
+  //   };
 
-    fetchUserSession(); // Fetch user session on component mount
-  }, []);
+  //   fetchUserSession(); // Fetch user session on component mount
+  // }, []);
 
   return (
     <div className='relative z-30'>
