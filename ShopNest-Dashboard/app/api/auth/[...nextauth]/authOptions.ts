@@ -34,7 +34,7 @@ export const authOptions: NextAuthOptions = {
         sameSite: 'lax',
         path: '/',
         secure: true,
-        domain: '.vercel.app' 
+        domain: 'shopnest-dashboard.vercel.app' // Specific domain for the dashboard
       },
     },
   },

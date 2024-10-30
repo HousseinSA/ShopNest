@@ -31,10 +31,10 @@ export const authOptions: NextAuthOptions = {
         : `next-auth.session-token`,
       options: {
         httpOnly: true,
-        sameSite: 'lax', // Enable cross-origin cookies
+        sameSite: 'lax',
         path: '/',
-        secure: process.env.NODE_ENV === 'production',
-        domain: process.env.NODE_ENV === 'production' ? '.vercel.app' : undefined,
+        secure: true,
+        domain: 'shopnest-frontend.vercel.app' // Specific domain for the frontend
       },
     },
   },
