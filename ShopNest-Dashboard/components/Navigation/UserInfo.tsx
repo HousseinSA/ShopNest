@@ -1,10 +1,11 @@
 'use client'
 
-import {  useState } from 'react'
+import { useEffect, useState } from 'react'
 import { signOut } from 'next-auth/react'
 import { User2Icon } from 'lucide-react'
 import Image from 'next/image'
 import ClipLoader from 'react-spinners/ClipLoader'
+import getUserSession from '@/lib/getUserSession'; 
 
 const UserInfo = ({ session }) => {
   const [isOpen, setIsOpen] = useState(false)
@@ -17,6 +18,22 @@ const UserInfo = ({ session }) => {
   const toggleMenu = () => {
     setIsOpen((prev) => !prev)
   }
+
+  const [user, setUser] = useState(null);
+
+    
+  useEffect(() => {
+    const fetchUserSession = async () => {
+      const userSession = await getUserSession();
+      console.log('Testing user session:', userSession); // Log the user session data
+      if (userSession && userSession.user) {
+        setUser(userSession.user); // Set user data if available
+      }
+
+    };
+
+    fetchUserSession(); // Fetch user session on component mount
+  }, []);
 
   return (
     <div className='relative z-30'>
