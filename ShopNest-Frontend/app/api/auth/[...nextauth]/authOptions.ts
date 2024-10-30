@@ -31,7 +31,7 @@ export const authOptions: NextAuthOptions = {
         : `next-auth.session-token`,
       options: {
         httpOnly: true,
-        sameSite: 'none', // Enable cross-origin cookies
+        sameSite: 'lax', // Enable cross-origin cookies
         path: '/',
         secure: process.env.NODE_ENV === 'production',
         domain: process.env.NODE_ENV === 'production' ? '.vercel.app' : undefined,
