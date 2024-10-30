@@ -19,7 +19,6 @@ interface StoreParams {
 }
 
 const DashboardPage: React.FC<StoreParams> = async ({ params }: { params: { storeCode: string } }) => {
-
   const validStoreCode = validateObjectId(params.storeCode)
   if (!validStoreCode) {
     redirect(`/`)
@@ -29,6 +28,8 @@ const DashboardPage: React.FC<StoreParams> = async ({ params }: { params: { stor
   const salesCount = await getSalesCount(params.storeCode)
   const stockCount = await getInStockCount(params.storeCode)
   const graphData = await getGraphData(params.storeCode)
+
+
   return (
     <div className='flex-col'>
       <div className='flex-1 space-y-4 p-8 pt-6'>

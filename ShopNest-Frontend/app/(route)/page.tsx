@@ -17,8 +17,6 @@ const HomePage = async () => {
   const billboard: BillboardType[] = await getBillboard();
   const firstBillboard: BillboardType = billboard[0]; // Now this works
 
- 
-
 
   return (
     <Container>
