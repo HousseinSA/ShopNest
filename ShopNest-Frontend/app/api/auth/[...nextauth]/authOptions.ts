@@ -34,6 +34,7 @@ export const authOptions: NextAuthOptions = {
         sameSite: 'none',
         path: '/',
         secure: true,
+        domain: '.vercel.app' 
       },
     },
   },
