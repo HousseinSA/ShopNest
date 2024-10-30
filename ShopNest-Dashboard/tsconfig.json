@@ -36,6 +36,6 @@
     "components/ui/button.jsx",
     "app/(dashboard)/(root path)/_e.tsx",
     "components/Modals/Modal.tsx"
-, "lib/dashboardActions/mongodb/mongodbClient.tsx", "components/globals/NotRegisteredUser.jsx", "lib/getUserSession.js"  ],
+, "lib/dashboardActions/mongodb/mongodbClient.tsx", "components/globals/NotRegisteredUser.jsx", "lib/getUserSession.ts"  ],
   "exclude": ["node_modules"]
 }
