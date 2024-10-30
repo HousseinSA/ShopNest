@@ -5,7 +5,7 @@ import { signOut } from 'next-auth/react'
 import { User2Icon } from 'lucide-react'
 import Image from 'next/image'
 import ClipLoader from 'react-spinners/ClipLoader'
-import getUserSession from '@/lib/getUserSession'; 
+// import getUserSession from '@/lib/getUserSession'; 
 
 const UserInfo = ({ session }) => {
   const [isOpen, setIsOpen] = useState(false)
@@ -25,6 +25,7 @@ const UserInfo = ({ session }) => {
   // useEffect(() => {
   //   const fetchUserSession = async () => {
   //     const userSession = await getUserSession();
+  //     passSessionToServer(userSession)
   //     console.log('Testing user session:', userSession); // Log the user session data
   //     if (userSession && userSession.user) {
   //       setUser(userSession.user); // Set user data if available

@@ -5,7 +5,6 @@ import Head from '@/components/Navigation/Head'
 import '@/app/globals.css'
 import { userInfo } from '@/lib/auth/userInfo'
 import NotRegisteredUser from '@/components/globals/NotRegisteredUser'
-import getUserSession from '@/lib/getUserSession';
 
 interface DashboardLayoutProps {
   children: React.ReactNode
@@ -20,8 +19,6 @@ if(userId && storeList.length === 0){
   storeList = await prismaDB.store.findMany({ where: { userId:'guest' } });
 }
 
-const testing = await getUserSession();
-console.log('testing session', testing);
 
   return (
     <div className='max-w-7xl mx-auto'>

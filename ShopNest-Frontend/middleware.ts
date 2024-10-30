@@ -10,7 +10,7 @@ export function middleware(req: NextRequest) {
   // Set CORS headers to allow requests from specific URLs
   const allowedOrigins = [
     'https://shopnest-dashboard.vercel.app',
-    'http://localhost:3000', // Add your localhost URL here
+    'http://localhost:3001', // Add your localhost URL here
   ];
 
   // Check if the request's origin is in the allowed origins

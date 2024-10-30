@@ -1,7 +1,7 @@
 // lib/getUserSession.ts
 
 const getUserSession = async () => {
-  const url = `https://shopnest-frontend.vercel.app/api/auth/session`;
+  const url =process.env.NODE_ENV === 'production' ? `https://shopnest-frontend.vercel.app/api/auth/session`: `http://localhost:3001/api/auth/session`;
 
   try {
     const response = await fetch(url, {
