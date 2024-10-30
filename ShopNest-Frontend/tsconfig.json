@@ -1,6 +1,10 @@
 {
   "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -19,13 +23,35 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@/components/*": ["components/*"],
-      "@/globals/*": ["components/globals/*"],
-      "@/lib/*": ["lib/*"],
-      "@/hooks/*": ["hooks/*"],
-      "@/app/*": ["app/*"],
-    }
+      "@/components/*": [
+        "components/*"
+      ],
+      "@/globals/*": [
+        "components/globals/*"
+      ],
+      "@/lib/*": [
+        "lib/*"
+      ],
+      "@/hooks/*": [
+        "hooks/*"
+      ],
+      "@/app/*": [
+        "app/*"
+      ]
+    },
+    "target": "ES2017"
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/api/auth/signin/loginPage", "app/api/auth/signin/loginPage.jsx", "app/api/auth/signin/loginWrap.tsx", "app/api/auth/session/route.js"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "app/api/auth/signin/loginPage",
+    "app/api/auth/signin/loginPage.jsx",
+    "app/api/auth/signin/loginWrap.tsx",
+    "app/api/auth/session/route.js"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

@@ -2,18 +2,30 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/components/*": ["components/*"],
-      "@/lib/*": ["lib/*"],
-      "@/hooks/*": ["hooks/*"],
-      "@/app/*": ["app/*"]
+      "@/components/*": [
+        "components/*"
+      ],
+      "@/lib/*": [
+        "lib/*"
+      ],
+      "@/hooks/*": [
+        "hooks/*"
+      ],
+      "@/app/*": [
+        "app/*"
+      ]
     },
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
     "noEmit": true,
     "incremental": true,
-    "esModuleInterop": true,  
+    "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
@@ -25,7 +37,11 @@
         "name": "next"
       }
     ],
-    "typeRoots": ["./node_modules/@types", "./types"]
+    "typeRoots": [
+      "./node_modules/@types",
+      "./types"
+    ],
+    "target": "ES2017"
   },
   "include": [
     "next-env.d.ts",
@@ -35,7 +51,12 @@
     "app/layout.jsx",
     "components/ui/button.jsx",
     "app/(dashboard)/(root path)/_e.tsx",
-    "components/Modals/Modal.tsx"
-, "lib/dashboardActions/mongodb/mongodbClient.tsx", "components/globals/NotRegisteredUser.jsx", "lib/getUserSession.ts"  ],
-  "exclude": ["node_modules"]
+    "components/Modals/Modal.tsx",
+    "lib/dashboardActions/mongodb/mongodbClient.tsx",
+    "components/globals/NotRegisteredUser.jsx",
+    "lib/getUserSession.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

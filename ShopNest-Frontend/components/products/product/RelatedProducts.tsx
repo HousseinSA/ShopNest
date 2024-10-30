@@ -1,9 +1,9 @@
 'use client'
-import { useState, useEffect } from 'react'
+// import { useState, useEffect } from 'react'
 
 import { Product } from '@/lib/StoreTypes'
 import ProductCard from '@/components/products/product/productCard'
-import useSSE from '@/hooks/useSSE'
+// import useSSE from '@/hooks/useSSE'
 
 interface ProductsProps {
   products: Product[]
@@ -11,32 +11,32 @@ interface ProductsProps {
 }
 
 const RelatedProducts: React.FC<ProductsProps> = ({
-  products: productsData,
+  products,
   title,
 }) => {
-  const [products, setProducts] = useState(productsData)
+  // const [products, setProducts] = useState(productsData)
 
-  const sseData = useSSE('/api/updates')
+  // const sseData = useSSE('/api/updates')
   // console.log(sseData) // eslint-disable
-  useEffect(() => {
-    if (sseData) {
-      if (sseData.operationType === 'update' && sseData.ns.coll === 'Product') {
-        setProducts((prevProducts) => {
-          const updatedProducts = prevProducts.map((product) =>
-            product.id === sseData.documentKey._id
-              ? { ...product, ...sseData.updateDescription.updatedFields }
-              : product
-          )
-          return updatedProducts
-        })
-      } else if (
-        sseData.operationType === 'insert' &&
-        sseData.ns.coll === 'Product'
-      ) {
-        setProducts((prevProducts) => [...prevProducts, sseData.fullDocument])
-      }
-    }
-  }, [sseData])
+  // useEffect(() => {
+  //   if (sseData) {
+  //     if (sseData.operationType === 'update' && sseData.ns.coll === 'Product') {
+  //       setProducts((prevProducts) => {
+  //         const updatedProducts = prevProducts.map((product) =>
+  //           product.id === sseData.documentKey._id
+  //             ? { ...product, ...sseData.updateDescription.updatedFields }
+  //             : product
+  //         )
+  //         return updatedProducts
+  //       })
+  //     } else if (
+  //       sseData.operationType === 'insert' &&
+  //       sseData.ns.coll === 'Product'
+  //     ) {
+  //       setProducts((prevProducts) => [...prevProducts, sseData.fullDocument])
+  //     }
+  //   }
+  // }, [sseData])
 
   if (products.length === 0) {
     return null

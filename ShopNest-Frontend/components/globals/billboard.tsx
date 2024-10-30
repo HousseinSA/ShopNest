@@ -1,35 +1,35 @@
 'use client'
-import { useEffect, useState } from 'react'
+// import { useEffect, useState } from 'react'
 
 import { Billboard as BillboardProp } from '@/lib/StoreTypes'
 import Image from 'next/image'
-import useSSE from '@/hooks/useSSE'
+// import useSSE from '@/hooks/useSSE'
 
 interface BillboardProps {
   billboardData: BillboardProp
 }
 
 const Billboard: React.FC<BillboardProps> = ({ billboardData }) => {
-  const [billboard, setBillboard] = useState(billboardData)
-  const sseData = useSSE('/api/updates')
-  useEffect(() => {
-    if (sseData) {
-      if (
-        sseData.operationType === 'update' &&
-        sseData.ns.coll === 'Billboard'
-      ) {
-        setBillboard((prevBillboard) => ({
-          ...prevBillboard,
-          ...sseData.updateDescription.updatedFields,
-        }))
-      } else if (
-        sseData.operationType === 'insert' &&
-        sseData.ns.coll === 'Billboard'
-      ) {
-        setBillboard(sseData.fullDocument)
-      }
-    }
-  }, [sseData])
+  // const [billboard, setBillboard] = useState(billboardData)
+  // const sseData = useSSE('/api/updates')
+  // useEffect(() => {
+  //   if (sseData) {
+  //     if (
+  //       sseData.operationType === 'update' &&
+  //       sseData.ns.coll === 'Billboard'
+  //     ) {
+  //       setBillboard((prevBillboard) => ({
+  //         ...prevBillboard,
+  //         ...sseData.updateDescription.updatedFields,
+  //       }))
+  //     } else if (
+  //       sseData.operationType === 'insert' &&
+  //       sseData.ns.coll === 'Billboard'
+  //     ) {
+  //       setBillboard(sseData.fullDocument)
+  //     }
+  //   }
+  // }, [sseData])
 
   return (
     <div className="p-4 sm:p-6 lg:p-8 overflow-hidden rounded-xl">
@@ -40,8 +40,8 @@ const Billboard: React.FC<BillboardProps> = ({ billboardData }) => {
         <Image
           width={1000}
           height={300}
-          src={billboard?.imageUrl}
-          alt={billboard?.label}
+          src={billboardData?.imageUrl}
+          alt={billboardData?.label}
           className="absolute inset-0 w-full h-full object-cover"
           priority={true}
           layout="fixed"
@@ -54,7 +54,7 @@ const Billboard: React.FC<BillboardProps> = ({ billboardData }) => {
                 '2px 2px 0 white, -2px -2px 0 white, 2px -2px 0 white, -2px 2px 0 white',
             }}
           >
-            {billboard?.label}
+            {billboardData?.label}
           </div>
         </div>
       </div>
