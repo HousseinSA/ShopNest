@@ -34,9 +34,7 @@ export const authOptions: NextAuthOptions = {
         sameSite: 'none',
         path: '/',
         secure: true,
-        domain: process.env.NODE_ENV === 'production' 
-          ? process.env.COOKIE_DOMAIN    // Add this to your env variables
-          : undefined
+        domain: '.vercel.app' 
       },
     },
   },

@@ -1,17 +1,22 @@
-// middleware.ts
 import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
 
-export function middleware() {
-  const response = NextResponse.next();
+export function middleware(req: NextRequest) {
+  const res = NextResponse.next();
 
-  // Allow requests from your dashboard's origin
-  response.headers.set('Access-Control-Allow-Origin', 'http://localhost:3001'); // Change this to your dashboard URL
-  response.headers.set('Access-Control-Allow-Methods', 'GET, POST');
-  response.headers.set('Access-Control-Allow-Credentials', 'true');
+  // Set CORS headers to allow requests from the dashboard URL in production
+  res.headers.set('Access-Control-Allow-Origin', 'https://shopnest-dashboard.vercel.app'); 
+  res.headers.set('Access-Control-Allow-Credentials', 'true'); 
+  res.headers.set('Access-Control-Allow-Headers', 'Content-Type');
 
-  return response;
+  // Handle preflight requests
+  if (req.method === 'OPTIONS') {
+    return new NextResponse(null, { status: 204 });
+  }
+
+  return res;
 }
 
 export const config = {
-  matcher: ['/api/auth/:path*'], // Apply this middleware to auth API routes
+  matcher: ['/api/auth/:path*'], // Apply middleware to your auth API routes only
 };

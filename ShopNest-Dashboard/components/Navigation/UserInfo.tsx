@@ -26,7 +26,6 @@ const UserInfo = ({ session }) => {
     const fetchUserSession = async () => {
       const userSession = await getUserSession();
       console.log('Testing user session:', userSession); // Log the user session data
-      
       if (userSession && userSession.user) {
         setUser(userSession.user); // Set user data if available
       }
