@@ -20,8 +20,26 @@ const Header = ({ categories }: categoryProps) => {
 
   useEffect(() => {
     updateCategories(categories)
-  }, [categories, updateCategories]) // Add dependencies here
+  }, [categories, updateCategories]) 
 
+  useEffect(() => {
+    const fetchSession = async () => {
+      const res = await fetch('/api/auth/session', {
+        method: 'GET',
+        credentials: 'include', 
+      });
+  
+      if (res.ok) {
+        const data = await res.json(); 
+        console.log('session api',data)
+      } else {
+        console.error("Failed to fetch session", res.statusText);
+      }
+    };
+  
+    fetchSession();
+  }, []);
+  
   return (
     <header
       className={cn(

@@ -1,8 +1,6 @@
 'use client';
 
-import { 
-  // useEffect,
-   useState } from 'react';
+import { useEffect, useState } from 'react';
 import { signOut, useSession } from 'next-auth/react';
 import { User2Icon } from 'lucide-react';
 import Image from 'next/image';
@@ -11,21 +9,21 @@ import ClipLoader from 'react-spinners/ClipLoader';
 const UserInfo = () => {
   const { data: session } = useSession();
   const [isOpen, setIsOpen] = useState(false);
-  const [loading , setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
-  // useEffect(()=>{
-  //   if(session?.user){
-  //     localStorage.setItem('user', JSON.stringify(session.user)); // Store user data
-  //   }else {
-  //     localStorage.removeItem('user'); 
-  //   }
-  // },[session])
- 
-  
+  // Store session data in localStorage
+  useEffect(() => {
+    if (session?.user) {
+      localStorage.setItem('user', JSON.stringify(session.user)); // Store user data
+    } else {
+      localStorage.removeItem('user'); // Remove user data if session is null
+    }
+  }, [session]);
 
   const handleLogout = () => {
-    setLoading(true)
-    signOut();
+    setLoading(true);
+    signOut({ callbackUrl: '/' }); // Redirect to home after logout
+    localStorage.removeItem('user'); // Remove user data on logout
   };
 
   const toggleMenu = () => {
@@ -51,7 +49,7 @@ const UserInfo = () => {
         )}
       </div>
 
-      {/* Dropdown menu without animations */}
+      {/* Dropdown menu */}
       {isOpen && (
         <div className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg overflow-hidden z-50">
           <div className="p-4 text-sm">
@@ -60,8 +58,8 @@ const UserInfo = () => {
               onClick={handleLogout}
               className="mt-2 w-full flex items-center justify-center gap-2 bg-red-500 hover:bg-red-600 text-white py-1 rounded"
             >
-              {loading ? <>Login out... </>: 'Log out'}
-           {loading &&<ClipLoader size={15} color='#fff'/>} 
+              {loading ? 'Logging out...' : 'Log out'}
+              {loading && <ClipLoader size={15} color="#fff" />}
             </button>
           </div>
         </div>

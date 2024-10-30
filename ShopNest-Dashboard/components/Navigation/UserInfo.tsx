@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { signOut } from 'next-auth/react';
 import { User2Icon } from 'lucide-react';
 import Image from 'next/image';
@@ -12,7 +12,7 @@ const UserInfo = (
   const [isOpen, setIsOpen] = useState(false);
   const [loading , setLoading] = useState(false)
 
-// testing user session 
+
 
   const handleLogout = () => {
     setLoading(true);
