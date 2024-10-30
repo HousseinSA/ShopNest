@@ -1,8 +1,8 @@
 // lib/getUserSession.ts
 
 const getUserSession = async () => {
+
     const url = `https://shopnest-frontend.vercel.app/api/auth/session`; // Use environment variable for flexibility
-  
     try {
       const response = await fetch(url, {
         method: 'GET',
@@ -12,11 +12,9 @@ const getUserSession = async () => {
       if (!response.ok) {
         throw new Error(`Failed to fetch session: ${response.statusText}`);
       }
-  
+
       const sessionData = await response.json();
-      console.log('Session Data:', sessionData); // Log session data as needed for debugging
-  
-      return sessionData; // Return session data to the caller
+      return sessionData.user ; // Return session data to the caller
     } catch (error) {
       console.error('Error fetching session:', error);
       return null; // Return null on error
