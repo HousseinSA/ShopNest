@@ -6,7 +6,7 @@ export function middleware(req: NextRequest) {
   const res = NextResponse.next();
 
   // Set CORS headers
-  res.headers.set('Access-Control-Allow-Origin', 'http://localhost:3000/'); 
+  res.headers.set('Access-Control-Allow-Origin', 'https://shopnest-frontend.vercel.app, https://shopnest-dashboard.vercel.app');
   res.headers.set('Access-Control-Allow-Credentials', 'true');
   res.headers.set('Access-Control-Allow-Headers', 'Content-Type');
 
