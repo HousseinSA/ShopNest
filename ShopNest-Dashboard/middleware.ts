@@ -3,8 +3,8 @@ import type { NextRequest } from 'next/server';
 
 export function middleware(req: NextRequest) {
   const res = NextResponse.next();
-
   const origin = req.headers.get('origin');
+
   const allowedOrigins = [
     'https://shopnest-frontend.vercel.app',
     'https://shopnest-dashboard.vercel.app',
@@ -15,6 +15,7 @@ export function middleware(req: NextRequest) {
     res.headers.set('Access-Control-Allow-Origin', origin!);
     res.headers.set('Access-Control-Allow-Credentials', 'true');
     res.headers.set('Access-Control-Allow-Headers', 'Content-Type');
+    res.headers.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS'); // Explicitly allow methods
   }
 
   if (req.method === 'OPTIONS') {

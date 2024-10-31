@@ -1,11 +1,11 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { signOut, useSession } from 'next-auth/react'
+import { signOut } from 'next-auth/react'
 import { User2Icon } from 'lucide-react'
 import Image from 'next/image'
 import ClipLoader from 'react-spinners/ClipLoader'
-// import getUserSession from '@/lib/getUserSession'; 
+import getUserSession from '@/lib/getUserSession'; 
 
 const UserInfo = (
   // { session }
@@ -23,22 +23,22 @@ const UserInfo = (
 
   const [user, setUser] = useState(null);
 
-  const {data:session} = useSession()
-  console.log('testing in client', session )
+  // const {data:session} = useSession()
+  // console.log('testing in client', session )
 
-  // useEffect(() => {
-  //   const fetchUserSession = async () => {
-  //     const userSession = await getUserSession();
-  //     passSessionToServer(userSession)
-  //     console.log('Testing user session:', userSession); // Log the user session data
-  //     if (userSession && userSession.user) {
-  //       setUser(userSession.user); // Set user data if available
-  //     }
+  useEffect(() => {
+    const fetchUserSession = async () => {
+      const userSession = await getUserSession();
+      // passSessionToServer(userSession)
+      console.log('Testing user session:', userSession); // Log the user session data
+      if (userSession && userSession.user) {
+        setUser(userSession.user); // Set user data if available
+      }
 
-  //   };
+    };
 
-  //   fetchUserSession(); // Fetch user session on component mount
-  // }, []);
+    fetchUserSession(); // Fetch user session on component mount
+  }, []);
 
   return (
     <>test</>
