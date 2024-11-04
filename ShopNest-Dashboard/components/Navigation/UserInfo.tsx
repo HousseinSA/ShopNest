@@ -31,7 +31,6 @@ const UserInfo = (
       if (userSession && userSession.user) {
         setUser(userSession.user); // Set user data if available
       }
-
     };
 
     fetchUserSession(); // Fetch user session on component mount
