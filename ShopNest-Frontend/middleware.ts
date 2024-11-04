@@ -3,13 +3,21 @@ import type { NextRequest } from 'next/server';
 
 export function middleware(req: NextRequest) {
   const res = NextResponse.next();
+  const origin = req.headers.get('origin');
 
-  // Set CORS headers to allow requests from the dashboard URL in production
-  res.headers.set('Access-Control-Allow-Origin', 'https://shopnest-dashboard.vercel.app'); 
-  res.headers.set('Access-Control-Allow-Credentials', 'true'); 
-  res.headers.set('Access-Control-Allow-Headers', 'Content-Type');
+  const allowedOrigins = [
+    'https://shopnest-frontend.vercel.app',
+    'https://shopnest-dashboard.vercel.app',
+    'http://localhost:3000', // Local development URL
+  ];
 
-  // Handle preflight requests
+  if (allowedOrigins.includes(origin || '')) {
+    res.headers.set('Access-Control-Allow-Origin', origin!);
+    res.headers.set('Access-Control-Allow-Credentials', 'true');
+    res.headers.set('Access-Control-Allow-Headers', 'Content-Type');
+    res.headers.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS'); // Explicitly allow methods
+  }
+
   if (req.method === 'OPTIONS') {
     return new NextResponse(null, { status: 204 });
   }
@@ -18,5 +26,5 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/api/auth/:path*'], // Apply middleware to your auth API routes only
+  matcher: ['/api/auth/:path*'], // Apply to auth API routes only
 };

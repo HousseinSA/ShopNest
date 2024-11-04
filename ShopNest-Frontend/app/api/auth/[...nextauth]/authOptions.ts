@@ -41,17 +41,17 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token.id = user.id;
+        token.id = user.id; // Store user ID in the token
+        token.email = user.email; // Store email if needed
       }
       return token;
     },
     async session({ session, token }) {
       if (token) {
-        if (!session.user) {
-          session.user = {};
-        }
-        // @ts-expect-error: Assigning user ID to session.user
-        session.user.id = token.id;
+                // @ts-expect-error: Assigning user ID to session.user
+        session.user.id = token.id; // Attach user ID to session
+                // @ts-expect-error: Assigning user email to session.email
+        session.user.email = token.email; // Attach email if needed
       }
       return session;
     },
