@@ -4,7 +4,6 @@ import MainNav from '@/components/Navigation/MainNav';
 import StoreSwitcher from './StoreSwitcher';
 import MobileMenu from './MobileMenu';
 import UserInfoWrap from './UserInfoWrap';
-import { getSession } from 'next-auth/react';
 interface HeadProps {
   storeList :{ id: string; storeName: string; userId: string; createdAt: Date; updatedAt: Date; }[] |null,
   session:{user:{id:string, name:string, email:string, image:string}}| null
@@ -12,8 +11,6 @@ interface HeadProps {
 
 const Head= ({storeList, session}:HeadProps) => {
 
-const sessionTesting = getSession()
-console.log(sessionTesting, 'testing session from getSession method ')
 
   return (
       <div className="flex items-center h-16 p-4">

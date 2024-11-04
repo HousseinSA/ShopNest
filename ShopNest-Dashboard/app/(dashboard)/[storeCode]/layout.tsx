@@ -6,6 +6,7 @@ import '@/app/globals.css'
 import { userInfo } from '@/lib/auth/userInfo'
 import NotRegisteredUser from '@/components/globals/NotRegisteredUser'
 
+
 interface DashboardLayoutProps {
   children: React.ReactNode
   params: { storeCode:string }
@@ -19,7 +20,7 @@ if(userId && storeList.length === 0){
   storeList = await prismaDB.store.findMany({ where: { userId:'guest' } });
 }
 
-console.log(session , userId ,'testing user and session')
+// console.log(session , userId ,'testing user and session')
 
   return (
     <div className='max-w-7xl mx-auto'>

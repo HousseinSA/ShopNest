@@ -22,23 +22,23 @@ const Header = ({ categories }: categoryProps) => {
     updateCategories(categories)
   }, [categories, updateCategories]) 
 
-  useEffect(() => {
-    const fetchSession = async () => {
-      const res = await fetch('/api/auth/session', {
-        method: 'GET',
-        credentials: 'include', 
-      });
+  // useEffect(() => {
+  //   const fetchSession = async () => {
+  //     const res = await fetch('/api/auth/session', {
+  //       method: 'GET',
+  //       credentials: 'include', 
+  //     });
   
-      if (res.ok) {
-        const data = await res.json(); 
-        console.log('session api',data)
-      } else {
-        console.error("Failed to fetch session", res.statusText);
-      }
-    };
+  //     if (res.ok) {
+  //       const data = await res.json(); 
+  //       // console.log('session api',data)
+  //     } else {
+  //       console.error("Failed to fetch session", res.statusText);
+  //     }
+  //   };
   
-    fetchSession();
-  }, []);
+  //   fetchSession();
+  // }, []);
   
   return (
     <header
