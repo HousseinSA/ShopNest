@@ -26,6 +26,6 @@
       "@/app/*": ["app/*"],
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/api/auth/signin/loginPage", "app/api/auth/signin/loginPage.jsx", "app/api/auth/signin/loginWrap.tsx", "app/api/session/route.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/api/auth/signin/loginPage", "app/api/auth/signin/loginPage.jsx", "app/api/auth/signin/loginWrap.tsx", "app/api/auth/[...nextauth]/session/route.js"],
   "exclude": ["node_modules"]
 }
