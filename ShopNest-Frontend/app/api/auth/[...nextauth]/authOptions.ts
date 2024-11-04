@@ -31,9 +31,9 @@ export const authOptions: NextAuthOptions = {
         : `next-auth.session-token`,
       options: {
         httpOnly: true,
-        sameSite: 'none',
+        sameSite: 'lax',
         path: '/',
-        secure: true,
+        secure:true,
         // domain: '.vercel.app' 
       },
     },
