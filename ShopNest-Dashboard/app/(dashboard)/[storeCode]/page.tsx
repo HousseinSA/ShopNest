@@ -3,7 +3,7 @@ import { redirect } from 'next/navigation'
 
 import SectionHeader from '@/components/globals/storeHead/SectionHeader'
 import { Separator } from '@/components/ui/separator'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent } from '@/components/ui/card'
 import { PriceFormatter } from '@/lib/PriceFormatter'
 import { getTotalRevenue } from '@/lib/dashboardActions/getTotalRevenue'
 import { getSalesCount } from '@/lib/dashboardActions/getSalesCount'
