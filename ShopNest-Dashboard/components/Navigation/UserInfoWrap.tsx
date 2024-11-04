@@ -7,7 +7,7 @@ const UserInfoWrap = ({session}) => {
   return (
     // <SessionProvider>
       <UserInfo  
-      // session={session}
+      session={session}
       />
       // </SessionProvider>
   );

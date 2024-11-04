@@ -10,7 +10,6 @@ const BillboardsPage = async ({ params }: { params: { storeCode: string } }) => 
   
   const validStoreCode = validateObjectId(params.storeCode)
   if (validStoreCode) {
-    
     const billBoards = await prismaDB.billboard.findMany({
       where: {
         storeCode: params.storeCode

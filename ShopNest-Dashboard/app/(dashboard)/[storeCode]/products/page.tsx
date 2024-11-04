@@ -5,10 +5,14 @@ import StoreProducts from '@/components/products/StoreProducts'
 import prismaDB from '@/lib/prismaClient'
 import { PriceFormatter } from '@/lib/PriceFormatter'
 import validateObjectId from  '@/lib/mongodb/mongodDBValidate'
+import { userInfo } from '@/lib/auth/userInfo'
+import NotRegisteredUser from '@/components/globals/NotRegisteredUser'
 
 import { redirect } from 'next/navigation'
 const ProductsPage = async ({ params }: { params: { storeCode: string } }) => {
   const validBillBoardCode = validateObjectId(params.storeCode)
+
+  const {userId, session} = await userInfo(params.storeCode)
 
   if (validBillBoardCode) {
     const products = await  prismaDB.product.findMany({
@@ -36,6 +40,7 @@ const ProductsPage = async ({ params }: { params: { storeCode: string } }) => {
 
     return (
       <div className='p-4 flex flex-col flex-1'>
+         {!userId && <NotRegisteredUser/>}
         <StoreProducts products={formattedProducts} />
       </div>
     )

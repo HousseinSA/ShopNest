@@ -26,14 +26,15 @@ export const authOptions: NextAuthOptions = {
   },
   cookies: {
     sessionToken: {
-      name: process.env.NODE_ENV === 'production'
+      name: process.env.NODE_ENV === 'production' 
         ? `__Secure-next-auth.session-token`
         : `next-auth.session-token`,
       options: {
         httpOnly: true,
-        sameSite: 'lax',
+        sameSite: 'none',
         path: '/',
-        secure: process.env.NODE_ENV === 'production', // Ensure cookies are secure in production
+        secure: true,
+        // domain: '.vercel.app' 
       },
     },
   },
@@ -46,9 +47,10 @@ export const authOptions: NextAuthOptions = {
     },
     async session({ session, token }) {
       if (token) {
-        // Ensure session.user exists before setting the ID
-        session.user = session.user || {};
-                // @ts-expect-error: Assigning user ID to session.user
+        if (!session.user) {
+          session.user = {};
+        }
+        // @ts-expect-error: Assigning user ID to session.user
         session.user.id = token.id;
       }
       return session;

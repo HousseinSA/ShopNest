@@ -33,7 +33,8 @@ export const authOptions: NextAuthOptions = {
         httpOnly: true,
         sameSite: 'lax',
         path: '/',
-        secure: process.env.NODE_ENV === 'production', // Ensure cookies are secure in production
+        secure: true,
+        // domain: '.vercel.app' 
       },
     },
   },

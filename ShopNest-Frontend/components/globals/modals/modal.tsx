@@ -8,7 +8,7 @@ import {
 import { X } from 'lucide-react'
 
 import React, { Fragment } from 'react'
-import ButtonIcon from '../../ui/IconButton'
+import ButtonIcon from '@/components/ui/IconButton'
 
 interface ModalProps {
   open: boolean
@@ -35,7 +35,7 @@ const Modal : React.FC<ModalProps> = ({ open, onClose, children }) => {
               <DialogPanel className="h-full max-w-3xl overflow-hidden text-left rounded-lg align-middle">
                 <div className="flex items-center px-4 overflow-hidden pb-6 bg-white pt-10 shadow-2xl sm:px-6 sm:pt-8 md:p-6 lg:p-8">
                   <div className="absolute right-4 top-5">
-                    <ButtonIcon icon={<X size={15} color='white'/> } onClick={onClose} />
+                    <ButtonIcon className='hover:bg-red-500' icon={<X size={15} color='white'/> } onClick={onClose} />
                   </div>
                 {children}
                 </div>

@@ -7,14 +7,15 @@ import prismaDB from '@/lib/prismaClient'
 // import StoreSettingsForm from '@/components/StoreSettings/StoreSettings'
 import StoreSettings from '@/components/Settings/StoreSettings'
 import { userInfo } from '@/lib/auth/userInfo'
+import NotRegisteredUser from '@/components/globals/NotRegisteredUser'
 
 interface StoreSettingsProps {
   params: { storeCode: string }
 }
 
 const StorePage: React.FC<StoreSettingsProps> = async ({ params: { storeCode } }) => {
-  const {userId} = await userInfo(storeCode)
   const validateStoreCode = validateObjectId(storeCode)
+  const {userId, session} = await userInfo(storeCode)
   if (!validateStoreCode) {
     redirect('/')
   }
@@ -30,8 +31,10 @@ const StorePage: React.FC<StoreSettingsProps> = async ({ params: { storeCode } }
     redirect('/')
   }
 
+ 
   return (
     <div className='p-4 flex flex-col flex-1'>
+       {!userId && <NotRegisteredUser/>}
       <StoreSettings storeData={store} />
     </div>
   )
