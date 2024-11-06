@@ -6,11 +6,11 @@ import MobileMenu from './MobileMenu'
 import UserInfoWrap from './UserInfoWrap'
 interface HeadProps {
   storeList: { id: string; storeName: string; userId: string; createdAt: Date; updatedAt: Date }[] | null
-session:{  user: { name: string; id: string; email?: string; image?: string }}
+  customUser: { name: string; id: string; email?: string; image?: string }
 }
 
 const Head = (
-  { storeList, session }: HeadProps
+  { storeList, customUser }: HeadProps
 
 ) => {
   return (
@@ -20,7 +20,7 @@ const Head = (
         <MainNav />
       </div>
       <div className='ml-auto flex items-center space-x-3'>
-        <UserInfoWrap session={session} />
+        <UserInfoWrap customUser={customUser} />
         <div className='block lg:hidden'>
           <MobileMenu />
         </div>

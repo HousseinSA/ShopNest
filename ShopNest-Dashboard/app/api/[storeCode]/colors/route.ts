@@ -1,11 +1,10 @@
 import prismaDB from '@/lib/prismaClient'
 import { NextResponse } from 'next/server'
-// import { userInfo } from '@/lib/userInfo'
-
+import { userInfo } from '@/lib/userInfo'
 
 export async function POST(req: Request, { params }: { params: { storeCode: string } }) {
   try {
-    // const {userId} = await userInfo(params.storeCode)
+    const {userId} = await userInfo(params.storeCode)
 
     const body = await req.json()
     const { name, value } = body
@@ -19,7 +18,7 @@ export async function POST(req: Request, { params }: { params: { storeCode: stri
     const storeByUserId = await prismaDB.store.findFirst({
       where: {
         id: params.storeCode,
-        // userId
+        userId
       }
     })
 

@@ -2,10 +2,10 @@
 
 import UserInfo from '@/components/Navigation/UserInfo'
 
-const UserInfoWrap = ({session}) => {
+const UserInfoWrap = ({customUser}) => {
   return (
       <UserInfo  
-      session={session}
+      customUser={customUser}
       />
   );
 };

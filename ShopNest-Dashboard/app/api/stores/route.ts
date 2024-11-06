@@ -1,10 +1,9 @@
 import { NextResponse } from 'next/server'
 
 import prismaDB from '@/lib/prismaClient'
-// import { userInfo } from '@/lib/userInfo'
-
+import { userInfo } from '@/lib/userInfo'
 export async function POST(req: Request) {
-  // const {userId} = await userInfo(null)
+  const {userId} = await userInfo(null)
   try {
   
     const body = await req.json()
@@ -16,7 +15,7 @@ export async function POST(req: Request) {
     const store = await prismaDB.store.create({
       data: {
         storeName,
-        // userId
+        userId
       }
     })
     return NextResponse.json(store)

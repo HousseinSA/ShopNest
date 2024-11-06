@@ -4,7 +4,7 @@ import { redirect } from 'next/navigation'
 
 import '@/app/globals.css'
 import prismaDB from '@/lib/prismaClient'
-// import { userInfo } from '@/lib/userInfo'
+import { userInfo } from '@/lib/userInfo'
 import NotRegisteredUser from '@/components/globals/NotRegisteredUser'
 
 interface HomeLayoutProps {
@@ -14,7 +14,7 @@ interface HomeLayoutProps {
 
 const HomeLayout: React.FC<HomeLayoutProps> = async ({ children }) => {
   // Fetch the user ID
-  // const { userId } = await userInfo(null)
+  const { userId } = await userInfo(null)
   // Try to find a store associated with the user
   const store = await prismaDB.store.findFirst({
     where: {

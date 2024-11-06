@@ -1,16 +1,16 @@
 import prismaDB from '@/lib/prismaClient'
 import { NextResponse } from 'next/server'
-// import { userInfo } from '@/lib/userInfo'
+import { userInfo } from '@/lib/userInfo'
 
 
 
 export async function PATCH(req: Request, { params }: { params: { storeCode: string; categoryCode: string } }) 
 {
   try {
-    // const {userId} = await userInfo(params.storeCode)
-    // if (!userId) {
-    //   return new NextResponse('unauthorized user', { status: 401 })
-    // }
+    const {userId} = await userInfo(params.storeCode)
+    if (!userId) {
+      return new NextResponse('unauthorized user', { status: 401 })
+    }
     if (!params.categoryCode) {
       return new NextResponse('category code is required', { status: 400 })
     }

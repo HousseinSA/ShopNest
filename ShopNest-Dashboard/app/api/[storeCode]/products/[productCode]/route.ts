@@ -1,7 +1,6 @@
 import prismaDB from '@/lib/prismaClient';
 import { NextResponse } from 'next/server';
-// import { userInfo } from '@/lib/userInfo'
-
+import { userInfo } from '@/lib/userInfo'
 
 
 export async function PATCH(req: Request, { params }: { params: { storeCode: string; productCode: string } }) {
@@ -92,7 +91,7 @@ export async function GET(req: Request, { params }: { params: { storeCode: strin
   const colorCode = searchParams.get('colorCode') || undefined
   const isFeatured = searchParams.get('isFeatured')
   try {
-    // const {userId} = await userInfo(params.storeCode)
+    const {userId} = await userInfo(params.storeCode)
 
     if (!params.storeCode) {
       new NextResponse('No store code found', { status: 400 })

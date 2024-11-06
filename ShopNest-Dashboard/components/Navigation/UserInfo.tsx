@@ -5,10 +5,9 @@ import { signOut } from 'next-auth/react'
 import { User2Icon } from 'lucide-react'
 import Image from 'next/image'
 import ClipLoader from 'react-spinners/ClipLoader'
-import getUserSession from '@/lib/getUserSession'; 
 
 const UserInfo = (
-  { session }
+  { customUser }
 ) => {
   const [isOpen, setIsOpen] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -35,7 +34,7 @@ const UserInfo = (
   return (
     <div className='relative z-30'>
       <div onClick={toggleMenu} className='flex items-center justify-center cursor-pointer rounded-full bg-primary hover:primary-foreground transition duration-300 w-8 h-8 md:h-11 md:w-11'>
-        {session.user?.image ? <Image src={session.user?.image} alt='User image' width={18} height={18} className='rounded-full w-full h-full' /> : <User2Icon size={18} color='white' />}
+        {customUser?.image ? <Image src={customUser.image} alt='User image' width={18} height={18} className='rounded-full w-full h-full' /> : <User2Icon size={18} color='white' />}
       </div>
       {/* Dropdown menu without animations */}
       {isOpen && (
