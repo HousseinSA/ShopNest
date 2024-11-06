@@ -14,7 +14,7 @@ export default function Home() {
   }, [ModalOpenState, openModal])
   return (
     <>
-        <Head storeList={[]}  />
+        <Head storeList={[]} customUser={null}  />
     </>
   )
 }
