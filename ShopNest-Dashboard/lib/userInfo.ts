@@ -1,6 +1,4 @@
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@/app/api/auth/[...nextauth]/authOptions'
-import { connectToDatabase } from '@/lib/mongodb'
+import { connectToDatabase } from  '@/lib/mongodb'
 
 type UserInfo = {
   user: { name: string; id: string; email: string; image: string }
@@ -21,12 +19,7 @@ export const userInfo = async (store: string) => {
   const user = await db.collection('users').findOne()
 
   // If user not found, throw an error
-  let customUser: CustomUser = {
-    name: 'test',
-    id: 'test',
-    email: 'test',
-    image: 'test'
-  }
+  let customUser: CustomUser 
   if (user) {
     customUser = {
       name: user.name,

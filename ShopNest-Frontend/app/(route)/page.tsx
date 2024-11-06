@@ -18,10 +18,11 @@ const HomePage = async () => {
   const billboard: BillboardType[] = await getBillboard();
   const firstBillboard: BillboardType = billboard[0]; // Now this 
   const { customUser } = await userInfo()
+  console.log(customUser)
   return (
     <Container>
       <div className="space-y-4 pb-10 relative">
-        {(  !customUser && !session?.user  ) && <LoginWrapper session={session} />}
+        {(  !customUser.id && !session?.user  ) && <LoginWrapper session={session} />}
         {firstBillboard && <Billboard billboardData={firstBillboard} />}
         <div className="flex flex-col gap-y-8 sm:px-0 pb-20 lg:pb-0">
           <Products title="Featured Products" products={products} />

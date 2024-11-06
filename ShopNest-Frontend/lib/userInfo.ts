@@ -7,7 +7,7 @@ type UserInfo = {
 }
 type CustomUser = {
   name: string
-  id: string
+  id: string | undefined 
   email?: string
   image: string
 }
@@ -25,7 +25,7 @@ export const userInfo = async () => {
 
   let customUser: CustomUser = {
     name: 'test',
-    id: 'test',
+    id: undefined ,
     email: 'test',
     image: 'test',
   }

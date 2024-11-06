@@ -25,9 +25,7 @@ export async function connectToDatabase(): Promise<Db> {
     const collections = await db.listCollections({ name: 'users' }).toArray();
     if (collections.length === 0) {
       await db.createCollection('users'); 
-    } else {
-      console.log('Users collection already exists.');
-    }
+    } 
   }
 
   return client.db();
