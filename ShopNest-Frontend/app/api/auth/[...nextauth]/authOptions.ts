@@ -1,5 +1,7 @@
+import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import type { NextAuthOptions } from "next-auth";
+import { connectToDatabase } from "@/lib/mongodb";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -13,48 +15,49 @@ export const authOptions: NextAuthOptions = {
       type: "credentials",
       credentials: {},
       authorize: async () => {
-        return { id: "guest", name: "Guest User", email: null };
+        return { id: "guest", name: "Guest User" }; // Simplified for guest users
       },
     },
   ],
-  pages: {
-    signIn: '/auth/signin',
-  },
   session: {
     strategy: "jwt",
-    maxAge: 30 * 24 * 60 * 60, // 30 days
-  },
-  cookies: {
-    sessionToken: {
-      name: process.env.NODE_ENV === 'production' 
-        ? `__Secure-next-auth.session-token`
-        : `next-auth.session-token`,
-      options: {
-        httpOnly: true,
-        sameSite: 'lax',
-        path: '/',
-        secure:true,
-        // domain: '.vercel.app' 
-      },
-    },
+    maxAge: 30 * 24 * 60 * 60,
   },
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token.id = user.id; // Store user ID in the token
-        token.email = user.email; // Store email if needed
+        // Connect to MongoDB and insert user data if not already present
+        const db = await connectToDatabase();
+        const usersCollection = db.collection("users");
+
+        // Check if the user already exists
+        const existingUser = await usersCollection.findOne({ id: user.id });
+        
+        // Insert user if they do not already exist in the database
+        if (!existingUser) {
+          await usersCollection.insertOne(user);
+          console.log("User inserted into MongoDB:", user);
+        } else {
+          console.log("User already exists in MongoDB.");
+        }
+
+        // Save basic user info to the JWT token
+        token.id = user.id;
+        token.name = user.name;
       }
+      
       return token;
     },
     async session({ session, token }) {
-      if (token) {
-                // @ts-expect-error: Assigning user ID to session.user
-        session.user.id = token.id; // Attach user ID to session
-                // @ts-expect-error: Assigning user email to session.email
-        session.user.email = token.email; // Attach email if needed
-      }
+      // Attach the user ID and name to the session object for frontend access
+              // @ts-expect-error: Assigning user email to session.email
+      session.user.id = token.id;
+                    // @ts-expect-error: Assigning user email to session.email
+      session.user.name = token.name;
       return session;
     },
   },
   secret: process.env.NEXTAUTH_SECRET,
 };
+
+export default NextAuth(authOptions);

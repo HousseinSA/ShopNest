@@ -11,21 +11,25 @@ const UserInfo = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  // Store session data in localStorage
-  // useEffect(() => {
-  //   if (session?.user) {
-  //     localStorage.setItem('user', JSON.stringify(session.user)); // Store user data
-  //   } else {
-  //     localStorage.removeItem('user'); // Remove user data if session is null
-  //   }
-  // }, [session]);
-
-  const handleLogout = () => {
+  const handleLogout = async () => {
     setLoading(true);
-    signOut({ callbackUrl: '/' }); // Redirect to home after logout
-    localStorage.removeItem('user'); // Remove user data on logout
+  
+    try {
+      const response = await fetch('/api/auth/removeUser', { method: 'POST' });
+  
+      if (!response.ok) {
+        throw new Error('Failed to remove user session');
+      }
+  
+      console.log('User session removed from MongoDB');
+    } catch (error) {
+      console.error('Failed to remove user session:', error);
+    }
+  
+    // Sign out the user
+    await signOut();
   };
-
+  
   const toggleMenu = () => {
     setIsOpen((prev) => !prev);
   };

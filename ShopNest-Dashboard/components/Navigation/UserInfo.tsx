@@ -12,35 +12,30 @@ const UserInfo = (
 ) => {
   const [isOpen, setIsOpen] = useState(false)
   const [loading, setLoading] = useState(false)
-  const handleLogout = () => {
-    setLoading(true)
-    signOut()
-  }
-
+  const handleLogout = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch('/api/auth/removeUser', { method: 'POST' });
+  
+      if (!response.ok) {
+        throw new Error('Failed to remove user session');
+      }
+      console.log('User session removed from MongoDB');
+    } catch (error) {
+      console.error('Failed to remove user session:', error);
+    }
+    // Sign out the user
+    await signOut();
+  };
+  
   const toggleMenu = () => {
     setIsOpen((prev) => !prev)
   }
-
-  const [user, setUser] = useState(null);
-  // console.log('testing session',session)
-    
-  useEffect(() => {
-    const fetchUserSession = async () => {
-      const userSession = await getUserSession();
-      console.log('Testing user session:', userSession); // Log the user session data
-      if (userSession && userSession.user) {
-        setUser(userSession.user); // Set user data if available
-      }
-    };
-
-    fetchUserSession(); // Fetch user session on component mount
-  }, []);
-
   
   return (
     <div className='relative z-30'>
       <div onClick={toggleMenu} className='flex items-center justify-center cursor-pointer rounded-full bg-primary hover:primary-foreground transition duration-300 w-8 h-8 md:h-11 md:w-11'>
-        {session?.user?.image ? <Image src={session.user.image} alt='User image' width={18} height={18} className='rounded-full w-full h-full' /> : <User2Icon size={18} color='white' />}
+        {session.user?.image ? <Image src={session.user?.image} alt='User image' width={18} height={18} className='rounded-full w-full h-full' /> : <User2Icon size={18} color='white' />}
       </div>
       {/* Dropdown menu without animations */}
       {isOpen && (

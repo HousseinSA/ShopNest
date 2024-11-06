@@ -18,7 +18,6 @@ const getUserSession = async () => {
     }
 
     const sessionData = await response.json();
-    console.log('Session Data:', sessionData);
     return sessionData;
   } catch (error) {
     console.error('Error fetching session:', error);

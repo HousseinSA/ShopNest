@@ -6,7 +6,7 @@ import validateObjectId from  '@/lib/mongodb/mongodDBValidate'
 import prismaDB from '@/lib/prismaClient'
 // import StoreSettingsForm from '@/components/StoreSettings/StoreSettings'
 import StoreSettings from '@/components/Settings/StoreSettings'
-import { userInfo } from '@/lib/auth/userInfo'
+// import { userInfo } from '@/lib/userInfo'
 import NotRegisteredUser from '@/components/globals/NotRegisteredUser'
 
 interface StoreSettingsProps {
@@ -15,7 +15,7 @@ interface StoreSettingsProps {
 
 const StorePage: React.FC<StoreSettingsProps> = async ({ params: { storeCode } }) => {
   const validateStoreCode = validateObjectId(storeCode)
-  const {userId, session} = await userInfo(storeCode)
+  // const {userId, session} = await userInfo(storeCode)
   if (!validateStoreCode) {
     redirect('/')
   }

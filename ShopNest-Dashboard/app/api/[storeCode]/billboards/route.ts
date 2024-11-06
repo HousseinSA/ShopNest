@@ -1,10 +1,10 @@
 import { NextResponse } from 'next/server'
 
 import prismaDB from '@/lib/prismaClient'
-import { userInfo } from '@/lib/auth/userInfo'
+// import { userInfo } from '@/lib/userInfo'
 
 export async function POST(req: Request, { params }: { params: { storeCode: string } }) {
-  const {userId} = await userInfo(params.storeCode)
+  // const {userId} = await userInfo(params.storeCode)
   try {
     // Check if the store exists and belongs to the user
     const storeByUserId = await prismaDB.store.findFirst({

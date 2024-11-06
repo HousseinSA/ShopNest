@@ -1,11 +1,11 @@
 import prismaDB from '@/lib/prismaClient'
 import { NextResponse } from 'next/server'
-import { userInfo } from '@/lib/auth/userInfo'
+// import { userInfo } from '@/lib/userInfo'
 
 
 export async function PATCH(req: Request, { params }: { params: { storeCode: string } }) {
   try {
-    const {userId} = await userInfo(params.storeCode)
+    // const {userId} = await userInfo(params.storeCode)
 
     if (!params.storeCode) {
       return new NextResponse('store code is required', { status: 400 })
@@ -20,7 +20,7 @@ export async function PATCH(req: Request, { params }: { params: { storeCode: str
     const store = await prismaDB.store.updateMany({
       where: {
         id: params.storeCode,
-        userId: userId
+        // userId: userId
       },
       data: {
         storeName
@@ -35,7 +35,7 @@ export async function PATCH(req: Request, { params }: { params: { storeCode: str
 
 export async function DELETE(req: Request, { params }: { params: { storeCode: string } }) {
   try {
-    const {userId} = await userInfo(params.storeCode)
+    // const {userId} = await userInfo(params.storeCode)
 
     if (!params.storeCode) {
       return new NextResponse('store code is required', { status: 400 })
@@ -44,7 +44,7 @@ export async function DELETE(req: Request, { params }: { params: { storeCode: st
     const store = await prismaDB.store.deleteMany({
       where: {
         id: params.storeCode,
-        userId: userId
+        // userId: userId
       }
     })
     return NextResponse.json(store)
