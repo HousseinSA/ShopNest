@@ -5,7 +5,7 @@ import { connectToDatabase } from '@/lib/mongodb'
 type UserInfo = {
   user: { name: string; id: string; email?: string; image: string }
 }
-type CustomUser = {
+export type CustomUser = {
   name: string
   id: string | undefined 
   email?: string

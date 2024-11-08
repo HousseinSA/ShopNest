@@ -1,49 +1,18 @@
 'use client'
-import React, { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 
 import { cn } from '@/lib/utils'
 import { Category } from '@/lib/StoreTypes'
-import useSSE from '@/hooks/useSSE'
 
 interface NavigationProps {
   categoriesData: Category[]
 }
 
 const Navigation: React.FC<NavigationProps> = ({ categoriesData }) => {
-  const [categories, setCategories] = useState(categoriesData)
-  const sseData = useSSE('/api/updates')
-
-  useEffect(() => {
-    if (sseData) {
-      // console.log('SSE Data:', sseData)
-      if (sseData.ns.coll === "Category") {
-        const categoryId = sseData.documentKey._id.toString() // Ensure ID is a string
-        if (sseData.operationType === 'update') {
-          setCategories((prevCategories) =>
-            prevCategories.map((category) =>
-              category.id === categoryId
-                ? { ...category, ...sseData.updateDescription.updatedFields }
-                : category
-            )
-          )
-        } else if (sseData.operationType === 'insert') {
-          setCategories((prevCategories) => [
-            ...prevCategories,
-            sseData.fullDocument,
-          ])
-        } else if (sseData.operationType === "delete" ) {
-          setCategories((prevCategories) =>
-            prevCategories.filter((category) => category.id !== categoryId)
-          )
-        }
-      }
-    }
-  }, [sseData])
 
   const pathname = usePathname()
-  const CategoriesRoutes = categories?.map((category) => ({
+  const CategoriesRoutes = categoriesData?.map((category) => ({
     href: `/category/${category.id}`,
     name: category.name,
     active: pathname === `/category/${category.id}`,

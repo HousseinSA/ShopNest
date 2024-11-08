@@ -50,7 +50,6 @@ export async function POST(req: Request) {
         }
       })
 
-      console.log('Order updated and products archived successfully')
     } catch (error: any) {
       console.error(`Failed to update order and archive products: ${error.message}`)
       return new NextResponse(`Database error: ${error.message}`, { status: 500 })

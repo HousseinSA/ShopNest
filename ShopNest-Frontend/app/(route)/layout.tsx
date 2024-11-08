@@ -7,6 +7,7 @@ import ModalProvider from '@/components/globals/modals/modalProvider'
 import ToastProvider from '@/components/globals/ToastProvider'
 import getCategoriesData from '@/lib/fetchData/getCategories'
 import { Category } from '@/lib/StoreTypes'
+import { userInfo } from '@/lib/userInfo'
 
 export const metadata: Metadata = {
   title: 'ShopNest E-commerce',
@@ -18,9 +19,11 @@ export const metadata: Metadata = {
 export default async function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode,
+  
 }>) {
   const categories:Category[] = await getCategoriesData()
+  const {session} = await userInfo()
   return (  
       <html lang="en">
         <head>
@@ -30,7 +33,7 @@ export default async function RootLayout({
           <ToastProvider />
           <ModalProvider />
           <div className="bg-white w-full h-full sticky  left-0 top-0 z-20 right-0  shadow-sm">
-          <Header categories={categories}  />
+          <Header categories={categories} session={session} />
           </div>
           {children}
           <Footer />

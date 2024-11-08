@@ -1,21 +1,25 @@
 'use client'
 import Link from 'next/link'
 import Image from 'next/image'
+import React, { useEffect } from 'react'
+import { Session } from 'next-auth'
 
-import CartButton from '@/components/cartButton'
+import CartButton from '@/components/layouts/CartButton/cartButton'
+import { cn } from '@/lib/utils'
 import Navigation from './Navigation/Navigation'
 import MobileMenu from './Navigation/mobileMenu'
-import { cn } from '@/lib/utils'
-import React, { useEffect } from 'react'
 import { Category } from '@/lib/StoreTypes'
 import useCategoryList from '@/lib/state/categoriesState'
 import UserInfoWrap from '@/components/layouts/UserInfoWrap'
+import { SessionProvider } from 'next-auth/react';
 
-type categoryProps = {
-  categories: Category[]
+
+interface HeaderProps {
+  categories: Category[];
+  session?: Session | null; // Allow session to be nullable
 }
 
-const Header = ({ categories }: categoryProps) => {
+const Header:React.FC<HeaderProps> = ({ categories,session  }) => {
   const { updateCategories } = useCategoryList()
 
   useEffect(() => {
@@ -43,7 +47,9 @@ const Header = ({ categories }: categoryProps) => {
         </div>
         <Navigation categoriesData={categories} />
         <div className=" ml-0 sm:ml-auto space-x-4 flex items-center">
+          <SessionProvider session={session}>
           <CartButton />
+          </SessionProvider>
           <UserInfoWrap />
           <div className="block sm:hidden">
             <MobileMenu />

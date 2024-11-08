@@ -1,15 +1,17 @@
 'use client';
 
-import {  useState } from 'react';
+import {  useEffect, useState } from 'react';
 import { signOut, useSession } from 'next-auth/react';
 import { User2Icon } from 'lucide-react';
 import Image from 'next/image';
 import ClipLoader from 'react-spinners/ClipLoader';
+import {usePathname} from 'next/navigation'
 
 const UserInfo = () => {
   const { data: session } = useSession();
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const pathname  = usePathname()
 
   const handleLogout = async () => {
     setLoading(true);
@@ -21,7 +23,6 @@ const UserInfo = () => {
         throw new Error('Failed to remove user session');
       }
   
-      console.log('User session removed from MongoDB');
     } catch (error) {
       console.error('Failed to remove user session:', error);
     }
@@ -31,8 +32,13 @@ const UserInfo = () => {
   };
   
   const toggleMenu = () => {
+
     setIsOpen((prev) => !prev);
   };
+
+  useEffect(()=>{
+   setIsOpen(false)
+  },[pathname])
 
   return (
     <div className="relative z-30">

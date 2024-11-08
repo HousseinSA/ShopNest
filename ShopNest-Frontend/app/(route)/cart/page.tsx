@@ -1,27 +1,31 @@
 'use client'
+import React from 'react'
 import { ShoppingBag, ShoppingCart } from 'lucide-react'
-import {useRouter} from 'next/navigation'
+import { useSession } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
+import { Button } from '@headlessui/react'
 
 import Summary from './components/summary'
 import CartItem from './components/cartItem'
 import OnlyClient from '@/components/globals/OnlyClient'
 import Container from '@/components/ui/container'
 import useCartState from '@/lib/state/CartState'
-import { Button } from '@headlessui/react'
-import RedirectWarper from '@/lib/redirect-logout-user/RedirectWarper'
-
+  
 
 const CartPage = () => {
   const { items } = useCartState()
+const {data:session} = useSession()
+  // @ts-expect-error ignore id
+  const userId = session?.user?.id // Adjust according to your session structure
+  const router = useRouter()
 
-  const route = useRouter()
+  const userItems = items.filter((item) => item.userId === userId) // Filter items for the logged-in user
+  // console.log(session, 'get user products ')
 
   return (
     <OnlyClient>
-      <RedirectWarper/>
       <Container>
         <div className="px-4 py-16 sm:px-6 md:px-8 min-h-screen">
-          {/* Ensure min height */}
           <div className="flex items-center space-x-4">
             <div className="bg-primary rounded-full p-2">
               <ShoppingCart color="white" size={24} />
@@ -30,33 +34,32 @@ const CartPage = () => {
           </div>
           <div className="mt-10 lg:grid lg:grid-cols-12 lg:items-start gap-x-10">
             <div className="lg:col-span-7">
-              {items.length === 0 && (
-                <div className='flex items-center gap-8'>
-                <p className="font-semibold text-medium text-primary">
-                  Cart is empty!
-                </p>
-                <Button
-          onClick={() => route.push('/')}
-          className="relative bg-primary  gap-3 rounded-full p-3 px-4  disabled:cursor-not-allowed transition hover:primary-foreground flex items-center text-white"
-        >
-          <ShoppingBag size={18} color="white" />
-          Add products 
-        </Button>
+              {userItems.length === 0 && (
+                <div className="flex items-center gap-8">
+                  <p className="font-semibold text-medium text-primary">
+                    Cart is empty!
+                  </p>
+                  <Button
+                    onClick={() => router.push('/')}
+                    className="relative bg-primary gap-3 rounded-full p-3 px-4 disabled:cursor-not-allowed transition hover:primary-foreground flex items-center text-white"
+                  >
+                    <ShoppingBag size={18} color="white" />
+                    Add products
+                  </Button>
                 </div>
               )}
               <ul>
-                {items.map((item) => (
-                  <CartItem key={item.id} item={item} />
+                {userItems.map(({ product }) => (
+                  <CartItem key={product.id} item={product} />
                 ))}
               </ul>
             </div>
-            {items.length > 0 &&
-            <Summary />
-}
+            {userItems.length > 0 && <Summary />}
           </div>
         </div>
       </Container>
     </OnlyClient>
   )
 }
+
 export default CartPage

@@ -5,12 +5,16 @@ import { signOut } from 'next-auth/react'
 import { User2Icon } from 'lucide-react'
 import Image from 'next/image'
 import ClipLoader from 'react-spinners/ClipLoader'
+import {usePathname} from 'next/navigation'
+
 
 const UserInfo = (
   { customUser }
 ) => {
   const [isOpen, setIsOpen] = useState(false)
   const [loading, setLoading] = useState(false)
+  const pathname  = usePathname()
+
   const handleLogout = async () => {
     setLoading(true);
     try {
@@ -19,8 +23,7 @@ const UserInfo = (
       if (!response.ok) {
         throw new Error('Failed to remove user session');
       }
-      console.log('User session removed from MongoDB');
-    } catch (error) {
+    } catch (error) {``
       console.error('Failed to remove user session:', error);
     }
     // Sign out the user
@@ -30,6 +33,10 @@ const UserInfo = (
   const toggleMenu = () => {
     setIsOpen((prev) => !prev)
   }
+
+  useEffect(()=>{
+    setIsOpen(false)
+   },[pathname])
   
   return (
     <div className='relative z-30'>

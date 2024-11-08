@@ -30,7 +30,6 @@ const HomeLayout: React.FC<HomeLayoutProps> = async ({ children }) => {
    if(store) {
     redirect(`/${store.id}`)
   }
-  console.log('userId ', userId)
 
   // Render the children if no redirection occurs (although it shouldn't reach here)
 

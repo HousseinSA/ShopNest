@@ -36,10 +36,7 @@ export const authOptions: NextAuthOptions = {
         // Insert user if they do not already exist in the database
         if (!existingUser) {
           await usersCollection.insertOne(user);
-          console.log("User inserted into MongoDB:", user);
-        } else {
-          console.log("User already exists in MongoDB.");
-        }
+        } 
 
         // Save basic user info to the JWT token
         token.id = user.id;
