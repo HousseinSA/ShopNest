@@ -36,3 +36,10 @@ export interface Image {
   id:string
   url:string
 }
+// types/CartItem.ts
+export interface CartItem {
+  id: string; // or number, depending on your setup
+  name: string;
+  price: number; // Ensure price is defined as a number
+  quantity: number; // If applicable
+}
