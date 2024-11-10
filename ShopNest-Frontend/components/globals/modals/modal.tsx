@@ -33,7 +33,7 @@ const Modal : React.FC<ModalProps> = ({ open, onClose, children }) => {
               leaveTo="opacity-0 scale-95"
             >
               <DialogPanel className="h-full max-w-3xl overflow-hidden text-left rounded-lg align-middle">
-                <div className="flex items-center px-4 overflow-hidden pb-6 bg-white pt-10 shadow-2xl sm:px-6 sm:pt-8 md:p-6 lg:p-8">
+                <div className="flex items-center px-4 overflow-hidden pb-6 bg-white pt-10 shadow-2xl sm:px-6 sm:pt-8 md:p-6 lg:p-8 relative">
                   <div className="absolute right-4 top-5">
                     <ButtonIcon className='hover:bg-red-500' icon={<X size={15} color='white'/> } onClick={onClose} />
                   </div>

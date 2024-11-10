@@ -9,44 +9,44 @@ import useCartState from '@/lib/state/CartState' // Adjust path as necessary
 type Provider = 'google' | 'guest'
 
 export default function LoginPage() {
-  const [loadingProvider, setLoadingProvider] = useState<Provider | null>(null); // Track loading state for each provider
-  const setUserId = useCartState((state) => state.setUserId); // Get the setUserId function
-  const { data: session } = useSession(); // Get session data
+  const [loadingProvider, setLoadingProvider] = useState<Provider | null>(null) // Track loading state for each provider
+  const setUserId = useCartState((state) => state.setUserId) // Get the setUserId function
+  const { data: session } = useSession() // Get session data
 
   const handleSignIn = async (provider: Provider) => {
-    setLoadingProvider(provider); // Set loading for the clicked provider
+    setLoadingProvider(provider) // Set loading for the clicked provider
 
-    const result = await signIn(provider, { redirect: false }); // Use redirect: false
+    const result = await signIn(provider, { redirect: false }) // Use redirect: false
 
     if (result?.error) {
-      console.error('Sign in error:', result.error);
-      alert('Failed to sign in');
-      setLoadingProvider(null); // Reset loading state
-      return;
+      console.error('Sign in error:', result.error)
+      alert('Failed to sign in')
+      setLoadingProvider(null) // Reset loading state
+      return
     }
 
     if (result?.ok) {
       // Fetch the updated session
       const updatedSession = await fetch('/api/auth/session').then((res) =>
         res.json()
-      );
+      )
 
       if (updatedSession?.user) {
-        const userId = updatedSession.user.id; // Get user ID from session
-        setUserId(userId); // Set the user ID in Cart State
+        const userId = updatedSession.user.id // Get user ID from session
+        setUserId(userId) // Set the user ID in Cart State
       }
     }
-    setLoadingProvider(null); // Reset loading state
-  };
+    setLoadingProvider(null) // Reset loading state
+  }
 
   // Effect to update user ID when session changes
   useEffect(() => {
     //@ts-expect-error id defined
     if (session?.user?.id) {
-  //@ts-expect-error id defined
-      setUserId(session.user.id); // Set userId from session if available
+      //@ts-expect-error id defined
+      setUserId(session.user.id) // Set userId from session if available
     }
-  }, [session, setUserId]);
+  }, [session, setUserId])
 
   return (
     <>
@@ -71,7 +71,9 @@ export default function LoginPage() {
               onClick={() => handleSignIn('google')}
               className="w-full p-2 text-white hover:bg-opacity-40 bg-primary justify-center gap-2 flex items-center rounded-md hover:primary-foreground"
             >
-              {loadingProvider === 'google' ? 'Logging in...' : 'Login with Google'}
+              {loadingProvider === 'google'
+                ? 'Logging in...'
+                : 'Login with Google'}
               {loadingProvider === 'google' ? (
                 <ClipLoader size={15} color="#fff" />
               ) : (
@@ -98,5 +100,5 @@ export default function LoginPage() {
         </div>
       </div>
     </>
-  );
+  )
 }
