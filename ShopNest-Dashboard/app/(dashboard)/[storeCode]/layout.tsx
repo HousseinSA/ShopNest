@@ -20,10 +20,12 @@ if(customUser && storeList.length === 0){
   storeList = await prismaDB.store.findMany({ where: { userId:'guest' } });
 }
 
+console.log(customUser, userId,'in dashboard testing')
+
 
   return (
     <div className='max-w-7xl mx-auto'>
-      {!userId && <NotRegisteredUser/>}
+      { (!customUser && !userId) && <NotRegisteredUser/>}
       <Head storeList={storeList}
        customUser={customUser} 
        />

@@ -21,13 +21,7 @@ export const userInfo = async () => {
 
   // Fetch the user data from MongoDB's 'users' collection based on the provided userId
   const user = userId ? await db.collection('users').findOne() : null;
-
-  let customUser: CustomUser = {
-    name: 'Guest', // Default name if no user is found
-    id: undefined,
-    email: undefined,
-    image: '', // Default image if no user is found
-  };
+  let customUser: CustomUser
 
   if (user) {
     customUser = {

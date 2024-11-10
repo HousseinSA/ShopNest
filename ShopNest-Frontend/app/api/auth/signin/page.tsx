@@ -9,48 +9,45 @@ import useCartState from '@/lib/state/CartState' // Adjust path as necessary
 type Provider = 'google' | 'guest'
 
 export default function LoginPage() {
-  const [loading, setLoading] = useState(false)
-  const setUserId = useCartState((state) => state.setUserId) // Get the setUserId function
-  const { data: session } = useSession() // Get session data
+  const [loadingProvider, setLoadingProvider] = useState<Provider | null>(null); // Track loading state for each provider
+  const setUserId = useCartState((state) => state.setUserId); // Get the setUserId function
+  const { data: session } = useSession(); // Get session data
 
-  console.log(session, 'testing session in login page ')
   const handleSignIn = async (provider: Provider) => {
-    setLoading(true)
+    setLoadingProvider(provider); // Set loading for the clicked provider
 
-    const result = await signIn(provider, { redirect: false }) // Use redirect: false
+    const result = await signIn(provider, { redirect: false }); // Use redirect: false
 
     if (result?.error) {
-      console.error('Sign in error:', result.error)
-      alert('Failed to sign in')
-      setLoading(false)
-      return
+      console.error('Sign in error:', result.error);
+      alert('Failed to sign in');
+      setLoadingProvider(null); // Reset loading state
+      return;
     }
 
     if (result?.ok) {
       // Fetch the updated session
       const updatedSession = await fetch('/api/auth/session').then((res) =>
         res.json()
-      )
+      );
 
       if (updatedSession?.user) {
-        const userId = updatedSession.user.id // Get user ID from session
-        console.log('userId to pass to session', userId)
-        setUserId(userId) // Set the user ID in Bustard
+        const userId = updatedSession.user.id; // Get user ID from session
+        setUserId(userId); // Set the user ID in Cart State
       }
     }
+    window.location.reload()
+    setLoadingProvider(null); // Reset loading state
+  };
 
-    setLoading(false)
-  }
-
-  // Effect to update user ID when session changes
   // Effect to update user ID when session changes
   useEffect(() => {
-      // @ts-expect-error i know there is id 
+    //@ts-expect-error id defined
     if (session?.user?.id) {
-        // @ts-expect-error i know there is id 
-      setUserId(session.user.id) // Set userId from session if available
+  //@ts-expect-error id defined
+      setUserId(session.user.id); // Set userId from session if available
     }
-  }, [session, setUserId])
+  }, [session, setUserId]);
 
   return (
     <>
@@ -75,16 +72,16 @@ export default function LoginPage() {
               onClick={() => handleSignIn('google')}
               className="w-full p-2 text-white hover:bg-opacity-40 bg-primary justify-center gap-2 flex items-center rounded-md hover:primary-foreground"
             >
-              {loading ? 'Login...' : 'Login with Google'}
-              {loading ? (
+              {loadingProvider === 'google' ? 'Logging in...' : 'Login with Google'}
+              {loadingProvider === 'google' ? (
                 <ClipLoader size={15} color="#fff" />
               ) : (
                 <Image
                   src={'/Google.png'}
                   alt="google"
                   width={20}
-                  className="rounded-full"
                   height={20}
+                  className="rounded-full"
                 />
               )}
             </button>
@@ -93,11 +90,14 @@ export default function LoginPage() {
               onClick={() => handleSignIn('guest')}
               className="w-full p-2 text-white bg-gray-700 rounded-md hover:bg-gray-800"
             >
-              Login as Guest
+              {loadingProvider === 'guest' ? 'Logging in...' : 'Login as Guest'}
+              {loadingProvider === 'guest' && (
+                <ClipLoader size={15} color="#fff" />
+              )}
             </button>
           </div>
         </div>
       </div>
     </>
-  )
+  );
 }

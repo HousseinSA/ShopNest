@@ -3,28 +3,25 @@ import Billboard from '@/components/globals/billboard'
 import getBillboard from '@/lib/fetchData/getBillboard'
 import getProducts from '@/lib/fetchData/getProducts'
 import Products from '@/components/products/product/RelatedProducts'
-import { authOptions } from '@/app/api/auth/[...nextauth]/authOptions'
-import { getServerSession } from 'next-auth/next'
 import LoginWrapper from '@/app/api/auth/signin/loginWrap'
 import { Billboard as BillboardType } from '@/lib/StoreTypes'
-import { Session } from 'next-auth' // Import the Session type
 import { userInfo } from '@/lib/userInfo'
 import LoginPage from '@/app/api/auth/signin/page'
 
 export const revalidate = 0
 
 const HomePage = async () => {
-  const session: Session | null = await getServerSession(authOptions)
   const products = await getProducts({ isFeatured: true })
   const billboard: BillboardType[] = await getBillboard()
-  const firstBillboard: BillboardType = billboard[0] // Now this
-  const { customUser } = await userInfo()
+  const firstBillboard: BillboardType = billboard[0]  // Now this 
+  const { customUser , userId, session} = await userInfo()
 
+  console.log(customUser, userId,'in frontend page')
 
-  return (
+  return (  
     <Container>
       <div className="space-y-4 pb-10 relative">
-        {customUser && !session?.user && (
+        {  (!customUser && !userId) && (
           <LoginWrapper session={session}>
             <LoginPage />
           </LoginWrapper>
