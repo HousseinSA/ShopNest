@@ -32,7 +32,7 @@ const ProductCard: React.FC<Product> = ({ product }) => {
   // cart handler state
   const { addItem, items } = useCartState()
 
-  const existingItem = items.find((item) => item.id === product.id)
+  const existingItem = items.find((item) => item.product.id === product.id)
 
   const onAddToCart: MouseEventHandler<HTMLButtonElement> = (event) => {
     event.stopPropagation()

@@ -1,10 +1,10 @@
 const Loading = () => {
   const skeletonItems = Array.from({ length: 5 });
-  
+
   return (
     <div className="px-4 py-16 sm:px-6 md:px-8 min-h-screen">
       <div className="flex items-center space-x-4">
-        <div className="skeleton rounded-full p-2">
+        <div className="bg-primary rounded-full p-2">
           {/* Skeleton for cart icon */}
           <div className="skeleton" style={{ width: '24px', height: '24px', borderRadius: '50%' }}></div>
         </div>
@@ -42,26 +42,34 @@ const Loading = () => {
             ))}
           </ul>
         </div>
-        <div className="lg:col-span-5 lg:mt-0 lg:p-8 bg-gray-50">
+        <div className="lg:col-span-5 lg:p-8 bg-gray-50">
           {/* Skeleton for summary section */}
           <h2 className="text-lg font-medium text-primary">
             <div className="skeleton" style={{ width: '8rem', height: '1.5rem' }}></div>
           </h2>
           <div className="mt-6 space-y-4">
+            {/* Skeleton for order total */}
             <div className="flex items-center justify-between border-t border-gray-200 pt-4">
               <div className="text-base font-medium text-primary">
                 <div className="skeleton" style={{ width: '6rem', height: '1rem' }}></div>
               </div>
               <div className="skeleton" style={{ width: '4rem', height: '1rem' }}></div>
             </div>
-            <div className="mt-5">
-              <div className="skeleton" style={{ width: '100%', height: '2.5rem' }}></div>
-            </div>
+
+            {/* Skeleton for checkout button */}
+            <button disabled className="w-full mt-5 rounded-lg p-3 bg-gray-300 cursor-not-allowed">
+              <span className="skeleton" style={{ width: '100%', height: '2.5rem' }}></span>
+            </button>
+
+            {/* Additional skeleton elements if needed */}
+            {Array.from({ length: 2 }).map((_, index) => (
+              <div key={index} className="skeleton" style={{ width: '100%', height: '2rem' }} />
+            ))}
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default Loading;
