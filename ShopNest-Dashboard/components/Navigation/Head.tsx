@@ -14,7 +14,7 @@ const Head = (
 
 ) => {
   return (
-    <div className='flex items-center h-16 p-4'>
+    <header className='py-4 md:py-5 flex mx-4 lg:py-6 mx-auto transition duration-500 max-w-7xl'>
       <StoreSwitcher stores={storeList} />
       <div className='hidden lg:block ml-4'>
         <MainNav />
@@ -25,7 +25,7 @@ const Head = (
           <MobileMenu />
         </div>
       </div>
-    </div>
+    </header>
   )
 }
 
