@@ -15,8 +15,9 @@ interface InfoProps {
 
 const Info: React.FC<InfoProps> = ({ product, imgRef }) => {
   const { addItem, items } = useCartState()
-  const existingItem = items.find((item) => item.id === product.id)
+  const existingItem = items.find((item) => item.product.id === product.id)
 
+  
   // add cart item state
   const onAddItem: ReactEventHandler<HTMLButtonElement> = (event) => {
     event.stopPropagation()
