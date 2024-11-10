@@ -49,7 +49,6 @@ const ProductCard: React.FC<Product> = ({ product }) => {
     >
       <div className=" aspect-square relative bg-white rounded-xl">
         <CldImage
-          //removeBackground
           ref={imgRef}
           fill
           src={product.images[0]?.url}

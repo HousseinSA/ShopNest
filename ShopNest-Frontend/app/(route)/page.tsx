@@ -3,10 +3,11 @@ import Billboard from '@/components/globals/billboard'
 import getBillboard from '@/lib/fetchData/getBillboard'
 import getProducts from '@/lib/fetchData/getProducts'
 import Products from '@/components/products/product/RelatedProducts'
-import LoginWrapper from '@/app/api/auth/signin/loginWrap'
 import { Billboard as BillboardType } from '@/lib/StoreTypes'
 import { userInfo } from '@/lib/userInfo'
-import LoginPage from '@/app/api/auth/signin/page'
+import LoginWrapper from '@/lib/auth/signin/loginWrap'
+import LoginPage from '@/lib/auth/signin/page'
+
 
 export const revalidate = 0
 

@@ -3,8 +3,8 @@
 
   import { userInfo } from '@/lib/userInfo'
   import { authOptions } from '@/app/api/auth/[...nextauth]/authOptions'
-  import LoginWrapper from '@/app/api/auth/signin/loginWrap'
-  import LoginPage from '@/app/api/auth/signin/page'
+  import LoginWrapper from '@/lib/auth/signin/loginWrap'
+  import LoginPage from '@/lib/auth/signin/page'
 
   interface CartLayoutProps {
     children: React.ReactNode

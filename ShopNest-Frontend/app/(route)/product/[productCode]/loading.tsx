@@ -5,7 +5,7 @@ const Loading = () => {
     <div className="mx-auto bg-white px-4 py-10 sm:px-6 lg:px-8 space-y-10 pb-10">
       {/* Main Skeleton Container */}
       <div className="flex flex-col gap-y-8 sm:px-6 lg:px-8">
-        <div className="p-4 sm:p-6 lg:p-8">
+        <div className="p-4 sm:p-6 lg:p-8"> 
           <div className="flex flex-col sm:flex-row gap-6">
             {/* Left Image Skeleton */}
             <div className="flex justify-center sm:block">
