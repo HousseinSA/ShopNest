@@ -2,8 +2,8 @@ import { userInfo } from '@/lib/userInfo'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/app/api/auth/[...nextauth]/authOptions'
 import { Session } from 'next-auth' // Import the Session type
-import LoginWrapper from '@/lib/auth/signin/loginWrap'
-import LoginPage from '@/lib/auth/signin/page'
+import LoginWrapper from '@/app/(route)/auth/signin/loginWrap'
+import LoginPage from '@/app/(route)/auth/signin/page'
 
 interface categoryProps {
   children: React.ReactNode

@@ -5,8 +5,8 @@ import getProducts from '@/lib/fetchData/getProducts'
 import Products from '@/components/products/product/RelatedProducts'
 import { Billboard as BillboardType } from '@/lib/StoreTypes'
 import { userInfo } from '@/lib/userInfo'
-import LoginWrapper from '@/lib/auth/signin/loginWrap'
-import LoginPage from '@/lib/auth/signin/page'
+import LoginWrapper from '@/app/(route)/auth/signin/loginWrap'
+import LoginPage from '@/app/(route)/auth/signin/page'
 
 
 export const revalidate = 0
