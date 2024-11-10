@@ -22,15 +22,18 @@ export const userInfo = async () => {
   // Fetch the user data from MongoDB's 'users' collection based on the provided userId
   const user = userId ? await db.collection('users').findOne() : null;
   let customUser: CustomUser
+if(user){
 
-  if (user) {
-    customUser = {
-      name: user.name,
+   customUser = {
+      name: user.name, 
       id: user.id,
       email: user.email,
       image: user.image,
     };
+}
+      // @ts-expect-error don't need default values 
+      return { session, userId, customUser };
+  
   }
 
-  return { session, userId, customUser };
-};
+  

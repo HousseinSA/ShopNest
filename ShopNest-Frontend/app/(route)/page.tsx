@@ -16,7 +16,6 @@ const HomePage = async () => {
   const firstBillboard: BillboardType = billboard[0]  // Now this 
   const { customUser , userId, session} = await userInfo()
 
-  console.log(customUser, userId,'in frontend page')
 
   return (  
     <Container>

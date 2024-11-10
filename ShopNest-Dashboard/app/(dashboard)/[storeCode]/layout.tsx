@@ -20,7 +20,6 @@ if(customUser && storeList.length === 0){
   storeList = await prismaDB.store.findMany({ where: { userId:'guest' } });
 }
 
-console.log(customUser, userId,'in dashboard testing')
 
 
   return (

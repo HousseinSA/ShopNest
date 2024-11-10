@@ -36,7 +36,6 @@ export default function LoginPage() {
         setUserId(userId); // Set the user ID in Cart State
       }
     }
-    window.location.reload()
     setLoadingProvider(null); // Reset loading state
   };
 

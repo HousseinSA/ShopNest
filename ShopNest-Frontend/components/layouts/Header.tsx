@@ -31,7 +31,6 @@ const Header:React.FC<HeaderProps> = ({ categories,session  }) => {
 //  change cart userId state 
 useEffect(() => {
   if(session?.user){
-    console.log('session changed', session.user)
   // @ts-expect-error i know there is id 
   setUserId(session.user.id)
   }
