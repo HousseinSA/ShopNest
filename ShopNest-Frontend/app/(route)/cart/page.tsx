@@ -7,7 +7,6 @@ import { Button } from '@headlessui/react'
 
 import Summary from './components/summary'
 import CartItem from './components/cartItem'
-import OnlyClient from '@/components/globals/OnlyClient'
 import Container from '@/components/ui/container'
 import useCartState from '@/lib/state/CartState'
   
@@ -16,14 +15,12 @@ const CartPage = () => {
   const { items } = useCartState()
 const {data:session} = useSession()
   // @ts-expect-error ignore id
-  const userId = session?.user?.id // Adjust according to your session structure
+  const userId = session?.user?.id 
   const router = useRouter()
 
-  const userItems = items.filter((item) => item.userId === userId) // Filter items for the logged-in user
-  // console.log(session, 'get user products ')
+  const userItems = items.filter((item) => item.userId === userId)
 
   return (
-    <OnlyClient>
       <Container>
         <div className="px-4 py-16 sm:px-6 md:px-8 min-h-screen">
           <div className="flex items-center space-x-4">
@@ -58,7 +55,6 @@ const {data:session} = useSession()
           </div>
         </div>
       </Container>
-    </OnlyClient>
   )
 }
 

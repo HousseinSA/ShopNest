@@ -10,7 +10,7 @@ import FormButton from "@/components/globals/formButton";
 
 const Summary = () => {
   const searchParams = useSearchParams();
-  const { items, deleteAll } = useCartState();
+  const { items, deleteAll, userId } = useCartState();
   
   // Memoize removeAll to avoid it being recreated on each render
   const removeAll = useCallback(() => {
@@ -18,9 +18,9 @@ const Summary = () => {
   }, [deleteAll]);
 
   const [loading, setLoading] = useState(false);
-  
+  const userItems = items.filter (item => item.userId === userId)
   // Calculate total price using product price
-  const totalPrice = items.reduce(
+  const totalPrice = userItems.reduce(
     (total, item) => total + Number(item.product.price), // Access price through product
     0
   );
@@ -48,7 +48,7 @@ const Summary = () => {
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_STORE_URL}/checkout`,
         {
-          productsIds: items.map((item) => item.product.id), // Access id through product
+          productsIds: userItems.map((item) => item.product.id), // Access id through product
         }
       );
       
@@ -78,7 +78,7 @@ const Summary = () => {
         onClick={onSummary}
         className="w-full mt-5 rounded-2xl"
         loading={loading}
-        disabled={items.length === 0}
+        disabled={userItems.length === 0}
       >
         {loading ? 'Checking' : 'Checkout'}
       </FormButton>

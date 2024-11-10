@@ -1,7 +1,10 @@
 'use client'
+import { useEffect } from 'react'
 
 import { Product } from '@/lib/StoreTypes'
 import ProductCard from '@/components/products/product/productCard'
+import useCartState from '@/lib/state/CartState'
+
 
 interface ProductsProps {
   products: Product[]
@@ -12,7 +15,6 @@ const RelatedProducts: React.FC<ProductsProps> = ({
   products,
   title,
 }) => {
-
 
 
   if (products.length === 0) {

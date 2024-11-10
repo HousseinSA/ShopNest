@@ -19,6 +19,8 @@ const HomePage = async () => {
   const billboard: BillboardType[] = await getBillboard()
   const firstBillboard: BillboardType = billboard[0] // Now this
   const { customUser } = await userInfo()
+
+
   return (
     <Container>
       <div className="space-y-4 pb-10 relative">

@@ -12,19 +12,31 @@ import { Category } from '@/lib/StoreTypes'
 import useCategoryList from '@/lib/state/categoriesState'
 import UserInfoWrap from '@/components/layouts/UserInfoWrap'
 import { SessionProvider } from 'next-auth/react';
+import useCartState from '../../lib/state/CartState'
 
 
 interface HeaderProps {
   categories: Category[];
-  session?: Session | null; // Allow session to be nullable
+  session?: Session| null ; // Allow session to be nullable
 }
 
 const Header:React.FC<HeaderProps> = ({ categories,session  }) => {
   const { updateCategories } = useCategoryList()
+  const {setUserId}  = useCartState()
 
   useEffect(() => {
     updateCategories(categories)
   }, [categories, updateCategories]) 
+
+//  change cart userId state 
+useEffect(() => {
+  if(session?.user){
+    console.log('session changed', session.user)
+  // @ts-expect-error i know there is id 
+  setUserId(session.user.id)
+  }
+}, [session, setUserId]) 
+
 
   return (
     <header
@@ -32,6 +44,7 @@ const Header:React.FC<HeaderProps> = ({ categories,session  }) => {
         'py-4 md:py-5 lg:py-6 mx-auto transition duration-500 max-w-7xl'
       )}
     >
+
       <div className="flex items-center justify-between sm:justify-start gap-5 mx-4">
         <div className="flex-shrink-0">
           <Link href={'/'}>
