@@ -11,13 +11,12 @@ type Provider = 'google' | 'guest'
 export default function LoginPage() {
   const [loadingProvider, setLoadingProvider] = useState<Provider | null>(null) // Track loading state for each provider
   const setUserId = useCartState((state) => state.setUserId) // Get the setUserId function
-  const { data: session } = useSession() // Get session data
+  const { data: session, status } = useSession() // Get session data
 
   const handleSignIn = async (provider: Provider) => {
     setLoadingProvider(provider) // Set loading for the clicked provider
 
     const result = await signIn(provider, { redirect: false }) // Use redirect: false
-
     if (result?.error) {
       console.error('Sign in error:', result.error)
       alert('Failed to sign in')
@@ -36,6 +35,9 @@ export default function LoginPage() {
         setUserId(userId) // Set the user ID in Cart State
       }
     }
+    // reload page after login 
+    if(status === 'authenticated') window.location.reload()
+      if(provider === 'guest') window.location.reload()
     setLoadingProvider(null) // Reset loading state
   }
 

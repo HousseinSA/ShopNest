@@ -33,7 +33,7 @@ export default function Error({ error, reset }: { error: Error & { digest?: stri
     >
       <h2 className='text-primary text-lg lg:text-2xl text-center w-full'>{userFriendlyMessage}</h2>
       <div className='flex items-center space-x-8'>
-        <Button onClick={backHome} className='bg-black hover:bg-secondary-foreground'>
+        <Button onClick={backHome} className='bg-black hover:bg-primary-foreground'>
           Return Home
         </Button>
         <Button className='bg-primary hover:primary-foreground' onClick={() => reset()}>

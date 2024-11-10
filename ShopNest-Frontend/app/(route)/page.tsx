@@ -14,7 +14,7 @@ export const revalidate = 0
 const HomePage = async () => {
   const products = await getProducts({ isFeatured: true })
   const billboard: BillboardType[] = await getBillboard()
-  const firstBillboard: BillboardType = billboard[0]  // Now this 
+  const firstBillboard: BillboardType = billboard[0]  
   const { customUser , userId, session} = await userInfo()
 
 
