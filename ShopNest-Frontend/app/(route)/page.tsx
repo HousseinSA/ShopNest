@@ -16,6 +16,7 @@ const HomePage = async () => {
   const billboard: BillboardType[] = await getBillboard()
   const firstBillboard: BillboardType = billboard[0]  
   const { customUser , userId, session} = await userInfo()
+console.log('custom user', customUser, 'session',  session)
 
 
   return (  

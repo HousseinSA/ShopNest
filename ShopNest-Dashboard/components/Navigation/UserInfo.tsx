@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { signOut } from 'next-auth/react'
+// import { signOut } from 'next-auth/react'
 import { User2Icon } from 'lucide-react'
 import Image from 'next/image'
 import ClipLoader from 'react-spinners/ClipLoader'
@@ -23,11 +23,27 @@ const UserInfo = (
       if (!response.ok) {
         throw new Error('Failed to remove user session');
       }
-    } catch (error) {``
+
+
+      const csrfResponse = await fetch('/api/auth/csrf');
+      const { csrfToken } = await csrfResponse.json();
+  
+      // Send a POST request to log out
+      const responseLogout = await fetch('/api/auth/signout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ csrfToken }),
+      });
+  
+      // Check if the logout was successfully 
+
+    } catch (error) {
       console.error('Failed to remove user session:', error);
     }
-    // Sign out the user
-    await signOut();
+
+
   };
   
   const toggleMenu = () => {
