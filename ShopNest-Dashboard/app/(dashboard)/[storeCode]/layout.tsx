@@ -21,9 +21,11 @@ if(customUser && storeList.length === 0){
 }
 
 
+console.log('in dashboard ','custom user', customUser,'userid', userId)
+
 
   return (
-    <div className='max-w-7xl mx-auto'>
+    <div className='max-w-7xl mx-auto'> 
       { (!customUser && !userId) && <NotRegisteredUser/>}
       <Head storeList={storeList}
        customUser={customUser} 

@@ -18,7 +18,7 @@ const route = useRouter()
             <button
               type="button"
               //change for vercel
-              onClick={()=>route.push('https://shopnest-frontend.vercel.app/')}
+              onClick={()=>route.push('https://shop-nest-frontend.vercel.app/')}
               className="w-full p-4 text-white hover:bg-opacity-40 bg-primary justify-center gap-2 flex items-center rounded-md  hover:primary-foreground"  
             >
                 Login first to access dashboard
