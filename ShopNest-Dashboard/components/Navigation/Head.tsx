@@ -14,7 +14,7 @@ const Head = (
 
 ) => {
   return (
-    <header className='py-4 md:py-5 flex mx-4 lg:py-6 mx-auto transition duration-500 max-w-7xl'>
+    <header className='py-4 flex items-center p-6 mx-auto transition duration-500 max-w-7xl'>
       <StoreSwitcher stores={storeList} />
       <div className='hidden lg:block ml-4'>
         <MainNav />

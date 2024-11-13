@@ -8,7 +8,7 @@ import { userInfo } from '@/lib/userInfo'
 import LoginWrapper from '@/app/(route)/auth/signin/loginWrap'
 import LoginPage from '@/app/(route)/auth/signin/page'
 
-
+  
 export const revalidate = 0
 
 const HomePage = async () => {
@@ -16,12 +16,10 @@ const HomePage = async () => {
   const billboard: BillboardType[] = await getBillboard()
   const firstBillboard: BillboardType = billboard[0]  
   const { customUser , userId, session} = await userInfo()
-console.log('custom user', customUser, 'session',  session)
 
-
-  return (  
+  return (    
     <Container>
-      <div className="space-y-4 pb-10 relative">
+      <div className="space-y-4 pb-10 relative">    
         {  (!customUser && !userId) && (
           <LoginWrapper session={session}>
             <LoginPage />

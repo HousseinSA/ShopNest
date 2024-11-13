@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import { User2Icon } from 'lucide-react'
 import Image from 'next/image'
 import ClipLoader from 'react-spinners/ClipLoader'
-import {usePathname} from 'next/navigation'
+import { usePathname } from 'next/navigation'
 
 
 const UserInfo = (
@@ -13,13 +13,13 @@ const UserInfo = (
 ) => {
   const [isOpen, setIsOpen] = useState(false)
   const [loading, setLoading] = useState(false)
-  const pathname  = usePathname()
+  const pathname = usePathname()
 
   const handleLogout = async () => {
     setLoading(true);
     try {
       const response = await fetch('/api/auth/removeUser', { method: 'POST' });
-  
+
       if (!response.ok) {
         throw new Error('Failed to remove user session');
       }
@@ -27,7 +27,7 @@ const UserInfo = (
 
       const csrfResponse = await fetch('/api/auth/csrf');
       const { csrfToken } = await csrfResponse.json();
-  
+
       // Send a POST request to log out
       const responseLogout = await fetch('/api/auth/signout', {
         method: 'POST',
@@ -36,8 +36,8 @@ const UserInfo = (
         },
         body: JSON.stringify({ csrfToken }),
       });
-  
-      // Check if the logout was successfully 
+
+      window.location.reload()
 
     } catch (error) {
       console.error('Failed to remove user session:', error);
@@ -45,15 +45,15 @@ const UserInfo = (
 
 
   };
-  
+
   const toggleMenu = () => {
     setIsOpen((prev) => !prev)
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     setIsOpen(false)
-   },[pathname])
-  
+  }, [pathname])
+
   return (
     <div className='relative z-30'>
       <div onClick={toggleMenu} className='flex items-center justify-center cursor-pointer rounded-full bg-primary hover:primary-foreground transition duration-300 w-8 h-8 md:h-11 md:w-11'>
