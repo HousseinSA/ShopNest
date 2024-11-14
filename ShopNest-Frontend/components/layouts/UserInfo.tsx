@@ -22,6 +22,18 @@ const UserInfo = () => {
       if (!response.ok) {
         throw new Error('Failed to remove user session');
       }
+      const csrfResponse = await fetch('/api/auth/csrf');
+      const { csrfToken } = await csrfResponse.json();
+
+
+      await fetch('/api/auth/signout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ csrfToken }),
+      });
+
   
     } catch (error) {
       console.error('Failed to remove user session:', error);

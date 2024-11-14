@@ -17,6 +17,8 @@ const HomePage = async () => {
   const firstBillboard: BillboardType = billboard[0]  
   const { customUser , userId, session} = await userInfo()
 
+  console.log('in frontend ','custom user', customUser,'userid', userId)
+
   return (    
     <Container>
       <div className="space-y-4 pb-10 relative">    
