@@ -3,7 +3,7 @@ import { connectToDatabase } from '@/lib/mongodb';
 import {  NextResponse } from 'next/server';
 
 export async function POST() {
-  try {
+  try {h
     const db = await connectToDatabase();
     const result = await db.collection('users').deleteMany({}); // Removes all user session data
     return NextResponse.json({ message: 'User session removed' }, { status: 200 });

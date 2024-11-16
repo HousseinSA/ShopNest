@@ -29,13 +29,23 @@ const StoreSwitcher: React.FC<StoreChangerProps> = ({ stores }) => {
     storeCode: store?.id
   }))
 
+
   // get active store
   const activeStore = FormattedStores.find((store) => store.storeCode === params.storeCode)
   // state of list
   const [openList, setOpenList] = useState(false)
 
   // on select store
-  const onStoreChange = (storeCode: string) => {
+  const onStoreChange = async(storeCode: string) => {
+    // send store id to route 
+    await fetch('/api/currentStore', { // Adjust URL as needed
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ storeId: storeCode }),
+  });
+  
     route.push(`/${storeCode}`)
     setOpenList(false)
   }

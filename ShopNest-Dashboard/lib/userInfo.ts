@@ -11,7 +11,7 @@ type CustomUser = {
   image: string
 }
 
-export const userInfo = async (store: string) => {
+export const userInfo = async (store: string | null) => {
   // Connect to the database
   const db = await connectToDatabase()
 

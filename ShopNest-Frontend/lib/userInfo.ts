@@ -13,27 +13,35 @@ export const userInfo = async () => {
   // Get the session and cast it to the Session type
   const session = await getServerSession(authOptions) as Session | null;
 
-  // @ts-expect-error i know there is id 
-  const userId = session?.user?.id;
+  // @ts-expect-error there will be id
+  const userId = session?.user?.id; // Get userId from session
 
   // Connect to the database
   const db = await connectToDatabase();
 
-  // Fetch the user data from MongoDB's 'users' collection based on the provided userId
-  const user = userId ? await db.collection('users').findOne() : null;
-  let customUser: CustomUser
-if(user){
+  // Initialize customUser as null
+  let customUser: CustomUser | null = null;
 
-   customUser = {
-      name: user.name, 
-      id: user.id,
-      email: user.email,
-      image: user.image,
-    };
-}
-      // @ts-expect-error don't need default values 
-      return { session, userId, customUser };
-  
+  // If userId exists, fetch user data
+  if (userId) {
+    const user = await db.collection('users').findOne({ id: userId });
+
+    if (user) {
+      customUser = {
+        name: user.name, 
+        id: user.id,
+        email: user.email,
+        image: user.image,
+      };
+    }
   }
 
+  // Fetch current store based on userId, or set a default store ID
+  const currentStore = await db.collection('currentStore').findOne({ userId });
   
+  // Default store ID if no current store is found
+  const defaultStoreId = '67168ed76339cddccbeb4ae4'; // Replace with your actual default store ID
+  const storeId = currentStore?.storeId || defaultStoreId;
+
+  return { session, userId, customUser, storeId }; // Return session, userId, customUser, and storeId
+};

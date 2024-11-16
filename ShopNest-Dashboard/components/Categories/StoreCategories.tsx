@@ -21,6 +21,7 @@ const StoreCategories: React.FC<StoreCategoryProps> = ({ categories }) => {
     route.push(`/${params.storeCode}/categories/new`)
   }
 
+  
   return (
     <>
       <div className='flex flex-col space-y-4'>

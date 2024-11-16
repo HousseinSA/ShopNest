@@ -1,5 +1,5 @@
 'use client'
-import React, { useRef, MouseEventHandler } from 'react'
+import React, { useRef, MouseEventHandler,  } from 'react'
 import { useRouter } from 'next/navigation'
 import { Scaling, ShoppingCart } from 'lucide-react'
 import { CldImage } from 'next-cloudinary'
@@ -15,12 +15,12 @@ interface Product {
   product: ProductData
 }
 
-const ProductCard: React.FC<Product> = ({ product }) => {
+const ProductCard: React.FC<Product> = ({ product}) => {
   const route = useRouter()
   const imgRef = useRef<HTMLImageElement>(null)
 
   const onClick = () => {
-    route.push(`/product/${product.id}`)
+    route.push(`/product/${product?.id}`)
   }
   // previewModal handler state
   const { open } = usePreviewModal()
@@ -32,11 +32,10 @@ const ProductCard: React.FC<Product> = ({ product }) => {
   // cart handler state
   const { addItem, items } = useCartState()
 
-  const existingItem = items.find((item) => item.product.id === product.id)
-
+  const existingItem = items?.find((item) => item.product?.id === product?.id)
   const onAddToCart: MouseEventHandler<HTMLButtonElement> = (event) => {
     event.stopPropagation()
-    addItem(product)
+    addItem(product )
     if (!existingItem) {
       triggerAnimation(imgRef)
     }
@@ -71,14 +70,14 @@ const ProductCard: React.FC<Product> = ({ product }) => {
       {/* description */}
       <div>
         <p className="font-bold text-md text-primary">
-          {CapitalizedFirstLetter(product.category.name)}
+          {CapitalizedFirstLetter(product?.category?.name)}
         </p>
         <p className="text-base text-highlight m-0">
-          {CapitalizedFirstLetter(product.name)}
+          {CapitalizedFirstLetter(product?.name)}
         </p>
       </div>
       {/* price */}
-      <Currency data={product.price} />
+      <Currency data={product?.price} />
     </div>
   )
 }

@@ -4,7 +4,6 @@ import Link from 'next/link'
 
 import { cn } from '@/lib/utils'
 import { Category } from '@/lib/StoreTypes'
-
 interface NavigationProps {
   categoriesData: Category[]
 }
@@ -12,18 +11,20 @@ interface NavigationProps {
 const Navigation: React.FC<NavigationProps> = ({ categoriesData }) => {
 
   const pathname = usePathname()
+
   const CategoriesRoutes = categoriesData?.map((category) => ({
     href: `/category/${category.id}`,
-    name: category.name,
+    name:category.name,
     active: pathname === `/category/${category.id}`,
   }))
+
   const dashboard = {
     // change for vercel
-    href: `https://shopnest-dashboard.vercel.app/`,
+    href: `${process.env.NEXT_PUBLIC_DASHBOARD_URL}`,
     name: 'Dashboard',
     active: false,
   }
-  CategoriesRoutes.push(dashboard)
+  CategoriesRoutes?.push(dashboard)
 
   return (
     <nav className={'mx-4 items-center space-x-2 sm:flex hidden lg:space-x-4'}>

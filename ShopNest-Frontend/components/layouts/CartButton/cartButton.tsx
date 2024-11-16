@@ -4,25 +4,23 @@
 
   import useCartState from '@/lib/state/CartState'
   import { Button } from '@/components/ui/button'
-  import { useSession } from 'next-auth/react'
 
+  type CartButtonProps =  {
+    userId:string|null
+    storeId:string |null
+  }
     
-  const CartButton = () => {
+  const CartButton :React.FC<CartButtonProps>= ({userId, storeId}) => {
     const route = useRouter()
     const { items } = useCartState()
 
-    const {data:session} = useSession()
-    // @ts-expect-error ignore id
-    const userId = session?.user?.id // Adjust according to your session structure
-    const userItems = items.filter((item) => item.userId === userId) // Filter items for the logged-in user
-
-
+    const userItems = items.filter((item) => item.userId === userId && item.storeId === storeId) // Filter items for the logged-in user
     return (
         <div className=" w-8 h-8 md:h-11 md:w-11">
           <Button
             id="cart-icon"
             onClick={() => route.push('/cart')}
-            className="relative bg-primary rounded-full p-2 w-full h-full disabled:cursor-not-allowed transition hover:primary-foreground flex items-center text-white"
+            className="relative bg-primary rounded-full p-2 w-full h-full disabled:cursor-not-allowed transition  flex items-center text-white"
           >
             <ShoppingBag size={18} color="white" />
             {userItems.length > 0 

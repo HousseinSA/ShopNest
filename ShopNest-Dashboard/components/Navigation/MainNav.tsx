@@ -10,7 +10,7 @@ const MainNav = () => {
   const pathname = usePathname()
   const params = useParams()
   // change for vercel
-  const Store = 'https://shop-nest-frontend.vercel.app/'  
+  const Store = `${process.env.NEXT_PUBLIC_FRONTEND_URL}`  
   const storeDashboard = `/${params.storeCode}`
   const settings = `/${params.storeCode}/settings`
   const billboard = `/${params.storeCode}/billboards`

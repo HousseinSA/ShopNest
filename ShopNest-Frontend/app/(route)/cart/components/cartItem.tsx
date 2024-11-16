@@ -10,15 +10,16 @@ import {CapitalizedFirstLetter} from '@/components/globals/CapitalizedFirstLette
 
 interface CartItemProps {
   item: Product
+  isFirst:boolean
 }
-const CartItem: React.FC<CartItemProps> = ({ item }) => {
+const CartItem: React.FC<CartItemProps> = ({ item,isFirst }) => {
   const { deleteItem } = useCartState()
 
   const removeItem = ()=>{
     deleteItem(item.id)
   }
   return (
-    <li className="flex py-6 border-b last:border-b-0 gap-x-4 sm:gap-x-6">
+    <li className={`flex ${isFirst? 'pb-6 pt-0 ': 'py-6'} border-b last:border-b-0 gap-x-4 sm:gap-x-6`}>
       <div className="relative h-24 w-24 rounded-md overflow-hidden sm:h-48 sm:w-48">
         <CldImage //removeBackground
           fill

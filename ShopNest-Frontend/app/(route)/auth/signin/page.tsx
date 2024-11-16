@@ -35,9 +35,9 @@ export default function LoginPage() {
         setUserId(userId) // Set the user ID in Cart State
       }
     }
-    // reload page after login 
-    if(status === 'authenticated') window.location.reload()
-      if(provider === 'guest') window.location.reload()
+    // reload page after login
+    if (status === 'authenticated') window.location.reload()
+    if (provider === 'guest') window.location.reload()
     setLoadingProvider(null) // Reset loading state
   }
 
@@ -104,6 +104,3 @@ export default function LoginPage() {
     </>
   )
 }
-
-
-

@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server'
 import prismaDB from '@/lib/prismaClient'
 import { userInfo } from '@/lib/userInfo'
 export async function POST(req: Request, { params }: { params: { storeCode: string } }) {
-  const {userId} = await userInfo(params.storeCode)
+  const { userId } = await userInfo(params.storeCode)
   try {
     // Check if the store exists and belongs to the user
     const storeByUserId = await prismaDB.store.findFirst({
@@ -14,7 +14,6 @@ export async function POST(req: Request, { params }: { params: { storeCode: stri
     })
 
     if (!storeByUserId) {
-      
       return new NextResponse('Unauthorized user', { status: 400 })
     }
 
@@ -68,7 +67,7 @@ export async function POST(req: Request, { params }: { params: { storeCode: stri
   }
 }
 
-// getting billboard 
+// getting billboard
 
 export async function GET(req: Request, { params }: { params: { storeCode: string } }) {
   try {
@@ -83,7 +82,7 @@ export async function GET(req: Request, { params }: { params: { storeCode: strin
     })
     return NextResponse.json(billboard)
   } catch (error) {
-    console.log(`CATEGORY_GET`, error)  
+    console.log(`CATEGORY_GET`, error)
     return new NextResponse('Internal Error', { status: 500 })
   }
 }

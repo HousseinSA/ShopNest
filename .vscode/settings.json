@@ -3,6 +3,7 @@
         "lucide",
         "shopnest",
         "signin",
+        "Stringifiable",
         "zustand"
     ]
 }

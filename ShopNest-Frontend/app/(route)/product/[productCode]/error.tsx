@@ -41,7 +41,7 @@ export default function Error({
       <div className="flex items-center space-x-8">
         <Button
           onClick={backHome}
-          className="bg-black hover:bg-primary-foreground"
+          className="bg-black hover:bg-black/75"
         >
           Return Home
         </Button>

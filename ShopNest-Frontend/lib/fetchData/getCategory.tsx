@@ -1,8 +1,10 @@
 import { Category } from "@/lib/StoreTypes"
+import { userInfo } from '@/lib/userInfo'
 
 
-const URL = `${process.env.NEXT_PUBLIC_STORE_URL}/categories`
 const getCategory = async (categoryId:string): Promise<Category> => {
+  const {storeId} = await userInfo()
+  const URL = `${process.env.NEXT_PUBLIC_STORE_URL}${storeId}/categories`
   const response = await fetch(`${URL}/${categoryId}`)
   return response.json()
 }

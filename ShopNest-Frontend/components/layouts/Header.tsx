@@ -12,17 +12,19 @@ import { Category } from '@/lib/StoreTypes'
 import useCategoryList from '@/lib/state/categoriesState'
 import UserInfoWrap from '@/components/layouts/UserInfoWrap'
 import { SessionProvider } from 'next-auth/react';
-import useCartState from '../../lib/state/CartState'
+import useCartState from '@/lib/state/CartState'
 
 
 interface HeaderProps {
   categories: Category[];
-  session?: Session| null ; // Allow session to be nullable
+  userId:string| null 
+  storeId:string| null 
+  session: Session | null
 }
 
-const Header:React.FC<HeaderProps> = ({ categories,session  }) => {
+const Header:React.FC<HeaderProps> = ({ categories,userId, storeId, session }) => {
   const { updateCategories } = useCategoryList()
-  const {setUserId}  = useCartState()
+  const {setUserId, setStoreId}  = useCartState()
 
   useEffect(() => {
     updateCategories(categories)
@@ -30,11 +32,11 @@ const Header:React.FC<HeaderProps> = ({ categories,session  }) => {
 
 //  change cart userId state 
 useEffect(() => {
-  if(session?.user){
-  // @ts-expect-error i know there is id 
-  setUserId(session.user.id)
+  if(userId && storeId){
+  setUserId(userId)
+  setStoreId(storeId)
   }
-}, [session, setUserId]) 
+}, [userId, storeId,setStoreId,setUserId]) 
 
 
   return (
@@ -57,10 +59,10 @@ useEffect(() => {
             />
           </Link>
         </div>
-        <Navigation categoriesData={categories} />
+        <Navigation categoriesData={categories}  />
         <div className=" ml-0 sm:ml-auto space-x-4 flex items-center">
           <SessionProvider session={session}>
-          <CartButton />
+          <CartButton userId={userId} storeId={storeId} />
           </SessionProvider>
           <UserInfoWrap />
           <div className="block sm:hidden">

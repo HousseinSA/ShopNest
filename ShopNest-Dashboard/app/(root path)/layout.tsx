@@ -24,7 +24,7 @@ const HomeLayout: React.FC<HomeLayoutProps> = async ({ children }) => {
 
   // If the store exists, redirect to the store's page
 
-  if (!store || store.id === '65fcb436995f2bfbc8e317cf') {
+  if (!store) {
     redirect(`/67168ed76339cddccbeb4ae4`)
   }
    if(store) {

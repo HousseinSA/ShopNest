@@ -7,7 +7,6 @@ import prismaDB from '@/lib/prismaClient'
 // import StoreSettingsForm from '@/components/StoreSettings/StoreSettings'
 import StoreSettings from '@/components/Settings/StoreSettings'
 import { userInfo } from '@/lib/userInfo'
-import NotRegisteredUser from '@/components/globals/NotRegisteredUser'
 
 interface StoreSettingsProps {
   params: { storeCode: string }
@@ -19,6 +18,7 @@ const StorePage: React.FC<StoreSettingsProps> = async ({ params: { storeCode } }
   if (!validateStoreCode) {
     redirect('/')
   }
+
 
   const store = await prismaDB.store.findFirst({
     where: {
@@ -34,7 +34,6 @@ const StorePage: React.FC<StoreSettingsProps> = async ({ params: { storeCode } }
  
   return (
     <div className='p-4 flex flex-col flex-1'>
-       {!userId && <NotRegisteredUser/>}
       <StoreSettings storeData={store} />
     </div>
   )

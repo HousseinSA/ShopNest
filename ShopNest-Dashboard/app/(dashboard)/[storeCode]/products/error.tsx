@@ -34,7 +34,7 @@ export default function Error({ error, reset }: { error: Error & { digest?: stri
           {userFriendlyMessage}
         </h2>
         <div className='flex items-center space-x-8'>
-          <Button onClick={backHome} className='bg-black hover:bg-primary-foreground'>Return Home</Button>
+          <Button onClick={backHome} className='bg-black hover:bg-black/75'>Return Home</Button>
           <Button className='bg-primary hover:primary-foreground' onClick={() => reset()}>
             Try again
           </Button>
