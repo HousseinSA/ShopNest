@@ -2,7 +2,7 @@
 import { useEffect } from 'react'
 import { useModalStore } from '@/hooks/StoreState'
 
-import Head from '@/components/Navigation/Head'
+import Head from '@/components/Navigation/Header'
 
 export default function Home() {
   // modal state change on render

@@ -31,7 +31,6 @@ export default async function RootLayout({
   // Fetch categories only if storeId is available
   const categories: Category[] = storeId ? await getCategoriesData() : [];
 
-console.log('see if storeid change',storeId)
   return (
     <html lang="en">
       <head>

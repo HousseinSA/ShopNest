@@ -3,7 +3,7 @@
 import MainNav from '@/components/Navigation/MainNav'
 import StoreSwitcher from './StoreSwitcher'
 import MobileMenu from './MobileMenu'
-import UserInfoWrap from './UserInfoWrap'
+import UserInfoWrap from './user-state/UserInfoWrap'
 interface HeadProps {
   storeList: { id: string; storeName: string; userId: string; createdAt: Date; updatedAt: Date }[] | null
   customUser: { name: string; id: string; email?: string; image?: string }

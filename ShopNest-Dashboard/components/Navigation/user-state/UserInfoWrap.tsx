@@ -1,6 +1,6 @@
 'use client';
 
-import UserInfo from '@/components/Navigation/UserInfo'
+import UserInfo from '@/components/Navigation/user-state/UserInfo'
 
 const UserInfoWrap = ({customUser}) => {
   return (

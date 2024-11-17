@@ -1,7 +1,7 @@
 import React from 'react';
 
 import prismaDB from '@/lib/prismaClient';
-import Head from '@/components/Navigation/Head';
+import Head from '@/components/Navigation/Header';
 import '@/app/globals.css';
 import { userInfo } from '@/lib/userInfo';
 import NotRegisteredUser from '@/components/globals/NotRegisteredUser';
