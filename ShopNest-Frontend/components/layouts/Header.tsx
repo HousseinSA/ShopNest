@@ -11,33 +11,36 @@ import MobileMenu from './Navigation/mobileMenu'
 import { Category } from '@/lib/StoreTypes'
 import useCategoryList from '@/lib/state/categoriesState'
 import UserInfoWrap from '@/components/layouts/UserInfoWrap'
-import { SessionProvider } from 'next-auth/react';
+import { SessionProvider } from 'next-auth/react'
 import useCartState from '@/lib/state/CartState'
 
-
 interface HeaderProps {
-  categories: Category[];
-  userId:string| null 
-  storeId:string| null 
+  categories: Category[]
+  userId: string | null
+  storeId: string | null
   session: Session | null
 }
 
-const Header:React.FC<HeaderProps> = ({ categories,userId, storeId, session }) => {
+const Header: React.FC<HeaderProps> = ({
+  categories,
+  userId,
+  storeId,
+  session,
+}) => {
   const { updateCategories } = useCategoryList()
-  const {setUserId, setStoreId}  = useCartState()
+  const { setUserId, setStoreId } = useCartState()
 
   useEffect(() => {
     updateCategories(categories)
-  }, [categories, updateCategories]) 
+  }, [categories, updateCategories])
 
-//  change cart userId state 
-useEffect(() => {
-  if(userId && storeId){
-  setUserId(userId)
-  setStoreId(storeId)
-  }
-}, [userId, storeId,setStoreId,setUserId]) 
-
+  //  change cart userId state
+  useEffect(() => {
+    if (userId && storeId) {
+      setUserId(userId)
+      setStoreId(storeId)
+    }
+  }, [userId, storeId, setStoreId, setUserId])
 
   return (
     <header
@@ -45,7 +48,6 @@ useEffect(() => {
         'py-4 md:py-5 lg:py-6 mx-auto transition duration-500 max-w-7xl'
       )}
     >
-
       <div className="flex items-center justify-between sm:justify-start gap-5 mx-4">
         <div className="flex-shrink-0">
           <Link href={'/'}>
@@ -55,14 +57,14 @@ useEffect(() => {
               height={200}
               alt="logo"
               priority={true}
-              className="w-28 sm:w-32 md:w-40 lg:w-48" 
+              className="w-28 sm:w-32 md:w-40 lg:w-48"
             />
           </Link>
         </div>
-        <Navigation categoriesData={categories}  />
+        <Navigation categoriesData={categories} />
         <div className=" ml-0 sm:ml-auto space-x-4 flex items-center">
           <SessionProvider session={session}>
-          <CartButton userId={userId} storeId={storeId} />
+            <CartButton userId={userId} storeId={storeId} />
           </SessionProvider>
           <UserInfoWrap />
           <div className="block sm:hidden">

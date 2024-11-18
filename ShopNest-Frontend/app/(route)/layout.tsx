@@ -30,7 +30,7 @@ export default async function RootLayout({
 
   // Fetch categories only if storeId is available
   const categories: Category[] = storeId ? await getCategoriesData() : [];
-
+ console.log('see why when logout from dashboard frontend not login out',userId,customUser)
   return (
     <html lang="en">
       <head>

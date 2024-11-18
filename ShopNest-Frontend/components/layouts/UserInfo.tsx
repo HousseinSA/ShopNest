@@ -1,6 +1,6 @@
 'use client';
 
-import {  useEffect, useState } from 'react';
+import {  useEffect, useRef, useState } from 'react';
 import { signOut, useSession } from 'next-auth/react';
 import { User2Icon } from 'lucide-react';
 import Image from 'next/image';
@@ -12,6 +12,8 @@ const UserInfo = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const pathname  = usePathname()
+  const dropdownRef = useRef(null) // Create a ref for the dropdown
+
 
   const handleLogout = async () => {
     setLoading(true);
@@ -52,6 +54,27 @@ const UserInfo = () => {
    setIsOpen(false)
   },[pathname])
 
+  // Close the dropdown if the user clicks outside of it
+  // @ts-expect-error 
+  const handleClickOutside = (event) => {
+      // @ts-expect-error 
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setIsOpen(false);
+    }
+  };
+
+
+  useEffect(() => {
+    // Add event listener for clicks outside the dropdown
+    document.addEventListener('mousedown', handleClickOutside);
+    
+    return () => {
+      // Clean up the event listener on unmount
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);    
+
+
   return (
     <div className="relative z-30">
       <div
@@ -73,7 +96,7 @@ const UserInfo = () => {
 
       {/* Dropdown menu */}
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg overflow-hidden z-50">
+        <div ref={dropdownRef} className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg overflow-hidden z-50">
           <div className="p-4 text-sm">
             <p>Are you sure you want to sign out?</p>
             <button
