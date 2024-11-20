@@ -1,82 +1,66 @@
-import { useEffect, useRef, useState } from 'react';
-import { User2Icon } from 'lucide-react';
-import Image from 'next/image';
-import ClipLoader from 'react-spinners/ClipLoader';
-import { usePathname, useRouter } from 'next/navigation';
-import { signOut } from 'next-auth/react'; // Import signOut from next-auth
+import { useEffect, useRef, useState } from 'react'
+import { User2Icon } from 'lucide-react'
+import Image from 'next/image'
+import ClipLoader from 'react-spinners/ClipLoader'
+import { usePathname } from 'next/navigation'
+import { signOut } from 'next-auth/react' // Import signOut from next-auth
+import { routeModule } from 'next/dist/build/templates/app-page'
+import { useRouter } from 'next/router'
 
 const UserInfo = ({ customUser }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const pathname = usePathname();
-  const dropdownRef = useRef(null); // Create a ref for the dropdown
+  const [isOpen, setIsOpen] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const pathname = usePathname()
+  const dropdownRef = useRef(null) // Create a ref for the dropdown
+  const route = useRouter()
 
   const handleLogout = async () => {
-    setLoading(true);
+    setLoading(true)
+
     try {
-      // Step 1: Get CSRF token
-      const csrfResponse = await fetch('/api/auth/csrf');
-      if (!csrfResponse.ok) {
-        throw new Error('Failed to fetch CSRF token');
+      const response = await fetch('/api/auth/removeUser', { method: 'POST' })
+
+      if (!response.ok) {
+        throw new Error('Failed to remove user session')
+      } else {
+        route.push('/')
       }
-      
-      const { csrfToken } = await csrfResponse.json();
-
-      // Step 2: Call your backend logout endpoint
-      const responseLogout = await fetch(`${process.env.NEXT_PUBLIC_FRONTEND_URL}api/auth/logout`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'csrf-token': csrfToken, // Include CSRF token in headers
-        },
-        body: JSON.stringify({ /* any necessary data */ }),
-      });
-
-      if (!responseLogout.ok) {
-        throw new Error('Failed to log out from backend');
-      }
-
-      // Step 3: Sign out from NextAuth and redirect to the specified URL
-      await signOut({ callbackUrl: process.env.NEXT_PUBLIC_FRONTEND_URL }); // Redirect after sign out
-
     } catch (error) {
-      console.error('Failed to log out:', error);
-    } finally {
-      setLoading(false); // Reset loading state regardless of success or failure
+      console.error('Failed to remove user session:', error)
     }
-  };
+  }
 
   const toggleMenu = () => {
-    setIsOpen((prev) => !prev);
-  };
+    setIsOpen((prev) => !prev)
+  }
 
   // Close the dropdown if the user clicks outside of it
   const handleClickOutside = (event) => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-      setIsOpen(false);
+      setIsOpen(false)
     }
-  };
+  }
 
   useEffect(() => {
-    setIsOpen(false); // Close the menu on pathname change
-  }, [pathname]);
+    setIsOpen(false) // Close the menu on pathname change
+  }, [pathname])
 
   useEffect(() => {
     // Add event listener for clicks outside the dropdown
-    document.addEventListener('mousedown', handleClickOutside);
-    
+    document.addEventListener('mousedown', handleClickOutside)
+
     return () => {
       // Clean up the event listener on unmount
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [])
 
   return (
     <div className='relative z-30'>
       <div onClick={toggleMenu} className='flex items-center justify-center cursor-pointer rounded-full bg-primary hover:primary-foreground transition duration-300 w-8 h-8 md:h-11 md:w-11'>
         {customUser?.image ? <Image src={customUser.image} alt='User image' width={18} height={18} className='rounded-full w-full h-full' /> : <User2Icon size={18} color='white' />}
       </div>
-      
+
       {/* Dropdown menu without animations */}
       {isOpen && (
         <div ref={dropdownRef} className='absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg overflow-hidden z-40'>
@@ -90,7 +74,7 @@ const UserInfo = ({ customUser }) => {
         </div>
       )}
     </div>
-  );
+  )
 }
 
-export default UserInfo;
+export default UserInfo

@@ -55,10 +55,10 @@ const UserInfo = () => {
   },[pathname])
 
   // Close the dropdown if the user clicks outside of it
-  // @ts-expect-error 
+  // @ts-expect-error ignore ts check
   const handleClickOutside = (event) => {
-      // @ts-expect-error 
-    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+  // @ts-expect-error ignore ts check
+  if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
       setIsOpen(false);
     }
   };
