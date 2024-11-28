@@ -59,7 +59,6 @@ const BillBoardForm: React.FC<BillboardFormProps> = ({ billboardData }) => {
       ToastSuccess(toastMessage)
       route.refresh()
     } catch (error) {
-      
       if ((error.response?.status === 402)) {
         ToastError(error.response.data)
       } else {
