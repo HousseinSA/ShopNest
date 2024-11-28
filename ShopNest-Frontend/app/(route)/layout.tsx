@@ -31,6 +31,7 @@ export default async function RootLayout({
   // Fetch categories only if storeId is available
   const categories: Category[] = storeId ? await getCategoriesData() : [];
 
+  console.log(userId, 'see if their is userId')
 //  console.log('see why when logout from dashboard frontend not login out',userId,customUser)
 
   return (
@@ -39,7 +40,7 @@ export default async function RootLayout({
         <link rel="icon" href="/shopnest-favicon-color.png" type="image/x-icon" />
       </head>
       <body className="min-h-screen w-full relative">
-        {!customUser && !userId ? (
+        {!customUser  ? (
           <LoginWrapper session={session}>
             <LoginPage />
           </LoginWrapper>
