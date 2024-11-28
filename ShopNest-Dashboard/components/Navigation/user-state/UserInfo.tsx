@@ -20,7 +20,6 @@ const UserInfo = ({ customUser }) => {
         throw new Error('Failed to remove user session');
       }
 
-      console.log('User logged out successfully');
     } catch (error) {
       console.error('Failed to remove user session:', error);
     } finally {

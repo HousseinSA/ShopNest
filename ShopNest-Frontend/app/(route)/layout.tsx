@@ -33,11 +33,6 @@ export default async function RootLayout({
   // Fetch categories only if storeId is available
   const categories: Category[] = storeId ? await getCategoriesData() : [];
 
-  if(!customUser){
-    // clearCockies();
-    console.log('clearing cookies')
-  }
-
   return (
     <html lang="en">
       <head>

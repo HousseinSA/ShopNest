@@ -24,7 +24,7 @@ export default function LoginPage() {
 
     if (result?.error) {
       console.error('Sign in error:', result.error)
-      alert('Failed to sign in')
+      alert('Failed to sign in. Please try again.')
       setLoadingProvider(null)
       return
     }
@@ -37,10 +37,6 @@ export default function LoginPage() {
         const userId = updatedSession.user.id
         setUserId(userId)
       }
-    }
-
-    if (status === 'authenticated' || provider === 'guest') {
-      window.location.reload()
     }
 
     setLoadingProvider(null)
@@ -74,30 +70,37 @@ export default function LoginPage() {
           <div className="flex flex-col space-y-4">
             <button
               onClick={() => handleSignIn('google')}
-              className="w-full p-2 text-white bg-primary hover:bg-opacity-80 rounded-md transition duration-200 flex items-center justify-center"
+              className="w-full p-2 text-white bg-primary hover:bg-primary-hover rounded-md transition duration-200 flex items-center justify-center"
             >
-              {loadingProvider === 'google'
-                ? 'Logging in...'
-                : 'Login with Google'}
               {loadingProvider === 'google' ? (
-                <ClipLoader size={15} color="#fff" />
+                <>
+                  <ClipLoader size={15} color="#fff" />
+                  <span className="ml-2">Logging you in with Google...</span>
+                </>
               ) : (
-                <Image
-                  src="/Google.png"
-                  alt="google"
-                  width={20}
-                  height={20}
-                  className="rounded-full ml-2"
-                />
+                <>
+                  Login with Google
+                  <Image
+                    src="/Google.png"
+                    alt="Google Logo"
+                    width={20}
+                    height={20}
+                    className="rounded-full ml-2"
+                  />
+                </>
               )}
             </button>
             <button
               onClick={() => handleSignIn('guest')}
-              className="w-full p-2 text-white bg-gray-700 rounded-md hover:bg-gray-800 transition duration-200"
+              className="w-full p-2 text-white bg-gray-700 rounded-md hover:bg-gray-800 transition duration-200 flex items-center justify-center"
             >
-              {loadingProvider === 'guest' ? 'Logging in...' : 'Login as Guest'}
-              {loadingProvider === 'guest' && (
-                <ClipLoader size={15} color="#fff" />
+              {loadingProvider === 'guest' ? (
+                <>
+                  <ClipLoader size={15} color="#fff" />
+                  <span className="ml-2">Logging you in as a guest...</span>
+                </>
+              ) : (
+                'Continue as Guest'
               )}
             </button>
           </div>
