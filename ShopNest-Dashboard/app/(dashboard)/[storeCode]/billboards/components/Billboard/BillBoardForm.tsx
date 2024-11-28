@@ -36,7 +36,7 @@ const BillBoardForm: React.FC<BillboardFormProps> = ({ billboardData }) => {
     }
   })
 
-  // state and routep
+  // state and route 
   const [loading, setLoading] = useState(false)
   const route = useRouter()
   const params = useParams()
@@ -44,7 +44,7 @@ const BillBoardForm: React.FC<BillboardFormProps> = ({ billboardData }) => {
   // conditions if there is not billboardData
   const toastMessage = billboardData ? `Billboard update!` : ' Billboard created!'
   const action  = billboardData ?(loading? "Updating billboard": "Update billboard"):(loading? 'Creating billboard':'Create billboard')
-
+console.log(`/api/${params.storeCode}/billboards`,'see if this correct url ')
   // sending data to DB
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
@@ -59,6 +59,7 @@ const BillBoardForm: React.FC<BillboardFormProps> = ({ billboardData }) => {
       ToastSuccess(toastMessage)
       route.refresh()
     } catch (error) {
+      
       if ((error.response?.status === 402)) {
         ToastError(error.response.data)
       } else {

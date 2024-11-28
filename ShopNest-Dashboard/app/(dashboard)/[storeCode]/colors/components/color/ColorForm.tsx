@@ -84,7 +84,7 @@ const ColorForm: React.FC<ColorFormProps> = ({ colorData }) => {
                   <FormControl>
                     <div className=' flex items-center space-x-4 '>
                       <Input disabled={loading} placeholder='Color Value' value={field.value} onChange={(e) => field.onChange(e.target.value)} />
-                      <input type='color' className='color-picker' disabled={loading} value={convertCssColorNameToHex(field.value)} onChange={(e) => field.onChange(e.target.value)} />
+                      <input type='color' disabled={loading} value={convertCssColorNameToHex(field.value)} onChange={(e) => field.onChange(e.target.value)} />
                     </div>
                   </FormControl>
                   <FormMessage />
