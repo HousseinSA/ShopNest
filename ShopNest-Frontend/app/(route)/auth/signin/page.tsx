@@ -3,75 +3,65 @@ import { signIn, useSession } from 'next-auth/react'
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 import ClipLoader from 'react-spinners/ClipLoader'
-import useCartState from '@/lib/state/CartState' // Adjust path as necessary
-import { gsap } from 'gsap';
+import useCartState from '@/lib/state/CartState'
+import { animateModal } from '@/lib/animateModal'
 
 type Provider = 'google' | 'guest'
 
 export default function LoginPage() {
-  const [loadingProvider, setLoadingProvider] = useState<Provider | null>(null); // Track loading state for each provider
-  const setUserId = useCartState((state) => state.setUserId); // Get the setUserId function
-  const { data: session, status } = useSession(); // Get session data
-  const modalRef = useRef(null); // Create a ref for the modal
+  const [loadingProvider, setLoadingProvider] = useState<Provider | null>(null)
+  const setUserId = useCartState((state) => state.setUserId)
+  const { data: session, status } = useSession()
+  const modalRef = useRef<null>(null)
 
   useEffect(() => {
-    // Animate the modal when it mounts
-    gsap.fromTo(modalRef.current, 
-      { scale: 0.8, opacity: 0 }, 
-      { scale: 1, opacity: 1, duration: 0.75, ease: "power3.out" }
-    );
-  }, []);
+    animateModal(modalRef, true) // Animate on mount
+  }, [])
 
   const handleSignIn = async (provider: Provider) => {
-    setLoadingProvider(provider); // Set loading for the clicked provider
+    setLoadingProvider(provider)
+    const result = await signIn(provider, { redirect: false })
 
-    const result = await signIn(provider, { redirect: false }); // Use redirect: false
     if (result?.error) {
-      console.error('Sign in error:', result.error);
-      alert('Failed to sign in');
-      setLoadingProvider(null); // Reset loading state
-      return;
+      console.error('Sign in error:', result.error)
+      alert('Failed to sign in')
+      setLoadingProvider(null)
+      return
     }
 
     if (result?.ok) {
-      // Fetch the updated session
       const updatedSession = await fetch('/api/auth/session').then((res) =>
         res.json()
-      );
-
+      )
       if (updatedSession?.user) {
-        const userId = updatedSession.user.id; // Get user ID from session
-        setUserId(userId); // Set the user ID in Cart State
+        const userId = updatedSession.user.id
+        setUserId(userId)
       }
     }
-    
-    // Reload page after login
-    if (status === 'authenticated') window.location.reload();
-    if (provider === 'guest') window.location.reload();
-    
-    setLoadingProvider(null); // Reset loading state
-  };
 
-  // Effect to update user ID when session changes
-  useEffect(() => {
-    //@ts-expect-error id defined
-    if (session?.user?.id) {
-      //@ts-expect-error id defined
-      setUserId(session.user.id); // Set userId from session if available
+    if (status === 'authenticated' || provider === 'guest') {
+      window.location.reload()
     }
-  }, [session, setUserId]);
+
+    setLoadingProvider(null)
+  }
+
+  useEffect(() => {
+    // @ts-expect-error userid
+    if (session?.user?.id) {
+      // @ts-expect-error sessionId
+      setUserId(session.user.id)
+    }
+  }, [session, setUserId])
 
   return (
     <>
-      {/* Backdrop for the login modal */}
       <div className="fixed inset-0 bg-black bg-opacity-50 z-40 backdrop-blur-sm transition-opacity duration-300 opacity-100" />
-      {/* Login Modal */}
       <div className="fixed inset-0 flex items-center justify-center z-50 w-full px-4">
-        <div 
-          ref={modalRef} 
-          className="bg-white rounded-lg shadow-lg p-8 max-w-lg w-full transition-transform duration-500 ease-in-out mt-16"
+        <div
+          ref={modalRef}
+          className="bg-white rounded-lg shadow-lg p-8 max-w-lg w-full transition-transform duration-500 ease-in-out"
         >
-          {/* Site Logo */}
           <div className="flex justify-center mb-6">
             <Image
               src="/shopnest-logo.png"
@@ -83,7 +73,6 @@ export default function LoginPage() {
           </div>
           <div className="flex flex-col space-y-4">
             <button
-              type="button"
               onClick={() => handleSignIn('google')}
               className="w-full p-2 text-white bg-primary hover:bg-opacity-80 rounded-md transition duration-200 flex items-center justify-center"
             >
@@ -94,7 +83,7 @@ export default function LoginPage() {
                 <ClipLoader size={15} color="#fff" />
               ) : (
                 <Image
-                  src={'/Google.png'}
+                  src="/Google.png"
                   alt="google"
                   width={20}
                   height={20}
@@ -103,7 +92,6 @@ export default function LoginPage() {
               )}
             </button>
             <button
-              type="button"
               onClick={() => handleSignIn('guest')}
               className="w-full p-2 text-white bg-gray-700 rounded-md hover:bg-gray-800 transition duration-200"
             >
@@ -116,5 +104,5 @@ export default function LoginPage() {
         </div>
       </div>
     </>
-  );
+  )
 }

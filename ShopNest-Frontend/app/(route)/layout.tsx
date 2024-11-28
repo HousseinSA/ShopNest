@@ -2,6 +2,8 @@
 import type { Metadata } from 'next';
 import '@/app/globals.css';
 
+// import {clearCockies} from '@/lib/clearCockies'
+
 import Footer from '@/components/layouts/Footer';
 import Header from '@/components/layouts/Header';
 import ModalProvider from '@/components/globals/modals/modalProvider';
@@ -31,8 +33,10 @@ export default async function RootLayout({
   // Fetch categories only if storeId is available
   const categories: Category[] = storeId ? await getCategoriesData() : [];
 
-  console.log(userId, 'see if their is userId')
-//  console.log('see why when logout from dashboard frontend not login out',userId,customUser)
+  if(!customUser){
+    // clearCockies();
+    console.log('clearing cookies')
+  }
 
   return (
     <html lang="en">
@@ -41,8 +45,8 @@ export default async function RootLayout({
       </head>
       <body className="min-h-screen w-full relative">
         {!customUser  ? (
-          <LoginWrapper session={session}>
-            <LoginPage />
+          <LoginWrapper session={session} >
+            <LoginPage  />
           </LoginWrapper>
         ) : (
           <>

@@ -55,7 +55,7 @@
     "lib/dashboardActions/mongodb/mongodbClient.tsx",
     "components/globals/NotRegisteredUser.jsx",
     "lib/getUserSession.ts"
-  ],
+, "../ShopNest-Frontend/lib/clearCockies.tsx"  ],
   "exclude": [
     "node_modules"
   ]

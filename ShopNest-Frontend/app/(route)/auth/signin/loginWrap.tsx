@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { SessionProvider } from 'next-auth/react';
-import { Session } from 'next-auth'; // Import the Session type
+import { Session } from 'next-auth'; 
 
 interface LoginWrapperProps {
   session: Session | null,
@@ -9,7 +9,6 @@ interface LoginWrapperProps {
 }
 
 const LoginWrapper: React.FC<LoginWrapperProps> = ({ session,children }) => {
-
 
   return (
     <SessionProvider session={session}>
