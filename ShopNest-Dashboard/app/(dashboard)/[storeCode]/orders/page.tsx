@@ -1,8 +1,8 @@
 import { format } from 'date-fns'
 
 import prismaDB from '@/lib/prismaClient'
-import { OrderProps } from '@/components/orders/orderTable/columns'
-import StoreOrders from '@/components/orders/StoreOrders'
+import { OrderProps } from './components/orderTable/columns'
+import StoreOrders from './components/StoreOrders'
 import { PriceFormatter } from '@/lib/PriceFormatter'
 import validateObjectId from  '@/lib/mongodb/mongodDBValidate'
 

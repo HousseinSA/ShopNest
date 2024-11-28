@@ -19,6 +19,7 @@ export async function POST(req: Request, { params }: { params: { storeCode: stri
 
     const body = await req.json()
     const { label, imageUrl } = body
+    console.log(label, imageUrl, params.storeCode , storeByUserId, 'for testing')
 
     if (!imageUrl || !label) {
       return new NextResponse('No imageUrl or label provided', { status: 400 })

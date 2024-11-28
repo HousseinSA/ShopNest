@@ -5,8 +5,8 @@ import React from 'react'
 import SectionHeader from '@/components/globals/storeHead/SectionHeader'
 
 import { Separator } from '@/components/ui/separator'
-import { OrderProps, columns } from '@/components/orders/orderTable/columns'
-import { DataTable } from '@/components/orders/orderTable/data-table'
+import { OrderProps, columns } from './orderTable/columns'
+import { DataTable } from './orderTable/data-table'
 
 interface StoreOrdersProps {
   orders: OrderProps[]

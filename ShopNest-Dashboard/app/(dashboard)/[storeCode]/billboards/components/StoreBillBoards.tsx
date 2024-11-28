@@ -5,9 +5,8 @@ import { useRouter, useParams } from 'next/navigation'
 import SectionHeader from '@/components/globals/storeHead/SectionHeader'
 import HeadButton from '@/components/globals/storeHead/HeadButton'
 import { Separator } from '@/components/ui/separator'
-import { BillboardProps, columns } from '@/components/Billboards/BillboardsTable/columns'
-import { DataTable } from '@/components/Billboards/BillboardsTable/data-table'
-
+import { BillboardProps, columns } from './BillboardsTable/columns'
+import { DataTable } from './BillboardsTable/data-table'
 interface BillBoardsProps {
   billBoards: BillboardProps[]
 }
