@@ -6,8 +6,8 @@ import { useRouter, useParams } from 'next/navigation'
 import SectionHeader from '@/components/globals/storeHead/SectionHeader'
 import HeadButton from '@/components/globals/storeHead/HeadButton'
 import { Separator } from '@/components/ui/separator'
-import { SizeProps, columns } from '@/components/Sizes/SizesTable/columns'
-import { DataTable } from '@/components/Sizes/SizesTable/data-table'
+import { SizeProps, columns } from '@/app/(dashboard)/[storeCode]/sizes/components/SizesTable/columns'
+import { DataTable } from '@/app/(dashboard)/[storeCode]/sizes/components/SizesTable/data-table'
 
 interface StoreSizesProps {
   sizes: SizeProps[]

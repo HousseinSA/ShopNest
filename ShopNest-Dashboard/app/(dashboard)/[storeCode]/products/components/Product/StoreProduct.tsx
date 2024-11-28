@@ -8,7 +8,7 @@ import axios from 'axios'
 import { Button } from '@/components/ui/button'
 import SectionHeader from '@/components/globals/storeHead/SectionHeader'
 
-import ProductForm from '@/components/products/Product/ProductForm'
+import ProductForm from '@/app/(dashboard)/[storeCode]/products/components/Product/ProductForm'
 import { Separator } from '@/components/ui/separator'
 import AlertModal from '@/components/Modals/AlertModal'
 import { ToastError, ToastSuccess } from '@/components/globals/Toast'

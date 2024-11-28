@@ -1,5 +1,5 @@
 import { redirect } from 'next/navigation'
-import StoreCategory from '@/components/Categories/category/StoreCategory'
+import StoreCategory from '@/app/(dashboard)/[storeCode]/categories/components/category/StoreCategory'
 import validateObjectId from  '@/lib/mongodb/mongodDBValidate'
 
 import prismaDB from '@/lib/prismaClient'

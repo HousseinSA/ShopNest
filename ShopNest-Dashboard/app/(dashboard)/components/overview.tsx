@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from 'recharts'
-import OnlyClient from '../globals/OnlyClient'
+import OnlyClient from '../../../components/globals/OnlyClient'
 
 interface OverViewProps {
   data: any[]

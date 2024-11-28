@@ -1,8 +1,8 @@
 import { format } from 'date-fns'
 
 import prismaDB from '@/lib/prismaClient'
-import { ColorProps } from '@/components/colors/ColorTable/columns'
-import StoreColors from '@/components/colors/StoreColors'
+import { ColorProps } from '@/app/(dashboard)/[storeCode]/colors/components/ColorTable/columns'
+import StoreColors from '@/app/(dashboard)/[storeCode]/colors/components/StoreColors'
 import validateObjectId from  '@/lib/mongodb/mongodDBValidate'
 
 import { redirect } from 'next/navigation'

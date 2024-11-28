@@ -5,7 +5,7 @@ import validateObjectId from  '@/lib/mongodb/mongodDBValidate'
 
 import prismaDB from '@/lib/prismaClient'
 // import StoreSettingsForm from '@/components/StoreSettings/StoreSettings'
-import StoreSettings from '@/components/Settings/StoreSettings'
+import StoreSettings from '@/app/(dashboard)/[storeCode]/settings/components/StoreSettings'
 import { userInfo } from '@/lib/userInfo'
 
 interface StoreSettingsProps {

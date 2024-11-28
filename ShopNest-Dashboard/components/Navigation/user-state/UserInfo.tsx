@@ -83,7 +83,7 @@ const UserInfo = ({ customUser }) => {
             >
               {loading ? (
                 <>
-                  Logging out... <ClipLoader size={15} color='#fff' />
+                 Login you out... <ClipLoader size={15} color='#fff' />
                 </>
               ) : (
                 'Log out'

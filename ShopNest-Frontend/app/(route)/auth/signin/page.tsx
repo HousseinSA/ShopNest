@@ -11,7 +11,7 @@ type Provider = 'google' | 'guest'
 export default function LoginPage() {
   const [loadingProvider, setLoadingProvider] = useState<Provider | null>(null)
   const setUserId = useCartState((state) => state.setUserId)
-  const { data: session, status } = useSession()
+  const { data: session } = useSession()
   const modalRef = useRef<null>(null)
 
   useEffect(() => {
@@ -75,7 +75,7 @@ export default function LoginPage() {
               {loadingProvider === 'google' ? (
                 <>
                   <ClipLoader size={15} color="#fff" />
-                  <span className="ml-2">Logging you in with Google...</span>
+                  <span className="ml-2">login you in with Google...</span>
                 </>
               ) : (
                 <>

@@ -1,6 +1,6 @@
 import prismaDB from '@/lib/prismaClient'
 import { redirect } from 'next/navigation'
-import StoreColor from '@/components/colors/color/StoreColor'
+import StoreColor from '@/app/(dashboard)/[storeCode]/colors/components/color/StoreColor'
 import validateObjectId from  '@/lib/mongodb/mongodDBValidate'
 
 

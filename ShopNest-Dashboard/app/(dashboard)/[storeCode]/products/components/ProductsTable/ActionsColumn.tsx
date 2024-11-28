@@ -4,7 +4,7 @@ import { Copy, Edit, MoreHorizontal, Trash } from 'lucide-react'
 import { useParams, useRouter } from 'next/navigation'
 import axios from 'axios'
 
-import { ProductProps } from '@/components/products/ProductsTable/columns'
+import { ProductProps } from '@/app/(dashboard)/[storeCode]/products/components/ProductsTable/columns'
 import { Button } from '@/components/ui/button'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import AlertModal from '@/components/Modals/AlertModal'

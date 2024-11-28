@@ -5,8 +5,8 @@ import { useRouter, useParams } from 'next/navigation'
 import SectionHeader from '@/components/globals/storeHead/SectionHeader'
 import HeadButton from '@/components/globals/storeHead/HeadButton'
 import { Separator } from '@/components/ui/separator'
-import { ColorProps, columns } from '@/components/colors/ColorTable/columns'
-import { DataTable } from '@/components/colors/ColorTable/data-table'
+import { ColorProps, columns } from '@/app/(dashboard)/[storeCode]/colors/components/ColorTable/columns'
+import { DataTable } from '@/app/(dashboard)/[storeCode]/colors/components/ColorTable/data-table'
 
 interface StoreCategoryProps {
   colors: ColorProps[]

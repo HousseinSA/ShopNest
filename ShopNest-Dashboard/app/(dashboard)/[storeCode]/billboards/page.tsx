@@ -1,7 +1,7 @@
 import { format } from 'date-fns'
 
-import { BillboardProps } from '@/components/Billboards/BillboardsTable/columns'
-import StoreBillBoards from '@/components/Billboards/StoreBillBoards'
+import { BillboardProps } from './components/BillboardsTable/columns'
+import StoreBillBoards from './components/StoreBillBoards'
 import prismaDB from '@/lib/prismaClient'
 import { redirect } from 'next/navigation'
 import validateObjectId from  '@/lib/mongodb/mongodDBValidate'

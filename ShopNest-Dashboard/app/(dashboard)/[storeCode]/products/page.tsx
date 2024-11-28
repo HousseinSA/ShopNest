@@ -1,7 +1,7 @@
 import { format } from 'date-fns'
 
-import { ProductProps } from '@/components/products/ProductsTable/columns'
-import StoreProducts from '@/components/products/StoreProducts'
+import { ProductProps } from '@/app/(dashboard)/[storeCode]/products/components/ProductsTable/columns'
+import StoreProducts from '@/app/(dashboard)/[storeCode]/products/components/StoreProducts'
 import prismaDB from '@/lib/prismaClient'
 import { PriceFormatter } from '@/lib/PriceFormatter'
 import validateObjectId from  '@/lib/mongodb/mongodDBValidate'

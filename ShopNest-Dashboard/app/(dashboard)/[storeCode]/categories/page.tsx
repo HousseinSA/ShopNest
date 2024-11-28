@@ -2,8 +2,8 @@ import { format } from 'date-fns'
 import { redirect } from 'next/navigation'
 
 import prismaDB from '@/lib/prismaClient'
-import { CategoryProps } from '@/components/Categories/CategoryTable/columns'
-import StoreCategories from '@/components/Categories/StoreCategories'
+import { CategoryProps } from '@/app/(dashboard)/[storeCode]/categories/components/CategoryTable/columns'
+import StoreCategories from '@/app/(dashboard)/[storeCode]/categories/components/StoreCategories'
 import validateObjectId from  '@/lib/mongodb/mongodDBValidate'
 
 

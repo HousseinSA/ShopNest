@@ -8,12 +8,11 @@ import axios from 'axios'
 import { Button } from '@/components/ui/button'
 import StoreSettingsForm from './StoreSettingsForm'
 import { Separator } from '@/components/ui/separator'
-import ApiAlert from '@/components/globals/ApiAlert'
 import useClientMethods from '@/hooks/use-client-methods'
 import SectionHeader from '@/components/globals/storeHead/SectionHeader'
 
 import AlertModal from '@/components/Modals/AlertModal'
-import { ToastSuccess, ToastError } from '../globals/Toast'
+import { ToastSuccess, ToastError } from '../../../../../components/globals/Toast'
 
 interface StoreSettingsProps {
   storeData: Store

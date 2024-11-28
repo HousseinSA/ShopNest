@@ -5,8 +5,8 @@ import { useRouter, useParams } from 'next/navigation'
 import SectionHeader from '@/components/globals/storeHead/SectionHeader'
 import HeadButton from '@/components/globals/storeHead/HeadButton'
 import { Separator } from '@/components/ui/separator'
-import { ProductProps, columns } from '@/components/products/ProductsTable/columns'
-import { DataTable } from '@/components/products/ProductsTable/data-table'
+import { ProductProps, columns } from '@/app/(dashboard)/[storeCode]/products/components/ProductsTable/columns'
+import { DataTable } from '@/app/(dashboard)/[storeCode]/products/components/ProductsTable/data-table'
 
 interface StoreProductProps {
   products: ProductProps[] | undefined

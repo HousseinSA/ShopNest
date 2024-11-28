@@ -10,9 +10,9 @@ import { getSalesCount } from '@/lib/dashboardActions/getSalesCount'
 import { getInStockCount } from '@/lib/dashboardActions/getInStockCount'
 import validateObjectId from '@/lib/mongodb/mongodDBValidate'
 
-import Overview from '@/components/Dashboard/overview'
+import Overview from '@/app/(dashboard)/components/overview'
 import { getGraphData } from '@/lib/dashboardActions/getGraphData'
-import CardHead from '@/components/Dashboard/CardHead'
+import CardHead from '@/app/(dashboard)/components/CardHead'
 
 interface StoreParams {
   params: { storeCode: string }

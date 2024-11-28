@@ -65,7 +65,7 @@ const uniqueBrands = brands.map((brand) => {
     <div className="bg-white">
       <Container>
         <Billboard billboardData={category.billboard} />
-        <div className=" sm:px-6 pb-6 lg:px-8 pb-20">
+        <div className=" sm:px-6  lg:px-8 pb-20">
           <div className="lg:grid lg:grid-cols-5 lg:gap-x-6">
             <MobileFilters colors={colors} sizes={sizes} brands={brands} products={products} />
             <div className="lg:block hidden">
