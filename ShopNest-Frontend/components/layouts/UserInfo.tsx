@@ -99,8 +99,13 @@ const UserInfo = () => {
               onClick={handleLogout}
               className="mt-2 w-full flex items-center justify-center gap-2 bg-red-500 hover:bg-red-600 text-white py-1 rounded"
             >
-              {loading ? 'Login you out...' : 'log out'}
-              {loading && <ClipLoader size={15} color="#fff" />}
+              {loading ? (
+                <>
+                  <ClipLoader size={15} color='#fff' />
+                </>
+              ) : (
+                'Log out'
+              )}
             </button>
           </div>
         </div>

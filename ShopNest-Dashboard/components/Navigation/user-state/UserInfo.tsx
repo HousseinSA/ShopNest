@@ -23,7 +23,7 @@ const UserInfo = ({ customUser }) => {
     } catch (error) {
       console.error('Failed to remove user session:', error);
     } finally {
-      setLoading(false); // Reset loading state in both success and error cases
+      setLoading(false); 
       window.location.href = '/';
     }
   };
@@ -83,7 +83,7 @@ const UserInfo = ({ customUser }) => {
             >
               {loading ? (
                 <>
-                 Login you out... <ClipLoader size={15} color='#fff' />
+                  <ClipLoader size={15} color='#fff' />
                 </>
               ) : (
                 'Log out'

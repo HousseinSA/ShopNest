@@ -56,7 +56,7 @@
 }
 
   /* tool tip */
-  [data-title] {
+  [data-title] {  
     position: relative;
     cursor: pointer;
   }
