@@ -40,8 +40,8 @@ export const userInfo = async () => {
   const currentStore = await db.collection('currentStore').findOne({ userId });
   
   // Default store ID if no current store is found
-  const defaultStoreId = '67168ed76339cddccbeb4ae4'; // Replace with your actual default store ID
+  const defaultStoreId = '67168ed76339cddccbeb4ae4';
   const storeId = currentStore?.storeId || defaultStoreId;
 
-  return { session, userId, customUser, storeId }; // Return session, userId, customUser, and storeId
+  return { session, userId, customUser, storeId }; 
 };

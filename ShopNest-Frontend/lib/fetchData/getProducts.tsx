@@ -12,10 +12,9 @@ interface Query extends StringifiableRecord {
 
 const getProducts = async (query:Query): Promise<Product[]> => {
   const {storeId} = await userInfo()
-
   const URL = `${process.env.NEXT_PUBLIC_STORE_URL}${storeId}/products`
   const url = qs.stringifyUrl({
-    url: URL   ,
+    url: URL,
     query
   })
   const response = await fetch(url)

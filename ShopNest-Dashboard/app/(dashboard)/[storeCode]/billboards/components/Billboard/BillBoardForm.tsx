@@ -11,7 +11,7 @@ import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '
 import { Textarea } from '@/components/ui/textarea'
 import FormButton from '@/components/globals/FormButton'
 import ImageUpload from '@/components/globals/ImageUpload'
-import {ToastSuccess, ToastError} from '@/components/globals/Toasth'
+import {ToastSuccess, ToastError} from '@/components/globals/Toast'
 
 
 // billboardData props

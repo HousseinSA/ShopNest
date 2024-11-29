@@ -62,14 +62,12 @@ const Header: React.FC<HeaderProps> = ({
           </Link>
         </div>
         <Navigation categoriesData={categories} />
-        <div className=" ml-0 sm:ml-auto space-x-4 flex items-center">
+        <div className=" sm:ml-auto gap-4 flex items-center">
           <SessionProvider session={session}>
             <CartButton userId={userId} storeId={storeId} />
           </SessionProvider>
           <UserInfoWrap />
-          <div className="block sm:hidden">
             <MobileMenu />
-          </div>
         </div>
       </div>
     </header>

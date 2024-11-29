@@ -21,9 +21,7 @@ const Head = (
       </div>
       <div className='ml-auto flex items-center space-x-3'>
         <UserInfoWrap customUser={customUser} />
-        <div className='block lg:hidden'>
           <MobileMenu />
-        </div>
       </div>
     </header>
   )

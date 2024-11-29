@@ -16,7 +16,7 @@ type cartContainer = {
 const CartContainer: React.FC<cartContainer> = ({storeId, userId}) => {
 
 
-    const { items } = useCartState()
+    const { items,deleteItem } = useCartState()
     const router = useRouter()
     
     const userItems = items.filter((item) => item.userId === userId && item.storeId === storeId )
@@ -49,7 +49,7 @@ return (
               )}
               <ul>
                 {userItems.map(({ product }, index) => (
-                  <CartItem key={product.id} item={product} isFirst={index ===0} />
+                  <CartItem key={product.id} item={product} isFirst={index ===0} deleteItem={deleteItem} />
                 ))}
               </ul>
             </div>

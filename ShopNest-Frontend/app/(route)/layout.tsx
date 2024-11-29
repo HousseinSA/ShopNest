@@ -11,8 +11,6 @@ import ToastProvider from '@/components/globals/ToastProvider';
 import getCategoriesData from '@/lib/fetchData/getCategories';
 import { Category } from '@/lib/StoreTypes';
 import { userInfo } from '@/lib/userInfo';
-import LoginWrapper from '@/app/(route)/auth/signin/loginWrap';
-import LoginPage from '@/app/(route)/auth/signin/page';
 
 export const metadata: Metadata = {
   title: 'ShopNest E-commerce',
@@ -28,7 +26,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   // Fetch user info including storeId
-  const { userId, storeId, session, customUser } = await userInfo();
+  const { userId, storeId, session } = await userInfo();
 
   // Fetch categories only if storeId is available
   const categories: Category[] = storeId ? await getCategoriesData() : [];
@@ -39,11 +37,6 @@ export default async function RootLayout({
         <link rel="icon" href="/shopnest-favicon-color.png" type="image/x-icon" />
       </head>
       <body className="min-h-screen w-full relative">
-        {!customUser  ? (
-          <LoginWrapper session={session} >
-            <LoginPage  />
-          </LoginWrapper>
-        ) : (
           <>
             <ToastProvider />
             <ModalProvider />
@@ -53,7 +46,6 @@ export default async function RootLayout({
             {children}
             <Footer />
           </>
-        )}
       </body>
     </html>
   );

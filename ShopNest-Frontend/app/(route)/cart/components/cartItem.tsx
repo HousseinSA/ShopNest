@@ -4,16 +4,15 @@ import { X } from 'lucide-react'
 
 import { Product } from '@/lib/StoreTypes'
 import ButtonIcon from '@/components/ui/IconButton'
-import useCartState from '@/lib/state/CartState'
 import Currency from '@/components/products/currency'
 import {CapitalizedFirstLetter} from '@/components/globals/CapitalizedFirstLetter'
 
 interface CartItemProps {
   item: Product
   isFirst:boolean
+  deleteItem:(productId:string)=>void
 }
-const CartItem: React.FC<CartItemProps> = ({ item,isFirst }) => {
-  const { deleteItem } = useCartState()
+const CartItem: React.FC<CartItemProps> = ({ item,isFirst, deleteItem }) => {
 
   const removeItem = ()=>{
     deleteItem(item.id)

@@ -13,12 +13,12 @@ const HamburgerMenu: React.FC = () => {
   }
 
   return (
-    <div className="relative">
-      <button onClick={toggleMenu}>
+    <>
+      <button onClick={toggleMenu} className='block sm:hidden'>
         {!isOpen && (
           <Menu
             size={25}
-            className={`text-primary transition-all duration-300 ${
+            className={`text-primary transition-all h-full duration-300 ${
               isOpen
                 ? 'opacity-0 transform scale-75'
                 : 'opacity-100 transform scale-100'
@@ -53,7 +53,7 @@ const HamburgerMenu: React.FC = () => {
           menuStatus={toggleMenu}
         />
       </div>
-    </div>
+      </>
   )
 }
 

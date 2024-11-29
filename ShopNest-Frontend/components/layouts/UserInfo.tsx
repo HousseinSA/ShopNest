@@ -39,6 +39,8 @@ const UserInfo = () => {
 
     // Sign out the user
     await signOut()
+    window.location.href = '/';
+
   }
 
   const toggleMenu = () => {

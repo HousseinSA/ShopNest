@@ -40,7 +40,8 @@ export default function LoginPage() {
     }
 
     setLoadingProvider(null)
-    window.location.reload()
+    // window.location.reload()
+    window.location.href = '/';
   }
 
   useEffect(() => {

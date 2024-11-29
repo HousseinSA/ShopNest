@@ -30,7 +30,27 @@ const Loading = () => {
         {/* Product Grid Skeleton */}
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 sm:gap-6">
           {skeletonItems.map((_, index) => (
-            <div key={index} className="skeleton h-36 w-full bg-gray-200 rounded-lg"></div>
+         <div
+         key={index}
+         className="rounded-xl cursor-pointer bg-white group border p-3 shadow-md relative"
+         style={{ width: '100%' }} // Full width to match original cards
+       >
+         <div className="aspect-square relative bg-gray-300 rounded-xl skeleton"></div>
+         <div>
+           <p
+             className="skeleton-text skeleton mt-2"
+             style={{ height: '.8rem', width: '45%' }} // Adjusted width for text
+           ></p>
+           <p
+             className="m-0 skeleton-text skeleton"
+             style={{ height: '.8rem', width: '65%' }} // Adjusted width for text
+           ></p>
+         </div>
+         <div
+           className="skeleton-text skeleton"
+           style={{ height: '.8rem', width: '25%' }} // Adjusted width for price
+         ></div>
+       </div>
           ))}
         </div>
       </div>
