@@ -8,7 +8,10 @@ import Currency from '@/components/products/currency';
 import useCartState from '@/lib/state/CartState';
 import FormButton from "@/components/globals/formButton";
 
-const Summary = () => {
+type summaryProps ={
+  storeId:string
+}
+const Summary = ({storeId}:summaryProps) => {
   const searchParams = useSearchParams();
   const { items, deleteAll, userId } = useCartState();
   
@@ -46,7 +49,7 @@ const Summary = () => {
     setLoading(true);
     try {
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_STORE_URL}/checkout`,
+        `${process.env.NEXT_PUBLIC_STORE_URL}${storeId}/checkout`,
         {
           productsIds: userItems.map((item) => item.product.id), // Access id through product
         }

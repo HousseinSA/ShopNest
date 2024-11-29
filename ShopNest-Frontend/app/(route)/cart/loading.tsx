@@ -23,10 +23,10 @@ const Loading = () => {
                 </div>
                 <div className="relative flex flex-col flex-1 justify-between mt-4 lg:mt-0">
                   <div className="relative pr-9 sm:pr-0">
-                    <div className="skeleton" style={{ width: '100%', height: '1rem', backgroundColor: '#e0e0e0' }}></div>
+                    <div className="skeleton my-2" style={{ width: '100%', height: '1rem', backgroundColor: '#e0e0e0' }}></div>
                     <div className="mt-1 text-sm capitalize flex items-center gap-x-4">
-                      <div className="skeleton" style={{ width: '4rem', height: '1rem', backgroundColor: '#e0e0e0' }}></div>
-                      <div className="skeleton" style={{ width: '4rem', height: '1rem', backgroundColor: '#e0e0e0' }}></div>
+                      <div className="skeleton my-2" style={{ width: '4rem', height: '1rem', backgroundColor: '#e0e0e0' }}></div>
+                      <div className="skeleton my-2" style={{ width: '4rem', height: '1rem', backgroundColor: '#e0e0e0' }}></div>
                     </div>
                     <div className="skeleton" style={{ width: '6rem', height: '1rem', backgroundColor: '#e0e0e0' }}></div>
                   </div>

@@ -44,7 +44,6 @@ const BillBoardForm: React.FC<BillboardFormProps> = ({ billboardData }) => {
   // conditions if there is not billboardData
   const toastMessage = billboardData ? `Billboard update!` : ' Billboard created!'
   const action  = billboardData ?(loading? "Updating billboard": "Update billboard"):(loading? 'Creating billboard':'Create billboard')
-console.log(`/api/${params.storeCode}/billboards`,'see if this correct url ')
   // sending data to DB
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {

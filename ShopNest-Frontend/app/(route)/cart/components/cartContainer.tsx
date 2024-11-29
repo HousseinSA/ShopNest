@@ -9,7 +9,7 @@ import Container from '@/components/ui/container'
 import useCartState from '@/lib/state/CartState'
 
 type cartContainer = {
-    storeId:string| null 
+    storeId:string
     userId: string | null
 }
 
@@ -53,7 +53,7 @@ return (
                 ))}
               </ul>
             </div>
-            {userItems.length > 0 && <Summary />}
+            {userItems.length > 0 && <Summary storeId={storeId} />}
           </div>
         </div>
       </Container>
