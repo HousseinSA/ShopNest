@@ -1,16 +1,34 @@
-import { useState } from 'react'
-import { Menu, X } from 'lucide-react'
-import MobileNavigation from '@/components/layouts/Navigation/MobileNavigation'
-import useCategoryList from '@/lib/state/categoriesState'
-import ButtonIcon from '@/components/ui/IconButton'
+import { useEffect, useRef, useState } from 'react';
+import { Menu, X } from 'lucide-react';
+import MobileNavigation from '@/components/layouts/Navigation/MobileNavigation';
+import useCategoryList from '@/lib/state/categoriesState';
+import ButtonIcon from '@/components/ui/IconButton';
+import { gsap } from 'gsap';
 
 const HamburgerMenu: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false)
-  const { categoriesList } = useCategoryList()
+  const [isOpen, setIsOpen] = useState(false);
+  const { categoriesList } = useCategoryList();
+  
+  const menuRef = useRef<HTMLDivElement>(null);
+  const overlayRef = useRef<HTMLDivElement>(null);
 
   const toggleMenu = () => {
-    setIsOpen(!isOpen)
-  }
+    setIsOpen(prev => !prev);
+  };
+
+  useEffect(() => {
+    const menu = menuRef.current;
+    const overlay = overlayRef.current;
+
+    if (isOpen) {
+      gsap.to(menu, { x: 0, opacity: 1, duration: 0.3 });
+      gsap.to(overlay, { opacity: 0.5, duration: 0.3, display: 'block' });
+    } else {
+      gsap.to(menu, { x: '-100%', opacity: 0, duration: 0.3 });
+      //@ts-expect-error overlay is defined
+      gsap.to(overlay, { opacity: 0, duration: 0.3, onComplete: () => (overlay.style.display = 'none') });
+    }
+  }, [isOpen]);
 
   return (
     <>
@@ -18,26 +36,22 @@ const HamburgerMenu: React.FC = () => {
         {!isOpen && (
           <Menu
             size={25}
-            className={`text-primary transition-all h-full duration-300 ${
-              isOpen
-                ? 'opacity-0 transform scale-75'
-                : 'opacity-100 transform scale-100'
-            }`}
+            className={`text-primary`}
           />
         )}
       </button>
 
-      {isOpen && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-40 backdrop-blur-sm transition-opacity duration-300"
-          onClick={toggleMenu}
-        />
-      )}
-
-      <div
-        className={`fixed top-0 left-0 w-2/3 h-full bg-white shadow-lg z-50 transition-transform duration-300 transform ${
-          isOpen ? 'translate-x-0 opacity-100' : '-translate-x-full opacity-0'
-        }`}
+      <div 
+        ref={overlayRef}
+        className={`fixed inset-0 bg-black bg-opacity-50 z-40 backdrop-blur-sm`} 
+        style={{ display: isOpen ? 'block' : 'none' }} 
+        onClick={toggleMenu}
+      />
+      
+      <div 
+        ref={menuRef}
+        className={`fixed top-0 left-0 w-2/3 h-full bg-white shadow-lg z-50`} 
+        style={{ transform: 'translateX(-100%)', opacity: 0 }}
       >
         <div className="flex justify-end p-4">
           <div className="absolute top-4 right-4 z-10">
@@ -53,8 +67,8 @@ const HamburgerMenu: React.FC = () => {
           menuStatus={toggleMenu}
         />
       </div>
-      </>
-  )
+    </>
+  );
 }
 
-export default HamburgerMenu
+export default HamburgerMenu;
