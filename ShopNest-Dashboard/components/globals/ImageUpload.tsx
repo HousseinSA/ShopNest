@@ -47,7 +47,6 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
       }
    
     } catch (error) {
-      console.error('Error during image upload:', error);
     }
   };
 

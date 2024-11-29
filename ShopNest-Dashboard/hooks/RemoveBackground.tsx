@@ -22,7 +22,6 @@ export const RemoveBackground = async (imageUrl: string) => {
     const removedBackgroundUrl = URL.createObjectURL(blob);
     return removedBackgroundUrl;
   } catch (error) {
-    console.error('Error removing background:', error);
     return null;
   }
 };

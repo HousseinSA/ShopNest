@@ -59,7 +59,6 @@ export async function PATCH(req: Request, { params }: { params: { storeCode: str
 
     return NextResponse.json(billboard)
   } catch (error) {
-    console.log(`BILLBOARD_PATCH`, error)
     return new NextResponse('Internal Error', { status: 500 })
   }
 }
@@ -78,7 +77,6 @@ export async function GET(req: Request, { params }: { params: { storeCode: strin
 
     return NextResponse.json(billboard)
   } catch (error) {
-    console.log(`BILLBOARD_GET`, error)
     return new NextResponse('Internal Error', { status: 500 })
   }
 }
@@ -96,7 +94,6 @@ export async function DELETE(req: Request, { params }: { params: { storeCode: st
     })
     return NextResponse.json(billboard)
   } catch (error) {
-    console.log(`BILLBOARD_DELETE`, error)
     return new NextResponse('Internal Error', { status: 500 })
   }
 }

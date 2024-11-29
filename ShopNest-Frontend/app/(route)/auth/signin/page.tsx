@@ -23,7 +23,6 @@ export default function LoginPage() {
     const result = await signIn(provider, { redirect: false })
 
     if (result?.error) {
-      console.error('Sign in error:', result.error)
       alert('Failed to sign in. Please try again.')
       setLoadingProvider(null)
       return

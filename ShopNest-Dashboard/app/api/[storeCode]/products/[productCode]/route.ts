@@ -79,7 +79,6 @@ export async function PATCH(req: Request, { params }: { params: { storeCode: str
 
     return NextResponse.json(updatedProduct);
   } catch (error) {
-    console.log('PRODUCT_PATCH', error);
     return new NextResponse('Internal Error', { status: 500 });
   }
 }
@@ -112,7 +111,6 @@ export async function GET(req: Request, { params }: { params: { storeCode: strin
 
     return NextResponse.json(product)
   } catch (error) {
-    console.log(`PRODUCTS_GET`, error)
     return new NextResponse('Internal Error', { status: 500 })
   }
 }

@@ -19,7 +19,6 @@ export async function POST(req: Request, { params }: { params: { storeCode: stri
 
     const body = await req.json()
     const { label, imageUrl } = body
-    console.log( params.storeCode , storeByUserId, 'for testing')
 
     if (!imageUrl || !label) {
       return new NextResponse('No imageUrl or label provided', { status: 400 })
@@ -63,7 +62,6 @@ export async function POST(req: Request, { params }: { params: { storeCode: stri
 
     return NextResponse.json(billboard)
   } catch (error) {
-    console.log(`Billboard_POST`, error)
     return new NextResponse('Internal Error', { status: 500 })
   }
 }
@@ -83,7 +81,6 @@ export async function GET(req: Request, { params }: { params: { storeCode: strin
     })
     return NextResponse.json(billboard)
   } catch (error) {
-    console.log(`CATEGORY_GET`, error)
     return new NextResponse('Internal Error', { status: 500 })
   }
 }

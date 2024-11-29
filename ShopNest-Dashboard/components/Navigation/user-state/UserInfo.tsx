@@ -21,7 +21,6 @@ const UserInfo = ({ customUser }) => {
       }
 
     } catch (error) {
-      console.error('Failed to remove user session:', error);
     } finally {
       setLoading(false); 
       window.location.href = '/';

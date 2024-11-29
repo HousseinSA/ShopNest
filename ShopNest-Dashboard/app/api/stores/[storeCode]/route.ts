@@ -4,7 +4,7 @@ import { userInfo } from '@/lib/userInfo'
 
 export async function PATCH(req: Request, { params }: { params: { storeCode: string } }) {
   try {
-    const {userId} = await userInfo(params.storeCode)
+    const { userId } = await userInfo(params.storeCode)
 
     if (!params.storeCode) {
       return new NextResponse('store code is required', { status: 400 })
@@ -27,14 +27,13 @@ export async function PATCH(req: Request, { params }: { params: { storeCode: str
     })
     return NextResponse.json(store)
   } catch (error) {
-    console.log(`STORES_PATCH`, error)
     return new NextResponse('Internal Error', { status: 500 })
   }
 }
 
 export async function DELETE(req: Request, { params }: { params: { storeCode: string } }) {
   try {
-    const {userId} = await userInfo(params.storeCode)
+    const { userId } = await userInfo(params.storeCode)
 
     if (!params.storeCode) {
       return new NextResponse('store code is required', { status: 400 })
@@ -48,7 +47,6 @@ export async function DELETE(req: Request, { params }: { params: { storeCode: st
     })
     return NextResponse.json(store)
   } catch (error) {
-    console.log(`STORES_DELETE`, error)
     return new NextResponse('Internal Error', { status: 500 })
   }
 }

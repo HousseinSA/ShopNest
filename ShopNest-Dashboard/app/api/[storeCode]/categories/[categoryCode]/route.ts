@@ -51,7 +51,6 @@ export async function PATCH(req: Request, { params }: { params: { storeCode: str
 
     return NextResponse.json(category)
   } catch (error) {
-    console.log(`CATEGORY_PATCH`, error)
     return new NextResponse('Internal Error', { status: 500 })
   }
 }
@@ -70,7 +69,6 @@ export async function GET(req: Request, { params }: { params: { storeCode: strin
     })
     return NextResponse.json(category)
   } catch (error) {
-    console.log(`CATEGORY_GET`, error)
 
     return new NextResponse('Internal Error', { status: 500 })
   }
@@ -90,7 +88,6 @@ export async function DELETE(req: Request, { params }: { params: { storeCode: st
     })
     return NextResponse.json(category)
   } catch (error) {
-    console.log(`CATEGORY_DELETE`, error)
     return new NextResponse('Internal Error', { status: 500 })
   }
 }

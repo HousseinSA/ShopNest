@@ -62,7 +62,6 @@ export async function POST(req: Request, { params }: { params: { storeCode: stri
 
     return NextResponse.json(category)
   } catch (error) {
-    console.log(`CATEGORY_POST`, error)
     return new NextResponse('Internal Error', { status: 500 })
   }
 }
@@ -82,7 +81,6 @@ export async function GET(req: Request, { params }: { params: { storeCode: strin
     })
     return NextResponse.json(categories)
   } catch (error) {
-    console.log(`CATEGORY_GET`, error)
     return new NextResponse('Internal Error', { status: 500 })
   }
 }

@@ -60,7 +60,6 @@ export async function POST(req: Request, { params }: { params: { storeCode: stri
     })
     return NextResponse.json(size)
   } catch (error) {
-    console.log(`SIZE_POST`, error)
     return new NextResponse('Internal Error', { status: 500 })
   }
 }
@@ -77,7 +76,6 @@ export async function GET(req: Request, { params }: { params: { storeCode: strin
     })
     return NextResponse.json(sizes)
   } catch (error) {
-    console.log(`SIZE_GET`, error)
     return new NextResponse('Internal Error', { status: 500 })
   }
 }
